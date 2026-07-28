@@ -10,3 +10,8 @@ body.dark span.text-body-secondary,
 body.dark #sobretext {
     color: #9ecced !important;
 }
+
+#icono{
+    height: 10rem;
+    width: 10rem;
+}
