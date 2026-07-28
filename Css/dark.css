@@ -15,3 +15,13 @@ body.dark #sobretext {
     height: 10rem;
     width: 10rem;
 }
+
+.btn-flotante {
+    position: fixed;
+    bottom: 20px;
+    left: 100px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
