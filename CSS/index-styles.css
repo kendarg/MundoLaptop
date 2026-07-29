@@ -1,0 +1,77 @@
+:root {
+
+    --var-background-pagina: #ffff;
+    --var-background-banner: #FDFFFF;
+    --var-button-color-1: #075C6F;
+    --var-font-color-1: #11212D;
+    --var-font-color-2: #075C6F;
+    --var-font-color-3: #ffff;
+
+
+}
+
+* {
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+
+/*banner-inicio*/
+
+.banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1100px;
+    margin: 120px auto;
+    padding: 40px 60px;
+    gap: 15px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    background-color: var(--var-background-banner);
+
+}
+
+.contenido-banner {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contenido-banner span {
+    color: var(--var-font-color-2)
+}
+
+.contenido-banner h1 {
+    font-size: 3rem;
+}
+
+
+.button-banner {
+    background-color: var(--var-button-color-1);
+    color: var(--var-font-color-3);
+    margin: 15px 0px;
+    width: fit-content;
+    padding: 0.7rem 3.5rem;
+    border-radius: 8px;
+    cursor:pointer;
+
+}
+.button-banner:hover {
+    filter: brightness(0.80);
+}
+
+
+/*final Banner*/
+
+/*Productos Destacados*/
