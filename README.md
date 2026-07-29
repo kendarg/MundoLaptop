@@ -7,6 +7,7 @@ Proyecto E-Commerce de venta de laptops gaming y corporativas, usadas y nuevas.
 - backen
 - forntend
 - tester
+- Kendarg
 
 
 ****
