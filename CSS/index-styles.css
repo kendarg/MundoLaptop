@@ -19,6 +19,8 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    width: 80%;
+    margin: auto;
 }
 
 
@@ -29,11 +31,9 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
-    max-width: 1100px;
+    width: 100%;
     margin: 120px auto;
     padding: 40px 60px;
-    gap: 15px;
     border-radius: 15px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -46,6 +46,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-left: 100px;
 }
 
 .contenido-banner span {
@@ -64,14 +65,94 @@ body {
     width: fit-content;
     padding: 0.7rem 3.5rem;
     border-radius: 8px;
-    cursor:pointer;
+    cursor: pointer;
 
 }
+
 .button-banner:hover {
     filter: brightness(0.80);
+}
+
+.imagen-banner {
+    margin-right: 100px;
 }
 
 
 /*final Banner*/
 
 /*Productos Destacados*/
+
+.productos-destacados {
+    display: flex;
+    flex-direction: column;
+}
+
+.productos-destacados-1 {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 30px;
+
+
+}   
+
+.productos-destacados-2 { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.productos-destacados-1 a {
+    text-decoration: none;
+    color: var(--var-font-color-2);
+}
+
+.productos-destacados-1 a:hover {
+    filter: brightness(0.70);
+}
+
+
+
+/*Card*/
+
+.productos-destacados-card {
+
+    display: flex;
+    width: fit-content;
+    margin: 20px 0px;
+    padding: 50px 10px 20px 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    background-color: var(--var-background-banner);
+
+}
+
+.img-card img {
+    width: 350px;
+    height: 250px;
+}
+
+.productos-destacados-card button {
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background-color: var(--var-button-color-1);
+    color: var(--var-font-color-3);
+    border-style: none;
+    cursor: pointer;
+
+
+}
+
+.productos-destacados-card button:hover{
+    filter: brightness(0.75);
+}
