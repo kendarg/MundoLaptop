@@ -93,13 +93,13 @@ body {
     margin: 10px 30px;
 
 
-}   
+}
 
-.productos-destacados-2 { 
+.productos-destacados-2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
 }
 
 .productos-destacados-1 a {
@@ -120,7 +120,7 @@ body {
     display: flex;
     width: fit-content;
     margin: 20px 0px;
-    padding: 50px 10px 20px 10px;
+    padding: 100px 10px 20px 10px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -134,14 +134,15 @@ body {
 }
 
 .img-card img {
-    width: 350px;
-    height: 250px;
+    width: 330px;
+    height: 230px;
 }
 
 .productos-destacados-card button {
-    width: 180px;
+    width: 300px;
     display: flex;
     justify-content: center;
+    gap: 30px;
     align-items: center;
     padding: 8px 10px;
     border-radius: 8px;
@@ -153,6 +154,6 @@ body {
 
 }
 
-.productos-destacados-card button:hover{
+.productos-destacados-card button:hover {
     filter: brightness(0.75);
 }
