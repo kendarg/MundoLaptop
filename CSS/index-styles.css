@@ -170,7 +170,26 @@ body {
 .section-2-1 {
     display: flex;
     justify-content: space-around;
-    display: flex;
-    justify-content: space-around;
     background: linear-gradient(to top, #075C6F 0%, rgba(255, 255, 255, 0.3) 50%);
+    border-radius: 12px;
+    margin:30px 0px;
+
+}
+.section-2-1-contenido{
+    display: flex;
+    flex-direction: column;
+    gap:15px
+}
+
+.section-2-1-contenido h1{
+    font-size: 3rem;
+}
+.section-2-1-contenido span{
+    color: var(--var-font-color-2);
+}
+
+.section-2-2-imagen img{
+
+    width: 400px;
+    height: 260px;
 }
