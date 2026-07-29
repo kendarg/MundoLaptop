@@ -157,3 +157,20 @@ body {
 .productos-destacados-card button:hover {
     filter: brightness(0.75);
 }
+
+
+/*Section de imagenes*/
+
+
+.section-mas-informacion {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-2-1 {
+    display: flex;
+    justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(to top, #075C6F 0%, rgba(255, 255, 255, 0.3) 50%);
+}
