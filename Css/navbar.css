@@ -5,7 +5,7 @@ body{
 }
 
 .logoimg {
-    width: 22vh;
+    width: 25vh;
     height: 7vh;
 }
 
@@ -16,12 +16,22 @@ body{
 
 .navbar .nav-link{
     color: #11212D;
-    padding: 10px;
+    margin: 15px;
     font-weight: 600;
 }
 
 .navbar .nav-link:hover{
     color: #025656;
+    padding: 4px 4px;
     border-top: 2px solid #025656;
     border-bottom: 2px solid #025656;
+}
+
+.iconos-navbar {
+    display: flex;
+}
+
+.iconos-navbar .iconos{
+    height: 40px;
+    margin: 1vh;
 }
