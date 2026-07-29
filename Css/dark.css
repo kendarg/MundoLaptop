@@ -1,0 +1,30 @@
+body.dark {
+    background: #021019;
+}
+
+body.dark .fw-normal, body.dark p {
+    color: white;
+}
+
+body.dark span.text-body-secondary,
+body.dark #sobretext {
+    color: #9ecced !important;
+}
+
+#icono{
+    height: 10rem;
+    width: 10rem;
+}
+
+.btn-flotante {
+    position: fixed;
+    bottom: 20px;
+    left: 100px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+.bi-sun-fill{
+    color: white;
+}
