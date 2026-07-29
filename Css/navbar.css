@@ -1,0 +1,27 @@
+
+body{
+    width: 70%;
+    margin: auto;
+}
+
+.logoimg {
+    width: 22vh;
+    height: 7vh;
+}
+
+#navbarNavDropdown {
+    justify-content: center;
+    color: #11212D;
+}
+
+.navbar .nav-link{
+    color: #11212D;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.navbar .nav-link:hover{
+    color: #025656;
+    border-top: 2px solid #025656;
+    border-bottom: 2px solid #025656;
+}
