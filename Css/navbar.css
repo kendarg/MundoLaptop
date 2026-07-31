@@ -1,13 +1,10 @@
 
-body{
-    width: 70%;
-    margin: auto;
-}
 
 /*logo y navbar */
 .logoimg {
-    width: 25vh;
+    width: auto;
     height: 7vh;
+    margin-left: 40px;
 }
 
 #navbarNavDropdown {
@@ -61,6 +58,11 @@ body{
 .iconos-navbar{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
     margin-left: 30px; /* Separa los iconos del menú */
+    margin-right: 30px;
+}
+.navbar {
+    background-color: white;
+    box-shadow: 0 4px 2px #02565696;
 }

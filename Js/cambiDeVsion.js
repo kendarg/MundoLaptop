@@ -1,3 +1,5 @@
+// MODO OSCURO
+
 let modo = document.getElementById("modo");
 let body = document.body;
 let icono = document.getElementById("icono")
