@@ -4,20 +4,8 @@
     width: 10rem;
 }
 
-.btn-flotante {
-    position: fixed;
-    bottom: 20px;
-    left: 100px;
-    width: 55px;
-    height: 55px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-}
-.bi-sun-fill{
-    color: white;
-}
 
-/* Carts */
+/* Carts y Textos */
 
 
 .fondos{
@@ -84,13 +72,19 @@ body.dark .fondos{
 body.dark a{
     color: #9ECCED !important;
 }
-body.dark h1,body.dark .lead,body.dark .tex-footer,body.dark .githubF, body.dark .nav-link{
+
+body.dark h1,body.dark .lead,body.dark .tex-footer,body.dark .githubF, body.dark .nav-link, body.dark #icono{
     color: black !important;
 }
+
 body.dark .tuMundo{
     color: #075c6f !important;
 }
+/* navbar */
 body.dark .navbar {
     background-color: white;
     box-shadow: 0 4px 2px #23b6b667;
+}
+body.dark #icono{
+color: #025656 !important;
 }
