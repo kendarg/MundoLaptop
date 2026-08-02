@@ -84,9 +84,13 @@ body.dark .fondos{
 body.dark a{
     color: #9ECCED !important;
 }
-body.dark h1,body.dark .lead{
+body.dark h1,body.dark .lead,body.dark .tex-footer,body.dark .githubF, body.dark .nav-link{
     color: black !important;
 }
 body.dark .tuMundo{
     color: #075c6f !important;
+}
+body.dark .navbar {
+    background-color: white;
+    box-shadow: 0 4px 2px #23b6b667;
 }
