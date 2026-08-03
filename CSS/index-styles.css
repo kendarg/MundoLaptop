@@ -63,12 +63,13 @@ body {
 
 .button-banner {
     background-color: var(--var-button-color-1);
-    color: var(--var-font-color-3);
+    color: var(--var-font-color-3)!important;
     margin: 15px 0px;
     width: fit-content;
     padding: 0.7rem 3.5rem;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
 
 }
 
@@ -202,7 +203,7 @@ body {
 
 .section-2-1-contenido a {
     background-color: var(--var-button-color-1);
-    color: var(--var-font-color-3);
+    color: var(--var-font-color-3) !important;
     margin: 15px 0px;
     width: fit-content;
     padding: 0.7rem 3.5rem;
