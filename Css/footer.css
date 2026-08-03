@@ -1,0 +1,207 @@
+/* --- Aislamiento exclusivo para el Footer --- */
+.mundo-laptop-footer,
+.mundo-laptop-footer * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mundo-laptop-footer {
+  background-color: #f4f6f8;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 1250px;
+  margin: 3rem auto 1.5rem auto;
+  padding: 2.5rem 2rem 1.2rem 2rem;
+  color: #495057;
+}
+
+.mundo-laptop-footer .footer-container {
+  width: 100%;
+}
+
+/* Grilla en Desktop (5 columnas en fila) */
+.mundo-laptop-footer .footer-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.mundo-laptop-footer .footer-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mundo-laptop-footer .logo-col {
+  flex: 0 0 24%;
+}
+
+.mundo-laptop-footer .contact-col {
+  flex: 0 0 25%;
+}
+
+/* Textos y Logos */
+.mundo-laptop-footer .footer-logo {
+  max-width: 180px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.mundo-laptop-footer .slogan-text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #1a6470;
+}
+
+.mundo-laptop-footer .footer-heading {
+  font-weight: 700;
+  color: #121824;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.mundo-laptop-footer .footer-links {
+  list-style: none;
+}
+
+.mundo-laptop-footer .footer-links li {
+  margin-bottom: 0.5rem;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.mundo-laptop-footer .footer-links a {
+  text-decoration: none;
+  color: #6c757d;
+  transition: color 0.2s ease;
+}
+
+.mundo-laptop-footer .footer-links a:hover {
+  color: #0d6efd;
+}
+
+/* Contactos con iconos */
+.mundo-laptop-footer .contact-links li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mundo-laptop-footer .contact-icon {
+  color: #00aced;
+  font-size: 1rem;
+}
+
+.mundo-laptop-footer .authors-list li {
+  color: #6c757d;
+}
+
+/* Métodos de Pago */
+.mundo-laptop-footer .payment-icons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.mundo-laptop-footer .payment-icon {
+  height: 24px;
+  width: auto;
+}
+
+/* Barra Inferior (GitHub + Copyright) */
+.mundo-laptop-footer .footer-bottom-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.mundo-laptop-footer .github-container {
+  position: absolute;
+  left: 0;
+}
+
+.mundo-laptop-footer .github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #121824;
+  font-size: 2.2rem;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mundo-laptop-footer .github-link:hover {
+  color: #0d6efd;
+  transform: scale(1.08);
+}
+
+.mundo-laptop-footer .copyright-text {
+  font-size: 0.85rem;
+  color: #6c757d;
+  text-align: center;
+}
+
+/* ==========================================
+   ADAPTACIÓN PARA PANTALLAS PEQUEÑAS (RESPONSIVE)
+   ========================================== */
+
+/* Tablets (hasta 992px) */
+@media (max-width: 992px) {
+  .mundo-laptop-footer .footer-grid {
+    flex-wrap: wrap; /* Permite que las columnas pasen abajo */
+    gap: 2rem;
+  }
+
+  .mundo-laptop-footer .logo-col {
+    flex: 0 0 100%; /* El logo y eslogan ocupan toda la fila superior */
+  }
+
+  .mundo-laptop-footer .footer-col {
+    flex: 0 0 45%; /* Las demás columnas se acomodan en bloques de a 2 */
+  }
+}
+
+/* Móviles (hasta 576px) */
+@media (max-width: 576px) {
+  .mundo-laptop-footer {
+    padding: 2rem 1.5rem 1rem 1.5rem;
+    text-align: center; /* Centra textos para móviles */
+  }
+
+  .mundo-laptop-footer .footer-col {
+    flex: 0 0 100%; /* Cada sección toma toda una fila */
+    align-items: center;
+  }
+
+  .mundo-laptop-footer .contact-links li {
+    justify-content: center;
+  }
+
+  .mundo-laptop-footer .payment-icons {
+    justify-content: center;
+  }
+
+  .mundo-laptop-footer .footer-bottom-bar {
+    flex-direction: column; /* Alinea GitHub sobre el copyright */
+    gap: 0.8rem;
+  }
+
+  .mundo-laptop-footer .github-container {
+    position: static; /* Quita el posicionamiento absoluto en celular */
+  }
+
+  .mundo-laptop-footer .github-link {
+    font-size: 2rem;
+  }
+}
