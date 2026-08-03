@@ -164,14 +164,14 @@ body {
 
 .section-mas-informacion {
     display: flex;
-    margin:100px 0px;
+    margin: 100px 0px;
     flex-direction: column;
 }
 
 .section-2-1 {
     display: flex;
     justify-content: space-around;
-    background: linear-gradient(to top, #075C6F 0%, rgba(255, 255, 255, 0.3) 50%);
+    background: linear-gradient(to top, #93cedb 0%, rgba(255, 255, 255, 0.22) 30%); 
     border-radius: 12px;
     margin: 30px 0px;
 
@@ -210,7 +210,88 @@ body {
 }
 
 .section-2-1-contenido a:hover {
-    filter:brightness(0.75)
+    filter: brightness(0.75)
 }
 
 
+
+.section-2-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(to top, #93cedb 0%, rgba(255, 255, 255, 0.22) 30%);
+    border-radius: 12px;
+    margin: 30px 0px;
+    padding: 20px 0px;
+
+}
+
+.section-2-2-beneficios {
+
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.section-2-2-beneficios-1,
+.section-2-2-beneficios-2,
+.section-2-2-beneficios-3 {
+    color: var(--var-font-color-1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.section-2-2-beneficios-1 a,
+.section-2-2-beneficios-2 a,
+.section-2-2-beneficios-3 a {
+    text-decoration: none;
+    color: var(--vaer-font-color-1);
+    font-weight: strong;
+}
+
+
+
+.section-2-subscripcion {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 20px;
+    align-items: center;
+}
+
+.section-2-subscripcion-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.section-2-subscripcion-img {
+    background-color: var(--var-button-color-1);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.section-2-subscripcion-button-regisrate button {
+    background-color: var(--var-button-color-1);
+    color: var(--var-font-color-3);
+    padding: 10px 50px;
+    border-radius: 8px;
+    border-style: none;
+    cursor: pointer;
+
+}
+
+.section-2-subscripcion-button-regisrate:hover {
+    filter: brightness(0.75);
+
+}
