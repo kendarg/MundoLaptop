@@ -2,15 +2,15 @@
 
 let modo = document.getElementById("modo");
 let body = document.body;
-let icono = document.getElementById("icono")
+let icono = document.getElementById("icono");
 
 modo.addEventListener("click", function(){
     let oscuro = body.classList.toggle("dark");
-    localStorage.setItem("modo", oscuro)
+    localStorage.setItem("modo", oscuro);
 
     icono.classList.toggle("bi-moon");
     icono.classList.toggle("bi-sun");
-})
+});
 
 let v = localStorage.getItem("modo");
 
