@@ -1,30 +1,90 @@
-body.dark {
-    background: #021019;
-}
-
-body.dark .fw-normal, body.dark p {
-    color: white;
-}
-
-body.dark span.text-body-secondary,
-body.dark #sobretext {
-    color: #9ecced !important;
-}
 
 #icono{
     height: 10rem;
     width: 10rem;
 }
 
-.btn-flotante {
-    position: fixed;
-    bottom: 20px;
-    left: 100px;
-    width: 55px;
-    height: 55px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s ease;
+
+/* Carts y Textos */
+
+
+.fondos{
+    background: linear-gradient(180deg, #FFFFFF 10%, #075c6f 30%);
+    border-radius: 16px;
+    width: 100%;
+    display: flex;
+    padding: 2rem 1rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
 }
-.bi-sun-fill{
-    color: white;
+.tuMundo{
+    font-weight: 500;
+}
+.img-tarjeta {
+    height: 280px;
+    width: 100%;
+    object-fit: contain;
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+p{
+    color: black;
+}
+.card {
+    background: linear-gradient(180deg, #FFFFFF 10%, #075c6f17 90%);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+a{
+    color: inherit ;
+}
+
+body.dark{
+    background-color: #021019 !important;
+    color: #FFFFFF;
+}
+
+body.dark h3,
+body.dark p,
+body.dark .card-text{
+color: #FFFFFF !important;
+}
+body.dark span.text-body-secondary,
+body.dark small.text-body-secondary,
+body.dark #sobretext{
+    color: #9ECCED !important;
+}
+body.dark .card{
+    background: linear-gradient(180deg, #092537 10%, #075c6f44 90%);
+    border: 1px solid #0E3D59;
+}
+body.dark .img-tarjeta{
+    background-color: #0D2230;
+}
+body.dark .fondos{
+    background: linear-gradient(180deg, #ccd9e2 50%, #075c6f 100%);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+
+}
+body.dark a{
+    color: #9ECCED !important;
+}
+
+body.dark h1,body.dark .lead,body.dark .tex-footer,body.dark .githubF, body.dark .nav-link, body.dark #icono{
+    color: black !important;
+}
+
+body.dark .tuMundo{
+    color: #075c6f !important;
+}
+/* navbar */
+body.dark .navbar {
+    background-color: white;
+    box-shadow: 0 4px 2px #23b6b667;
+}
+body.dark #icono{
+color: #025656 !important;
 }
