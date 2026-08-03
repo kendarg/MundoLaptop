@@ -19,10 +19,13 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    
+}
+
+.main-index{
     width: 70%;
     margin: auto;
 }
-
 
 /*banner-inicio*/
 
