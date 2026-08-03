@@ -28,6 +28,7 @@ body {
     padding: 0px;
     margin: 100px auto;
     display: flex;
+    flex-direction: column;
 }
 
 .banner-contacto {
@@ -79,4 +80,31 @@ body {
     height: 420px;
 
 
+}
+
+.informacion {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.informacion-llamanos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(to top, #93cedb 0%, rgba(255, 255, 255, 0.22) 30%);
+
+}
+
+.logo{
+    background-color: var(--var-button-color-1);
+    border-radius: 50%;
+    width: fit-content;
+    padding: 15px;
 }
