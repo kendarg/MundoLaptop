@@ -58,7 +58,15 @@
       <div class="iconos-navbar">
         <a href="#" class="iconos"> <i class="bi bi-search"></i> </a>
         <a href="#" class="iconos"> <i class="bi bi-person"></i> </a>
-        <a href="#" class="iconos"> <i class="bi bi-cart3"></i> </a>
+
+        <!-- Carrito de compras -->
+        <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito"
+          aria-controls="offcanvasCarrito">
+          <i class="bi bi-cart3"></i>
+          <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            0
+          </span>
+        </a>
       </div>
       <!-- Boton vision -->
       <div class="btn" id="modo">
@@ -278,8 +286,12 @@
         <div class="footer-col payment-col">
           <h5 class="footer-heading">Métodos De Pago</h5>
           <div class="payment-icons">
-            <img src="https://imgs.search.brave.com/iusvDT7N1ses-OSmRtO23lh6l_QtpRTRHp-t0-SqN0k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L21hc3RlcmNhcmQt/cG5nL21hc3RlcmNh/cmQtbG9nby1wbmct/dHJhbnNwYXJlbnQt/c3ZnLXZlY3Rvci1i/aWUtc3VwcGx5LTEu/cG5n" alt="Mastercard" class="payment-icon">
-            <img src="https://imgs.search.brave.com/RfgowOSs1ON9lBubddSvq7oMrO1T0U4Kjcnpre1uVUg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wNy5o/aWNsaXBhcnQuY29t/L3ByZXZpZXcvNDA0/LzM3NS83MTYvYW1l/cmljYW4tZXhwcmVz/cy1sb2dvLWNyZWRp/dC1jYXJkLXBheW1l/bnQtZGlzY292ZXIt/Y2FyZC1jcmVkaXQt/Y2FyZC10aHVtYm5h/aWwuanBn" alt="American Express" class="payment-icon">
+            <img
+              src="https://imgs.search.brave.com/iusvDT7N1ses-OSmRtO23lh6l_QtpRTRHp-t0-SqN0k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L21hc3RlcmNhcmQt/cG5nL21hc3RlcmNh/cmQtbG9nby1wbmct/dHJhbnNwYXJlbnQt/c3ZnLXZlY3Rvci1i/aWUtc3VwcGx5LTEu/cG5n"
+              alt="Mastercard" class="payment-icon">
+            <img
+              src="https://imgs.search.brave.com/RfgowOSs1ON9lBubddSvq7oMrO1T0U4Kjcnpre1uVUg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wNy5o/aWNsaXBhcnQuY29t/L3ByZXZpZXcvNDA0/LzM3NS83MTYvYW1l/cmljYW4tZXhwcmVz/cy1sb2dvLWNyZWRp/dC1jYXJkLXBheW1l/bnQtZGlzY292ZXIt/Y2FyZC1jcmVkaXQt/Y2FyZC10aHVtYm5h/aWwuanBn"
+              alt="American Express" class="payment-icon">
           </div>
         </div>
 
@@ -307,7 +319,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <script src="/Js/cambiDeVsion.js"></script>
 
 
