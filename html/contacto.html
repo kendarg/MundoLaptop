@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/CSS/contacto.css">
+    <link rel="stylesheet" href="/CSS/navbar.css">
     <title>Contacto</title>
 </head>
 
@@ -13,6 +14,7 @@
 
     <!--Navbar-->
 
+    <script src="/html/navbar.html"></script>
 
     <!--Contactos-->
     <main class="main-contacto">
@@ -53,7 +55,7 @@
                 </div>
                 <h3>Correo electrónico</h3>
                 <p>Envianos un correo</p>
-                <a href="#"> <strong>enviar correo</strong> -></a>
+
             </div>
 
             <!-- Card 3 -->
@@ -63,13 +65,53 @@
                 </div>
                 <h3>visitanos</h3>
                 <p>Ve y buscanos presencial</p>
-                <a href="#"> <strong>ir a maps</strong> -></a>
+
             </div>
 
         </section>
 
 
 
+
+
+        <section class="formulario-contacto">
+
+            <div class="formulario">
+                <h2>Envíanos un mensaje</h2>
+
+                <form action="#" method="post" class="formulario-contacto">
+                    <div class="input-group-1">
+                        <input type="text" id="nombre" name="nombre" required placeholder="Nombre">
+                        <input type="email" id="correo" name="correo" required placeholder="Correo electrónico">
+
+                    </div>
+
+                    <input type="text" id="asunto" name="asunto" required placeholder="Asunto">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" required
+                        placeholder="Escribe tu mensaje aqui ..."></textarea>
+
+                    <button type="submit" class="submit-btn"> <img src="/assets/inicio/pagina-contacto/forward.svg"
+                            alt="Enviar"> Enviar mensaje </button>
+                </form>
+            </div>
+
+
+
+            <div class="divider"></div>
+
+            <div class="map-col">
+                <h2>Nuestra Ubicación</h2>
+                <div class="map-frame">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Bogot%C3%A1%2C%20Colombia&t=&z=12&ie=UTF8&iwloc=&output=embed"
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+
+        </section>
 
 
 
