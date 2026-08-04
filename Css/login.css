@@ -124,7 +124,7 @@
  .olvido{
     display:block;
     text-align:right;
-    color:#da0c0c;
+    color:#075c6f !important;
     text-decoration:none;
     font-weight:600;
     margin-bottom:30px;
@@ -189,14 +189,14 @@
     box-shadow:-15px 0 45px rgba(0, 107, 136, 0.2);
 }
 
-/* Tablets */
+/* responsive Tablets */
 @media (max-width: 768px){
     .login-logo img{
         width: 300px;
         margin-top: 100px;
     }
 }
-/* Celulares */
+/* responsive Celulares */
 @media (max-width: 480px){
     .login-logo img{
         width: 300px;

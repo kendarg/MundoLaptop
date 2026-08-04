@@ -6,9 +6,8 @@
 }
 
 #navbarNavDropdown {
-    justify-content: center;
-    color: #11212D;    
-    align-items: center;
+    justify-content: space-between;
+    color: #11212D;
 }
 
 .navbar .nav-link{
@@ -43,7 +42,7 @@
 
 .iconos {
     text-decoration: none;
-    font-size: 1.5rem; /* Tamaño de los iconos*/
+    font-size: 1.7rem; /* Tamaño de los iconos*/
     color: #025656;
     transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -65,4 +64,3 @@
     background-color: white;
     box-shadow: 0 4px 2px #02565696;
 }
-
