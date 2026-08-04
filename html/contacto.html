@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/CSS/contacto.css">
     <link rel="stylesheet" href="/CSS/navbar.css">
     <title>Contacto</title>
@@ -11,92 +13,178 @@
 
 <body>
 
-
     <!--Navbar-->
-
     <script src="/html/navbar.html"></script>
 
     <!--Contactos-->
     <main class="main-contacto">
 
         <section class="banner-contacto">
-
             <div class="banner-text">
                 <span class="highlight-1">CONTÁCTANOS</span>
-                <h1>Estamos aquí para <span class="highlight-2">ayudarte</span> </h1>
-                <p>¿Tienes dudas, sugerencias o necesitas ayuda con tu pedido? Nuestro equipo estará encantado de
-                    atenderte </p>
+                <h1>Estamos aquí para <span class="highlight-2">ayudarte</span></h1>
+                <p>¿Tienes dudas, sugerencias o necesitas ayuda con tu pedido? Nuestro equipo estará encantado de atenderte.</p>
             </div>
             <div class="banner-imagen">
-                <img src="/assets/inicio/pagina-contacto/banner-contacto.png" alt="">
+                <img src="/assets/inicio/pagina-contacto/banner-contacto.png" alt="Banner Contacto">
             </div>
-
-
-
         </section>
 
-
         <section class="informacion">
-
             <!-- Card 1 -->
             <div class="informacion-llamanos">
                 <div class="logo">
-                    <img src="/assets/inicio/pagina-contacto/tel.svg" alt="" />
+                    <img src="/assets/inicio/pagina-contacto/tel.svg" alt="Teléfono" />
                 </div>
                 <h3>Llámanos</h3>
-                <p>Habla con nuestro chatbot via WhatsApp</p>
-                <a href="#"> <strong>iniciar chat</strong> -></a>
+                <p>Habla con nuestro chatbot vía WhatsApp</p>
+                <a href="#"><strong>Iniciar chat</strong> -&gt;</a>
             </div>
 
             <!-- Card 2 -->
             <div class="informacion-llamanos">
                 <div class="logo">
-                    <img src="/assets/inicio/pagina-contacto/at.svg" alt="" />
+                    <img src="/assets/inicio/pagina-contacto/at.svg" alt="Correo" />
                 </div>
                 <h3>Correo electrónico</h3>
-                <p>Envianos un correo</p>
-
+                <p>Envíanos un correo</p>
             </div>
 
             <!-- Card 3 -->
             <div class="informacion-llamanos">
                 <div class="logo">
-                    <img src="/assets/inicio/pagina-contacto/location.svg" alt="" />
+                    <img src="/assets/inicio/pagina-contacto/location.svg" alt="Ubicación" />
                 </div>
-                <h3>visitanos</h3>
-                <p>Ve y buscanos presencial</p>
-
+                <h3>Visítanos</h3>
+                <p>Ven y búscanos de forma presencial</p>
             </div>
-
         </section>
 
+        <!--Preguntas frecuentes-->
+        <section class="preguntas-frecuentes">
+            <h3>Preguntas Frecuentes</h3>
+            <div class="accordion" id="accordionFAQ">
 
+                <!-- Pregunta 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            ¿Cuáles son los tiempos de entrega?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Pedidos de 1 a 3 días hábiles.</strong> Realizamos envíos asegurados a todo el país para que recibas tu equipo a tiempo y en óptimas condiciones.
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Pregunta 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            ¿Qué significa que un portátil sea "repotenciado" o reacondicionado?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Es un equipo (generalmente de línea corporativa)</strong> que ha sido inspeccionado, limpiado y optimizado técnicamente. Se le realizan mejoras en componentes clave —como la instalación de discos SSD más rápidos o el aumento de memoria RAM— para garantizar un rendimiento óptimo.
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Pregunta 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Cuál es la diferencia entre un equipo corporativo y uno de consumo convencional?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Los portátiles corporativos</strong> están diseñados para uso intensivo y prolongado. Cuentan con chasis reforzados (aluminio o fibra de carbono), sistemas de refrigeración eficientes y componentes de mayor durabilidad que superan a los modelos convencionales.
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Pregunta 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            ¿Qué garantía ofrecen los portátiles usados y repotenciados?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Todos nuestros equipos cuentan con garantía directa.</strong> Pasan por un riguroso control de calidad donde probamos pantalla, batería, teclado, puertos y rendimiento bajo carga antes de ser entregados.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 5 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            ¿Los portátiles gamer usados mantienen su rendimiento en juegos exigentes?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Sí, garantizamos su rendimiento.</strong> Probamos la tarjeta gráfica y el procesador con pruebas de estrés para asegurar que las temperaturas sean estables. Además, realizamos mantenimiento preventivo con cambio de pasta térmica de alta calidad.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 6 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            ¿Puedo solicitar modificaciones (más RAM o SSD) antes de comprar?
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Ofrecemos personalización completa.</strong> Puedes solicitar la ampliación de memoria RAM o de almacenamiento SSD al momento de realizar la compra para ajustar el portátil a tus necesidades exactas.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!--Formulario + Map-->
         <section class="formulario-contacto">
-
             <div class="formulario">
                 <h2>Envíanos un mensaje</h2>
 
-                <form action="#" method="post" class="formulario-contacto">
+                <form action="#" method="post" class="formulario-contacto-1">
                     <div class="input-group-1">
                         <input type="text" id="nombre" name="nombre" required placeholder="Nombre">
                         <input type="email" id="correo" name="correo" required placeholder="Correo electrónico">
-
                     </div>
 
                     <input type="text" id="asunto" name="asunto" required placeholder="Asunto">
                     <label for="mensaje">Mensaje:</label>
                     <textarea id="mensaje" name="mensaje" rows="4" required
-                        placeholder="Escribe tu mensaje aqui ..."></textarea>
+                        placeholder="Escribe tu mensaje aquí..."></textarea>
 
-                    <button type="submit" class="submit-btn"> <img src="/assets/inicio/pagina-contacto/forward.svg"
-                            alt="Enviar"> Enviar mensaje </button>
+                    <button type="submit" class="submit-btn">
+                        <img src="/assets/inicio/pagina-contacto/forward.svg" alt="Enviar"> Enviar mensaje
+                    </button>
                 </form>
             </div>
-
-
 
             <div class="divider"></div>
 
@@ -109,14 +197,14 @@
                     </iframe>
                 </div>
             </div>
-
-
         </section>
-
-
 
     </main>
 
+    <!-- Script oficial de Bootstrap 5.3 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

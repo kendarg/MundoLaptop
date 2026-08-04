@@ -118,6 +118,28 @@ body {
 }
 
 
+/*Preguntas frecuentes*/
+
+
+.preguntas-frecuentes {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    gap: 20px;
+}
+
+.accordion {
+
+    width: 100%;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+}
+
+
 
 /*SectionFormulario de Contacto*/
 
@@ -133,6 +155,13 @@ body {
 
 .formulario {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario-contacto-1 {
+    width: 100%;
 }
 
 .divider {
@@ -200,7 +229,7 @@ textarea {
     background-color: var(--var-button-color-1);
     color: #fff;
     border: solid 1px var(--teal-900);
-    padding: 14px 26px;
+    padding: 14px 42px;
     border-radius: 10px;
     font-size: 0.95rem;
     font-weight: 600;
@@ -216,13 +245,24 @@ textarea {
 .map-col {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
     width: 50%;
 
 }
 
+.map-frame {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
 .map-frame iframe {
-    width: 80%;
+    width: 90%;
     height: 300px;
     border-radius: 15px;
     overflow: hidden;
