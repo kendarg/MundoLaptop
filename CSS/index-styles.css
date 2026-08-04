@@ -2,6 +2,7 @@
 
     --var-background-pagina: #ffff;
     --var-background-banner: #FDFFFF;
+    --var-background-section: #D2E9EE;
     --var-button-color-1: #075C6F;
     --var-font-color-1: #11212D;
     --var-font-color-2: #075C6F;
@@ -32,10 +33,10 @@ body {
 .banner {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
-    margin: 120px auto;
+    margin: 50px auto;
     padding: 40px 60px;
     border-radius: 15px;
     box-shadow: 0 25px 25px -10px rgba(0, 0, 0, 0.4);
