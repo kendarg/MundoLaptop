@@ -2,10 +2,12 @@
 
     --var-background-pagina: #ffff;
     --var-background-banner: #FDFFFF;
+    --var-background-section: #D2E9EE;
     --var-button-color-1: #075C6F;
     --var-font-color-1: #11212D;
     --var-font-color-2: #075C6F;
     --var-font-color-3: #ffff;
+
 
 
 }
@@ -37,13 +39,13 @@ body {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    margin: 120px auto;
+    margin: 50px auto;
     padding: 40px 60px;
     border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 25px 25px -10px rgba(0, 0, 0, 0.4);
+    border: none;
     overflow: hidden;
-    background-color: var(--var-background-banner);
+    background: linear-gradient(180deg, #FFFFFF 80%, var(--var-background-section) 100%);
 }
 
 .banner-text {
@@ -93,11 +95,14 @@ body {
 .informacion-llamanos {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     gap: 10px;
     margin: 10px;
-    padding: 20px;
+    padding: 20px 30px;
     border-radius: 15px;
-    background: linear-gradient(to top, #93cedb 0%, rgba(255, 255, 255, 0.22) 30%);
+    background: #EEF4F5;
     width: 250px;
     height: 240px;
 
@@ -128,7 +133,11 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
-    gap: 20px;
+    gap: 14px;
+    background-color: #EEF4F5;
+    margin: 50px 0;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .accordion {
@@ -137,6 +146,27 @@ body {
     border-radius: 15px;
     padding: 20px;
     margin: 10px;
+}
+
+
+.accordion-button {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.accordion-button:hover {
+    background-color: var(--teal-500, #0c5364);
+    color: var(--var-font-color-3) !important;
+}
+
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--teal-500, #0c5364);
+    color: #ffffff;
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1);
 }
 
 
@@ -149,7 +179,10 @@ body {
     width: 100%;
     flex-direction: row;
     gap: 20px;
-    background: linear-gradient(to top, #93cedb 0%, rgba(255, 255, 255, 0.22) 30%);
+    box-shadow: 0 25px 25px -10px rgba(0, 0, 0, 0.4);
+    border: none;
+    overflow: hidden;
+    background: linear-gradient(180deg, #FFFFFF 80%, var(--var-background-section) 100%);
     border-radius: 15px;
 }
 
