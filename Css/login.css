@@ -1,0 +1,205 @@
+/* overlay ronal */
+.overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(17,33,45,.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: .35s;
+    z-index: 999;
+}
+
+.overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* panel del login ronal*/
+
+.login-panel{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 430px;
+    max-width: 100%;
+    height: 100vh;
+    background: #f00404;
+    transform: translateX(100%);
+    transition: .45s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px 35px 35px;
+    box-shadow: -15px 0 35px rgb(3, 100, 98);
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.login-panel.active{
+    transform: translateX(0);
+}
+
+.cerrar{
+    position:absolute;
+    top:10vh;
+    right:20px;
+    border:none;
+    background:none;
+    font-size:30px;
+    cursor:pointer;
+    color:#075c6f;
+}
+
+.login-logo{
+    text-align:center;
+    margin-bottom:35px;
+    /* margin-top: 100px; */
+}
+
+.login-logo img{
+    width: 100%;
+    height: auto;
+    margin-top: 100px;
+}
+
+.login-panel h2{
+    font-size:40px;
+    font-weight:700;
+    color:#17233a;
+}
+
+.subtitulo{
+    color:#667085;
+    font-size:18px;
+    margin-bottom:35px;
+}
+
+.login-panel label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+    color:#23314d;
+}
+
+.grupo-input{
+    position:relative;
+    margin-bottom:25px;
+}
+
+.grupo-input i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#075c6f;
+    font-size:27px;
+}
+
+.grupo-input input{
+    width:100%;
+    height:56px;
+    border:2px solid #9BA8AB;
+    border-radius:10px;
+    padding-left:55px;
+    padding-right:45px;
+    outline:none;
+    transition:.25s;
+    font-size:16px;
+}
+
+.grupo-input input:focus{
+    border-color:#075c6f;
+    box-shadow:0 0 0 4px rgba(32,138,147,.4);
+}
+
+.ver-password{
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#7b8794;
+}
+
+ .olvido{
+    display:block;
+    text-align:right;
+    color:#da0c0c;
+    text-decoration:none;
+    font-weight:600;
+    margin-bottom:30px;
+}
+
+.buttonlogin{
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:10px;
+    background:#075c6f;
+    color:white;
+    font-size:18px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.buttonlogin:hover{
+    background:#11212d;
+}
+
+.linea{
+    display:flex;
+    align-items:center;
+    margin:30px 0;
+}
+
+.linea::before,
+.linea::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#d8dde5;
+}
+
+.linea span{
+    margin:0 15px;
+    color:#888;
+}
+
+.google{
+    width:100%;
+    height:55px;
+    border:2px solid #d8dde5;
+    background:white;
+    border-radius:10px;
+    font-weight:600;
+    transition:.25s;
+    color: #075C6F;
+}
+
+.google:hover{
+    border-color: #075C6F;
+}
+
+.login-panel{
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #fbfcfd 100%
+    );
+    box-shadow:-15px 0 45px rgba(0, 107, 136, 0.2);
+}
+
+/* Tablets */
+@media (max-width: 768px){
+    .login-logo img{
+        width: 300px;
+        margin-top: 100px;
+    }
+}
+/* Celulares */
+@media (max-width: 480px){
+    .login-logo img{
+        width: 300px;
+        margin-top: 250px;
+    }
+}

@@ -7,7 +7,8 @@
 
 #navbarNavDropdown {
     justify-content: center;
-    color: #11212D;
+    color: #11212D;    
+    align-items: center;
 }
 
 .navbar .nav-link{
