@@ -4,7 +4,6 @@
     width: 10rem;
 }
 
-
 /* Carts y Textos */
 
 
@@ -75,7 +74,10 @@ body.dark a{
     color: #9ECCED !important;
 }
 
-body.dark h1,body.dark .lead,body.dark .tex-footer,body.dark .githubF, body.dark .nav-link, body.dark #icono{
+body.dark h1,body.dark .lead,body.dark .tex-footer,
+body.dark .githubF, body.dark .text-secondary,
+body.dark .nav-link, body.dark #icono,
+body.dark .nombreProducto,body.dark .Valor{
     color: black !important;
 }
 
