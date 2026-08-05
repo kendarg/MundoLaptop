@@ -2,7 +2,7 @@
 .overlay{
     position: fixed;
     inset: 0;
-    background: rgba(17,33,45,.7);
+    background: rgba(23, 35, 58, 0.60);
     opacity: 0;
     visibility: hidden;
     transition: .35s;
@@ -51,12 +51,12 @@
 }
 
 .cerrar:hover i{
-    color: #010817;
+    color: #17233a;
     font-size: 32px;
 }
 
 .login-logo{
-    text-align:center;
+    text-align:center; 
     margin-bottom:35px;
     /* margin-top: 100px; */
 }
@@ -148,7 +148,7 @@
 }
 
 .buttonlogin:hover{
-    background:#11212d;
+    background: #17233a;
 }
 
 .linea{
@@ -215,7 +215,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,.45);
+    background: rgba(23, 35, 58, 0.45);
     opacity: 0;
     visibility: hidden;
     transition: .3s;
@@ -238,13 +238,13 @@
 }
 
 .tituloformulario{
-    color: #042c35;
+    color: #17233a;
 }
 
 .cerrar-registro {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 30px;
+    right: 33px;
     width: 40px;
     height: 40px;
     border: none;
@@ -258,20 +258,19 @@
 }
 
 .cerrar-registro i {
-    font-size: 25px;
+    font-size: 28px;
     color: #075c6f;
     transition: transform 0.3s ease, color 0.3s ease;
 
 }
 
 .cerrar-registro:hover i{
-    color: #010817;
-    font-size: 28px;
+    color: #17233a;
+    font-size: 30px;
 }
 
 .subtituloformulario {
     color: #075c6f;
     font-size: 20px;
     margin: 20px 0px 20px;
-    color:#075c6f !important;
 }
