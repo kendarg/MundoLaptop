@@ -41,7 +41,7 @@
 
 .cerrar{
     position:absolute;
-    top:10vh;
+    top:13vh;
     right:20px;
     border:none;
     background:none;
@@ -58,7 +58,6 @@
 .login-logo{
     text-align:center; 
     margin-bottom:35px;
-    /* margin-top: 100px; */
 }
 
 .login-logo img{
@@ -188,6 +187,19 @@
 .login-panel{
     background-color: aliceblue;
     box-shadow:-15px 0 45px rgba(0, 107, 136, 0.2);
+}
+
+/* responsive portatil */
+@media (max-height: 768px){
+    .login-logo img{
+        width: 200px;
+        margin-top: 80px;
+    }
+    .linea{
+    display:flex;
+    align-items:center;
+    margin:10px 0;
+    }
 }
 
 /* responsive Tablets */
