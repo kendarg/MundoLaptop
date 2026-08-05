@@ -1,0 +1,234 @@
+/* --- Aislamiento exclusivo para el Footer --- */
+
+
+.mundo-laptop-footer,
+.mundo-laptop-footer * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mundo-laptop-footer {
+  background-color: #f4f6f8;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  width: 95%;
+  max-width: 1250px;
+  margin: 3rem auto 1.5rem auto;
+  padding: 2.5rem 2rem 1.2rem 2rem;
+  color: #6c757d; /* Forzamos color base suave */
+}
+
+.mundo-laptop-footer .footer-container {
+  width: 100%;
+}
+
+/* Grilla en Desktop (5 columnas en fila) */
+.mundo-laptop-footer .footer-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.mundo-laptop-footer .footer-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.mundo-laptop-footer .logo-col {
+  flex: 0 0 24%;
+}
+
+.mundo-laptop-footer .contact-col {
+  flex: 0 0 25%;
+}
+
+/* Logos */
+.mundo-laptop-footer .footer-logo {
+  max-width: 180px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+/* Textos: Descripción / Eslogan */
+.mundo-laptop-footer .slogan-text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #6c757d;
+}
+
+/* Títulos principales en azul */
+.mundo-laptop-footer .footer-heading {
+  font-weight: 700;
+  color: #1a6470;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.mundo-laptop-footer .footer-links {
+  list-style: none;
+}
+
+.mundo-laptop-footer .footer-links li {
+  margin-bottom: 0.5rem;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  color: #6c757d;
+}
+
+/* FORZAMOS COLOR GRIS DE AUTORES EN TODOS LOS ENLACES Y TEXTOS DE TIENDA Y CONTACTOS */
+.mundo-laptop-footer .footer-links a,
+.mundo-laptop-footer .contact-links a,
+.mundo-laptop-footer .contact-links span:not(.contact-icon) {
+  text-decoration: none;
+  color: #6c757d !important;
+  transition: color 0.2s ease;
+}
+
+.mundo-laptop-footer .footer-links a:hover,
+.mundo-laptop-footer .contact-links a:hover {
+  color: #1a6470 !important;
+}
+
+/* Contactos */
+.mundo-laptop-footer .contact-links li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6c757d;
+}
+
+.mundo-laptop-footer .contact-icon {
+  color: #1a6470;
+  font-size: 1rem;
+}
+
+/* Lista de Autores */
+.mundo-laptop-footer .authors-list li {
+  color: #6c757d;
+}
+
+/* Métodos de Pago */
+.mundo-laptop-footer .payment-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.mundo-laptop-footer .payment-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+.mundo-laptop-footer .payment-icon {
+  height: 45px;
+  width: auto;
+  max-width: 65px;
+  object-fit: contain;
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+
+.mundo-laptop-footer .payment-icon:hover {
+  transform: scale(1.05);
+}
+
+/* Barra Inferior (GitHub + Copyright) */
+.mundo-laptop-footer .footer-bottom-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.mundo-laptop-footer .github-container {
+  position: absolute;
+  left: 0;
+}
+
+.mundo-laptop-footer .github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #121824;
+  font-size: 2.2rem;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mundo-laptop-footer .github-link:hover {
+  color: #1a6470;
+  transform: scale(1.08);
+}
+
+.mundo-laptop-footer .copyright-text {
+  font-size: 0.85rem;
+  color: #6c757d;
+  text-align: center;
+}
+
+/* ==========================================
+   ADAPTACIÓN RESPONSIVE
+   ========================================== */
+
+@media (max-width: 992px) {
+  .mundo-laptop-footer .footer-grid {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .mundo-laptop-footer .logo-col {
+    flex: 0 0 100%;
+  }
+
+  .mundo-laptop-footer .footer-col {
+    flex: 0 0 45%;
+  }
+}
+
+@media (max-width: 576px) {
+  .mundo-laptop-footer {
+    padding: 2rem 1.5rem 1rem 1.5rem;
+    text-align: center;
+  }
+
+  .mundo-laptop-footer .footer-col {
+    flex: 0 0 100%;
+    align-items: center;
+  }
+
+  .mundo-laptop-footer .contact-links li {
+    justify-content: center;
+  }
+
+  .mundo-laptop-footer .payment-icons {
+    justify-content: center;
+  }
+
+  .mundo-laptop-footer .footer-bottom-bar {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .mundo-laptop-footer .github-container {
+    position: static;
+  }
+
+  .mundo-laptop-footer .github-link {
+    font-size: 2rem;
+  }
+}

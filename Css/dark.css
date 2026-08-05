@@ -8,7 +8,7 @@
 
 
 .fondos{
-    background: linear-gradient(180deg, #FFFFFF 10%, #075c6f 30%);
+    background-color: #EEF4F5;
     border-radius: 16px;
     width: 100%;
     display: flex;
@@ -66,9 +66,8 @@ body.dark .card{
 body.dark .img-tarjeta{
     background-color: #0D2230;
 }
-body.dark .fondos{
-    background: linear-gradient(180deg, #5eaec0 0.5%, #FFFFFF 100%);
-    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6); */
+body.dark .fondos,body.dark .mundo-laptop-footer, body.dark .mision, body.dark .vision{
+    background: linear-gradient(180deg, #EEF4F5 70%, #075c6f44 150%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 
@@ -80,11 +79,12 @@ body.dark a{
 body.dark h1,body.dark .lead,body.dark .tex-footer,
 body.dark .githubF, body.dark .text-secondary,
 body.dark .nav-link, body.dark #icono,
-body.dark .nombreProducto,body.dark .Valor{
+body.dark .nombreProducto,body.dark .Valor,
+body.dark .github-link, body.dark .footerT{
     color: black !important;
 }
 
-body.dark .tuMundo{
+body.dark .tuMundo, body.dark h3, body.dark #Enviar{
     color: #075c6f !important;
 }
 /* navbar */
@@ -94,4 +94,8 @@ body.dark .navbar {
 }
 body.dark #icono{
 color: #025656 !important;
+}
+body.dark .mundo-laptop-footer{
+    background: linear-gradient(180deg, #EEF4F5 40%, #075c6f44 180%);
+
 }
