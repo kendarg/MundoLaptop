@@ -74,7 +74,7 @@
 }
 
 .subtitulo{
-    color:#010817;
+    color:#075c6f;
     font-size:18px;
     margin-bottom:35px;
 }
@@ -209,6 +209,8 @@
     }
 }
 
+
+
 /* formulario crear cuenta */
 
 .registro-overlay{
@@ -261,7 +263,7 @@
 
 .cerrar-registro i {
     font-size: 25px;
-    color: #555;
+    color: #075c6f;
     transition: transform 0.3s ease, color 0.3s ease;
 
 }
@@ -271,8 +273,9 @@
     font-size: 28px;
 }
 
-.subtituloformulario{
+.subtituloformulario {
     color: #075c6f;
     font-size: 20px;
     margin: 20px 0px 20px;
+    color:#075c6f !important;
 }

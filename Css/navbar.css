@@ -60,11 +60,21 @@
     margin-right: 30px;
 }
 
+.iconos-navbar:hover{
+   color: #012b2b;
+}
+
 .navbar {
     background-color: white;
     box-shadow: 0 4px 2px #02565696;
 }
 
 .bi-person {
-    font-size: 2.1rem;
+    font-size: 2rem;
+    color: #025656;
 }
+
+.bi-person:hover,.bi-search:hover,.bi-cart3:hover,.bi-moon:hover,.bi-sun:hover{
+    color: #012b2b;
+}
+
