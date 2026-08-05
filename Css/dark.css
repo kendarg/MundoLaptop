@@ -40,7 +40,10 @@ p{
 a{
     color: inherit ;
 }
-
+.verUsados{
+    color: white;
+    text-decoration: none;
+}
 body.dark{
     background-color: #021019 !important;
     color: #FFFFFF;

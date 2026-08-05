@@ -1,5 +1,5 @@
 
-.fondos{
+.fondos,.mision, .vision{
     background: linear-gradient(180deg, #FFFFFF 10%, #075c6f17 90%);
     border-radius: 16px;
     width: 100%;
@@ -31,4 +31,7 @@
 }
 a{
     color: black !important;
+}
+.mision, .vision{
+    background-color: #EEF4F5;
 }
