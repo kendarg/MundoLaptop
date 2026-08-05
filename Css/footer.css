@@ -1,4 +1,6 @@
 /* --- Aislamiento exclusivo para el Footer --- */
+
+
 .mundo-laptop-footer,
 .mundo-laptop-footer * {
   box-sizing: border-box;
