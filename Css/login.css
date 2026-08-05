@@ -182,15 +182,11 @@
 }
 
 .crearCuentaB:hover{
-    border-color: #075C6F;
+    border-color: aliceblue;
 }
 
 .login-panel{
-    background: linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #fbfcfd 100%
-    );
+    background-color: aliceblue;
     box-shadow:-15px 0 45px rgba(0, 107, 136, 0.2);
 }
 
@@ -233,7 +229,7 @@
 
 .registro{
     width: 400px;
-    background: #f7f9f9;
+    background-color: aliceblue;
     border-radius: 18px;
     padding: 30px;
     position: relative;
