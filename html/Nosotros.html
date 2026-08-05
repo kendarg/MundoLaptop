@@ -13,54 +13,48 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="/Css/login.css">
     <title>Nosotros</title>
 </head>
 
 <body>
-
     <!--navbar Ronal-->
-
-<nav class="navbar navbar-expand-lg sticky-top">
-<div class="container-fluid ">
-    <a href="/inicio.html">
-        <img src="/img/LOGO , PNG.png" alt="LOGO" class="logoimg">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ">
-            <li class="nav-item" class="libar">
-                <a class="nav-link " aria-current="page" href="/index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Productos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="#">Nosotros</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Contactos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
-            </li>
-        </li>
-    </ul>
-</div>
-    <div class="iconos-navbar">
-    <a href="#" class="iconos"> <i class="bi bi-search iconos" ></i> </a>
-    <a href="#" class="iconos"> <i class="bi bi-person iconos" ></i> </a>
-    <a href="#" class="iconos"> <i class="bi bi-cart3 iconos" ></i>  </a>
-    </div>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid ">
+            <a href="/inicio.html">
+                <img src="/img/LOGO , PNG.png" alt="LOGO" class="logoimg">
+            </a>
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown " aria-expanded="false" aria-label="Toggle navigation ">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item" class="libar">
+                        <a class="nav-link " aria-current="page" href="/index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contactos</a>
+                    </li>
+                    </li>
+                </ul>
+            <div class="iconos-navbar ">
+                <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
+                <a href="#" id="buttonuser" class="iconos"> <i class="bi bi-person iconos"></i> </a>
+                <a href="#" class="iconos"> <i class="bi bi-cart3 iconos"></i> </a>
             <!-- Boton vision -->
-    <div class="btn iconos" id="modo">
-    <i class="bi bi-moon iconos" id="icono"></i>
-    </div>
-</nav>
-
+            <div class="btn iconos" id="modo">
+                <i class="bi bi-moon iconos" id="icono"></i>
+            </div>
+            </div>
+            </div>
+    </nav>
     <!-- Sobre nosotros -->
     <div class="container my-4">
         <div class="fondos nosotros row featurette mb-4 ">
@@ -208,53 +202,100 @@
 
         </div>
     </div>
-
+    <!-- section para el login rhonald -->
+    <section class="loginpg">
+        <div id="overlay" class="overlay"></div>
+        <aside id="loginPanel" class="login-panel">
+            <button id="closeLogin" class="cerrar">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div class="login-logo">
+                <img src="/img/adad.png" alt="Mundo Laptop">
+            </div>
+            <h2>Iniciar sesión</h2>
+            <p class="subtitulo">Bienvenido nuevamente.</p>
+            <div class="grupo-input">
+                <i class="bi bi-envelope"></i>
+                <input type="email" placeholder="Correo electrónico">
+            </div>
+            <div class="grupo-input">
+                <i class="bi bi-lock"></i>
+                <input type="password" placeholder="Contraseña">
+            </div>
+            <a href="#" class="olvido">
+                ¿Olvidaste tu contraseña?
+            </a>
+            <button class="buttonlogin">
+                Iniciar sesión
+            </button>
+            <div class="linea">
+                <span>o</span>
+            </div>
+            <button class="google">
+                <i ></i>
+                ¿No tienes cuenta? Crear cutena
+            </button>
+        </aside>
+    </section>
+    
     <!-- Foter Serguio -->
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="container my-4">
             <div class="fondos nosotros row featurette mb-4 ">
-                <div class="col-12 col-md"> <img class="mb-2" src="/img/LOGO , PNG.png" alt=""
-                    width="auto" height="100"> <small class="d-block githubLogo"><a href="https://github.com/kendarg/MundoLaptop" target="_blank"
-                                    rel="noopener noreferrer"><i class="bi bi-github githubF fs-1"></i></a></small> </div>
-            <div class="col-6 col-md">
-                <h5 class="tex-footer">Tienda</h5>
-                <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none tex-footer" href="#">Productos</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none tex-footer" href="#">Ofertas</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none tex-footer" href="#">Novedades</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none tex-footer" href="#">Categorias</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5 class="tex-footer">Contactos</h5>
-                <ul class="list-unstyled text-small">
-                    <li class="mb-1"><p class="tex-footer">mundolaptop@gmail.com</p></li>
-                    <li class="mb-1"><p class="tex-footer">+57 300 000 0000</p></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5 class="tex-footer">Autores</h5>
-                <ul class="list-unstyled text-small">
-                    <li class="tex-footer">Walter Montoya</li>
-                    <li class="tex-footer">Kendarg Real</li>
-                    <li class="tex-footer">Sergio Montaño</li>
-                    <li class="tex-footer">Rhonald Parra</li>
-                    <li class="tex-footer">Samuel cuevo</li>
-                </ul>
-            </div>
-            </div>
-            <div class="footer-col payment-col">
-                <h5  class="footer-heading-light">Metodos de pago</h5>
-                <div class="payment-icons">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtTrzAD2ayUIWu8KkdlZZQ64sRrLLRHZbS4mrq3do4Ug&s=10" alt="Mastercard" class="payment-icon" width="auto" height="20px">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtrTNpPwMzn_nxU8fwlRGMVLzI0QTMHdc7_WZ3V0O2yg&s=10" alt="American Express" class="payment-icon" width="auto" height="20px" >
+                <div class="col-12 col-md"> <img class="mb-2" src="/img/LOGO , PNG.png" alt="" width="auto"
+                        height="100"> <small class="d-block githubLogo"><a href="https://github.com/kendarg/MundoLaptop"
+                            target="_blank" rel="noopener noreferrer"><i
+                                class="bi bi-github githubF fs-1"></i></a></small> </div>
+                <div class="col-6 col-md">
+                    <h5 class="tex-footer">Tienda</h5>
+                    <ul class="list-unstyled text-small">
+                        <li class="mb-1"><a class="link-secondary text-decoration-none tex-footer"
+                                href="#">Productos</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none tex-footer" href="#">Ofertas</a>
+                        </li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none tex-footer"
+                                href="#">Novedades</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none tex-footer"
+                                href="#">Categorias</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5 class="tex-footer">Contactos</h5>
+                    <ul class="list-unstyled text-small">
+                        <li class="mb-1">
+                            <p class="tex-footer">mundolaptop@gmail.com</p>
+                        </li>
+                        <li class="mb-1">
+                            <p class="tex-footer">+57 300 000 0000</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5 class="tex-footer">Autores</h5>
+                    <ul class="list-unstyled text-small">
+                        <li class="tex-footer">Walter Montoya</li>
+                        <li class="tex-footer">Kendarg Real</li>
+                        <li class="tex-footer">Sergio Montaño</li>
+                        <li class="tex-footer">Rhonald Parra</li>
+                        <li class="tex-footer">Samuel cuevo</li>
+                    </ul>
                 </div>
             </div>
-        <div class="border-top mt-4 pt-3 text-center">
-        <div class="bottom-copyright align-items-center">
-            <p class="text-secondary fw-semibold small m-0">&copy; 2026 Mundo laptop. Todos los derechos reservados</p>
-        </div>
+            <div class="footer-col payment-col">
+                <h5 class="footer-heading-light">Metodos de pago</h5>
+                <div class="payment-icons">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtTrzAD2ayUIWu8KkdlZZQ64sRrLLRHZbS4mrq3do4Ug&s=10"
+                        alt="Mastercard" class="payment-icon" width="auto" height="20px">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtrTNpPwMzn_nxU8fwlRGMVLzI0QTMHdc7_WZ3V0O2yg&s=10"
+                        alt="American Express" class="payment-icon" width="auto" height="20px">
+                </div>
+            </div>
+            <div class="border-top mt-4 pt-3 text-center">
+                <div class="bottom-copyright align-items-center">
+                    <p class="text-secondary fw-semibold small m-0">&copy; 2026 Mundo laptop. Todos los derechos
+                        reservados</p>
+                </div>
     </footer>
 
     <!-- JS -->
@@ -263,6 +304,8 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/Js/cambiDeVsion.js"></script>
+    <script src="/Js/loginuser.js"></script>
+    <script src="/Js/navbar.js" ></script>
 </body>
 
 </html>
