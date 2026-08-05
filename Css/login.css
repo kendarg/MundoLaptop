@@ -50,6 +50,11 @@
     color:#075c6f;
 }
 
+.cerrar:hover i{
+    color: #010817;
+    font-size: 32px;
+}
+
 .login-logo{
     text-align:center;
     margin-bottom:35px;
@@ -69,7 +74,7 @@
 }
 
 .subtitulo{
-    color:#667085;
+    color:#010817;
     font-size:18px;
     margin-bottom:35px;
 }
@@ -165,7 +170,7 @@
     color:#888;
 }
 
-.google{
+.crearCuentaB{
     width:100%;
     height:55px;
     border:2px solid #d8dde5;
@@ -176,7 +181,7 @@
     color: #075C6F;
 }
 
-.google:hover{
+.crearCuentaB:hover{
     border-color: #075C6F;
 }
 
@@ -202,4 +207,72 @@
         width: 300px;
         margin-top: 250px;
     }
+}
+
+/* formulario crear cuenta */
+
+.registro-overlay{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    z-index: 9999;
+}
+
+.registro-overlay.activo{
+    opacity: 1;
+    visibility: visible;
+}
+
+.registro{
+    width: 400px;
+    background: #f7f9f9;
+    border-radius: 18px;
+    padding: 30px;
+    position: relative;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tituloformulario{
+    color: #042c35;
+}
+
+.cerrar-registro {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.cerrar-registro i {
+    font-size: 25px;
+    color: #555;
+    transition: transform 0.3s ease, color 0.3s ease;
+
+}
+
+.cerrar-registro:hover i{
+    color: #010817;
+    font-size: 28px;
+}
+
+.subtituloformulario{
+    color: #075c6f;
+    font-size: 20px;
+    margin: 20px 0px 20px;
 }
