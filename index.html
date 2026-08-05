@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="/Css/dark.css">
     <link rel="stylesheet" href="/Css/Nosotros.css">
     <link rel="stylesheet" href="/Css/navbar.css">
-    <!-- ===================================== -->
-     <link rel="stylesheet" href="./CSS/index-styles.css">
+
+    <link rel="stylesheet" href="./CSS/index-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -66,40 +66,58 @@
 
 
 
-    <!--banner -->
+    <!--banner Walter -->
     <main class="main-index">
 
 
 
-        <section class="banner">
-            <div class="contenido-banner">
-                <span>Estrena ya!</span>
-                <h1>Las mejores Laptops <span class="resaltado-banner">para tí</span></h1>
-                <p>Explora los últimos portatiles seleccionados para ti.</p>
-                <a class="button-banner">Comprar ahora</a>
+    <section class="banner container my-5 p-4 p-md-5">
+    <div class="row featurette align-items-center">
 
+        <!-- Columna de Texto / Contenido -->
+        <div class="col-12 col-md-7">
+            <div class="contenido-banner d-flex flex-column gap-3">
+                <span class="fw-semibold">¡Estrena ya!</span>
+                <h1 class="display-5 fw-bold">Las mejores Laptops <span class="resaltado-banner">para ti</span></h1>
+                <p class="text-secondary fs-5">Explora los últimos portátiles seleccionados para ti.</p>
+                <div>
+                    <a class="button-banner" href="#">Comprar ahora</a>
+                </div>
             </div>
+        </div>
+
+        <!-- Columna de Imagen -->
+        <div class="col-12 col-md-5 text-center mt-4 mt-md-0">
             <div class="imagen-banner">
-
-                <img src="./assets/inicio/imagen-banner.png" alt="compra-y-venta-de-laptops-repotenciadas">
-
+                <img src="./assets/inicio/imagen-banner.png" alt="compra-y-venta-de-laptops-repotenciadas" class="img-fluid">
             </div>
+        </div>
+
+    </div>
+</section>
 
 
-        </section>
 
         <!--Prodcutos destacados + cards-->
-        <section class="productos-destacados">
+        
 
-            <div class="productos-destacados-1">
+        <section class="productos-destacados">
+            <!-- Se modifica la clase del primer div para hacer que use boostrap -->
+
+            <!-- se da display fles se hace una ceparacion larga con betweend se centra con alait -->
+            <div class="productos-destacados-1 d-flex justifi-between alait-items-center mb-4 ">
                 <h3>Productos destacados</h3>
 
                 <a href="">Ver mas -> </a>
 
             </div>
 
-            <div class="productos-destacados-2">
+            <!-- Se modifica el div y se crea otro debajo para cada cart -->
+            <!-- Se usa g-4 para la separacion interna -->
 
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 justify-content-center"> <!-- el todo el row le indindica que las columnas deben de ser responsivas -->
+
+            <div class="col">
                 <div class="productos-destacados-card">
                     <div class="img-card">
                         <img src="./img/pc1.png" alt="">
@@ -109,7 +127,9 @@
                     <span> <strong>$ 5.999.000</strong></span>
                     <button> <img src="./assets/inicio/carrito.svg" alt="carrito    "> Comprar Ahora</button>
                 </div>
+                </div>
 
+            <div class="col">
                 <div class="productos-destacados-card">
                     <div class="img-card">
                         <img src="./img/pc1.png" alt="">
@@ -119,7 +139,8 @@
                     <span> <strong>$ 5.999.000</strong></span>
                     <button> <img src="./assets/inicio/carrito.svg" alt="carrito    "> Comprar Ahora</button>
                 </div>
-
+            </div>
+            <div class="col">
                 <div class="productos-destacados-card">
                     <div class="img-card">
                         <img src="./img/pc1.png" alt="">
@@ -129,7 +150,8 @@
                     <span> <strong>$ 5.999.000</strong></span>
                     <button> <img src="./assets/inicio/carrito.svg" alt="carrito    "> Comprar Ahora</button>
                 </div>
-
+            </div>
+            <div class="col">
                 <div class="productos-destacados-card">
                     <div class="img-card">
                         <img src="./img/pc1.png" alt="">
@@ -139,7 +161,9 @@
                     <span> <strong>$ 5.999.000</strong></span>
                     <button> <img src="./assets/inicio/carrito.svg" alt="carrito    "> Comprar Ahora</button>
                 </div>
+                </div>
 
+            </div>
             </div>
 
 
@@ -215,6 +239,7 @@
 
 
         </section>
+        
 
     </main>
 
