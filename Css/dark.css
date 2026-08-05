@@ -77,7 +77,7 @@ body.dark h1,body.dark .lead,body.dark .tex-footer,body.dark .githubF, body.dark
     color: black !important;
 }
 
-body.dark .tuMundo{
+body.dark .tuMundo, body.dark .subtitulo, body.dark .subtituloformulario{
     color: #075c6f !important;
 }
 /* navbar */
