@@ -23,6 +23,7 @@ if (v === "true") {
 
 }else{
     body.classList.remove("dark");
+    body.classList.add("claro");
 
     icono.classList.add("bi-moon");
     icono.classList.remove("bi-sun");

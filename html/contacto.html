@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+       <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Css/dark.css">
+    <link rel="stylesheet" href="/Css/contacto.css">
+    <link rel="stylesheet" href="/Css/navbar.css">
+    <link rel="stylesheet" href="/Css/login.css">
+    <link rel="stylesheet" href="/Css/footer.css">
+
+    <link rel="stylesheet" href="./CSS/index-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Contacto</title>
+</head>
+
+<body>
+
+    <!--Navbar Rhonald-->
+     <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid ">
+            <a href="/inicio.html">
+                <img src="/img/LOGO , PNG oscuro.png" alt="LOGO" class="logoimg">
+            </a>
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown " aria-expanded="false" aria-label="Toggle navigation ">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item" class="libar">
+                        <a class="nav-link " id="navoscuro" aria-current="page" href="/index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="navoscuro" href="#">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " id="navoscuro" href="/html/Nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active"  id="navoscuro" href="/html/contacto.html">Contactos</a>
+                    </li>
+                    </li>
+                </ul>
+            <div class="iconos-navbar ">
+                <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
+                <a href="#" id="buttonuser" class="iconos"> <i class="bi bi-person iconos"></i> </a>
+                <a href="#" class="iconos"> <i class="bi bi-cart3 iconos"></i> </a>
+            <!-- Boton vision -->
+            <div class="btn iconos" id="modo">
+                <i class="bi bi-moon iconos" id="icono"></i>
+            </div>
+            </div>
+            </div>
+    </nav>
+    <!-- Login Rhonald -->
+    <section class="loginpg">
+        <div id="overlay" class="overlay"></div>
+        <aside id="loginPanel" class="login-panel">
+            <button id="closeLogin" class="cerrar">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div class="login-logo">
+                <img src="/img/adad.png" alt="Mundo Laptop">
+            </div>
+            <h2>Iniciar sesión</h2>
+            <p class="subtitulo">Bienvenido nuevamente.</p>
+            <div class="grupo-input">
+                <i class="bi bi-envelope"></i>
+                <input type="email" placeholder="Correo electrónico">
+            </div>
+            <div class="grupo-input">
+                <i class="bi bi-lock"></i>
+                <input type="password" placeholder="Contraseña">
+            </div>
+            <a href="#" class="olvido">
+                ¿Olvidaste tu contraseña?
+            </a>
+            <button class="buttonlogin">
+                Iniciar sesión
+            </button>
+            <div class="linea">
+                <span>o</span>
+            </div>
+            <button class="google">
+                <i ></i>
+                ¿No tienes cuenta? Crear cutena
+            </button>
+        </aside>
+    </section>
+
+    <!--Contactos-->
+    <main class="main-contacto">
+
+        <section class="banner-contacto">
+            <div class="banner-text">
+                <span class="highlight-1">CONTÁCTANOS</span>
+                <h1>Estamos aquí para <span class="highlight-2">ayudarte</span></h1>
+                <p class="nombreProducto">¿Tienes dudas, sugerencias o necesitas ayuda con tu pedido? Nuestro equipo estará encantado de atenderte.</p>
+            </div>
+            <div class="banner-imagen">
+                <img src="/assets/inicio/pagina-contacto/banner-contacto.png" alt="Banner Contacto">
+            </div>
+        </section>
+
+        <section class="informacion">
+            <!-- Card 1 -->
+            <div class="informacion-llamanos">
+                <div class="logo">
+                    <img src="/assets/inicio/pagina-contacto/tel.svg" alt="Teléfono" />
+                </div>
+                <h3>Llámanos</h3>
+                <p class="nombreProducto">Habla con nuestro chatbot vía WhatsApp</p>
+                <a href="#" class="lead"><strong>Iniciar chat</strong> -&gt;</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="informacion-llamanos">
+                <div class="logo">
+                    <img src="/assets/inicio/pagina-contacto/at.svg" alt="Correo" />
+                </div>
+                <h3>Correo electrónico</h3>
+                <p class="nombreProducto">Envíanos un correo</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="informacion-llamanos">
+                <div class="logo">
+                    <img src="/assets/inicio/pagina-contacto/location.svg" alt="Ubicación" />
+                </div>
+                <h3>Visítanos</h3>
+                <p class="nombreProducto">Ven y búscanos de forma presencial</p>
+            </div>
+        </section>
+
+        <!--Preguntas frecuentes-->
+        <section class="preguntas-frecuentes">
+            <h3>Preguntas Frecuentes</h3>
+            <div class="accordion" id="accordionFAQ">
+
+                <!-- Pregunta 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            ¿Cuáles son los tiempos de entrega?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Pedidos de 1 a 3 días hábiles.</strong> Realizamos envíos asegurados a todo el país para que recibas tu equipo a tiempo y en óptimas condiciones.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            ¿Qué significa que un portátil sea "repotenciado" o reacondicionado?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Es un equipo (generalmente de línea corporativa)</strong> que ha sido inspeccionado, limpiado y optimizado técnicamente. Se le realizan mejoras en componentes clave —como la instalación de discos SSD más rápidos o el aumento de memoria RAM— para garantizar un rendimiento óptimo.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Cuál es la diferencia entre un equipo corporativo y uno de consumo convencional?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Los portátiles corporativos</strong> están diseñados para uso intensivo y prolongado. Cuentan con chasis reforzados (aluminio o fibra de carbono), sistemas de refrigeración eficientes y componentes de mayor durabilidad que superan a los modelos convencionales.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            ¿Qué garantía ofrecen los portátiles usados y repotenciados?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Todos nuestros equipos cuentan con garantía directa.</strong> Pasan por un riguroso control de calidad donde probamos pantalla, batería, teclado, puertos y rendimiento bajo carga antes de ser entregados.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 5 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            ¿Los portátiles gamer usados mantienen su rendimiento en juegos exigentes?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Sí, garantizamos su rendimiento.</strong> Probamos la tarjeta gráfica y el procesador con pruebas de estrés para asegurar que las temperaturas sean estables. Además, realizamos mantenimiento preventivo con cambio de pasta térmica de alta calidad.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pregunta 6 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingSix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            ¿Puedo solicitar modificaciones (más RAM o SSD) antes de comprar?
+                        </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                        data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            <strong>Ofrecemos personalización completa.</strong> Puedes solicitar la ampliación de memoria RAM o de almacenamiento SSD al momento de realizar la compra para ajustar el portátil a tus necesidades exactas.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!--Formulario + Map-->
+        <section class="formulario-contacto">
+            <div class="formulario">
+                <h3>Envíanos un mensaje</h3>
+
+                <form action="#" method="post" class="formulario-contacto-1">
+                    <div class="input-group-1">
+                        <input type="text" id="nombre" name="nombre" required placeholder="Nombre">
+                        <input type="email" id="correo" name="correo" required placeholder="Correo electrónico">
+                    </div>
+
+                    <input type="text" id="asunto" name="asunto" required placeholder="Asunto">
+                    <label for="mensaje" class="lead">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" required
+                        placeholder="Escribe tu mensaje aquí..."></textarea>
+
+                    <button type="submit" class="submit-btn">
+                        <img src="/assets/inicio/pagina-contacto/forward.svg" alt="Enviar"> Enviar mensaje
+                    </button>
+                </form>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="map-col">
+                <h3>Nuestra Ubicación</h3>
+                <div class="map-frame">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Bogot%C3%A1%2C%20Colombia&t=&z=12&ie=UTF8&iwloc=&output=embed"
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+
+    <!-- Footer Sergio -->
+      <footer class="mundo-laptop-footer">
+    <div class="footer-container">
+
+      <!-- Fila principal de 5 columnas en Flexbox -->
+      <div class="footer-grid">
+
+        <!-- Columna 1: Logo y Leyenda -->
+        <div class="footer-col logo-col">
+          <img src="/img/LOGO , PNG.png" alt="Mundo Laptop Logo" class="footer-logo">
+          <p class="slogan-text footerT">
+            Tu tienda online de tecnología y accesorios, calidad, innovación y el mejor servicio para ti.
+          </p>
+        </div>
+
+        <!-- Columna 2: Tienda -->
+        <div class="footer-col">
+          <h5 class="footer-heading">Tienda</h5>
+          <ul class="footer-links">
+            <li><a href="#">Productos</a></li>
+            <li><a href="#">Ofertas</a></li>
+            <li><a href="#">Novedades</a></li>
+            <li><a href="#">Categorías</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Contactos -->
+        <div class="footer-col contact-col">
+          <h5 class="footer-heading">Contactos</h5>
+          <ul class="footer-links contact-links">
+            <li>
+              <i class="bi bi-envelope-fill contact-icon"></i>
+              <a href="mailto:mundolaptop@gmail.com">mundolaptop.correo@gmail.com</a>
+            </li>
+            <li>
+              <i class="bi bi-telephone-fill contact-icon"></i>
+              <a href="tel:+57 321 548 3289">+57 321 548 3289</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Columna 4: Autores -->
+        <div class="footer-col">
+          <h5 class="footer-heading">Autores</h5>
+          <ul class="footer-links authors-list">
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/walter-montoya-presiga/">Walter Montoya</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/samuel-alejandro-cuervo-caviedes-269785419/">Kendarg Real</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/sergio-martiny-developer-fullstack-java-javascript-springboot-html-css">Sergio Montaño</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/rhonald-stevend-parra-suarez-a3b886290/">Rhonald Parra</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 5: Métodos de Pago -->
+        <div class="footer-col payment-col">
+          <h5 class="footer-heading">Métodos De Pago</h5>
+          <div class="payment-icons">
+            <img
+              src="https://imgs.search.brave.com/iusvDT7N1ses-OSmRtO23lh6l_QtpRTRHp-t0-SqN0k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L21hc3RlcmNhcmQt/cG5nL21hc3RlcmNh/cmQtbG9nby1wbmct/dHJhbnNwYXJlbnQt/c3ZnLXZlY3Rvci1i/aWUtc3VwcGx5LTEu/cG5n"
+              alt="Mastercard" class="payment-icon">
+            <img
+              src="https://imgs.search.brave.com/RfgowOSs1ON9lBubddSvq7oMrO1T0U4Kjcnpre1uVUg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9wNy5o/aWNsaXBhcnQuY29t/L3ByZXZpZXcvNDA0/LzM3NS83MTYvYW1l/cmljYW4tZXhwcmVz/cy1sb2dvLWNyZWRp/dC1jYXJkLXBheW1l/bnQtZGlzY292ZXIt/Y2FyZC1jcmVkaXQt/Y2FyZC10aHVtYm5h/aWwuanBn"
+              alt="American Express" class="payment-icon">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Barra inferior divisoria -->
+      <div class="footer-bottom-bar">
+        <div class="github-container">
+          <a href="https://github.com/kendarg/MundoLaptop" target="_blank" class="github-link" aria-label="GitHub">
+            <i class="bi bi-github"></i>
+          </a>
+        </div>
+        <div class="copyright-container">
+          <p class="copyright-text footerT">
+            &copy; 2026 Mundo laptop. Todos los derechos reservados
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+    <!-- Script oficial de Bootstrap 5.3 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+        <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+
+  <script src="/Js/cambiDeVsion.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/Js/cambiDeVsion.js"></script>
+    <script src="/Js/navbar.js"></script>
+    <script src="/Js/loginuser.js"></script>
+</body>
+
+</html>
