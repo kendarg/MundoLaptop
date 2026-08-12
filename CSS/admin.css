@@ -1,0 +1,28 @@
+.fondo-modal{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.fondo-modal.activo{
+    display:flex;
+}
+
+.formulario{
+    width:650px;
+    max-width:90%;
+    background:#1f1f1f;
+    border-radius:15px;
+    padding:25px;
+}
+
+.cabeceraFormulario{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
