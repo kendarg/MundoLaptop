@@ -78,3 +78,7 @@
 .letrastock{
 color: blue;
 }
+
+#abrirFormulario, #abrircategoria, #abrirtienda{
+    margin-bottom: 7px;
+}
