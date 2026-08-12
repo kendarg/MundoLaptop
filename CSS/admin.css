@@ -20,9 +20,61 @@
     padding:25px;
 }
 
+.form-label, .cabeceraFormulario{
+    color: aliceblue;
+}
+
+/* Fondo oscuro */
+
+.modal-producto{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Cuando esté abierto */
+
+.modal-producto.activo{
+    display:flex;
+}
+
+/* Caja */
+
+.modal-contenido{
+    width:700px;
+    max-width:95%;
+    background:#212529;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+/* Cabecera */
+
 .cabeceraFormulario{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
+    margin-bottom:25px;
+}
+
+.cabeceraFormulario h3{
+    margin:0;
+}
+
+/* Botón X */
+
+.btn-cerrar{
+    border:none;
+    background:none;
+    color:white;
+    font-size:22px;
+}
+
+.letrastock{
+color: blue;
 }
