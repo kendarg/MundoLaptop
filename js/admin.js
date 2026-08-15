@@ -76,9 +76,7 @@ function AgregarProducto(e){
     console.clear();
     console.log(inventario);
     console.log(JSON.stringify(inventario,null,2));
-    formulario.reset(); // formulario se deja vacio
-    modalProducto.classList.remove("activo");
-
+    cerrarModalProducto();
 }
 
 //      renderizamos productos en html
@@ -174,7 +172,7 @@ function editarProducto(id) {
     const producto = inventario.find(producto => producto.id === id);
     if (!producto) return;
 
-    productoEditando = producto;
+    productoEditando = producto; // variable deja de estar null y pasa a el producto seleccionado por ID
     document.querySelector("#nombreProducto").value = producto.nombre;
     document.querySelector("#numeroSerie").value = producto.serie;
     document.querySelector("#Categoria").value = producto.categoria;
@@ -183,8 +181,6 @@ function editarProducto(id) {
     document.querySelector("#Stock").value = producto.stock;
     document.querySelector("#referencia").value = producto.referencia;
     modalProducto.classList.add("activo");
-
-
 }
 
 // modal para visualizar agregar producto en ventana suspendida
@@ -194,19 +190,29 @@ const abrirFormulario = document.querySelector("#abrirFormulario");
 const cerrarFormulario = document.querySelector("#cerrarFormulario");
 
 
+function cerrarModalProducto() {
 
+    productoEditando = null;
+    formulario.reset();
+    document.querySelector(".cabeceraFormulario h3").textContent = "Agregar Producto";
+    document.querySelector('button[type="submit"]').textContent = "Agregar";
+    modalProducto.classList.remove("activo");
+}
+
+// habre el modal para llenar formulario
 abrirFormulario.addEventListener("click", () => {
     modalProducto.classList.add("activo");
 });
 
-// cerrar ventana agregar producto en X
+//  cerrar modal con X
 cerrarFormulario.addEventListener("click", () => {
-    modalProducto.classList.remove("activo");
+    cerrarModalProducto();
 });
 
+//  el modal se cierra al darle click fuera del formulario
 modalProducto.addEventListener("click", (e) => {
     if(e.target === modalProducto){
-        modalProducto.classList.remove("activo");
+        cerrarModalProducto();
     }
 });
 
