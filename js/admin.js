@@ -2,13 +2,14 @@
 
 //      array de productos vacia
 
-const inventario = [];
+const inventario = JSON.parse(localStorage.getItem("inventario")) || []; // recupera productos guardados o inicia con []
 const formulario = document.querySelector(".formulario");
+
+let productoEditando = null; // variable para aguegar el producto que se va editar y mostar en formulario
 
 formulario.addEventListener("submit",AgregarProducto);
 
 function AgregarProducto(e){
-    console.log("Entró a la función");
     e.preventDefault();
 
     //      seleccionamos input con ID#
@@ -31,20 +32,46 @@ function AgregarProducto(e){
 
     //      visual del objeto
 
-    const producto = {
-        id: Date.now(),
-        nombre,
-        serie,
-        categoria,
-        marca,
-        precio:Number(precio),
-        stock:Number(stock),
-        referencia
-    };
+    if (productoEditando) { // verifica si la variable editarproducto es dieferete de  null
+
+        console.log("productoEditando:", productoEditando);
+
+        productoEditando.nombre = nombre;
+        productoEditando.serie = serie;
+        productoEditando.categoria = categoria;
+        productoEditando.marca = marca;
+        productoEditando.precio = Number(precio);
+        productoEditando.stock = Number(stock);
+        productoEditando.referencia = referencia;
+        
+        //      dejamos el formulario con los botones de agregar nuevamente , ya que al editar aparecen como modificar cambios
+        document.querySelector(".cabeceraFormulario h3").textContent = "Agregar Producto";
+        document.querySelector('button[type="submit"]').textContent = "Agregar";
+
+        productoEditando = null;
+
+    } else { //     de lo contrario creara el producto nuevo al ver que no se esta editandoproducto
+
+        const producto = {
+            id: Date.now(),
+            nombre,
+            serie,
+            categoria,
+            marca,
+            precio: Number(precio),
+            stock: Number(stock),
+            referencia
+        };
+        inventario.push(producto);
+    }
+
+    //      se actualiza localstorage
+    localStorage.setItem(
+    "inventario",
+    JSON.stringify(inventario)
+    );
 
     //      se agrega producto al array - json en console
-
-    inventario.push(producto);
     renderizarInventario();
     console.clear();
     console.log(inventario);
@@ -79,6 +106,7 @@ function renderizarInventario(){
             clase="bg-success";
         }
         //      renderizamos cada producto en la lista de tareas -html
+        //      icono editar y borrar llama producto pot id
         lista.innerHTML +=`
             <tr>
                 <td>${producto.id}</td>
@@ -95,7 +123,9 @@ function renderizarInventario(){
                     </span>
                 </td>
                 <td>
-                    <i class="bi bi-pencil-square text-primary me-3"></i>
+                    <i class="bi bi-pencil-square text-primary me-3" 
+                    data-id="${producto.id}"
+                    style="cursor:pointer;"></i>
                     <i class="bi bi-trash text-danger"
                        data-id="${producto.id}"
                        style="cursor:pointer;"></i>
@@ -103,7 +133,7 @@ function renderizarInventario(){
             </tr>
         `;
     });
-}
+}renderizarInventario(); // llamado a renderizar nuevamente para mostrar lo que enceuntre en localstorage
 
 
 //      evento busca producto por funcion-id al seleccionar icono
@@ -112,6 +142,11 @@ lista.addEventListener("click", (e) => {
     if (e.target.classList.contains("bi-trash")) {
         const id = Number(e.target.dataset.id);
         eliminarProducto(id);
+    }
+
+    if (e.target.classList.contains("bi-pencil-square")){
+        const id = Number (e.target.dataset.id);
+        editarProducto(id);
     }
 });
 
@@ -122,9 +157,34 @@ function eliminarProducto(id){
         producto => producto.id === id
     );
     inventario.splice(indice,1);
+    localStorage.setItem("inventario", JSON.stringify(inventario)); // se actualiza inventario al eliminar
     renderizarInventario();
     console.clear();
     console.log(inventario);
+}
+
+// buscamos el producto dentro de la lista y trae valores al form
+
+function editarProducto(id) {
+
+    //      seleccion de botones en formulario , para cambiarlos al estar editando por  "guardar cambios"
+    document.querySelector(".cabeceraFormulario h3").textContent = "Editar Producto";
+    document.querySelector('button[type="submit"]').textContent = "Guardar Cambios";
+
+    const producto = inventario.find(producto => producto.id === id);
+    if (!producto) return;
+
+    productoEditando = producto;
+    document.querySelector("#nombreProducto").value = producto.nombre;
+    document.querySelector("#numeroSerie").value = producto.serie;
+    document.querySelector("#Categoria").value = producto.categoria;
+    document.querySelector("#marca").value = producto.marca;
+    document.querySelector("#Precio").value = producto.precio;
+    document.querySelector("#Stock").value = producto.stock;
+    document.querySelector("#referencia").value = producto.referencia;
+    modalProducto.classList.add("activo");
+
+
 }
 
 // modal para visualizar agregar producto en ventana suspendida
@@ -132,6 +192,8 @@ function eliminarProducto(id){
 const modalProducto = document.querySelector("#modalProducto");
 const abrirFormulario = document.querySelector("#abrirFormulario");
 const cerrarFormulario = document.querySelector("#cerrarFormulario");
+
+
 
 abrirFormulario.addEventListener("click", () => {
     modalProducto.classList.add("activo");
