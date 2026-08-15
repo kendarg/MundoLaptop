@@ -22,7 +22,9 @@ color: #FFFFFF;
 }
 
 
-
+.dark-logo{
+    content: url("../img/LOGOPNGoscuro.png");
+}
 
 .fondos{
     background-color: #EEF4F5;
