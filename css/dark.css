@@ -22,7 +22,9 @@ color: #FFFFFF;
 }
 
 
-
+.dark-logo{
+    content: url("../img/LOGOPNGoscuro.png");
+}
 
 .fondos{
     background-color: #EEF4F5;
@@ -63,7 +65,7 @@ a{
 
 
 body.dark h3,
-body.dark p,
+body.dark p,body.dark .nav-link,
 body.dark .card-text, body.dark #navoscuro{
 color: #FFFFFF !important;
 }
@@ -79,19 +81,14 @@ body.dark .card{
 body.dark .img-tarjeta,  body.dark .navbar{
     background-color: #0D2230 !important;
 }
-body.dark .fondos,body.dark .mundo-laptop-footer, body.dark .mision, body.dark .vision{
-    background: linear-gradient(180deg, #EEF4F5 70%, #075c6f44 150%);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-
-}
 body.dark a{
     color: #9ECCED !important;
 }
 
 body.dark h1,body.dark .lead,body.dark .tex-footer,
 body.dark .githubF, body.dark .text-secondary,
-body.dark .nav-link, body.dark #icono,
+body.dark #icono,
 body.dark .nombreProducto,body.dark .Valor,
 body.dark .github-link, body.dark .footerT{
     color: black !important;
