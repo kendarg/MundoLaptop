@@ -45,7 +45,7 @@ function AgregarProducto(e){
         productoEditando.referencia = referencia;
         
         //      dejamos el formulario con los botones de agregar nuevamente , ya que al editar aparecen como modificar cambios
-        document.querySelector(".cabeceraFormulario h3").textContent = "Agregar Producto";
+        document.querySelector(".cabeceraFormulario h3").textContent = "Agregar producto";
         document.querySelector('button[type="submit"]').textContent = "Agregar";
 
         productoEditando = null;
@@ -121,10 +121,10 @@ function renderizarInventario(){
                     </span>
                 </td>
                 <td>
-                    <i class="bi bi-pencil-square text-primary me-3" 
+                    <i class="bi bi-pencil-square text-primary me-3 iconoeditar" 
                     data-id="${producto.id}"
                     style="cursor:pointer;"></i>
-                    <i class="bi bi-trash text-danger"
+                    <i class="bi bi-trash text-danger iconobotar"
                        data-id="${producto.id}"
                        style="cursor:pointer;"></i>
                 </td>
@@ -166,8 +166,8 @@ function eliminarProducto(id){
 function editarProducto(id) {
 
     //      seleccion de botones en formulario , para cambiarlos al estar editando por  "guardar cambios"
-    document.querySelector(".cabeceraFormulario h3").textContent = "Editar Producto";
-    document.querySelector('button[type="submit"]').textContent = "Guardar Cambios";
+    document.querySelector(".cabeceraFormulario h3").textContent = "Editar producto";
+    document.querySelector('button[type="submit"]').textContent = "Guardar cambios";
 
     const producto = inventario.find(producto => producto.id === id);
     if (!producto) return;
