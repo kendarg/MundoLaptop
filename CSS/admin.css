@@ -1,0 +1,181 @@
+.fondo-modal{
+    position: fixed;
+    inset: 0;
+    background: #025656;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    color: rgb(240, 8, 8);
+}
+  
+.fondo-modal.activo{
+    display:flex;
+}
+
+.formulario{
+    width:100%;
+    max-width:600px;
+    background: #f0f8ff;
+    border-radius:20px;
+    padding:25px;
+    border: 2px solid #025656;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-color: #025656;
+}/* Acabo de corregir la vision de este formulario para el ajuste del tamaño*/
+
+.form-label, .cabeceraFormulario{
+    color: aliceblue;
+}
+
+/* Fondo oscuro */
+/* .modal-producto{
+    position: fixed;
+    inset: 0;
+    background: #11212d9d;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+} */
+ 
+
+.modal-producto {
+    position: fixed !important;
+    
+    /* Coordenadas absolutas respecto al navegador, no al container */
+    top: 0 !important;
+    left: 0 !important;
+    
+    /* Forzamos el tamaño completo del monitor */
+    width: 100vw !important;
+    height: 100vh !important;
+    
+    /* Anulamos los márgenes automáticos que mete la clase .container */
+    margin: 0 !important;
+    padding: 20px !important;
+    max-width: 100% !important; 
+    
+    background: #11212d9d; /* Tu color gris oscuro */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999 !important; /* Por encima de los menús laterales */
+}
+
+
+
+/* Cuando esté abierto */
+
+.modal-producto.activo{
+    display: flex !important;
+}
+
+/* Caja */
+/* 
+.modal-contenido{
+    width:700px;
+    max-width:95%;
+    background:#ec1616;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 20px 60px rgba(243, 6, 6, 0.4);
+}  */ 
+  /* Esto no esta haciendo nada  */
+
+
+/* Cabecera */
+
+.cabeceraFormulario{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    color: #025656;
+}
+
+/* Botón X */
+
+/* .btn-cerrar{
+    border:none;
+    background:none;
+    color:rgb(214, 194, 194);
+    font-size:22px;
+} */
+
+#cerrarFormulario {
+    font-size: 0.8rem; /* Controla el tamaño de la X (más chico = más elegante) */
+    transition: transform 0.2s ease;
+}
+
+#cerrarFormulario:hover {
+    transform: scale(1.15); /* Crece sutilmente cuando pasas el mouse */
+}
+
+#abrirFormulario, #abrircategoria, #abrirtienda{
+    margin-bottom: 7px;
+}
+
+.subtitulopanel, .tituloProductos, .admon{
+    color: #025656;
+}
+
+.panelAdmon{
+ background-color: #f0f8ff;
+ color: #025656;
+}
+/* panel de administrador */
+.panelAdmonIzq{
+    background: #f0f8ff;
+    color: #003333;
+    box-shadow:0 10px 10px rgba(1, 42, 49, 0.808);
+}
+
+.linkPanelIzq{
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    padding: 10px;
+    text-decoration: none;
+    color: #025656;
+    
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.linkPanelIzq:hover{
+    color: #eef3f3;
+    background-color: #033946;
+    border-radius: 10px;
+    transform: scale(1.03);
+}
+
+/* boton para agregar producto a tabla */
+.btnAbrirformulario, .btnCategoria, .btnTienda{
+    background-color: var(--var-button-color-1);
+    color: var(--var-font-color-3);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border-style: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.btnAbrirformulario:hover, .btnCategoria:hover, .btnTienda:hover{
+    background-color: #033946;
+      transform: scale(1.03);
+}
+
+/* tabla de productos sobreescribe-bootstrap */
+.table.tablaInventario > :not(caption) > * > * {
+    background-color: #f0f8ff;
+    color: #075c6f;
+    border-radius: 0px 0px 7px 7px;
+}
+
+.table.tablaInventario thead th {
+    background-color: #075c6f;
+    color: white;
+}
+
