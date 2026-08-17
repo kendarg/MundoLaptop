@@ -29,11 +29,11 @@ const registro = document.getElementById("registroModal");
 const cerrarRegistro = document.getElementById("cerrarRegistro");
 
 crearCuenta.addEventListener("click", () => {
-    loginPanel.classList.remove("activo");
-    overlay.classList.remove("activo");
-    registro.classList.add("activo");
+    loginPanel.classList.remove("active");
+    overlay.classList.remove("active   ");
+    registro.classList.add("active ");
 });
 
 cerrarRegistro.addEventListener("click", () => {
-    registro.classList.remove("activo");
+    registro.classList.remove("active  ");
 });

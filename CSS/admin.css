@@ -26,7 +26,7 @@
 }/* Acabo de corregir la vision de este formulario para el ajuste del tamaño*/
 
 .form-label, .cabeceraFormulario{
-    color: aliceblue;
+    color: black;
 }
 
 /* Fondo oscuro */
@@ -43,25 +43,18 @@
 
 .modal-producto {
     position: fixed !important;
-    
-    /* Coordenadas absolutas respecto al navegador, no al container */
     top: 0 !important;
-    left: 0 !important;
-    
-    /* Forzamos el tamaño completo del monitor */
+    left: 0 !important;    
     width: 100vw !important;
     height: 100vh !important;
-    
-    /* Anulamos los márgenes automáticos que mete la clase .container */
     margin: 0 !important;
     padding: 20px !important;
     max-width: 100% !important; 
-    
-    background: #11212d9d; /* Tu color gris oscuro */
+    background: #11212d9d; 
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 999999 !important; /* Por encima de los menús laterales */
+    z-index: 999999 !important;
 }
 
 
