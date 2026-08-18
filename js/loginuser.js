@@ -22,3 +22,18 @@ document.addEventListener("keydown", (e) => {
         cerrarLogin();
     }
 });
+
+// formulario crear cuenta
+const crearCuenta = document.querySelector(".crearCuentaB");
+const registro = document.getElementById("registroModal");
+const cerrarRegistro = document.getElementById("cerrarRegistro");
+
+crearCuenta.addEventListener("click", () => {
+    loginPanel.classList.remove("active");
+    overlay.classList.remove("active   ");
+    registro.classList.add("active ");
+});
+
+cerrarRegistro.addEventListener("click", () => {
+    registro.classList.remove("active  ");
+});
