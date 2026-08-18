@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/CSS/productos.css">
 
     <link rel="stylesheet" href="/css/index-styles.css">
 
@@ -41,7 +42,7 @@
                         <a class="nav-link " aria-current="page" href="/index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Productos</a>
+                        <a class="nav-link" href="/html/productos.html">Productos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="/html/Nosotros.html">Nosotros</a>
@@ -66,23 +67,236 @@
 
 
         <div class="productos-info">
-            <h2>Productos</h2>
-            <p> Explora nuestra selección de laptops y accesorios de las mejores marcas, optimizados para tu
-                rendimiento.</p>
+            <div>
+                <h2>Productos</h2>
+                <p> Explora nuestra selección de laptops y accesorios de las mejores marcas, optimizados para tu
+                    rendimiento.</p>
+            </div>
+            <div class="select-ordenar" tabindex="0">
+
+                <button class="btn-ordenar" type="button">
+                    <span class="label">Ordenar por:</span>
+                    <span class="valor-seleccionado">Más populares</span>
+                    <svg class="flecha" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+
+
+                <ul class="opciones-ordenar">
+                    <li class="activa"><a href="#">Más populares</a></li>
+                    <li><a href="#">Menor precio</a></li>
+                    <li><a href="#">Mayor precio</a></li>
+                    <li><a href="#">Más recientes</a></li>
+                </ul>
+            </div>
+
         </div>
         <section class="section-productos">
 
             <div class="section-filter">
-                <h3>Categorias</h3>
-                <a href="">Nuevos</a>
-                <a href="">Reacondicionados</a>
-                <a href="">Usados</a>
+
+                <div class="section-filter-1">
+                    <strong>
+                        <h5>CATEGORÍAS</h5>
+                    </strong>
+                    <div class="cateogrias"><a href=""><img src="/img/productos/icon-news.png" alt=""> Nuevos</a></div>
+                    <div class="cateogrias">
+                        <a href=""> <img src="/img/productos/icon-openbox.png" alt=""> Open Box</a>
+                    </div>
+                    <div class="cateogrias">
+                        <a href=""> <img src="/img/productos/procesador-icon.png" alt=""> Reacondicionados</a>
+                    </div>
+
+
+
+
+
+
+                </div>
+                <div class="section-filter-2">
+                    <strong>
+                        <h5>MARCAS</h5>
+                    </strong>
+                    <div class="lista-marcas">
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="dell">
+                            <span>dell</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="hp">
+                            <span>Hp</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="lenovo">
+                            <span>Lenovo</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="asus">
+                            <span>Asus</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="acer">
+                            <span>Acer</span>
+                        </label>
+                    </div>
+
+                </div>
+
+
 
 
             </div>
-            <div class="section-productos">
-                <!-- La idea es poner aca en grid para que queden alineadas.-->
+            <div class="section-productos-render">
+                <!-- La idea es poner aca en grid para que queden alineadas, 3 columnas-->
 
+                <!--productos hardcoreados 1-->
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/dell-xps-13-ultrabook.png" alt="">
+
+                        </div>
+                        <span> <strong>DELL</strong></span>
+                        <span class="nombreProducto">XPS 13 Ultrabook</span>
+                        <span> <strong class="Valor"> 5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/thinkjpad-x1-carbon.png" alt="">
+
+                        </div>
+                        <span> <strong>LENOVO</strong></span>
+                        <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/sepectrex360.png" alt="">
+
+                        </div>
+                        <span> <strong>HP</strong></span>
+                        <span class="nombreProducto">Spectre x360 Convertible</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/dell-xps-13-ultrabook.png" alt="">
+
+                        </div>
+                        <span> <strong>DELL</strong></span>
+                        <span class="nombreProducto">XPS 13 Ultrabook</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/dell-xps-13-ultrabook.png" alt="">
+
+                        </div>
+                        <span> <strong>DELL</strong></span>
+                        <span class="nombreProducto">XPS 13 Ultrabook</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/thinkjpad-x1-carbon.png" alt="">
+
+                        </div>
+                        <span> <strong>LENOVO</strong></span>
+                        <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/sepectrex360.png" alt="">
+
+                        </div>
+                        <span> <strong>HP</strong></span>
+                        <span class="nombreProducto">Spectre x360 Convertible</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/dell-xps-13-ultrabook.png" alt="">
+
+                        </div>
+                        <span> <strong>DELL</strong></span>
+                        <span class="nombreProducto">XPS 13 Ultrabook</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/thinkjpad-x1-carbon.png" alt="">
+
+                        </div>
+                        <span> <strong>LENOVO</strong></span>
+                        <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/sepectrex360.png" alt="">
+
+                        </div>
+                        <span> <strong>HP</strong></span>
+                        <span class="nombreProducto">Spectre x360 Convertible</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
 
 
 
