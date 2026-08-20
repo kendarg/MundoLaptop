@@ -20,6 +20,7 @@ overlay.addEventListener("click", cerrarLogin);
 document.addEventListener("keydown", (e) => {
     if(e.key === "Escape"){
         cerrarLogin();
+        registro.classList.remove("activo");
     }
 });
 
@@ -29,11 +30,12 @@ const registro = document.getElementById("registroModal");
 const cerrarRegistro = document.getElementById("cerrarRegistro");
 
 crearCuenta.addEventListener("click", () => {
-    loginPanel.classList.remove("active");
-    overlay.classList.remove("active   ");
-    registro.classList.add("active ");
+    loginPanel.classList.remove("activo");
+    overlay.classList.remove("activo");
+    registro.classList.add("activo");
 });
 
 cerrarRegistro.addEventListener("click", () => {
-    registro.classList.remove("active  ");
+registro.classList.remove("activo");
+    overlay.classList.remove("activo");
 });
