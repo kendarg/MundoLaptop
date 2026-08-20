@@ -29,7 +29,7 @@
 <body>
 
  
-  <!--navbar Ronal-->
+   <!--navbar Ronal-->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid ">
             <a href="../inicio.html">
@@ -45,7 +45,7 @@
                         <a class="nav-link" aria-current="page" href="../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="navoscuro" href="/html/productos.html">Productos</a>
+                        <a class="nav-link" href="/html/productos.html">Productos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="../html/Nosotros.html">Nosotros</a>
@@ -213,11 +213,36 @@
             <div class="linea">
                 <span>o</span>
             </div>
-            <button class="google">
+            <button class="crearCuentaB">
                 <i ></i>
                 ¿No tienes cuenta? Crear cutena
             </button>
         </aside>
+        
+        <div id="registroModal" class="registro-overlay">
+            <div class="registro grupo-input">
+                <button id="cerrarRegistro" class="cerrar-registro">
+                    <i class="bi bi-x-circle-fill"></i>
+                </button>
+                <h2 class="tituloformulario">Crear cuenta</h2>
+                <h3 class="subtituloformulario">hola! ingresa tus datos.</h3>
+                <div class="grupo-input">
+                    <i class="bi bi-person"></i>
+                    <input type="email" placeholder="Nombre de usuario">
+                </div>
+                <div class="grupo-input">
+                    <i class="bi bi-envelope"></i>
+                    <input type="email" placeholder="Correo electrónico">
+                </div>
+                <div class="grupo-input">
+                    <i class="bi bi-lock"></i>
+                    <input type="password" placeholder="Contraseña">
+                </div>
+                <button class="buttonlogin">
+                    Registrarse
+                </button>
+            </div>
+        </div>
     </section>
 
 
