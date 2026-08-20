@@ -231,6 +231,7 @@ textarea {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
+/*1*/
 
 input::placeholder,
 textarea::placeholder {

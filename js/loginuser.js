@@ -20,6 +20,7 @@ overlay.addEventListener("click", cerrarLogin);
 document.addEventListener("keydown", (e) => {
     if(e.key === "Escape"){
         cerrarLogin();
+        registro.classList.remove("activo");
     }
 });
 
@@ -35,5 +36,6 @@ crearCuenta.addEventListener("click", () => {
 });
 
 cerrarRegistro.addEventListener("click", () => {
-    registro.classList.remove("activo");
+registro.classList.remove("activo");
+    overlay.classList.remove("activo");
 });

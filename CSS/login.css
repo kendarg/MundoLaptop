@@ -1,0 +1,288 @@
+/* overlay ronal */
+.overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(23, 35, 58, 0.60);
+    opacity: 0;
+    visibility: hidden;
+    transition: .35s;
+    z-index: 999;
+}
+
+.overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* panel del login ronal*/
+
+.login-panel{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 430px;
+    max-width: 100%;
+    height: 100vh;
+    background: #f00404;
+    transform: translateX(100%);
+    transition: .45s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px 35px 35px;
+    box-shadow: -15px 0 35px rgb(3, 100, 98);
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+.login-panel.active{
+    transform: translateX(0);
+}
+
+.cerrar{
+    position:absolute;
+    top:13vh;
+    right:20px;
+    border:none;
+    background:none;
+    font-size:30px;
+    cursor:pointer;
+    color:#075c6f;
+}
+
+.cerrar:hover i{
+    color: #17233a;
+    font-size: 32px;
+}
+
+.login-logo{
+    text-align:center; 
+    margin-bottom:35px;
+}
+
+.login-logo img{
+    width: 100%;
+    height: auto;
+    margin-top: 100px;
+}
+
+.login-panel h2{
+    font-size:40px;
+    font-weight:700;
+    color:#17233a;
+}
+
+.subtitulo{
+    color:#075c6f;
+    font-size:18px;
+    margin-bottom:35px;
+}
+
+.login-panel label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+    color:#23314d;
+}
+
+.grupo-input{
+    position:relative;
+    margin-bottom:25px;
+}
+
+.grupo-input i{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#075c6f;
+    font-size:27px;
+}
+
+.grupo-input input{
+    width:100%;
+    height:56px;
+    border:2px solid #9BA8AB;
+    border-radius:10px;
+    padding-left:55px;
+    padding-right:45px;
+    outline:none;
+    transition:.25s;
+    font-size:16px;
+}
+
+.grupo-input input:focus{
+    border-color:#075c6f;
+    box-shadow:0 0 0 4px rgba(32,138,147,.4);
+}
+
+.ver-password{
+    position:absolute;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    color:#7b8794;
+}
+
+ .olvido{
+    display:block;
+    text-align:right;
+    color:#075c6f !important;
+    text-decoration:none;
+    font-weight:600;
+    margin-bottom:30px;
+}
+
+.buttonlogin{
+    width:100%;
+    height:56px;
+    border:none;
+    border-radius:10px;
+    background:#075c6f;
+    color:white;
+    font-size:18px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.buttonlogin:hover{
+    background: #17233a;
+}
+
+.linea{
+    display:flex;
+    align-items:center;
+    margin:30px 0;
+}
+
+.linea::before,
+.linea::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#d8dde5;
+}
+
+.linea span{
+    margin:0 15px;
+    color:#888;
+}
+
+.crearCuentaB{
+    width:100%;
+    height:55px;
+    border:2px solid #d8dde5;
+    background:white;
+    border-radius:10px;
+    font-weight:600;
+    transition:.25s;
+    color: #075C6F;
+}
+
+.crearCuentaB:hover{
+    border-color: aliceblue;
+}
+
+.login-panel{
+    background-color: aliceblue;
+    box-shadow:-15px 0 45px rgba(0, 107, 136, 0.2);
+}
+
+/* responsive portatil */
+@media (max-height: 768px){
+    .login-logo img{
+        width: 200px;
+        margin-top: 80px;
+    }
+    .linea{
+    display:flex;
+    align-items:center;
+    margin:10px 0;
+    }
+}
+
+/* responsive Tablets */
+@media (max-width: 768px){
+    .login-logo img{
+        width: 300px;
+        margin-top: 100px;
+    }
+}
+/* responsive Celulares */
+@media (max-width: 480px){
+    .login-logo img{
+        width: 300px;
+        margin-top: 250px;
+    }
+}
+
+
+
+/* formulario crear cuenta */
+
+.registro-overlay{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(23, 35, 58, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+    z-index: 9999;
+}
+
+.registro-overlay.activo{
+    opacity: 1;
+    visibility: visible;
+}
+
+.registro{
+    width: 400px;
+    background-color: aliceblue;
+    border-radius: 18px;
+    padding: 30px;
+    position: relative;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tituloformulario{
+    color: #17233a;
+}
+
+.cerrar-registro {
+    position: absolute;
+    top: 30px;
+    right: 33px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.cerrar-registro i {
+    font-size: 28px;
+    color: #075c6f;
+    transition: transform 0.3s ease, color 0.3s ease;
+
+}
+
+.cerrar-registro:hover i{
+    color: #17233a;
+    font-size: 30px;
+}
+
+.subtituloformulario {
+    color: #075c6f;
+    font-size: 20px;
+    margin: 20px 0px 20px;
+}

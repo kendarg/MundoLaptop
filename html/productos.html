@@ -1,32 +1,31 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/dark.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/login.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/carrito.css">
+    <title>Productos</title>
 
-    <link rel="stylesheet" href="/css/index-styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Inicio</title>
+
+
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="../css/carrito.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/productos.css">
+    <link rel="stylesheet" href="/css/index-styles.css">
 </head>
 
-<body class="">
-  <!-- Navbar -->
-  
-  <!--navbar Ronal-->
+<body>
+
+      <!--navbar Ronal-->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid ">
             <a href="../inicio.html">
@@ -39,28 +38,34 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item" class="libar">
-                        <a class="nav-link active" aria-current="page" href="/index.html">Inicio</a>
+                        <a class="nav-link" aria-current="page" href="../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/html/productos.html">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/html/Nosotros.html">Nosotros</a>
+                        <a class="nav-link " href="../html/Nosotros.html">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/html/contacto.html">Contactos</a>
-                    </li>
-                    </li>
-                </ul>
-                <div class="iconos-navbar ">
-                    <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
-                    <a href="#" id="buttonuser" class="iconos"> <i class="bi bi-person iconos"></i> </a>
-                    <a href="#" class="iconos"> <i class="bi bi-cart3 iconos"></i> </a>
-                    <!-- Boton vision -->
-                    <div class="btn iconos" id="modo">
-                        <i class="bi bi-moon iconos" id="icono"></i>
-                    </div>
-                </div>
+                        <a class="nav-link" href="../html/contacto.html">Contactos</a>
+                        </li>
+                        </li>
+                        </ul>
+                        <div class="iconos-navbar ">
+                          <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
+                          <a href="#" id="buttonuser" class="iconos"> <i class="bi bi-person iconos"></i> </a>
+                          <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito"
+                            aria-controls="offcanvasCarrito">
+                            <i class="bi bi-cart3 iconos"></i>
+                            <span id="cart-count" class="position-absolute top-0 start-100 translate-middle cart-badge-blue">
+                              0
+                            </span>
+                          </a>
+                          <!-- Boton vision -->
+                          <div class="btn iconos" id="modo">
+                            <i class="bi bi-moon iconos" id="icono"></i>
+                          </div>
+            </div>
             </div>
     </nav>
 
@@ -175,7 +180,7 @@
     </div>
 
 
-    <!-- section para el login rhonald -->
+<!-- section para el login rhonald -->
     <section class="loginpg">
         <div id="overlay" class="overlay"></div>
         <aside id="loginPanel" class="login-panel">
@@ -205,193 +210,323 @@
                 <span>o</span>
             </div>
             <button class="google">
-                <i></i>
+                <i ></i>
                 ¿No tienes cuenta? Crear cutena
             </button>
         </aside>
     </section>
 
-    <!--banner Walter -->
-    <main class="container main-index">
+
+<!-- section para el login rhonald -->
+    <section class="loginpg">
+        <div id="overlay" class="overlay"></div>
+        <aside id="loginPanel" class="login-panel">
+            <button id="closeLogin" class="cerrar">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div class="login-logo">
+                <img src="/img/adad.png" alt="Mundo Laptop">
+            </div>
+            <h2>Iniciar sesión</h2>
+            <p class="subtitulo">Bienvenido nuevamente.</p>
+            <div class="grupo-input">
+                <i class="bi bi-envelope"></i>
+                <input type="email" placeholder="Correo electrónico">
+            </div>
+            <div class="grupo-input">
+                <i class="bi bi-lock"></i>
+                <input type="password" placeholder="Contraseña">
+            </div>
+            <a href="#" class="olvido">
+                ¿Olvidaste tu contraseña?
+            </a>
+            <button class="buttonlogin">
+                Iniciar sesión
+            </button>
+            <div class="linea">
+                <span>o</span>
+            </div>
+            <button class="google">
+                <i ></i>
+                ¿No tienes cuenta? Crear cutena
+            </button>
+        </aside>
+
+        <div id="registroModal" class="registro-overlay">
+            <div class="registro grupo-input">
+                <button id="cerrarRegistro" class="cerrar-registro">
+                    <i class="bi bi-x-circle-fill"></i>
+                </button>
+                <h2 class="tituloformulario">Crear cuenta</h2>
+                <h3 class="subtituloformulario">hola! ingresa tus datos.</h3>
+                <div class="grupo-input">
+                    <i class="bi bi-person"></i>
+                    <input type="email" placeholder="Nombre de usuario">
+                </div>
+                <div class="grupo-input">
+                    <i class="bi bi-envelope"></i>
+                    <input type="email" placeholder="Correo electrónico">
+                </div>
+                <div class="grupo-input">
+                    <i class="bi bi-lock"></i>
+                    <input type="password" placeholder="Contraseña">
+                </div>
+                <button class="buttonlogin">
+                    Registrarse
+                </button>
+            </div>
+        </div>
+    </section>
 
 
+    <main class="main-section">
 
-        <section class="banner container my-5 p-4 p-md-5 inicioDatos">
-            <div class="row featurette align-items-center">
 
-                <!-- Columna de Texto / Contenido -->
-                <div class="col-12 col-md-7">
-                    <div class="contenido-banner d-flex flex-column gap-3">
-                        <span class="fw-semibold">¡Estrena ya!</span>
-                        <h1 class="display-5 fw-bold">Las mejores Laptops <span class="resaltado-banner">para ti</span>
-                        </h1>
-                        <p class="text-secondary fs-5" id="textoN">Explora los últimos portátiles seleccionados para ti.
-                        </p>
-                        <div>
-                            <div class="section-2-subscripcion-button-regisrate">
-                                <a href="" class="comprarUsados"><button> Comprar Ahora</button></a>
-                            </div>
-                        </div>
+        <div class="productos-info">
+            <div>
+                <h2>Productos</h2>
+                <p class="cateogriasinfo"> Explora nuestra selección de laptops y accesorios de las mejores marcas, optimizados para tu
+                    rendimiento.</p>
+            </div>
+            <div class="select-ordenar" tabindex="0">
+
+                <button class="btn-ordenar" type="button">
+                    <span class="label">Ordenar por:</span>
+                    <span class="valor-seleccionado">Más populares</span>
+                    <svg class="flecha" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+
+
+                <ul class="opciones-ordenar">
+                    <li class="activa"><a href="#" class="cateogriasinfo">Más populares</a></li>
+                    <li><a href="#" class="cateogriasinfo">Menor precio</a></li>
+                    <li><a href="#" class="cateogriasinfo">Mayor precio</a></li>
+                    <li><a href="#" class="cateogriasinfo">Más recientes</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <section class="section-productos">
+
+            <div class="section-filter">
+
+                <div class="section-filter-1">
+                    <strong>
+                        <h5>CATEGORÍAS</h5>
+                    </strong>
+                    <div class="cateogrias"><a href="" class="cateogriasinfo"><img src="/img/productos/icon-news.png" alt=""> Nuevos</a></div>
+                    <div class="cateogrias">
+                        <a href="" class="cateogriasinfo"> <img src="/img/productos/icon-openbox.png" alt=""> Open Box</a>
                     </div>
+                    <div class="cateogrias">
+                        <a href="" class="cateogriasinfo"> <img src="/img/productos/procesador-icon.png" alt=""> Reacondicionados</a>
+                    </div>
+
+
+                </div>
+                <div class="section-filter-2">
+                    <strong>
+                        <h5>MARCAS</h5>
+                    </strong>
+                    <div class="lista-marcas">
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="dell">
+                            <span>dell</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="hp">
+                            <span>Hp</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="lenovo">
+                            <span>Lenovo</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="asus">
+                            <span>Asus</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="acer">
+                            <span>Acer</span>
+                        </label>
+                    </div>
+
                 </div>
 
-                <!-- Columna de Imagen -->
-                <div class="col-12 col-md-5 text-center mt-4 mt-md-0">
-                    <div class="imagen-banner">
-                        <img src="/assets/inicio/imagen-banner.png" alt="compra-y-venta-de-laptops-repotenciadas"
-                            class="img-fluid">
-                    </div>
-                </div>
+
+
 
             </div>
+            <div class="section-productos-render">
+                <!-- La idea es poner aca en grid para que queden alineadas, 3 columnas-->
+
+                <!--productos hardcoreados 1-->
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/dell-xps-13-ultrabook.png" alt="">
+
+                        </div>
+                        <span> <strong>DELL</strong></span>
+                        <span class="nombreProducto">XPS 13 Ultrabook</span>
+                        <span> <strong class="Valor"> 5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/thinkjpad-x1-carbon.png" alt="">
+
+                        </div>
+                        <span> <strong>LENOVO</strong></span>
+                        <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/sepectrex360.png" alt="">
+
+                        </div>
+                        <span> <strong>HP</strong></span>
+                        <span class="nombreProducto">Spectre x360 Convertible</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/dell-xps-13-ultrabook.png" alt="">
+
+                        </div>
+                        <span> <strong>DELL</strong></span>
+                        <span class="nombreProducto">XPS 13 Ultrabook</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/dell-xps-13-ultrabook.png" alt="">
+
+                        </div>
+                        <span> <strong>DELL</strong></span>
+                        <span class="nombreProducto">XPS 13 Ultrabook</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/thinkjpad-x1-carbon.png" alt="">
+
+                        </div>
+                        <span> <strong>LENOVO</strong></span>
+                        <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/sepectrex360.png" alt="">
+
+                        </div>
+                        <span> <strong>HP</strong></span>
+                        <span class="nombreProducto">Spectre x360 Convertible</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/dell-xps-13-ultrabook.png" alt="">
+
+                        </div>
+                        <span> <strong>DELL</strong></span>
+                        <span class="nombreProducto">XPS 13 Ultrabook</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/thinkjpad-x1-carbon.png" alt="">
+
+                        </div>
+                        <span> <strong>LENOVO</strong></span>
+                        <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+                <div class="col">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="/img/productos/sepectrex360.png" alt="">
+
+                        </div>
+                        <span> <strong>HP</strong></span>
+                        <span class="nombreProducto">Spectre x360 Convertible</span>
+                        <span> <strong class="Valor">5.999.000 COP</strong></span>
+                        <button> <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
         </section>
 
 
 
-        <!--Prodcutos destacados + cards-->
-
-
-        <section class="productos-destacados">
-            <!-- Se modifica la clase del primer div para hacer que use boostrap -->
-
-            <!-- se da display fles se hace una ceparacion larga con betweend se centra con alait -->
-            <div class="productos-destacados-1 d-flex justifi-between alait-items-center mb-4 ">
-                <h4 class="">Productos destacados</h4>
-
-                <a href="">Ver mas -> </a>
-
-            </div>
-
-            <!-- Se modifica el div y se crea otro debajo para cada cart -->
-            <!-- Se usa g-4 para la separacion interna -->
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 justify-content-center">
-                <!-- el todo el row le indindica que las columnas deben de ser responsivas -->
-
-                <div class="col">
-                    <div class="productos-destacados-card">
-                        <div class="img-card">
-                            <img src="./img/pc1.png" alt="">
-
-                        </div>
-                        <span class="nombreProducto">Acer nitro</span>
-                        <span> <strong class="Valor">5.999.000 COP</strong></span>
-                        <button> <img src="./assets/inicio/carrito.svg" alt="carrito"> Comprar Ahora</button>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="productos-destacados-card">
-                        <div class="img-card">
-                            <img src="./img/pc1.png" alt="">
-
-                        </div>
-                        <span class="nombreProducto">Acer nitro</span>
-                        <span> <strong class="Valor">5.999.000 COP</strong></span>
-                        <button> <img src="./assets/inicio/carrito.svg" alt="carrito    "> Comprar Ahora</button>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="productos-destacados-card">
-                        <div class="img-card">
-                            <img src="./img/pc1.png" alt="">
-
-                        </div>
-                        <span class="nombreProducto">Acer nitro</span>
-                        <span> <strong class="Valor">5.999.000 COP</strong></span>
-                        <button> <img src="./assets/inicio/carrito.svg" alt="carrito    "> Comprar Ahora</button>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="productos-destacados-card">
-                        <div class="img-card">
-                            <img src="./img/pc1.png" alt="">
-
-                        </div>
-                        <span class="nombreProducto">Acer nitro</span>
-                        <span> <strong class="Valor">5.999.000 COP</strong></span>
-                        <button> <img src="./assets/inicio/carrito.svg" alt="carrito    "> Comprar Ahora</button>
-                    </div>
-                </div>
-
-            </div>
-            </div>
-
-
-
-            <section class="banner-2">
-
-                <section class="section-mas-informacion">
-                    <section class="banner container my-5 p-4 p-md-5 inicioDatos">
-                        <div class="row featurette align-items-center">
-
-                            <!-- Columna de Texto / Contenido -->
-                            <div class="col-12 col-md-7">
-                                <div class="contenido-banner d-flex flex-column gap-3">
-                                    <span class="fw-semibold">Tambien para ti</span>
-                                    <h1 class="display-5 fw-bold">Laptops usadas</h1>
-                                    <p class="text-secondary fs-5" id="textoN">Mejoradas, actualizadas y listas para que
-                                        uses su gran potencial!.</p>
-                                    <div>
-                                        <div class="section-2-subscripcion-button-regisrate">
-                                            <a href=""><button> Ver usados</button></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Columna de Imagen -->
-                            <div class="col-12 col-md-5 text-center mt-4 mt-md-0">
-                                <div class="imagen-banner">
-                                    <img src="./img/pc5.png" alt="compra-y-venta-de-laptops-repotenciadas"
-                                        class="img-fluid">
-                                </div>
-                            </div>
-
-                        </div>
-                    </section>
-
-                    <section class="section-mas-beneficios">
-                        <div class="section-2-2">
-                            <div class="section-2-2-beneficios">
-                                <div class="section-2-2-beneficios-1">
-                                    <img src="assets/inicio/delivery_truck_speed.svg" alt="">
-                                    <a class="lead" href="">Envios a todo el pais</a>
-                                </div>
-                                <div class="section-2-2-beneficios-2">
-                                    <img src="assets/inicio/history.svg" alt="">
-                                    <a class="lead " href="">Optimizacion de Tiempo</a>
-                                </div>
-                                <div class="section-2-2-beneficios-3">
-                                    <img src="assets/inicio/headset_mic.svg" alt="">
-                                    <a class="lead " href="">Soporte 24/7</a>
-                                </div>
-                            </div>
-                            <div class="section-3-subscripcion">
-                                <div class="section-2-subscripcion-1">
-                                    <div class="section-2-subscripcion-img">
-                                        <img src="assets/inicio/crown.svg">
-                                    </div>
-                                    <div class=" section-2-subscripcion-text">
-                                        <p class="lead ">Recibe ofertas exclusivas, novedades y mas.</p>
-                                    </div>
-                                </div>
-                                <div class="section-2-subscripcion-button-regisrate p-3">
-                                    <button> Registrate</button>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                </section>
-
-
-            </section>
-
 
     </main>
 
-    <!-- Foter Serguio -->
+
+
+
 
 
     <footer class="mundo-laptop-footer">
@@ -480,40 +615,23 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
         </div>
     </footer>
-=======
-        </section>
-        
-
-  </main>
-
-  <!-- Foter Serguio -->
-
-    <div data-include="componentes/../html/footer.html"></div>
->>>>>>> origin/main
-
-
-
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
-<<<<<<< HEAD
 
     <script src="/js/cambiDeVsion.js"></script>
 
 
-=======
->>>>>>> origin/main
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/cambiDeVsion.js"></script>
-    <script src="../js/navbar.js"></script>
-    <script src="../js/loginuser.js"></script>
+    <script src="/js/productos.js"></script>
+    <script src="/js/cambiDeVsion.js"></script>
     <script src="../js/carrito.js"></script>
-    <script src="../js/reutilizacion.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/loginuser.js"></script>
 </body>
 
 </html>
