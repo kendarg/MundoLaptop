@@ -1,0 +1,70 @@
+/*logo y navbar */
+.logoimg {
+    width: auto;
+    height: 7vh;
+    margin-left: 40px;
+}
+
+#navbarNavDropdown {
+    justify-content: space-between;
+    color: #11212D;
+}
+
+.navbar .nav-link{
+    color: #11212D;
+    margin: 15px;
+    font-weight: 600;
+    padding: 4px;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    transition: color .3s ease, border-color .3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active{
+    color: #025656;
+    border-top-color: #025656;
+    border-bottom-color: #025656;
+    transform: scale(1.08);
+}
+
+.navbar .nav-link:hover{
+    color: #025656;
+    border-top-color: #025656;
+    border-bottom-color: #025656;
+    transform: scale(1.08);
+}
+
+.iconos a{
+    text-decoration: none;
+    outline: none;
+}
+
+.iconos {
+    text-decoration: none;
+    font-size: 1.7rem; /* Tamaño de los iconos*/
+    color: #025656;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.iconos:hover, #modo:hover{
+    fill: #11212D;
+    transform: scale(1.15);
+}
+
+.iconos-navbar{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: 30px; /* Separa los iconos del menu */
+    margin-right: 30px;
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: 0 4px 2px #02d3d396;
+}
+
+.bi-person {
+    font-size: 2.1rem;
+}

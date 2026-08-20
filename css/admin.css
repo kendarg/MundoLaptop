@@ -171,4 +171,7 @@
     background-color: #075c6f;
     color: white;
 }
-
+.aDecorativa{
+    text-decoration: none;
+    color: inherit;
+}
