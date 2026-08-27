@@ -41,12 +41,12 @@
                 Agregar Producto
             </button>
             <button id="abrircategoria" class="btnCategoria">
-                <i class="bi bi-plus-lg"></i> 
-                Agregar Categoria                                  
+                <i class="bi bi-plus-lg"></i>
+                Agregar Categoria
             </button>
             <button id="abrirtienda" class="btnTienda">
-                <i class="bi bi-plus-lg"></i>                                
-                Ver tienda
+                <i class="bi bi-plus-lg"></i><a href="../html/productos.html" class="aDecorativa"> Ver tienda</a>
+                
             </button>
             <!-- Gestion DE Tienda -->
             <hr>
@@ -157,87 +157,86 @@
 
         <!--Formulario--> <!-- div para agregar Producto -->
         <div id="modalProducto" class="modal-producto container  " >
-            <form class="p-3 border rounded formulario">
-                <div class="cabeceraFormulario">
-                    <h3>Agregar Producto</h3>
+                <form class="p-3 border rounded formulario">
+                    <div class="cabeceraFormulario">
+                        <h3>Agregar Producto</h3>
                     <!-- Reemplaza tu botón de cerrar por este -->
                         <button type="button" id="cerrarFormulario" class="btn-close" aria-label="Close"></button>
-                    </button>
-                </div>
+                        </button>
+                    </div>
                 <div class="mb-5">
-                    <label for="nombreProducto" class="form-label">
-                        Nombre del Producto
-                    </label>
-                    <input type="text" class="form-control" id="nombreProducto" placeholder="Nombre del Producto">
-                </div>
-                <div class="mb-3">
-                    <label for="numeroSerie" class="form-label">
-                        Numero de serie
-                    </label>
-                    <input type="text" class="form-control" id="numeroSerie" placeholder="numeroSerie">
-                </div>
-                <div class="mb-3">
-                    <label for="Categoria" class="form-label" id="importanciatxt">
-                        Categoria
-                    </label>
-                    <select class="form-select" id="Categoria">
-                        <option selected>Seleccionar...</option>
-                        <option value="Nuevos">Nuevos</option>
-                        <option value="Open Box">Open Box</option>
-                        <option value="Usados">Usados</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="marca" class="form-label" id="importanciatxt">
-                        Marca
-                    </label>
-                    <select class="form-select" id="marca">
-                        <option selected>Seleccionar...</option>
+                        <label for="nombreProducto" class="form-label">
+                            Nombre del Producto
+                        </label>
+                        <input type="text" class="form-control" id="nombreProducto" placeholder="Nombre del Producto">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numeroSerie" class="form-label">
+                            Numero de serie
+                        </label>
+                        <input type="text" class="form-control" id="numeroSerie" placeholder="numeroSerie">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Categoria" class="form-label" id="importanciatxt">
+                            Categoria
+                        </label>
+                        <select class="form-select" id="Categoria">
+                            <option selected>Seleccionar...</option>
+                            <option value="Nuevos">Nuevos</option>
+                            <option value="Open Box">Open Box</option>
+                            <option value="Usados">Usados</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="marca" class="form-label" id="importanciatxt">
+                            Marca
+                        </label>
+                        <select class="form-select" id="marca">
+                            <option selected>Seleccionar...</option>
                         <option value="Lenovo">Accer</option>
                         <option value="HP">Apple</option>
                         <option value="Lenovo">Asus</option>
                         <option value="HP">Dell</option>
                         <option value="Lenovo">Hp</option>
                         <option value="HP">Huawei</option>
-                        <option value="Lenovo">Lenovo</option>
+                            <option value="Lenovo">Lenovo</option>
                         <option value="HP">Msi </option>
                         <option value="Lenovo">Razer</option>
-                        <option value="HP">Vaio</option>
-                        <option value="Otras">Otras</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="Precio" class="form-label">
-                        Precio
-                    </label>
-                    <input type="number" class="form-control" id="Precio">
-                </div>
-                <div class="mb-3">
-                    <label for="Stock" class="form-label">
-                        Stock
-                    </label>
-                    <input type="number" class="form-control" id="Stock">
-                </div>
-                <div class="mb-3">
-                    <label for="referencia" class="form-label" id="importanciatxt">
-                        Referencia
-                    </label>
-                    <select class="form-select" id="referencia">
-                        <option selected>Seleccionar...</option>
-                        <option value="Lenovo">Lenovo</option>
-                        <option value="HP">HP</option>
-                        <option value="Otras">Otras</option>
-                    </select>
-                </div>
-                <hr>
-                <button type="button" class="btn btn-primary w-100">
-                    Agragar Imagen
-                </button>
-                <hr>
-                <button type="submit" class="btn btn-primary w-100">
-                    Agregar
-                </button>
-            </form>
+                            <option value="Otras">Otras</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Precio" class="form-label">
+                            Precio
+                        </label>
+                        <input type="number" class="form-control" id="Precio">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Stock" class="form-label">
+                            Stock
+                        </label>
+                        <input type="number" class="form-control" id="Stock">
+                    </div>
+                    <div class="mb-3">
+                        <label for="referencia" class="form-label" id="importanciatxt">
+                            Repotenciado
+                        </label>
+                        <select class="form-select" id="referencia">
+                            <option selected>Seleccionar...</option>
+                            <option value="Lenovo">Si</option>
+                            <option value="HP">No</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <button type="button" class="btn btn-primary w-100">
+                        Agragar Imagen
+                    </button>
+                    <hr>
+                    <button type="submit" class="btn btn-primary w-100">
+                        Agregar
+                    </button>
+                </form>
+            </div>
         </div>
 
         <!-- JS -->
@@ -245,4 +244,5 @@
         <!-- <<script src="/Js/cambiDeVsion.js"></script> -->
         <script src="../js/admin.js"></script>
 </body>
+
 </html>
