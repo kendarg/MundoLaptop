@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const userExists = users.find(u => u.email === email && u.password === password);
 
             if (userExists) {
+
                 localStorage.setItem("userRole", "client");
                 localStorage.setItem("isAuthenticated", "true");
                 localStorage.setItem("currentUser", email);
