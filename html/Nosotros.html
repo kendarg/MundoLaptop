@@ -21,7 +21,7 @@
 </head>
 
 <body>
-   <!-- Navbar -->
+<!-- Navbar -->
 
     <!--navbar Ronal-->
     <nav class="navbar navbar-expand-lg sticky-top">
@@ -50,19 +50,19 @@
                         </li>
                         </ul>
                         <div class="iconos-navbar ">
-                          <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
-                          <a href="#" id="buttonuser" class="iconos"> <i class="bi bi-person iconos"></i> </a>
-                          <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito"
+                            <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
+                            <a href="#" id="buttonuser" class="iconos"> <i class="bi bi-person iconos"></i> </a>
+                            <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito"
                             aria-controls="offcanvasCarrito">
                             <i class="bi bi-cart3 iconos"></i>
                             <span id="cart-count" class="position-absolute top-0 start-100 translate-middle cart-badge-blue">
-                              0
+                                0
                             </span>
-                          </a>
-                          <!-- Boton vision -->
-                          <div class="btn iconos" id="modo">
+                            </a>
+                        <!-- Boton vision -->
+                        <div class="btn iconos" id="modo">
                             <i class="bi bi-moon iconos" id="icono"></i>
-                          </div>
+                        </div>
             </div>
             </div>
     </nav>
@@ -180,78 +180,71 @@
 
 
     <!-- Login Sergio -->
-    <section class="loginpg">
+    <section class="loginpg container pt-5 mt-5">
         <div id="overlay" class="overlay"></div>
         <aside id="loginPanel" class="login-panel">
             <button id="closeLogin" class="cerrar" type="button">
                 <i class="bi bi-x-lg"></i>
             </button>
-            <div class="login-logo">
+            <div class="login-logo container pt-5 mt-5">
                 <img src="/img/adad.png" alt="Mundo Laptop">
             </div>
 
-            <h2 id="panelTitle">Iniciar sesión</h2>
-            <p id="panelSub" class="subtitulo">Bienvenido nuevamente.</p>
-
-
-            <form id="authForm" onsubmit="return false;">
-                <div class="grupo-input registro">
-                    <i class="bi bi-envelope"></i>
-                    <input type="text" id="nombreInput" placeholder="nombre" autocomplete="nombre">
-                </div>
-                <div class="grupo-input registro">
-                    <i class="bi bi-envelope"></i>
-                    <input type="number" id="numeroInput" placeholder="numero" autocomplete="numero">
-                </div>
+            
+            <div class="vistalogin" id="vistalogin" style="display: none;">
+                <h2>Iniciar sesión</h2>
+                <p class="subtitulo">Bienvenido nuevamente.</p>
+                <form id="authForm" onsubmit="return false;">
                 <div class="grupo-input">
                     <i class="bi bi-envelope"></i>
                     <input type="email" id="emailInput" placeholder="Correo electrónico" autocomplete="email">
                 </div>
                 <div class="grupo-input">
-                    <i class="bi bi-lock"></i>
-                    <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
+                <i class="bi bi-eye toggle-password" data-target="passwordInput"></i>
+                <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
                 </div>
-                <div class="grupo-input registro">
-                    <i class="bi bi-lock"></i>
-                    <input type="password" id="passwordInput" placeholder="Confirmar Contraseña" autocomplete="current-password">
-                </div>
-
                 <p id="statusMsg" style="font-size: 14px; display: none; margin-top: 5px;"></p>
 
                 <button type="submit" id="loginBtn" class="buttonlogin">Iniciar sesión</button>
+                <!-- <div class="linea"><span>o</span></div> -->
+                <hr>
+                <button type="button" id="btnCrearUsuario" class="google">¿No tienes cuenta? Crear cuenta</button>
             </form>
+            </div>
 
-            <div class="linea"><span>o</span></div>
-
-            <button type="button" id="toggleModeBtn" class="google">
-                ¿No tienes cuenta? Crear cuenta
-            </button>
-        </aside>
-
-        <!-- <div id="registroModal" class="registro-overlay">
-            <div class="registro grupo-input">
-                <button id="cerrarRegistro" class="cerrar-registro">
-                    <i class="bi bi-x-circle-fill"></i>
-                </button>
-                <h2 class="tituloformulario">Crear cuenta</h2>
-                <h3 class="subtituloformulario">hola! ingresa tus datos.</h3>
-                <div class="grupo-input">
-                    <i class="bi bi-person"></i>
-                    <input type="email" placeholder="Nombre de usuario">
+            <div class="vistaRegistro" id="vistaRegistro" style="display: block;">
+                <form id="authFormRegistro" onsubmit="return false;">
+                <h2>Crear cuenta</h2>
+                <p class="subtitulo">Regístrate para empezar.</p>
+                <div class="grupo-input ">
+                    <i class="bi bi-person-vcard"></i>
+                    <input type="text" id="nombreInput" placeholder="nombre" autocomplete="nombre">
+                </div>
+                <div class="grupo-input ">
+                    <i class="bi bi-telephone"></i>
+                    <input type="number" id="numeroInput" placeholder="numero" autocomplete="numero">
                 </div>
                 <div class="grupo-input">
                     <i class="bi bi-envelope"></i>
-                    <input type="email" placeholder="Correo electrónico">
+                    <input type="email" id="emailInputRegistro" placeholder="Correo electrónico" autocomplete="email">
+                </div>
+                <div class="grupo-input ">
+                <i class="bi bi-eye toggle-password" data-target="passwordInputRegistro"></i>
+                    <input type="password" id="passwordInputRegistro" placeholder="Contraseña" autocomplete="current-password">
                 </div>
                 <div class="grupo-input">
-                    <i class="bi bi-lock"></i>
-                    <input type="password" placeholder="Contraseña">
+                    <i class="bi bi-eye toggle-password" data-target="passwordInputregistro"></i>
+                    <input type="password" id="passwordInputRegistro" placeholder="Confirmar Contraseña" autocomplete="current-password">
+                    
                 </div>
-                <button class="buttonlogin">
-                    Registrarse
-                </button>
+
+                <p id="statusMsg" style="font-size: 14px; display: none; margin-top: 5px;"></p>
+                <button type="button" id="loginBtn" class="google">Crear usuario</button>
+                <hr>
+                <button type="button" id="bntLogin" class="google">Iniciar sesión</button>
+            </form>
             </div>
-        </div> -->
+        </aside>
     </section>
 
 

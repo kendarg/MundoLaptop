@@ -145,8 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 8. Añadir producto al carrito desde las tarjetas
-  document.querySelectorAll(".productos-destacados-card button").forEach((boton) => {
-    boton.addEventListener("click", (e) => {
+
+    document.addEventListener("click", (e) => {
       const card = e.target.closest(".productos-destacados-card");
       if (!card) return;
 
@@ -168,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       actualizarCarrito();
     });
-  });
 
   // 9. Botón "Proceder al pago" -> cerrar offcanvas y abrir modal de checkout
   // getOrCreateInstance evita duplicar instancias de Bootstrap (causa de backdrops huérfanos)
