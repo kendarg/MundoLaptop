@@ -9,90 +9,79 @@
     <link rel="stylesheet" href="../css/Nosotros.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/carrito.css">
-
-
+    <link rel="stylesheet" href="../css/login.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="/Css/login.css">
+
+    <!-- SDK EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("PpUL-jF6ku8RzCjsL");
+        })();
+    </script>
     <title>Nosotros</title>
 </head>
 
 <body>
-   <!-- Navbar -->
-
-    <!--navbar Ronal-->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container-fluid ">
-            <a href="../inicio.html">
+        <div class="container-fluid">
+            <a href="../index.html">
                 <img src="../img/LOGOPNG.png" alt="logo" class="logoimg" id="logo">
             </a>
-            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown " aria-expanded="false" aria-label="Toggle navigation ">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item" class="libar">
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/html/productos.html">Productos</a>
+                        <a class="nav-link" href="../html/productos.html">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="../html/Nosotros.html">Nosotros</a>
+                        <a class="nav-link" href="../html/Nosotros.html">Nosotros</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../html/contacto.html">Contactos</a>
-                        </li>
-                        </li>
-                        </ul>
-                        <div class="iconos-navbar ">
-                          <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
-                          <a href="#" id="buttonuser" class="iconos"> <i class="bi bi-person iconos"></i> </a>
-                          <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito"
-                            aria-controls="offcanvasCarrito">
-                            <i class="bi bi-cart3 iconos"></i>
-                            <span id="cart-count" class="position-absolute top-0 start-100 translate-middle cart-badge-blue">
-                              0
-                            </span>
-                          </a>
-                          <!-- Boton vision -->
-                          <div class="btn iconos" id="modo">
-                            <i class="bi bi-moon iconos" id="icono"></i>
-                          </div>
+                    </li>
+                </ul>
+                <div class="iconos-navbar">
+                    <a href="#" class="iconos"><i class="bi bi-search iconos"></i></a>
+                    <a href="#" id="buttonuser" class="iconos"><i class="bi bi-person iconos"></i></a>
+                    <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                        <i class="bi bi-cart3 iconos"></i>
+                        <span id="cart-count" class="position-absolute top-0 start-100 translate-middle cart-badge-blue">0</span>
+                    </a>
+                    <div class="btn iconos" id="modo">
+                        <i class="bi bi-moon iconos" id="icono"></i>
+                    </div>
+                </div>
             </div>
-            </div>
+        </div>
     </nav>
 
-    <!-- Panel Lateral Offcanvas del Carrito -->
+    <!-- Offcanvas Carrito -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
-
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title fw-bold" id="offcanvasCarritoLabel">
                 <i class="bi bi-cart3 me-2"></i>Tu Carrito
             </h5>
-
             <span id="cart-item-count" class="cart-item-count-badge">0 productos</span>
-
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
         <div class="offcanvas-body d-flex flex-column">
-
-            <!-- Lista Dinámica de Productos -->
             <div id="cart-items" class="flex-grow-1 overflow-auto mb-3"></div>
-
-            <!-- Resumen de Costos -->
             <div class="cart-summary border-top pt-3 mt-auto">
-
                 <div class="mb-3">
                     <label for="tipo-envio-offcanvas" class="form-label font-sm fw-semibold mb-1">
                         <i class="bi bi-truck me-1"></i>Opciones de Envío
                     </label>
-
                     <select id="tipo-envio-offcanvas" class="tipo-envio form-select form-select-sm">
                         <option value="0" selected>Bogotá (Gratis)</option>
                         <option value="300000">Fuera de Bogotá ($300.000)</option>
@@ -104,9 +93,7 @@
                     <span>Costo de envío</span>
                     <span class="cart-shipping-cost fw-semibold text-success">Gratis</span>
                 </div>
-
                 <hr class="my-2">
-
                 <div class="d-flex justify-content-between align-items-center fs-5 fw-bold mb-4">
                     <span>Total</span>
                     <span class="cart-total cart-accent-text">$0</span>
@@ -115,43 +102,35 @@
                 <button id="btn-proceder-pago-offcanvas" class="btn-checkout-main w-100 py-2 mb-2 fw-semibold">
                     <i class="bi bi-lock-fill"></i> Proceder al pago
                 </button>
-
                 <button class="btn-continue-shopping w-100 py-2 fw-semibold" data-bs-dismiss="offcanvas">
                     <i class="bi bi-arrow-left"></i> Seguir comprando
                 </button>
-
             </div>
         </div>
     </div>
 
-    <!-- Modal de Checkout -->
+    <!-- Modal Checkout -->
     <div class="modal fade" id="modalCheckout" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <h5 class="modal-title">Finalizar compra</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
                     <form id="form-checkout">
-
                         <div class="mb-3">
                             <label class="form-label">Nombre</label>
                             <input type="text" id="nombreCliente" class="form-control" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Correo electrónico</label>
                             <input type="email" id="correoCliente" class="form-control" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Dirección</label>
                             <input type="text" id="direccionCliente" class="form-control" required>
                         </div>
-
                         <div class="mb-3">
                             <label for="metodoPago" class="form-label">Método de pago</label>
                             <select id="metodoPago" class="form-select form-select-sm" required>
@@ -160,26 +139,19 @@
                                 <option value="amex">American Express</option>
                             </select>
                         </div>
-
                         <div class="alert alert-light">
-                            Total a pagar:
-                            <strong id="checkout-total-price">$ 0</strong>
+                            Total a pagar: <strong id="checkout-total-price">$ 0</strong>
                         </div>
-
-                        <button type="submit"
-                            class="btn-confirmar-compra w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                        <button type="submit" class="btn-confirmar-compra w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
                             <i class="bi bi-lock-fill"></i> Confirmar compra
                         </button>
-
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
 
-
-    <!-- Login Sergio -->
+    <!-- Panel de Login / Registro -->
     <section class="loginpg">
         <div id="overlay" class="overlay"></div>
         <aside id="loginPanel" class="login-panel">
@@ -187,21 +159,20 @@
                 <i class="bi bi-x-lg"></i>
             </button>
             <div class="login-logo">
-                <img src="/img/adad.png" alt="Mundo Laptop">
+                <img src="../img/adad.png" alt="Mundo Laptop">
             </div>
 
             <h2 id="panelTitle">Iniciar sesión</h2>
             <p id="panelSub" class="subtitulo">Bienvenido nuevamente.</p>
 
-
-            <form id="authForm" onsubmit="return false;">
-                <div class="grupo-input registro">
-                    <i class="bi bi-envelope"></i>
-                    <input type="text" id="nombreInput" placeholder="nombre" autocomplete="nombre">
+            <form id="authForm">
+                <div class="grupo-input campo-registro" style="display: none;">
+                    <i class="bi bi-person"></i>
+                    <input type="text" id="nombreInput" placeholder="Nombre" autocomplete="name">
                 </div>
-                <div class="grupo-input registro">
-                    <i class="bi bi-envelope"></i>
-                    <input type="number" id="numeroInput" placeholder="numero" autocomplete="numero">
+                <div class="grupo-input campo-registro" style="display: none;">
+                    <i class="bi bi-telephone"></i>
+                    <input type="number" id="numeroInput" placeholder="Número de teléfono" autocomplete="tel">
                 </div>
                 <div class="grupo-input">
                     <i class="bi bi-envelope"></i>
@@ -211,12 +182,12 @@
                     <i class="bi bi-lock"></i>
                     <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
                 </div>
-                <div class="grupo-input registro">
+                <div class="grupo-input campo-registro" style="display: none;">
                     <i class="bi bi-lock"></i>
-                    <input type="password" id="passwordInput" placeholder="Confirmar Contraseña" autocomplete="current-password">
+                    <input type="password" id="confirmPasswordInput" placeholder="Confirmar Contraseña" autocomplete="new-password">
                 </div>
 
-                <p id="statusMsg" style="font-size: 14px; display: none; margin-top: 5px;"></p>
+                <p id="statusMsg" style="font-size: 14px; display: none; margin-top: 8px; font-weight: 500;"></p>
 
                 <button type="submit" id="loginBtn" class="buttonlogin">Iniciar sesión</button>
             </form>
@@ -227,69 +198,34 @@
                 ¿No tienes cuenta? Crear cuenta
             </button>
         </aside>
-
-        <!-- <div id="registroModal" class="registro-overlay">
-            <div class="registro grupo-input">
-                <button id="cerrarRegistro" class="cerrar-registro">
-                    <i class="bi bi-x-circle-fill"></i>
-                </button>
-                <h2 class="tituloformulario">Crear cuenta</h2>
-                <h3 class="subtituloformulario">hola! ingresa tus datos.</h3>
-                <div class="grupo-input">
-                    <i class="bi bi-person"></i>
-                    <input type="email" placeholder="Nombre de usuario">
-                </div>
-                <div class="grupo-input">
-                    <i class="bi bi-envelope"></i>
-                    <input type="email" placeholder="Correo electrónico">
-                </div>
-                <div class="grupo-input">
-                    <i class="bi bi-lock"></i>
-                    <input type="password" placeholder="Contraseña">
-                </div>
-                <button class="buttonlogin">
-                    Registrarse
-                </button>
-            </div>
-        </div> -->
     </section>
 
-
-
-    <!-- Sobre nosotros -->
+    <!-- Sobre Nosotros Content -->
     <div class="container my-4">
-        <div class="fondos nosotros row featurette mb-4 ">
+        <div class="fondos nosotros row featurette mb-4">
             <div class="col-md-7">
-                <h3 class="tuMundo featurette-heading fw-normal lh-1 ">Sobre Nosotros.</h3>
+                <h3 class="tuMundo featurette-heading fw-normal lh-1">Sobre Nosotros.</h3>
                 <h1>Tecnología que conecta</h1>
                 <h1 class="tuMundo">tu mundo</h1>
-                <p class="lead tuMundoP">En Mundo Laptop creemos que la tecnología transforma vidas. Por eso, nos
-                    dedicamos a ofrecer productos de alta calidad, precios justos y una experiencia de compra simple,
-                    segura y confiable.</p>
-                <p class="lead tuMundoP">Nos apasiona lo que hacemos y trabajamos cada día para llevarte lo mejor en
-                    laptops, accesorios y gadgets.</p>
+                <p class="lead tuMundoP">En Mundo Laptop creemos que la tecnología transforma vidas. Por eso, nos dedicamos a ofrecer productos de alta calidad, precios justos y una experiencia de compra simple, segura y confiable.</p>
+                <p class="lead tuMundoP">Nos apasiona lo que hacemos y trabajamos cada día para llevarte lo mejor en laptops, accesorios y gadgets.</p>
             </div>
             <div class="col-md-5">
                 <img src="../img/adad.png" class="featurette-image img-fluid mx-auto rounded" alt="Nosotros">
             </div>
         </div>
 
-        <!-- Mas de Nosotros -->
         <div class="fondos masNosotros row featurette mb-5">
             <div class="col-md-7">
                 <h1>Más de Nosotros</h1>
-                <p class="lead">Mundo Laptop nació en 2026 con una misión clara: darle solución a todas las personas que
-                    tengan un problema con su laptop.</p>
-                <p class="lead">Comenzamos con un grupo de amigos desarrollando una tienda online, que ahora atiende a
-                    clientes por todo el país.</p>
+                <p class="lead">Mundo Laptop nació en 2026 con una misión clara: darle solución a todas las personas que tengan un problema con su laptop.</p>
+                <p class="lead">Comenzamos con un grupo de amigos desarrollando una tienda online, que ahora atiende a clientes por todo el país.</p>
             </div>
             <div class="col-md-5">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzZ8fHJldW5pb258ZW58MHx8MHx8fDA%3D"
-                    class="featurette-image img-fluid mx-auto rounded" alt="Reunión">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzZ8fHJldW5pb258ZW58MHx8MHx8fDA%3D" class="featurette-image img-fluid mx-auto rounded" alt="Reunión">
             </div>
         </div>
 
-        <!-- Mision y Vison -->
         <div class="row align-items-md-stretch mb-4">
             <div class="col-md-6">
                 <div class="h-100 p-5 border rounded-3 d-flex flex-column text-center mision">
@@ -305,21 +241,17 @@
             </div>
         </div>
 
-        <!-- Cards-->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 justify-content-center" >
-
+        <!-- Equipo -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 justify-content-center">
             <div class="col">
                 <div class="card shadow-sm h-100">
                     <img src="../img/nosotros/Ronal.png" class="card-img-top img-tarjeta">
                     <div class="card-body d-flex flex-column justify-content-between">
-                        <p class="card-text">¡Hola, soy Rhonald!. Soy desarrollador full stack y desarrollé la
-                            estructura de MundoLaptop, me gusta hacer ejercicio y acampar.</p>
+                        <p class="card-text">¡Hola, soy Rhonald!. Soy desarrollador full stack y desarrollé la estructura de MundoLaptop, me gusta hacer ejercicio y acampar.</p>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div class="d-flex gap-3 align-items-center fs-4">
-                                <a href="https://www.linkedin.com/in/rhonald-stevend-parra-suarez-a3b886290/"
-                                    target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
-                                <a href="https://github.com/Stivendps" target="_blank" rel="noopener noreferrer"><i
-                                        class="bi bi-github"></i></a>
+                                <a href="https://www.linkedin.com/in/rhonald-stevend-parra-suarez-a3b886290/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://github.com/Stivendps" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
                             </div>
                             <small class="text-body-secondary">Full Stack</small>
                         </div>
@@ -330,14 +262,11 @@
                 <div class="card shadow-sm h-100">
                     <img src="../img/nosotros/Walter.png" class="card-img-top img-tarjeta">
                     <div class="card-body d-flex flex-column justify-content-between">
-                        <p class="card-text">¡Hola, soy Walter Montoya! Soy desarrollador full stack y estoy
-                            desarrollando el backend de MundoLaptop, soy baterista y me gustan los videojuegos FPS.</p>
+                        <p class="card-text">¡Hola, soy Walter Montoya! Soy desarrollador full stack y estoy desarrollando el backend de MundoLaptop, soy baterista y me gustan los videojuegos FPS.</p>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div class="d-flex gap-3 align-items-center fs-4">
-                                <a href="https://www.linkedin.com/in/walter-montoya-presiga/" target="_blank"
-                                    rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
-                                <a href="https://github.com/waltermp11" target="_blank" rel="noopener noreferrer"><i
-                                        class="bi bi-github"></i></a>
+                                <a href="https://www.linkedin.com/in/walter-montoya-presiga/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://github.com/waltermp11" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
                             </div>
                             <small class="text-body-secondary">Full Stack</small>
                         </div>
@@ -348,15 +277,11 @@
                 <div class="card shadow-sm h-100">
                     <img src="../img/nosotros/sergio1.png" class="card-img-top img-tarjeta">
                     <div class="card-body d-flex flex-column justify-content-between">
-                        <p class="card-text">¡Hola Soy Sergio Montaño!. Actualmente estoy entrenando en desarrollo Full
-                            Stack y colaboro en el proyecto Mundo Laptop. En mi tiempo libre me gusta jugar videojuegos
-                            de consola y escuchar house y música techno.</p>
+                        <p class="card-text">¡Hola Soy Sergio Montaño!. Actualmente estoy entrenando en desarrollo Full Stack y colaboro en el proyecto Mundo Laptop. En mi tiempo libre me gusta jugar videojuegos de consola y escuchar house y música techno.</p>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div class="d-flex gap-3 align-items-center fs-4">
-                                <a href="https://www.linkedin.com/in/sergio-martiny-developer-fullstack-java-javascript-springboot-html-css"
-                                    target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
-                                <a href="https://github.com/martiny-ops" target="_blank" rel="noopener noreferrer"><i
-                                        class="bi bi-github"></i></a>
+                                <a href="https://www.linkedin.com/in/sergio-martiny-developer-fullstack-java-javascript-springboot-html-css" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://github.com/martiny-ops" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
                             </div>
                             <small class="text-body-secondary">Full Stack</small>
                         </div>
@@ -367,47 +292,31 @@
                 <div class="card shadow-sm h-100">
                     <img src="../img/nosotros/kendarg.png" class="card-img-top img-tarjeta">
                     <div class="card-body d-flex flex-column justify-content-between">
-                        <p class="card-text">¡Hola, soy Kendarg! Desarrollador enfocado en dar soluciones creativas en
-                            el proyecto Mundo Laptop.</p>
+                        <p class="card-text">¡Hola, soy Kendarg! Desarrollador enfocado en dar soluciones creativas en el proyecto Mundo Laptop.</p>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div class="d-flex gap-3 align-items-center fs-4">
-                                <a href="https://www.linkedin.com/in/kendarg-real/" target="_blank"
-                                    rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
-                                <a href="https://github.com/kendarg" target="_blank" rel="noopener noreferrer"><i
-                                        class="bi bi-github"></i></a>
+                                <a href="https://www.linkedin.com/in/kendarg-real/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://github.com/kendarg" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
                             </div>
                             <small class="text-body-secondary">Full Stack</small>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
+    <!-- Footer -->
+    <div data-include="components/../footer.html"></div>
 
-    <!-- Foter Serguio -->
-<div data-include="components/../footer.html"></div>
-
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="../js/cambiDeVsion.js"></script>
     <script src="../js/navbar.js"></script>
     <script src="../js/carrito.js"></script>
     <script src="../js/reutilizacion.js"></script>
     <script src="../js/logininterfaz.js"></script>
     <script src="../js/login.js"></script>
-       <!-- Cargar la librería de EmailJS (Tiene que ir en Head)-->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function () {
-            emailjs.init("PpUL-jF6ku8RzCjsL");
-        })();
-    </script>
 </body>
 
 </html>

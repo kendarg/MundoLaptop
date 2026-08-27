@@ -1,41 +1,28 @@
-const buttonuser = document.getElementById("buttonuser");
-const panel = document.getElementById("loginPanel");
-const overlay = document.getElementById("overlay");
-const cerrar = document.getElementById("closeLogin");
+document.addEventListener("DOMContentLoaded", () => {
+    const buttonuser = document.getElementById("buttonuser");
+    const panel = document.getElementById("loginPanel");
+    const overlay = document.getElementById("overlay");
+    const cerrar = document.getElementById("closeLogin");
 
-buttonuser.addEventListener("click", function(e){
-    e.preventDefault();
-    panel.classList.add("active");
-    overlay.classList.add("active");
-});
-
-function cerrarLogin(){
-    panel.classList.remove("active");
-    overlay.classList.remove("active");
-}
-
-cerrar.addEventListener("click", cerrarLogin);
-overlay.addEventListener("click", cerrarLogin);
-
-document.addEventListener("keydown", (e) => {
-    if(e.key === "Escape"){
-        cerrarLogin();
-        registro.classList.remove("activo");
+    if (buttonuser && panel && overlay) {
+        buttonuser.addEventListener("click", function (e) {
+            e.preventDefault();
+            panel.classList.add("active");
+            overlay.classList.add("active");
+        });
     }
-});
 
-// formulario crear cuenta
-const crearCuenta = document.querySelector(".crearCuentaB");
-const registro = document.getElementById("registroModal");
-const cerrarRegistro = document.getElementById("cerrarRegistro");
+    function cerrarLogin() {
+        if (panel) panel.classList.remove("active");
+        if (overlay) overlay.classList.remove("active");
+    }
 
-crearCuenta.addEventListener("click", () => {
-    loginPanel.classList.remove("activo");
-    overlay.classList.remove("activo");
-    registro.classList.add("activo");
-});
+    if (cerrar) cerrar.addEventListener("click", cerrarLogin);
+    if (overlay) overlay.addEventListener("click", cerrarLogin);
 
-cerrarRegistro.addEventListener("click", () => {
-registro.classList.remove("activo");
-    overlay.classList.remove("activo");
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            cerrarLogin();
+        }
+    });
 });
