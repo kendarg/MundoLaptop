@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/index-styles.css">
+    <link rel="stylesheet" href="../css/carrito.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,12 +18,44 @@
 </head>
 
 <body>
+    <!--navbar Ronal-->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid ">
-            <a href="inicio.html">
-                <img src="../img/LOGOPNG.png" alt="LOGO" class="logoimg">
+            <a href="../inicio.html">
+                <img src="../img/LOGOPNG.png" alt="logo" class="logoimg" id="logo">
             </a>
+            <a href="#" class=" iconosad"><i class="bi bi-person-fill-gear"></i> Modo administrador</a>
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown " aria-expanded="false" aria-label="Toggle navigation ">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item" class="libar">
+                        <a class="nav-link" aria-current="page" href="../index.html"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/html/productos.html"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="../html/Nosotros.html"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../html/contacto.html"></a>
+                    </li>
+                </ul>
+                <div class="iconos-navbar ">
+                    <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
+                    </a>
+                    <!-- Boton vision -->
+                    <i class="bi bi-moon iconos" id="icono"></i>
+                    <!-- Boton salir  -->
+                    <a href="../index.html" class="iconos"> <i class="bi bi-power iconos"></i> Salir</a>
+
+                </div>
+            </div>
     </nav>
+
     <div class="d-flex panelAdmon" style="min-height: calc(100vh - 56px);">
         <div class="d-flex flex-column align-items-stretch flex-shrink-0 p-3 border-end border rounded p-3 panelAdmonIzq"
             style="width: 280px; height: auto;">
@@ -31,7 +64,8 @@
                     class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                     data-bs-toggle="dropdown" aria-expanded="false"> <img
                         src="https://plus.unsplash.com/premium_photo-1739178656495-8109a8bc4f53?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="" width="35" height="32" class="rounded-circle me-2"> <strong class="admon">Administrador</strong> </a>
+                        alt="" width="35" height="32" class="rounded-circle me-2"> <strong
+                        class="admon">Administrador</strong> </a>
             </div>
             <hr>
             <p class="subtitulopanel">ACCIONES RÁPIDAS</p>
@@ -46,42 +80,36 @@
             </button>
             <button id="abrirtienda" class="btnTienda">
                 <i class="bi bi-plus-lg"></i><a href="../html/productos.html" class="aDecorativa"> Ver tienda</a>
-                
+
             </button>
             <!-- Gestion DE Tienda -->
             <hr>
             <p class="subtitulopanel">GESTIÓN DE TIENDA</p>
             <ul class="gestionTienda nav nav-pills flex-column mb-auto">
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
-                            class="bi bi-columns-gap"></i>
+                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-columns-gap"></i>
                         Dashboard
                     </a> </li>
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
-                            class="bi bi-bag-fill"></i>
+                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-bag-fill"></i>
                         Productos
                     </a> </li>
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
                             class="bi bi-grid-3x3-gap-fill"></i>
                         Categoria
                     </a> </li>
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i
-                            class="bi bi-cart-fill"></i>
+                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i class="bi bi-cart-fill"></i>
                         Pedidos
                     </a> </li>
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
-                            class="bi bi-people-fill"></i>
+                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-people-fill"></i>
                         Clientes/Provedores
                     </a> </li>
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-percent"></i>
                         Descuentos
                     </a> </li>
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
-                            class="bi bi-database"></i>
+                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-database"></i>
                         </i>
                         Inventario
                     </a> </li>
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
-                            class="bi bi-star-fill"></i>
+                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-star-fill"></i>
                         Reseña
                     </a> </li>
             </ul>
@@ -89,8 +117,7 @@
             <!-- Contenido -->
             <p class="subtitulopanel">CONTENIDO</p>
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i
-                            class="bi bi-collection-fill"></i>
+                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i class="bi bi-collection-fill"></i>
                         Banner
                     </a> </li>
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i
@@ -106,8 +133,7 @@
             <hr>
             <p class="subtitulopanel">CONFIGURACIÓN</p>
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i
-                            class="bi bi-gear-fill"></i>
+                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i class="bi bi-gear-fill"></i>
                         Ajustes de la tienda
                     </a> </li>
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i
@@ -118,11 +144,10 @@
                             class="bi bi-person-fill-gear"></i>
                         Usuarios y permisos
                     </a> </li>
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i class="bi bi-power"></i></i>
+                <li class=""> <a href="../index.html" class="linkPanelIzq" aria-current="page"><i class="bi bi-power"></i></i>
                         Salir
                     </a> </li>
             </ul>
-
         </div>
 
         <!--Tareas - tabla para mostrar inventario -->
@@ -156,93 +181,93 @@
         </div>
 
         <!--Formulario--> <!-- div para agregar Producto -->
-        <div id="modalProducto" class="modal-producto container  " >
-                <form class="p-3 border rounded formulario">
-                    <div class="cabeceraFormulario">
-                        <h3>Agregar Producto</h3>
+        <div id="modalProducto" class="modal-producto container  ">
+            <form class="p-3 border rounded formulario">
+                <div class="cabeceraFormulario">
+                    <h3>Agregar Producto</h3>
                     <!-- Reemplaza tu botón de cerrar por este -->
-                        <button type="button" id="cerrarFormulario" class="btn-close" aria-label="Close"></button>
-                        </button>
-                    </div>
+                    <button type="button" id="cerrarFormulario" class="btn-close" aria-label="Close"></button>
+                    </button>
+                </div>
                 <div class="mb-5">
-                        <label for="nombreProducto" class="form-label">
-                            Nombre del Producto
-                        </label>
-                        <input type="text" class="form-control" id="nombreProducto" placeholder="Nombre del Producto">
-                    </div>
-                    <div class="mb-3">
-                        <label for="numeroSerie" class="form-label">
-                            Numero de serie
-                        </label>
-                        <input type="text" class="form-control" id="numeroSerie" placeholder="numeroSerie">
-                    </div>
-                    <div class="mb-3">
-                        <label for="Categoria" class="form-label" id="importanciatxt">
-                            Categoria
-                        </label>
-                        <select class="form-select" id="Categoria">
-                            <option selected>Seleccionar...</option>
-                            <option value="Nuevos">Nuevos</option>
-                            <option value="Open Box">Open Box</option>
-                            <option value="Usados">Usados</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="marca" class="form-label" id="importanciatxt">
-                            Marca
-                        </label>
-                        <select class="form-select" id="marca">
-                            <option selected>Seleccionar...</option>
+                    <label for="nombreProducto" class="form-label">
+                        Nombre del Producto
+                    </label>
+                    <input type="text" class="form-control" id="nombreProducto" placeholder="Nombre del Producto">
+                </div>
+                <div class="mb-3">
+                    <label for="numeroSerie" class="form-label">
+                        Numero de serie
+                    </label>
+                    <input type="text" class="form-control" id="numeroSerie" placeholder="numeroSerie">
+                </div>
+                <div class="mb-3">
+                    <label for="Categoria" class="form-label" id="importanciatxt">
+                        Categoria
+                    </label>
+                    <select class="form-select" id="Categoria">
+                        <option selected>Seleccionar...</option>
+                        <option value="Nuevos">Nuevos</option>
+                        <option value="Open Box">Open Box</option>
+                        <option value="Usados">Usados</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="marca" class="form-label" id="importanciatxt">
+                        Marca
+                    </label>
+                    <select class="form-select" id="marca">
+                        <option selected>Seleccionar...</option>
                         <option value="Lenovo">Accer</option>
                         <option value="HP">Apple</option>
                         <option value="Lenovo">Asus</option>
                         <option value="HP">Dell</option>
                         <option value="Lenovo">Hp</option>
                         <option value="HP">Huawei</option>
-                            <option value="Lenovo">Lenovo</option>
+                        <option value="Lenovo">Lenovo</option>
                         <option value="HP">Msi </option>
                         <option value="Lenovo">Razer</option>
-                            <option value="Otras">Otras</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="Precio" class="form-label">
-                            Precio
-                        </label>
-                        <input type="number" class="form-control" id="Precio">
-                    </div>
-                    <div class="mb-3">
-                        <label for="Stock" class="form-label">
-                            Stock
-                        </label>
-                        <input type="number" class="form-control" id="Stock">
-                    </div>
-                    <div class="mb-3">
-                        <label for="referencia" class="form-label" id="importanciatxt">
-                            Repotenciado
-                        </label>
-                        <select class="form-select" id="referencia">
-                            <option selected>Seleccionar...</option>
-                            <option value="Lenovo">Si</option>
-                            <option value="HP">No</option>
-                        </select>
-                    </div>
-                    <hr>
-                    <button type="button" class="btn btn-primary w-100">
-                        Agragar Imagen
-                    </button>
-                    <hr>
-                    <button type="submit" class="btn btn-primary w-100">
-                        Agregar
-                    </button>
-                </form>
-            </div>
+                        <option value="Otras">Otras</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="Precio" class="form-label">
+                        Precio
+                    </label>
+                    <input type="number" class="form-control" id="Precio">
+                </div>
+                <div class="mb-3">
+                    <label for="Stock" class="form-label">
+                        Stock
+                    </label>
+                    <input type="number" class="form-control" id="Stock">
+                </div>
+                <div class="mb-3">
+                    <label for="referencia" class="form-label" id="importanciatxt">
+                        Repotenciado
+                    </label>
+                    <select class="form-select" id="referencia">
+                        <option selected>Seleccionar...</option>
+                        <option value="Lenovo">Si</option>
+                        <option value="HP">No</option>
+                    </select>
+                </div>
+                <hr>
+                <button type="button" class="btn btn-primary w-100">
+                    Agragar Imagen
+                </button>
+                <hr>
+                <button type="submit" class="btn btn-primary w-100">
+                    Agregar
+                </button>
+            </form>
         </div>
+    </div>
 
-        <!-- JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- <<script src="/Js/cambiDeVsion.js"></script> -->
-        <script src="../js/admin.js"></script>
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <<script src="/Js/cambiDeVsion.js"></script> -->
+    <script src="../js/admin.js"></script>
 </body>
 
 </html>
