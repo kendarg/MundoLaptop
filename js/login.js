@@ -4,6 +4,7 @@ const ADMIN_PASS = "admin123";
 
 document.addEventListener("DOMContentLoaded", () => {
     const authForm = document.getElementById("authForm");
+    const nombreInput = document.getElementById("nombreInput");
     const emailInput = document.getElementById("emailInput");
     const passwordInput = document.getElementById("passwordInput");
     const loginBtn = document.getElementById("loginBtn");
@@ -25,9 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return JSON.parse(localStorage.getItem("usersList")) || [];
     }
 
-    function saveUser(email, password) {
+    function saveUser(nombre, email, password) {
         const users = getUsers();
-        users.push({ email, password });
+        users.push({nombre, email, password });
         localStorage.setItem("usersList", JSON.stringify(users));
     }
 
@@ -39,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function clearInputs() {
+        nombreInput.value = "";
         emailInput.value = "";
         passwordInput.value = "";
         if (statusMsg) statusMsg.style.display = "none";
@@ -49,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
+        const nombre = nombreInput.value.trim();
 
         // 1. Validar campos vacíos
         if (!email || !password) {
@@ -78,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("userRole", "client");
                 localStorage.setItem("isAuthenticated", "true");
                 localStorage.setItem("currentUser", email);
+                localStorage.setItem("currentUserName",userExists.nombre);
                 window.location.href = "../html/productos.html";
             } else {
                 showStatus("Correo o contraseña incorrectos.");
@@ -95,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
             loginBtn.disabled = true;
             showStatus("Creando cuenta y enviando correo...", false);
 
-            saveUser(email, password);
+            saveUser(nombre, email, password);
 
             const templateParams = {
                 user_email: email,
@@ -110,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         localStorage.setItem("userRole", "client");
                         localStorage.setItem("isAuthenticated", "true");
                         localStorage.setItem("currentUser", email);
+                            localStorage.setItem("currentUserName", nombre);
                         window.location.href = "../html/productos.html";
                     })
                     .catch(function(error) {
@@ -119,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             localStorage.setItem("userRole", "client");
                             localStorage.setItem("isAuthenticated", "true");
                             localStorage.setItem("currentUser", email);
+                            localStorage.setItem("currentUserName", nombre)
                             window.location.href = "../html/productos.html";
                         }, 2000);
                     })

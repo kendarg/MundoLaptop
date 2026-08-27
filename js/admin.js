@@ -217,6 +217,14 @@ modalProducto.addEventListener("click", (e) => {
 });
 
 
+// aqui traigo del localstore el nombre del administrador
+const nombreUsuario = localStorage.getItem("currentUserName");
+
+if (nombreUsuario) {
+    document.getElementById("admon").textContent =
+        `Hola, ${nombreUsuario}`;
+}
+
 
 
 
