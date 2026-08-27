@@ -193,7 +193,16 @@
             <h2 id="panelTitle">Iniciar sesión</h2>
             <p id="panelSub" class="subtitulo">Bienvenido nuevamente.</p>
 
+
             <form id="authForm" onsubmit="return false;">
+                <div class="grupo-input registro">
+                    <i class="bi bi-envelope"></i>
+                    <input type="text" id="nombreInput" placeholder="nombre" autocomplete="nombre">
+                </div>
+                <div class="grupo-input registro">
+                    <i class="bi bi-envelope"></i>
+                    <input type="number" id="numeroInput" placeholder="numero" autocomplete="numero">
+                </div>
                 <div class="grupo-input">
                     <i class="bi bi-envelope"></i>
                     <input type="email" id="emailInput" placeholder="Correo electrónico" autocomplete="email">
@@ -201,6 +210,10 @@
                 <div class="grupo-input">
                     <i class="bi bi-lock"></i>
                     <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
+                </div>
+                <div class="grupo-input registro">
+                    <i class="bi bi-lock"></i>
+                    <input type="password" id="passwordInput" placeholder="Confirmar Contraseña" autocomplete="current-password">
                 </div>
 
                 <p id="statusMsg" style="font-size: 14px; display: none; margin-top: 5px;"></p>
@@ -215,7 +228,7 @@
             </button>
         </aside>
 
-        <div id="registroModal" class="registro-overlay">
+        <!-- <div id="registroModal" class="registro-overlay">
             <div class="registro grupo-input">
                 <button id="cerrarRegistro" class="cerrar-registro">
                     <i class="bi bi-x-circle-fill"></i>
@@ -238,7 +251,7 @@
                     Registrarse
                 </button>
             </div>
-        </div>
+        </div> -->
     </section>
 
 
