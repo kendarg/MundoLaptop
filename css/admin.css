@@ -175,3 +175,12 @@
     text-decoration: none;
     color: inherit;
 }
+
+.table-responsive {
+    display: flex;
+    justify-content: center;
+}
+
+.tablaInventario {
+    width: 100% !important;
+}

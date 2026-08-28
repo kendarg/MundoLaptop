@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/admin.css"> 
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/index-styles.css">
     <link rel="stylesheet" href="../css/carrito.css">
@@ -22,7 +22,6 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid ">
             <a href="../inicio.html">
-                <img src="../img/LOGOPNG.png" alt="logo" class="logoimg" id="logo">
             </a>
             <a href="#" class=" iconosad"><i class="bi bi-person-fill-gear"></i> Modo administrador</a>
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -59,7 +58,6 @@
     <div class="d-flex panelAdmon" style="min-height: calc(100vh - 56px);">
         <div class="d-flex flex-column align-items-stretch flex-shrink-0 p-3 border-end border rounded p-3 panelAdmonIzq"
             style="width: 280px; height: auto;">
-            <p class="subtitulopanel">PANEL ADMINISTRADOR</p>
             <div class="dropdown"> <a href="#"
                     class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                     data-bs-toggle="dropdown" aria-expanded="false"> <img
@@ -153,8 +151,10 @@
         <!--Tareas - tabla para mostrar inventario -->
         <div class="col">
             <div class="p-4">
-                <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="d-flex justify-content-between align-items-center">
                     <h2 class="fw-bold tituloProductos">Productos</h2>
+                </div>
+                    <div class="d-flex justify-content-between align-items-center">
                     <p class="subtitulopanel">Administra, agrega, edita o elimina productos.</p>
                 </div>
                 <div class="table-responsive">
@@ -189,17 +189,17 @@
                     <button type="button" id="cerrarFormulario" class="btn-close" aria-label="Close"></button>
                     </button>
                 </div>
-                <div class="mb-5">
+                <div class="mb-3">
                     <label for="nombreProducto" class="form-label">
                         Nombre del Producto
                     </label>
-                    <input type="text" class="form-control" id="nombreProducto" placeholder="Nombre del Producto">
+                    <input type="text" class="form-control" id="nombreProducto" placeholder="Ingrese el nombre del Producto">
                 </div>
                 <div class="mb-3">
                     <label for="numeroSerie" class="form-label">
                         Numero de serie
                     </label>
-                    <input type="text" class="form-control" id="numeroSerie" placeholder="numeroSerie">
+                    <input type="text" class="form-control" id="numeroSerie" placeholder="Ingrese numero de Serie">
                 </div>
                 <div class="mb-3">
                     <label for="Categoria" class="form-label" id="importanciatxt">
@@ -218,7 +218,7 @@
                     </label>
                     <select class="form-select" id="marca">
                         <option selected>Seleccionar...</option>
-                        <option value="Lenovo">Accer</option>
+                        <option value="Lenovo">Acer</option>
                         <option value="HP">Apple</option>
                         <option value="Lenovo">Asus</option>
                         <option value="HP">Dell</option>
@@ -234,13 +234,13 @@
                     <label for="Precio" class="form-label">
                         Precio
                     </label>
-                    <input type="number" class="form-control" id="Precio">
+                    <input type="number" class="form-control" id="Precio" placeholder="Ingrese el precio">
                 </div>
                 <div class="mb-3">
                     <label for="Stock" class="form-label">
                         Stock
                     </label>
-                    <input type="number" class="form-control" id="Stock">
+                    <input type="number" class="form-control" id="Stock" placeholder="Ingrese la cantidad">
                 </div>
                 <div class="mb-3">
                     <label for="referencia" class="form-label" id="importanciatxt">
