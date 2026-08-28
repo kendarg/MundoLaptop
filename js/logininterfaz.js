@@ -1,7 +1,8 @@
-const ADMIN_EMAIL = "admin@mundolaptop.com";
-const ADMIN_PASS = "admin123";
+import { validarFormatoCorreo, validarPasswordCompleja } from '../js/validaciones.js';
+import { ADMIN_EMAIL, ADMIN_PASS, getUsers, saveUser, guardarSesion, enviarCorreoBienvenida } from '../js/login.js';
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Selección de elementos
     const buttonuser = document.getElementById("buttonuser");
     const panel = document.getElementById("loginPanel");
     const overlay = document.getElementById("overlay");
@@ -22,18 +23,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const statusMsg = document.getElementById("statusMsg");
     const ojosClanes = document.querySelectorAll('.toggle-password');
 
+    // Muestra mensajes de estado
+    function showStatus(text, isError = true) {
+        if (!statusMsg) return;
+        statusMsg.style.display = "block";
+        statusMsg.style.color = isError ? "#ff4d4d" : "#2e7d32";
+        statusMsg.textContent = text;
+    }
+
+    // Cierra el modal de login
+    function cerrarLogin() {
+        if (panel) panel.classList.remove("active");
+        if (overlay) overlay.classList.remove("active");
+        if (statusMsg) statusMsg.style.display = "none";
+    }
+
+    // Abrir modal
     if (buttonuser) {
         buttonuser.addEventListener("click", (e) => {
             e.preventDefault();
-            panel.classList.add("active");
-            overlay.classList.add("active");
+            if (panel) panel.classList.add("active");
+            if (overlay) overlay.classList.add("active");
         });
-    }
-
-    function cerrarLogin() {
-        panel.classList.remove("active");
-        overlay.classList.remove("active");
-        if (statusMsg) statusMsg.style.display = "none";
     }
 
     if (cerrar) cerrar.addEventListener("click", cerrarLogin);
@@ -43,44 +54,24 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key === "Escape") cerrarLogin();
     });
 
+    // Cambiar vistas de formulario
     if (btnCrearUsuario) {
         btnCrearUsuario.addEventListener('click', () => {
-            vistalogin.style.display = 'none';
-            vistaRegistro.style.display = 'block';
+            if (vistalogin) vistalogin.style.display = 'none';
+            if (vistaRegistro) vistaRegistro.style.display = 'block';
             if (statusMsg) statusMsg.style.display = "none";
         });
     }
 
     if (bntLogin) {
         bntLogin.addEventListener('click', () => {
-            vistaRegistro.style.display = 'none';
-            vistalogin.style.display = 'block';
+            if (vistaRegistro) vistaRegistro.style.display = 'none';
+            if (vistalogin) vistalogin.style.display = 'block';
             if (statusMsg) statusMsg.style.display = "none";
         });
     }
 
-    function validarFormatoCorreo(correo) {
-        const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return regexCorreo.test(correo);
-    }
-
-    function getUsers() {
-        return JSON.parse(localStorage.getItem("usersList")) || [];
-    }
-
-    function saveUser(email, password) {
-        const users = getUsers();
-        users.push({ email, password });
-        localStorage.setItem("usersList", JSON.stringify(users));
-    }
-
-    function showStatus(text, isError = true) {
-        if (!statusMsg) return;
-        statusMsg.style.display = "block";
-        statusMsg.style.color = isError ? "#ff4d4d" : "#2e7d32";
-        statusMsg.textContent = text;
-    }
-
+    // PROCESO DE INICIO DE SESION
     if (formLogin) {
         formLogin.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -98,8 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (email === ADMIN_EMAIL && password === ADMIN_PASS) {
-                localStorage.setItem("userRole", "admin");
-                localStorage.setItem("isAuthenticated", "true");
+                guardarSesion("admin");
                 window.location.href = "../html/admin.html";
                 return;
             }
@@ -108,9 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const userExists = users.find(u => u.email === email && u.password === password);
 
             if (userExists) {
-                localStorage.setItem("userRole", "client");
-                localStorage.setItem("isAuthenticated", "true");
-                localStorage.setItem("currentUser", email);
+                guardarSesion("client", email);
                 window.location.href = "../html/productos.html";
             } else {
                 showStatus("Correo o contraseña incorrectos.");
@@ -118,8 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-       if (formRegistro) {
+    // PROCESO DE REGISTRO DE USUARIOS
+    if (formRegistro) {
         const btnEnviarRegistro = formRegistro.querySelector("button[type='button'].google");
+        
         if (btnEnviarRegistro) {
             btnEnviarRegistro.addEventListener("click", () => {
                 const nombre = regNombre.value.trim();
@@ -138,10 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                // NUEVA VALIDACIÓN: Mayuscula, minuscula, numero, caracter especial y minimo 8 digitos
-                const regexPasswordCompleja = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>_+\-[\]\\\/])[A-Za-z\d!@#$%^&*(),.?":{}|<>_+\-[\]\\\/]{10,}$/;
-                
-                if (!regexPasswordCompleja.test(password)) {
+                if (!validarPasswordCompleja(password)) {
                     showStatus("La contraseña debe tener mínimo 8 caracteres, una mayúscula, una minúscula, un número y un símbolo especial.");
                     return;
                 }
@@ -160,40 +147,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 showStatus("Creando cuenta y enviando correo...", false);
                 saveUser(email, password);
 
-                const templateParams = {
-                    user_email: email,
-                    user_password: password,
-                    date: new Date().toLocaleString()
-                };
-
-                if (typeof emailjs !== "undefined") {
-                    emailjs.send('service_mundolaptop', 'template_qucojzk', templateParams)
-                        .then(function(response) {
-                            console.log('Correo enviado con éxito:', response.status);
-                            localStorage.setItem("userRole", "client");
-                            localStorage.setItem("isAuthenticated", "true");
-                            localStorage.setItem("currentUser", email);
+                enviarCorreoBienvenida(email, password)
+                    .then(function(response) {
+                        console.log('Correo enviado con éxito:', response.status);
+                        guardarSesion("client", email);
+                        window.location.href = "../html/productos.html";
+                    })
+                    .catch(function(error) {
+                        console.error('Error al enviar con EmailJS:', error);
+                        showStatus("Cuenta creada, pero ocurrió un problema al enviar el correo.");
+                        setTimeout(() => {
+                            guardarSesion("client", email);
                             window.location.href = "../html/productos.html";
-                        })
-                        .catch(function(error) {
-                            console.error('Error al enviar con EmailJS:', error);
-                            showStatus("Cuenta creada, pero ocurrió un problema al enviar el correo.");
-                            setTimeout(() => {
-                                localStorage.setItem("userRole", "client");
-                                localStorage.setItem("isAuthenticated", "true");
-                                localStorage.setItem("currentUser", email);
-                                window.location.href = "../html/productos.html";
-                            }, 2000);
-                        });
-                } else {
-                    console.error("El SDK de EmailJS no se ha cargado correctamente.");
-                    showStatus("Error al cargar el servicio de correos.");
-                }
+                        }, 2000);
+                    });
             });
         }
     }
 
-
+    // Mostrar u ocultar contraseña (ojo)
     ojosClanes.forEach(ojo => {
         ojo.addEventListener('click', function() {
             const targetId = this.getAttribute('data-target');
@@ -213,43 +185,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-
-// Constantes globales de administración
-export const ADMIN_EMAIL = "admin@mundolaptop.com";
-export const ADMIN_PASS = "admin123";
-
-// Obtiene la lista de usuarios guardada
-export function getUsers() {
-    return JSON.parse(localStorage.getItem("usersList")) || [];
-}
-
-// Guarda un nuevo usuario
-export function saveUser(email, password) {
-    const users = getUsers();
-    users.push({ email, password });
-    localStorage.setItem("usersList", JSON.stringify(users));
-}
-
-// Establece el rol y la sesion activa del usuario
-export function guardarSesion(role, email = null) {
-    localStorage.setItem("userRole", role);
-    localStorage.setItem("isAuthenticated", "true");
-    if (email) {
-        localStorage.setItem("currentUser", email);
-    }
-}
-
-// Logica de envío de correo mediante EmailJS
-export function enviarCorreoBienvenida(email, password) {
-    const templateParams = {
-        user_email: email,
-        user_password: password,
-        date: new Date().toLocaleString()
-    };
-
-    if (typeof emailjs !== "undefined") {
-        return emailjs.send('service_mundolaptop', 'template_qucojzk', templateParams);
-    } else {
-        return Promise.reject(new Error("El SDK de EmailJS no está cargado."));
-    }
-}
