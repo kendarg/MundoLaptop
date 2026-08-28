@@ -89,7 +89,7 @@ body.dark a{
 body.dark h1,body.dark .lead,body.dark .tex-footer,
 body.dark .githubF, body.dark .text-secondary,
 body.dark #icono,
-body.dark .nombreProducto,body.dark .Valor,
+body.dark .nombreProducto,body.dark .Valor,body.dark #panelSub,
 body.dark .github-link, body.dark .footerT, body.dark .cateogriasinfo{
     color: black !important;
 }
@@ -102,8 +102,8 @@ body.dark .navbar {
     background-color: white;
     box-shadow: 0 4px 2px #23b6b667;
 }
-body.dark #icono{
-color: #025656 !important;
+body.dark #icono, body.dark .iconos{
+color: white !important;
 }
 body.dark .mundo-laptop-footer{
     background: linear-gradient(180deg, #EEF4F5 40%, #075c6f44 180%);
