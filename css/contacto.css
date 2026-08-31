@@ -185,13 +185,15 @@ body {
 
 /* 1. Cambia la flecha a blanco cuando el mouse pasa por la pregunta (Hover) */
 .accordion-button:hover::after {
-  filter: brightness(0) invert(1) !important;
+    filter: brightness(0) invert(1) !important;
 }
 
 /* 2. Si quieres que además el fondo cambie a tu verde oscuro al hacer hover: */
 .accordion-button:hover {
-  background-color: #004d5a !important; /* Tu tono verde oscuro */
-  color: #ffffff !important;            /* Texto blanco */
+    background-color: #004d5a !important;
+    /* Tu tono verde oscuro */
+    color: #ffffff !important;
+    /* Texto blanco */
 }
 
 
@@ -207,7 +209,7 @@ body {
 /*SectionFormulario de Contacto*/
 
 .formulario-contacto {
-    margin: 50px 20px;
+    margin: 50px 0px;
     display: flex;
     padding: 50px 0px;
     width: 100%;
@@ -339,97 +341,110 @@ textarea {
 
 
 
-@media (max-width: 1000px) {
-  
-  /* Contenedor Principal */
-  .main-contacto {
-    width: 90%;
-    margin: 40px auto;
-  }
+@media (max-width: 1160px) {
 
-  /* 1. Banner de Contacto */
-  .banner-contacto {
-    flex-direction: column;
-    text-align: center;
-    padding: 30px 20px;
-    gap: 30px;
-  }
+    /* Contenedor Principal */
+    .main-contacto {
+        width: 90%;
+        margin: 40px auto;
+    }
 
-  .banner-text {
-    width: 100%;
-  }
+    /* 1. Banner de Contacto */
+    .banner-contacto {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 30px;
+    }
 
-  .banner-text h1 {
-    font-size: 2.2rem;
-  }
+    .banner-text {
+        width: 100%;
+    }
 
-  .banner-imagen img {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-  }
+    .banner-text h1 {
+        font-size: 2.2rem;
+    }
 
-  /* 2. Sección de Información (Tarjetas) */
-  .informacion {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-  }
+    /* Cambia los estilos de la imagen para que sea flexible */
+    .banner-imagen img {
+        width: 100%;
+        /* Ocupa el espacio disponible */
+        max-width: 500px;
+        /* Pero no sobrepasa su tamaño máximo deseado */
+        height: auto;
+        /* Mantiene la proporción sin deformarse */
+    }
 
-  .informacion-llamanos {
-    width: 100%;
-    height: auto;
-    min-height: 200px;
-    margin: 0;
-  }
+    /* Asegura que el contenedor de la imagen pueda encogerse en Flexbox */
+    .banner-imagen {
+        flex: 1;
+        min-width: 0;
+    }
 
-  /* 3. Formulario y Mapa */
-  .formulario-contacto {
-    flex-direction: column;
-    padding: 20px;
-  }
+    /* 2. Sección de Información (Tarjetas) */
+    .informacion {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+    }
 
-  .formulario {
-    width: 100%;
-  }
+    .informacion-llamanos {
+        width: 100%;
+        height: auto;
+        min-height: 200px;
+        margin: 0;
+    }
 
-  .divider {
-    width: 100%;
-    height: 1px; /* El divisor pasa de vertical a horizontal */
-    margin: 10px 0;
-  }
+    /* 3. Formulario y Mapa */
+    .formulario-contacto {
+        flex-direction: column;
+        padding: 20px;
+    }
 
-  .map-col {
-    width: 100%;
-  }
+    .formulario {
+        width: 100%;
+    }
 
-  .map-frame iframe {
-    width: 100%;
-  }
+    .divider {
+        width: 100%;
+        height: 1px;
+        /* El divisor pasa de vertical a horizontal */
+        margin: 10px 0;
+    }
+
+    .map-col {
+        width: 100%;
+    }
+
+    .map-frame iframe {
+        width: 100%;
+    }
 }
 
 /* Ajustes adicionales para Dispositivos Móviles (Menos de 600px) */
 @media (max-width: 600px) {
 
-  .banner-text h1 {
-    font-size: 1.8rem;
-  }
+    .banner-text h1 {
+        font-size: 1.8rem;
+    }
 
-  .highlight-1 {
-    font-size: 1.2rem;
-  }
+    .highlight-1 {
+        font-size: 1.2rem;
+    }
 
-  .input-group-1 {
-    flex-direction: column; /* Nombre y Correo en vertical */
-    gap: 20px;
-  }
+    .input-group-1 {
+        flex-direction: column;
+        /* Nombre y Correo en vertical */
+        gap: 20px;
+    }
 
-  .submit-btn {
-    width: 100%;
-    justify-content: center;
-  }
+    .submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
 
-  .informacion {
-    grid-template-columns: 1fr; /* Una sola tarjeta por fila en celulares */
-  }
+    .informacion {
+        grid-template-columns: 1fr;
+        /* Una sola tarjeta por fila en celulares */
+    }
 }
