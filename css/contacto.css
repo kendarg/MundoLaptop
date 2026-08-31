@@ -207,8 +207,9 @@ body {
 /*SectionFormulario de Contacto*/
 
 .formulario-contacto {
-    margin: 50px 0;
+    margin: 50px 20px;
     display: flex;
+    padding: 50px 0px;
     width: 100%;
     flex-direction: row;
     gap: 20px;
@@ -334,4 +335,101 @@ textarea {
     border-radius: 15px;
     overflow: hidden;
     border-style: none;
+}
+
+
+
+@media (max-width: 1000px) {
+  
+  /* Contenedor Principal */
+  .main-contacto {
+    width: 90%;
+    margin: 40px auto;
+  }
+
+  /* 1. Banner de Contacto */
+  .banner-contacto {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .banner-text {
+    width: 100%;
+  }
+
+  .banner-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .banner-imagen img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+
+  /* 2. Sección de Información (Tarjetas) */
+  .informacion {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+  }
+
+  .informacion-llamanos {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    margin: 0;
+  }
+
+  /* 3. Formulario y Mapa */
+  .formulario-contacto {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .formulario {
+    width: 100%;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px; /* El divisor pasa de vertical a horizontal */
+    margin: 10px 0;
+  }
+
+  .map-col {
+    width: 100%;
+  }
+
+  .map-frame iframe {
+    width: 100%;
+  }
+}
+
+/* Ajustes adicionales para Dispositivos Móviles (Menos de 600px) */
+@media (max-width: 600px) {
+
+  .banner-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .highlight-1 {
+    font-size: 1.2rem;
+  }
+
+  .input-group-1 {
+    flex-direction: column; /* Nombre y Correo en vertical */
+    gap: 20px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .informacion {
+    grid-template-columns: 1fr; /* Una sola tarjeta por fila en celulares */
+  }
 }
