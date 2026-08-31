@@ -232,8 +232,28 @@ body {
     padding: 0 10px;
 
 }
+.col{
+
+    display: flex !important;
+    margin:0;
+    padding: 0;
+}
+
+.productos-destacados-card{
+    margin: 0px !important ;
+    padding: 10rem;
+}
+
+.img-card {
+    width: 100%;
+    border-style: solid;
+    border-color: #0f172a;
+    
+}
 
 .img-card img {
-    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    
 
 }
