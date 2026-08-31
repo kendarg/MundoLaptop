@@ -349,9 +349,10 @@ body {
 
 .section-2-2-beneficios {
     display: flex;
+    width: 80%;
     flex-direction: row;
     margin: 20px;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 20px;
 
 }
@@ -470,6 +471,13 @@ body {
 
 
 
+}
+
+.section-3-subscripcion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
