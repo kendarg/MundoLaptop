@@ -160,7 +160,6 @@ body {
     color: var(--var-font-color-3) !important;
 }
 
-/* 1. Estado ABIERTO / SELECCIONADO (Sobrescribe el azul claro) */
 .accordion-button:not(.collapsed),
 .accordion-button:not(.collapsed):focus,
 .accordion-button:not(.collapsed):active {
@@ -365,23 +364,17 @@ textarea {
         font-size: 2.2rem;
     }
 
-    /* Cambia los estilos de la imagen para que sea flexible */
     .banner-imagen img {
         width: 100%;
-        /* Ocupa el espacio disponible */
         max-width: 500px;
-        /* Pero no sobrepasa su tamaño máximo deseado */
         height: auto;
-        /* Mantiene la proporción sin deformarse */
     }
 
-    /* Asegura que el contenedor de la imagen pueda encogerse en Flexbox */
     .banner-imagen {
         flex: 1;
         min-width: 0;
     }
 
-    /* 2. Sección de Información (Tarjetas) */
     .informacion {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -408,7 +401,6 @@ textarea {
     .divider {
         width: 100%;
         height: 1px;
-        /* El divisor pasa de vertical a horizontal */
         margin: 10px 0;
     }
 
@@ -421,7 +413,6 @@ textarea {
     }
 }
 
-/* Ajustes adicionales para Dispositivos Móviles (Menos de 600px) */
 @media (max-width: 600px) {
 
     .banner-text h1 {
@@ -434,7 +425,6 @@ textarea {
 
     .input-group-1 {
         flex-direction: column;
-        /* Nombre y Correo en vertical */
         gap: 20px;
     }
 
@@ -445,6 +435,5 @@ textarea {
 
     .informacion {
         grid-template-columns: 1fr;
-        /* Una sola tarjeta por fila en celulares */
     }
 }
