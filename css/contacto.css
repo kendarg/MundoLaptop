@@ -154,9 +154,44 @@ body {
 }
 
 
-.accordion-button:hover {
+.accordion-button:hover,
+.accorion-button:focus {
     background-color: var(--teal-500, #0c5364);
     color: var(--var-font-color-3) !important;
+}
+
+/* 1. Estado ABIERTO / SELECCIONADO (Sobrescribe el azul claro) */
+.accordion-button:not(.collapsed),
+.accordion-button:not(.collapsed):focus,
+.accordion-button:not(.collapsed):active {
+    background-color: #004d5a !important;
+    /* Tu verde oscuro */
+    color: #ffffff !important;
+    /* Texto en blanco */
+    box-shadow: none !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+    /* Invierte el color del icono SVG a blanco */
+    filter: brightness(0) invert(1) !important;
+}
+
+/* 3. HOVER cuando el ítem está ABIERTO (Mantiene el mismo verde oscuro) */
+.accordion-button:not(.collapsed):hover {
+    background-color: #004d5a !important;
+    color: #ffffff !important;
+}
+
+
+/* 1. Cambia la flecha a blanco cuando el mouse pasa por la pregunta (Hover) */
+.accordion-button:hover::after {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* 2. Si quieres que además el fondo cambie a tu verde oscuro al hacer hover: */
+.accordion-button:hover {
+  background-color: #004d5a !important; /* Tu tono verde oscuro */
+  color: #ffffff !important;            /* Texto blanco */
 }
 
 
