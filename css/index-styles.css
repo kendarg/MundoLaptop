@@ -199,49 +199,50 @@ body {
 
 
 .productos-destacados-card {
-
-
+    padding-top: 0 !important;
+    padding-bottom: 20px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: hidden !important;
     display: flex;
-    height: 100%;
-    padding: 20px 15px;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    /* *ajuste de espacios */
-    gap: 12px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    background-color: var(--var-font-colo-4);
-    box-shadow: 0 25px 10px -20px rgba(0, 0, 0, 0.4);
-
-
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    background-color: var(--var-background-banner);
+    border-radius: 10px;
 }
 
+/* 2. Contenedor de la imagen */
+.img-card {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    line-height: 0 !important;
+
+    font-size: 0 !important;
+}
 
 
 .img-card img {
-
+    width: 100%;
+    height: 200px;
     max-width: 100%;
-
-    height: auto;
-
-    object-fit: contain;
-
+    object-fit: cover;
+    object-position: center;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
 }
 
-/* *Agrege esto tambien */
-
-.img-card {
-
+.informacion-card {
+    margin-top:20px;
     display: flex;
-
+    flex-direction: column;
+    padding: 0px 30px;
     justify-content: center;
-
-    align-items: center;
-
-    width: 100%;
-
+    gap: 10px;
 }
 
 
