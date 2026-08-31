@@ -162,9 +162,8 @@
 
 /* tabla de productos sobreescribe-bootstrap */
 .table.tablaInventario > :not(caption) > * > * {
-    background-color: #f0f8ff;
-    color: #075c6f;
-    border-radius: 0px 0px 7px 7px;
+    background-color: #fefefe;
+    color: #055d70;
 }
 
 .table.tablaInventario thead th {
@@ -177,10 +176,65 @@
 }
 
 .table-responsive {
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    overflow-x: auto;
 }
 
 .tablaInventario {
     width: 100% !important;
+}
+
+.table.tablaInventario,
+.table.tablaInventario th,
+.table.tablaInventario td {
+    border: 1px solid #075c6f;
+    white-space: nowrap;
+}
+
+.table.tablaInventario,
+.table.tablaInventario th {
+    border: 1px solid #030303;
+}
+
+.btn-primary {
+background-color: #075c6f !important;
+border-color: #075c6f !important;
+}
+
+/* oculamos panelizquierdo en moviels */
+@media (max-width: 768px) {
+
+    .panelAdmon {
+        display: block;
+    }
+
+    .panelAdmonIzq {
+        position: fixed;
+        top: 56px;
+        left: -300px;
+        width: 280px !important;
+        height: calc(100dvh - 56px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        padding-bottom: 80px;
+    }
+
+    .panelAdmonIzq.activo {
+        left: 0;
+    }
+}
+
+
+/* en modo escritorio dejar visible */
+@media (min-width: 769px) {
+    .panelAdmonIzq {
+        position: sticky;
+        left: 0 !important;
+    }
+}
+
+.col {
+    min-width: 0;
 }

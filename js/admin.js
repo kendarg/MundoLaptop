@@ -225,6 +225,14 @@ if (nombreUsuario) {
         `Hola, ${nombreUsuario}`;
 }
 
+const botonPanel = document.getElementById("togglePanel");
+const panel = document.querySelector(".panelAdmonIzq");
+
+// mostrar y esconder  panelizqueirdo en responsive
+botonPanel.addEventListener("click", (e) => {
+    e.preventDefault();
+    panel.classList.toggle("activo");
+});
 
 
 
