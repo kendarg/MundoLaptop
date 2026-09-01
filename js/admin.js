@@ -1,7 +1,3 @@
-
-
-//      array de productos vacia
-
 const inventario = JSON.parse(localStorage.getItem("inventario")) || []; // recupera productos guardados o inicia con []
 const formulario = document.querySelector(".formulario");
 
@@ -125,8 +121,8 @@ function renderizarInventario(){
                     data-id="${producto.id}"
                     style="cursor:pointer;"></i>
                     <i class="bi bi-trash text-danger iconobotar"
-                       data-id="${producto.id}"
-                       style="cursor:pointer;"></i>
+                    data-id="${producto.id}"
+                    style="cursor:pointer;"></i>
                 </td>
             </tr>
         `;

@@ -51,8 +51,8 @@ function agregarProductosAdmin() {
                         <span><strong>${producto.marca ? producto.marca.toUpperCase() : "GENERAL"}</strong></span>
                         <span class="nombreProducto">${producto.nombre}</span>
                         <span><strong class="Valor">$ ${precioFormateado} COP</strong></span>
-                        <button data-id="${producto.id}"> 
-                            <img src="./assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito
+                        <button data-id="${producto.id}">
+                            <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito
                         </button>
                     </div>
                 </div>
