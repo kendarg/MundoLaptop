@@ -42,11 +42,13 @@
 
 .iconos {
     text-decoration: none;
-    font-size: 1.7rem; /* Tamaño de los iconos*/
+    font-size: 1.6rem !important; /* Tamaño de los iconos*/
     color: #025656;
     transition: transform 0.3s ease, color 0.3s ease;
 }
-
+ .bi-cart3, .bi-search {
+    font-size: 1.4rem !important;
+ }
 .iconos:hover, #modo:hover{
     fill: #11212D;
     transform: scale(1.15);

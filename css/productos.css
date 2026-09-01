@@ -224,12 +224,12 @@ body {
 
 /* 2. Contenedor de la imagen */
 .img-card {
-    width: 100%;
+    width: 290px !important;
+    height: 200px !important;
     margin: 0 !important;
     padding: 0 !important;
     border: none !important;
     line-height: 0 !important;
-    
     font-size: 0 !important;
 }
 

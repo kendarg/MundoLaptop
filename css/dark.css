@@ -18,12 +18,12 @@ background-color: #06141B;
 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg fill-opacity='0.14'%3E%3Cpolygon fill='%2316394a' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%232c5c74' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23477d98' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%237199ae' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23a0b4bd' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23cad0d3' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23EEE' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
 background-attachment: fixed;
 background-size: cover !important;
-color: #FFFFFF;
+
 }
 
 
 .dark-logo{
-    content: url("../img/LOGOPNGoscuro.png");
+    content: url("../img/LOGOPNGoscuro3.png");
 }
 
 .fondos{
@@ -90,7 +90,8 @@ body.dark h1,body.dark .lead,body.dark .tex-footer,
 body.dark .githubF, body.dark .text-secondary,
 body.dark #icono,
 body.dark .nombreProducto,body.dark .Valor,body.dark #panelSub,
-body.dark .github-link, body.dark .footerT, body.dark .cateogriasinfo{
+body.dark .github-link, body.dark .footerT, body.dark .cateogriasinfo, body.darck #Marca
+{
     color: black !important;
 }
 
