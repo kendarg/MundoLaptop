@@ -7,9 +7,10 @@ function getUsers() {
     return JSON.parse(localStorage.getItem("users") || "[]");
 }
 
-function saveUser(email, password) {
+// Guarda también el nombre del usuario
+function saveUser(email, password, nombre) {
     const users = getUsers();
-    users.push({ email, password });
+    users.push({ email, password, nombre });
     localStorage.setItem("users", JSON.stringify(users));
 }
 
@@ -113,6 +114,7 @@ function handleSubmit(e) {
         if (email === ADMIN_EMAIL && password === ADMIN_PASS) {
             localStorage.setItem("userRole", "admin");
             localStorage.setItem("isAuthenticated", "true");
+            localStorage.setItem("userName", "Admin");
             window.location.href = "admin.html";
             return;
         }
@@ -124,6 +126,7 @@ function handleSubmit(e) {
             localStorage.setItem("userRole", "client");
             localStorage.setItem("isAuthenticated", "true");
             localStorage.setItem("currentUser", email);
+            localStorage.setItem("userName", userExists.nombre || email.split("@")[0]);
             window.location.href = "productos.html";
         } else {
             showStatus("Correo o contraseña incorrectos.");
@@ -150,7 +153,8 @@ function handleSubmit(e) {
         loginBtn.disabled = true;
         showStatus("Creando cuenta y enviando correo...", false);
 
-        saveUser(email, password);
+        // Guardar usuario en localStorage incluyendo su nombre
+        saveUser(email, password, nombre);
 
         const templateParams = {
             user_name: nombre,
@@ -160,24 +164,24 @@ function handleSubmit(e) {
             date: new Date().toLocaleString()
         };
 
+        const redirigirConSesion = () => {
+            localStorage.setItem("userRole", "client");
+            localStorage.setItem("isAuthenticated", "true");
+            localStorage.setItem("currentUser", email);
+            localStorage.setItem("userName", nombre);
+            window.location.href = "productos.html";
+        };
+
         if (typeof emailjs !== "undefined") {
             emailjs.send('service_mundolaptop', 'template_qucojzk', templateParams)
                 .then(function (response) {
                     console.log('Correo enviado:', response.status);
-                    localStorage.setItem("userRole", "client");
-                    localStorage.setItem("isAuthenticated", "true");
-                    localStorage.setItem("currentUser", email);
-                    window.location.href = "productos.html";
+                    redirigirConSesion();
                 })
                 .catch(function (error) {
                     console.error('Error EmailJS:', error);
                     showStatus("Cuenta creada, pero hubo un error al enviar el correo.");
-                    setTimeout(() => {
-                        localStorage.setItem("userRole", "client");
-                        localStorage.setItem("isAuthenticated", "true");
-                        localStorage.setItem("currentUser", email);
-                        window.location.href = "productos.html";
-                    }, 2000);
+                    setTimeout(redirigirConSesion, 2000);
                 })
                 .finally(() => {
                     loginBtn.disabled = false;

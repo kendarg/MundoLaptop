@@ -3,6 +3,9 @@
   --cart-blue: #00b4d8;
 }
 
+.cart-product-price span:not(.text-decoration-line-through):not(.badge) {
+  color: #00d89b !important; /* Reemplaza #075C6F por el color que prefieras */
+}
 /* Badge flotante en el Navbar (contador de productos) */
 .cart-badge-blue {
   background-color: #075C6F;
