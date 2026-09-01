@@ -28,76 +28,63 @@
 
    <!-- Navbar -->
 
-    <!--navbar Ronal-->
+   <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container-fluid ">
-            <a href="../inicio.html">
+        <div class="container-fluid">
+            <a href="../index.html">
                 <img src="../img/LOGOPNG.png" alt="logo" class="logoimg" id="logo">
             </a>
-            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown " aria-expanded="false" aria-label="Toggle navigation ">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item" class="libar">
+                    <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/html/productos.html">Productos</a>
+                        <a class="nav-link" href="../html/productos.html">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="../html/Nosotros.html">Nosotros</a>
+                        <a class="nav-link" href="../html/Nosotros.html">Nosotros</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../html/contacto.html">Contactos</a>
-                        </li>
-                        </li>
-                        </ul>
-                        <div class="iconos-navbar ">
-                            <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
-                            <a href="#" id="buttonuser" class="iconos"> <i class="bi bi-person iconos"></i> </a>
-                            <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito"
-                            aria-controls="offcanvasCarrito">
-                            <i class="bi bi-cart3 iconos"></i>
-                            <span id="cart-count" class="position-absolute top-0 start-100 translate-middle cart-badge-blue">
-                            0
-                            </span>
-                        </a>
-                          <!-- Boton vision -->
-                        <div class="btn iconos" id="modo">
-                            <i class="bi bi-moon iconos" id="icono"></i>
-                        </div>
+                    </li>
+                </ul>
+                <div class="iconos-navbar">
+                    <a href="#" class="iconos"><i class="bi bi-search iconos"></i></a>
+                    <a href="#" id="buttonuser" class="iconos"><i class="bi bi-person iconos"></i></a>
+                    <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                        <i class="bi bi-cart3 iconos"></i>
+                        <span id="cart-count" class="position-absolute top-0 start-100 translate-middle cart-badge-blue">0</span>
+                    </a>
+                    <div class="btn iconos" id="modo">
+                        <i class="bi bi-moon iconos" id="icono"></i>
+                    </div>
+                </div>
             </div>
-            </div>
+        </div>
     </nav>
 
-    <!-- Panel Lateral Offcanvas del Carrito -->
+    <!-- Offcanvas Carrito -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
-
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title fw-bold" id="offcanvasCarritoLabel">
                 <i class="bi bi-cart3 me-2"></i>Tu Carrito
             </h5>
-
             <span id="cart-item-count" class="cart-item-count-badge">0 productos</span>
-
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
         <div class="offcanvas-body d-flex flex-column">
-
-            <!-- Lista Dinámica de Productos -->
             <div id="cart-items" class="flex-grow-1 overflow-auto mb-3"></div>
-
-            <!-- Resumen de Costos -->
             <div class="cart-summary border-top pt-3 mt-auto">
-
                 <div class="mb-3">
                     <label for="tipo-envio-offcanvas" class="form-label font-sm fw-semibold mb-1">
                         <i class="bi bi-truck me-1"></i>Opciones de Envío
                     </label>
-
                     <select id="tipo-envio-offcanvas" class="tipo-envio form-select form-select-sm">
                         <option value="0" selected>Bogotá (Gratis)</option>
                         <option value="300000">Fuera de Bogotá ($300.000)</option>
@@ -109,9 +96,7 @@
                     <span>Costo de envío</span>
                     <span class="cart-shipping-cost fw-semibold text-success">Gratis</span>
                 </div>
-
                 <hr class="my-2">
-
                 <div class="d-flex justify-content-between align-items-center fs-5 fw-bold mb-4">
                     <span>Total</span>
                     <span class="cart-total cart-accent-text">$0</span>
@@ -120,43 +105,35 @@
                 <button id="btn-proceder-pago-offcanvas" class="btn-checkout-main w-100 py-2 mb-2 fw-semibold">
                     <i class="bi bi-lock-fill"></i> Proceder al pago
                 </button>
-
                 <button class="btn-continue-shopping w-100 py-2 fw-semibold" data-bs-dismiss="offcanvas">
                     <i class="bi bi-arrow-left"></i> Seguir comprando
                 </button>
-
             </div>
         </div>
     </div>
 
-    <!-- Modal de Checkout -->
+    <!-- Modal Checkout -->
     <div class="modal fade" id="modalCheckout" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-
                 <div class="modal-header">
                     <h5 class="modal-title">Finalizar compra</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
                     <form id="form-checkout">
-
                         <div class="mb-3">
                             <label class="form-label">Nombre</label>
                             <input type="text" id="nombreCliente" class="form-control" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Correo electrónico</label>
                             <input type="email" id="correoCliente" class="form-control" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="form-label">Dirección</label>
                             <input type="text" id="direccionCliente" class="form-control" required>
                         </div>
-
                         <div class="mb-3">
                             <label for="metodoPago" class="form-label">Método de pago</label>
                             <select id="metodoPago" class="form-select form-select-sm" required>
@@ -165,26 +142,19 @@
                                 <option value="amex">American Express</option>
                             </select>
                         </div>
-
                         <div class="alert alert-light">
-                            Total a pagar:
-                            <strong id="checkout-total-price">$ 0</strong>
+                            Total a pagar: <strong id="checkout-total-price">$ 0</strong>
                         </div>
-
-                        <button type="submit"
-                            class="btn-confirmar-compra w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                        <button type="submit" class="btn-confirmar-compra w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
                             <i class="bi bi-lock-fill"></i> Confirmar compra
                         </button>
-
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
 
-
-    <!-- Login Sergio -->
+    <!-- Panel de Login / Registro -->
     <section class="loginpg">
         <div id="overlay" class="overlay"></div>
         <aside id="loginPanel" class="login-panel">
@@ -192,23 +162,43 @@
                 <i class="bi bi-x-lg"></i>
             </button>
             <div class="login-logo">
-                <img src="/img/adad.png" alt="Mundo Laptop">
+                <img src="../img/adad.png" alt="Mundo Laptop">
             </div>
 
             <h2 id="panelTitle">Iniciar sesión</h2>
             <p id="panelSub" class="subtitulo">Bienvenido nuevamente.</p>
 
-            <form id="authForm" onsubmit="return false;">
+            <form id="authForm">
+                <div class="grupo-input campo-registro" style="display: none;">
+                    <i class="bi bi-person"></i>
+                    <input type="text" id="nombreInput" placeholder="Nombre" autocomplete="name">
+                </div>
+                <div class="grupo-input campo-registro" style="display: none;">
+                    <i class="bi bi-telephone"></i>
+                    <input type="number" id="numeroInput" placeholder="Número de teléfono" autocomplete="tel">
+                </div>
                 <div class="grupo-input">
                     <i class="bi bi-envelope"></i>
                     <input type="email" id="emailInput" placeholder="Correo electrónico" autocomplete="email">
                 </div>
-                <div class="grupo-input">
+                
+            <div class="grupo-input position-relative">
                     <i class="bi bi-lock"></i>
-                    <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
-                </div>
+                <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
+                <button type="button" class="btn-toggle-password" id="togglePasswordBtn" tabindex="-1">
+                <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                </button>
+            </div>
 
-                <p id="statusMsg" style="font-size: 14px; display: none; margin-top: 5px;"></p>
+            <div class="grupo-input campo-registro position-relative" style="display: none;">
+                <i class="bi bi-lock"></i>
+                <input type="password" id="confirmPasswordInput" placeholder="Confirmar Contraseña" autocomplete="new-password">
+                <button type="button" class="btn-toggle-password" id="toggleConfirmPasswordBtn" tabindex="-1">
+                    <i class="bi bi-eye" id="toggleConfirmPasswordIcon"></i>
+                </button>
+            </div>
+
+                <p id="statusMsg" style="font-size: 14px; display: none; margin-top: 8px; font-weight: 500;"></p>
 
                 <button type="submit" id="loginBtn" class="buttonlogin">Iniciar sesión</button>
             </form>
@@ -219,35 +209,6 @@
                 ¿No tienes cuenta? Crear cuenta
             </button>
         </aside>
-
-        <div id="registroModal" class="registro-overlay">
-            <div class="registro grupo-input">
-                <button id="cerrarRegistro" class="cerrar-registro">
-                    <i class="bi bi-x-circle-fill"></i>
-                </button>
-                <h2 class="tituloformulario">Crear cuenta</h2>
-                <h3 class="subtituloformulario">hola! ingresa tus datos.</h3>
-                <div class="grupo-input">
-                    <i class="bi bi-person"></i>
-                    <input type="email" placeholder="Nombre de usuario">
-                </div>
-                <div class="grupo-input">
-                    <i class="bi bi-envelope"></i>
-                    <input type="email" placeholder="Correo electrónico">
-                </div>
-                <div class="grupo-input">
-                    <i class="bi bi-lock"></i>
-                    <input type="password" placeholder="Contraseña">
-                </div>
-                <div class="grupo-input">
-                    <i class="bi bi-lock"></i>
-                    <input type="password" placeholder="Confirmar">
-                </div>
-                <button class="buttonlogin">
-                    Registrarse
-                </button>
-            </div>
-        </div>
     </section>
 
 
@@ -264,7 +225,8 @@
     <script src="../js/cambiDeVsion.js"></script>
     <script src="../js/cambiDeVsion.js"></script>
     <script src="../js/navbar.js"></script>
-    <script src="../js/loginuser.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/logininterfaz.js"></script>
     <script src="../js/carrito.js"></script>
 
 </body>

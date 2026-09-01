@@ -154,9 +154,45 @@ body {
 }
 
 
-.accordion-button:hover {
+.accordion-button:hover,
+.accorion-button:focus {
     background-color: var(--teal-500, #0c5364);
     color: var(--var-font-color-3) !important;
+}
+
+.accordion-button:not(.collapsed),
+.accordion-button:not(.collapsed):focus,
+.accordion-button:not(.collapsed):active {
+    background-color: #004d5a !important;
+    /* Tu verde oscuro */
+    color: #ffffff !important;
+    /* Texto en blanco */
+    box-shadow: none !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+    /* Invierte el color del icono SVG a blanco */
+    filter: brightness(0) invert(1) !important;
+}
+
+/* 3. HOVER cuando el ítem está ABIERTO (Mantiene el mismo verde oscuro) */
+.accordion-button:not(.collapsed):hover {
+    background-color: #004d5a !important;
+    color: #ffffff !important;
+}
+
+
+/* 1. Cambia la flecha a blanco cuando el mouse pasa por la pregunta (Hover) */
+.accordion-button:hover::after {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* 2. Si quieres que además el fondo cambie a tu verde oscuro al hacer hover: */
+.accordion-button:hover {
+    background-color: #004d5a !important;
+    /* Tu tono verde oscuro */
+    color: #ffffff !important;
+    /* Texto blanco */
 }
 
 
@@ -172,8 +208,9 @@ body {
 /*SectionFormulario de Contacto*/
 
 .formulario-contacto {
-    margin: 50px 0;
+    margin: 50px 0px;
     display: flex;
+    padding: 50px 0px;
     width: 100%;
     flex-direction: row;
     gap: 20px;
@@ -299,4 +336,104 @@ textarea {
     border-radius: 15px;
     overflow: hidden;
     border-style: none;
+}
+
+
+
+@media (max-width: 1160px) {
+
+    /* Contenedor Principal */
+    .main-contacto {
+        width: 90%;
+        margin: 40px auto;
+    }
+
+    /* 1. Banner de Contacto */
+    .banner-contacto {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .banner-text {
+        width: 100%;
+    }
+
+    .banner-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .banner-imagen img {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+
+    .banner-imagen {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .informacion {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+    }
+
+    .informacion-llamanos {
+        width: 100%;
+        height: 100px   ;
+        min-height: 200px;
+        margin: 0;
+    }
+
+    /* 3. Formulario y Mapa */
+    .formulario-contacto {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .formulario {
+        width: 100%;
+    }
+
+    .divider {
+        width: 100%;
+        height: 1px;
+        margin: 10px 0;
+    }
+
+    .map-col {
+        width: 100%;
+    }
+
+    .map-frame iframe {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .banner-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .highlight-1 {
+        font-size: 1.2rem;
+    }
+
+    .input-group-1 {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .informacion {
+        grid-template-columns: 1fr;
+    }
 }
