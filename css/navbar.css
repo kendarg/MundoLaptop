@@ -64,9 +64,28 @@
 
 .navbar {
     background-color: white;
-    box-shadow: 0 4px 2px #02d3d396;
+    box-shadow: 0 4px 2px #075c6f;
 }
 
 .bi-person {
     font-size: 2.1rem;
+}
+
+/* icono administreador en .navbar */
+.iconosad a{
+    text-decoration: none;
+    outline: none;
+}
+
+.iconosad {
+    text-decoration: none;
+    font-size: 1.7rem; /* Tamaño de los iconos*/
+    color: #075c6f;
+}
+
+.iconosad:hover, #modo:hover{
+    fill: #11212D;
+}
+.toggleModeBtn{
+    height: 2rem;
 }

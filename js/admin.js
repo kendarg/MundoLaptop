@@ -217,6 +217,22 @@ modalProducto.addEventListener("click", (e) => {
 });
 
 
+// aqui traigo del localstore el nombre del administrador
+const nombreUsuario = localStorage.getItem("currentUserName");
+
+if (nombreUsuario) {
+    document.getElementById("admon").textContent =
+        `Hola, ${nombreUsuario}`;
+}
+
+const botonPanel = document.getElementById("togglePanel");
+const panel = document.querySelector(".panelAdmonIzq");
+
+// mostrar y esconder  panelizqueirdo en responsive
+botonPanel.addEventListener("click", (e) => {
+    e.preventDefault();
+    panel.classList.toggle("activo");
+});
 
 
 
