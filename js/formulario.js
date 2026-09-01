@@ -47,8 +47,6 @@ Swal.fire({
                 <option value="2">Otras</option>
         </select>
     </div>
-    <hr>
-    <button type="submit" class="btn btn-primary w-100">Agragar Imagen</button>
             <hr>
             <button type="submit" class="btn btn-primary w-100">Agregar</button>
             </form>

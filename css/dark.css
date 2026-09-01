@@ -103,10 +103,12 @@ body.dark .navbar {
     background-color: white;
     box-shadow: 0 4px 2px #23b6b667;
 }
-body.dark #icono, body.dark .iconos{
+body.dark #icono, body.dark .iconos, .body.dark .fondoNavbar{
 color: white !important;
 }
 body.dark .mundo-laptop-footer{
     background: linear-gradient(180deg, #EEF4F5 40%, #075c6f44 180%);
-
+}
+body.dark .navbar-toggler{
+    background-color: white;
 }

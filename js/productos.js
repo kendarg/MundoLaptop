@@ -52,7 +52,7 @@ function agregarProductosAdmin() {
                         <span class="nombreProducto">${producto.nombre}</span>
                         <span><strong class="Valor">$ ${precioFormateado} COP</strong></span>
                         <button data-id="${producto.id}"> 
-                            <img src="/assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito
+                            <img src="./assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito
                         </button>
                     </div>
                 </div>
