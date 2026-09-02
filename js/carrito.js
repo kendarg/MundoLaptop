@@ -2,24 +2,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. Cargar el carrito guardado en localStorage o iniciar vacío
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  // 2. Selección de elementos del DOM
-  const cartContainer = document.getElementById("cart-items");
-  const cartCount = document.getElementById("cart-count");
-  const cartItemCount = document.getElementById("cart-item-count");
+  // Verificar si el usuario está autenticado/registrado
+  function esUsuarioRegistrado() {
+    return localStorage.getItem("isAuthenticated") === "true";
+  }
 
-  const cartTotals = document.querySelectorAll(".cart-total");
-  const selectsEnvio = document.querySelectorAll(".tipo-envio");
-  const cartShippingCosts = document.querySelectorAll(".cart-shipping-cost");
-
-  const btnProcederPago =
-    document.getElementById("btn-proceder-pago-offcanvas") ||
-    document.getElementById("btn-proceder-pago");
-
-  const offcanvasCarritoElement = document.getElementById("offcanvasCarrito");
-  const modalCheckoutElement = document.getElementById("modalCheckout");
-
-  const checkoutTotalPrice = document.getElementById("checkout-total-price");
-  const formCheckout = document.getElementById("form-checkout");
+  // 2. Formatear precios en pesos colombianos
+  function formatearPrecio(valor) {
+    return `$ ${Number(valor).toLocaleString("es-CO")}`;
+  }
 
   // 3. Guardar en localStorage y re-renderizar la vista
   function actualizarCarrito() {
@@ -27,14 +18,32 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarCarrito();
   }
 
-  // 4. Formatear precios en pesos colombianos
-  function formatearPrecio(valor) {
-    return `$ ${Number(valor).toLocaleString("es-CO")}`;
-  }
-
-  // 5. Función principal de renderizado
+  // 4. Función principal de renderizado
   function renderizarCarrito() {
-    if (!cartContainer) return;
+    const cartContainer = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const cartItemCount = document.getElementById("cart-item-count");
+    const cartTotals = document.querySelectorAll(".cart-total");
+    const selectsEnvio = document.querySelectorAll(".tipo-envio");
+    const cartShippingCosts = document.querySelectorAll(".cart-shipping-cost");
+
+    // Seleccionar la etiqueta del título del Offcanvas
+    const cartTitle = document.getElementById("offcanvasCarritoLabel") || document.querySelector("#offcanvasCarrito .offcanvas-title");
+
+    if (!cartContainer) return; // el include del navbar aún no cargó
+
+    // Cambiar dinámicamente el título si hay un usuario logueado
+    const usuarioLogueado = esUsuarioRegistrado();
+    const nombreUsuario = localStorage.getItem("userName");
+
+    if (cartTitle) {
+      if (usuarioLogueado && nombreUsuario) {
+        const nombreFormateado = nombreUsuario.charAt(0).toUpperCase() + nombreUsuario.slice(1);
+        cartTitle.innerHTML = `<i class="bi bi-cart3 me-2"></i>Carrito de ${nombreFormateado}`;
+      } else {
+        cartTitle.innerHTML = `<i class="bi bi-cart3 me-2"></i>Tu Carrito`;
+      }
+    }
 
     cartContainer.innerHTML = "";
     let sumaProductos = 0;
@@ -51,12 +60,18 @@ document.addEventListener("DOMContentLoaded", () => {
       cartTotals.forEach((el) => (el.innerText = "$ 0"));
       if (cartCount) cartCount.innerText = "0";
       if (cartItemCount) cartItemCount.innerText = "0 productos";
+
+      const avisoViejo = document.getElementById("aviso-descuento");
+      if (avisoViejo) avisoViejo.remove();
       return;
     }
 
     // Dibujar cada producto en la lista
     carrito.forEach((producto, index) => {
-      const subtotalProducto = producto.precio * producto.cantidad;
+      // Aplicar 10% de descuento solo a usuarios registrados
+      const precioConDescuento = usuarioLogueado ? producto.precio * 0.90 : producto.precio;
+      const subtotalProducto = precioConDescuento * producto.cantidad;
+
       sumaProductos += subtotalProducto;
       totalUnidades += producto.cantidad;
 
@@ -68,7 +83,15 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="flex-grow-1">
           <h6 class="cart-product-title mb-1 fw-semibold">${producto.nombre}</h6>
-          <div class="cart-product-price text-primary fw-bold">${formatearPrecio(producto.precio)}</div>
+          <div class="cart-product-price text-primary fw-bold">
+            ${
+              usuarioLogueado
+                ? `<span class="text-decoration-line-through text-muted me-1 small">${formatearPrecio(producto.precio)}</span>
+                   <span>${formatearPrecio(precioConDescuento)}</span>
+                   <span class="badge bg-success ms-1">-10%</span>`
+                : formatearPrecio(producto.precio)
+            }
+          </div>
           <div class="cart-quantity-controls d-flex align-items-center gap-2 mt-1">
             <button class="btn btn-sm btn-outline-secondary btn-qty btn-restar" data-index="${index}">-</button>
             <span class="qty-number fw-semibold">${producto.cantidad}</span>
@@ -84,11 +107,25 @@ document.addEventListener("DOMContentLoaded", () => {
       cartContainer.appendChild(itemElement);
     });
 
+    // Mostrar banner informativo del 10% de descuento
+    let avisoDescuento = document.getElementById("aviso-descuento");
+    if (usuarioLogueado) {
+      if (!avisoDescuento) {
+        avisoDescuento = document.createElement("div");
+        avisoDescuento.id = "aviso-descuento";
+        avisoDescuento.className = "alert alert-success py-2 px-3 mb-3 text-center small fw-semibold";
+        avisoDescuento.innerHTML = '<i class="bi bi-tag-fill me-1"></i> ¡Descuento del 10% aplicado por estar registrado!';
+        cartContainer.prepend(avisoDescuento);
+      }
+    } else if (avisoDescuento) {
+      avisoDescuento.remove();
+    }
+
     // Costo de envío según el select activo
     const costoEnvio = selectsEnvio.length > 0 ? Number(selectsEnvio[0].value) || 0 : 0;
     const totalFinal = sumaProductos + costoEnvio;
 
-    // Sincronizar todos los selectores de envío
+    // Sincronizar selectores de envío
     selectsEnvio.forEach((select) => {
       select.value = String(costoEnvio);
     });
@@ -112,44 +149,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 6. Cambio en tipo de envío
-  selectsEnvio.forEach((select) => {
-    select.addEventListener("change", (e) => {
-      selectsEnvio.forEach((s) => (s.value = e.target.value));
-      renderizarCarrito();
-    });
+  // 5. Cambio en tipo de envío (delegado en document)
+  document.addEventListener("change", (e) => {
+    if (!e.target.classList.contains("tipo-envio")) return;
+    document.querySelectorAll(".tipo-envio").forEach((s) => (s.value = e.target.value));
+    renderizarCarrito();
   });
 
-  // 7. Sumar, restar, eliminar productos del carrito
-  if (cartContainer) {
-    cartContainer.addEventListener("click", (e) => {
-      const btn = e.target.closest("[data-index]");
-      if (!btn) return;
+  // 6. Listener único delegado en document para clics
+  document.addEventListener("click", (e) => {
+    // Sumar / restar / eliminar dentro del carrito
+    const btnQty = e.target.closest("[data-index]");
+    if (btnQty && btnQty.closest("#cart-items")) {
+      const index = parseInt(btnQty.dataset.index, 10);
 
-      const index = parseInt(btn.dataset.index, 10);
-
-      if (btn.classList.contains("btn-sumar")) {
+      if (btnQty.classList.contains("btn-sumar")) {
         carrito[index].cantidad++;
-      } else if (btn.classList.contains("btn-restar")) {
+      } else if (btnQty.classList.contains("btn-restar")) {
         if (carrito[index].cantidad > 1) {
           carrito[index].cantidad--;
         } else {
           carrito.splice(index, 1);
         }
-      } else if (btn.classList.contains("btn-eliminar")) {
+      } else if (btnQty.classList.contains("btn-eliminar")) {
         carrito.splice(index, 1);
       }
 
       actualizarCarrito();
-    });
-  }
+      return;
+    }
 
-  // 8. Añadir producto al carrito desde las tarjetas
-
-    document.addEventListener("click", (e) => {
-      const card = e.target.closest(".productos-destacados-card");
-      if (!card) return;
-
+    // Añadir producto desde las tarjetas
+    const card = e.target.closest(".productos-destacados-card");
+    if (card) {
       const nombreEl = card.querySelector(".nombreProducto") || card.querySelector("span");
       const nombre = nombreEl ? nombreEl.innerText.trim() : "Producto";
 
@@ -167,16 +199,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       actualizarCarrito();
-    });
+      return;
+    }
 
-  // 9. Botón "Proceder al pago" -> cerrar offcanvas y abrir modal de checkout
-  // getOrCreateInstance evita duplicar instancias de Bootstrap (causa de backdrops huérfanos)
-  if (btnProcederPago) {
-    btnProcederPago.addEventListener("click", () => {
+    // Botón "Proceder al pago"
+    const btnPago = e.target.closest("#btn-proceder-pago-offcanvas, #btn-proceder-pago");
+    if (btnPago) {
       if (carrito.length === 0) {
         alert("Tu carrito está vacío. Agrega productos para proceder al pago.");
         return;
       }
+
+      const offcanvasCarritoElement = document.getElementById("offcanvasCarrito");
+      const modalCheckoutElement = document.getElementById("modalCheckout");
+      const checkoutTotalPrice = document.getElementById("checkout-total-price");
+      const cartTotals = document.querySelectorAll(".cart-total");
 
       if (offcanvasCarritoElement) {
         const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasCarritoElement);
@@ -187,8 +224,6 @@ document.addEventListener("DOMContentLoaded", () => {
         checkoutTotalPrice.innerText = cartTotals[0].innerText;
       }
 
-      // Esperamos a que el offcanvas termine de cerrarse antes de abrir
-      // el modal, para que Bootstrap no maneje dos backdrops a la vez.
       const abrirModalCheckout = () => {
         if (modalCheckoutElement) {
           const bsModal = bootstrap.Modal.getOrCreateInstance(modalCheckoutElement);
@@ -202,28 +237,40 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (modalCheckoutElement) {
         bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).show();
       }
-    });
-  }
+    }
+  });
 
-  // 10. Confirmar compra
-  if (formCheckout) {
-    formCheckout.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const nombreInput = document.getElementById("nombreCliente");
-      const nombre = nombreInput ? nombreInput.value : "Cliente";
-      alert(`¡Gracias por tu compra, ${nombre}! En breve nos pondremos en contacto para gestionar el envío.`);
+  // 7. Confirmar compra
+  document.addEventListener("submit", (e) => {
+    if (e.target.id !== "form-checkout") return;
+    e.preventDefault();
 
-      carrito = [];
-      actualizarCarrito();
-      formCheckout.reset();
+    const nombreInput = document.getElementById("nombreCliente");
+    const nombre = nombreInput ? nombreInput.value : "Cliente";
+    alert(`¡Gracias por tu compra, ${nombre}! En breve nos pondremos en contacto para gestionar el envío.`);
 
-      if (modalCheckoutElement) {
-        bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).hide();
+    carrito = [];
+    actualizarCarrito();
+    e.target.reset();
+
+    const modalCheckoutElement = document.getElementById("modalCheckout");
+    if (modalCheckoutElement) {
+      bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).hide();
+    }
+  });
+
+  // 8. Carga inicial
+  renderizarCarrito();
+
+  // 9. Observer para navbar inyectado asíncronamente
+  if (!document.getElementById("cart-items")) {
+    const observer = new MutationObserver(() => {
+      if (document.getElementById("cart-items")) {
+        renderizarCarrito();
+        observer.disconnect();
       }
     });
+
+    observer.observe(document.body, { childList: true, subtree: true });
   }
-
-  // Carga inicial
-  renderizarCarrito();
 });
-

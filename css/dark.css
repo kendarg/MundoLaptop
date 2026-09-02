@@ -90,7 +90,7 @@ body.dark h1,body.dark .lead,body.dark .tex-footer,
 body.dark .githubF, body.dark .text-secondary,
 body.dark #icono,
 body.dark .nombreProducto,body.dark .Valor,body.dark #panelSub,
-body.dark .github-link, body.dark .footerT, body.dark .cateogriasinfo, body.darck #Marca
+body.dark .github-link, body.dark .footerT, body.dark .cateogriasinfo, body.darck #Marca, body.dark .statusMsg
 {
     color: black !important;
 }

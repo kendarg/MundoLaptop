@@ -38,11 +38,12 @@ function agregarProductosAdmin() {
 
         // Selecciona una URL al azar del array
         const urlAleatoria = imagenesAleatorias[Math.floor(Math.random() * imagenesAleatorias.length)];
-        
+
         const imagenProducto = producto.imagen || urlAleatoria || "/img/pc2.png";
 
         const cardHTML = `
-            <div class="col">
+            <div class="col" data-precio="${producto.precio}"
+                        data-marca="${producto.marca?.toUpperCase() || 'GENERAL'}" data-categoria="${producto.categoria?.toLowerCase() || 'nuevo'}">
                 <div class="productos-destacados-card">
                     <div class="img-card">
                         <img src="${imagenProducto}" alt="${producto.nombre}">
@@ -63,3 +64,135 @@ function agregarProductosAdmin() {
 }
 
 document.addEventListener("DOMContentLoaded", agregarProductosAdmin);
+
+// funcion enlace para ordenar productos segun opcion ordenar pg productos
+// se agrego datos en la tarjeta para ordenar
+
+const opcionesOrden = document.querySelectorAll("[data-orden]");
+const contenedor = document.querySelector(".section-productos-render");
+
+opcionesOrden.forEach(opcion => {
+
+    opcion.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const criterio = opcion.dataset.orden;
+        const tarjetas = Array.from(
+            contenedor.querySelectorAll(".col")
+        );
+        tarjetas.sort((a, b) => {
+
+            switch (criterio) {
+                case "menor-precio":
+                    return Number(a.dataset.precio) -
+                           Number(b.dataset.precio);
+
+                case "mayor-precio":
+                    return Number(b.dataset.precio) -
+                           Number(a.dataset.precio);
+
+                case "popular":
+                    return Number(b.dataset.popularidad) -
+                           Number(a.dataset.popularidad);
+
+                case "recientes":
+                    return new Date(b.dataset.fecha) -
+                           new Date(a.dataset.fecha);
+
+                default:
+                    return 0;
+            }
+        });
+
+        contenedor.innerHTML = "";
+        tarjetas.forEach(tarjeta => {
+            contenedor.appendChild(tarjeta);
+        });
+    });
+});
+
+//se agrega lectura de los checkbox para el diltro en pg productos 
+//se ejecutara filtrar marca cada vez que se de click a un checkbox
+
+const checkboxesMarca = document.querySelectorAll(
+    'input[name="marca"]'
+);
+
+checkboxesMarca.forEach(checkbox => {
+    checkbox.addEventListener("change", filtrarMarcas);
+});
+
+function filtrarMarcas() {
+
+    // Marcas seleccionadas con checkbox
+    const marcasSeleccionadas = Array.from(
+        document.querySelectorAll(
+            'input[name="marca"]:checked'
+        )
+    ).map(check => check.value.toUpperCase());
+
+    // Todas las tarjetas
+    const productos = document.querySelectorAll(".col");
+
+
+    // funcion para filtrar por checkbox
+    productos.forEach(producto => {
+
+        const marcaProducto =
+            producto.dataset.marca;
+
+        producto.style.display =
+            marcasSeleccionadas.length === 0 ||
+            marcasSeleccionadas.includes(marcaProducto)
+                ? ""
+                : "none";
+    });
+
+    //   ↓↓↓  ESTA FUNCION DEBERIA SER ELIMINADA SI EL INVENTARIO SOLO TIENE
+    // PRODUCTOS LLAMADOS DESDE LA TABLA EN ADMIN, YA QUE ESTA FUNCION ES  PARA FILTRAR
+    // LOS PRODUCTOS QUE FUERON HARCODEADOS POR WALTER 
+    productos.forEach(producto => {
+
+        const marcaProducto = producto
+            .querySelector(".Marcas")
+            .textContent
+            .trim()
+            .toUpperCase();
+
+        // Si no hay filtros seleccionados, mostrar todo en pg productos
+        if (marcasSeleccionadas.length === 0) {
+            producto.style.display = "";
+            return;
+        }
+
+        // Mostrar solo las marcas seleccionadas con checkbox
+        if (marcasSeleccionadas.includes(marcaProducto)) {
+            producto.style.display = "";
+        } else {
+            producto.style.display = "none";
+        }
+    });
+}
+
+// funcion para filtrar por categorias , pasar a checkbox
+const filtrosCategoria = document.querySelectorAll(".filtro-categoria");
+
+filtrosCategoria.forEach(filtro => {
+
+    filtro.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const categoriaSeleccionada = filtro.dataset.categoria;
+        const productos = document.querySelectorAll(".col");
+
+        productos.forEach(producto => {
+            const categoriaProducto =
+                producto.dataset.categoria;
+            if (categoriaProducto === categoriaSeleccionada) {
+                producto.style.display = "";
+            } else {
+                producto.style.display = "none";
+            }
+        });
+    });
+});
