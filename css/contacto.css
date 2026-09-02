@@ -284,7 +284,22 @@ textarea:focus {
     border-color: rgba(0, 0, 0, 0.288);
 
 }
+.formulario-contacto-1 input:hover,
+.formulario-contacto-1 textarea:hover {
+    border-color:#075C6F;
+    outline: none;
+}
 
+
+.formulario-contacto-1 input,
+.formulario-contacto-1 textarea {
+    border: 2px solid rgb(221, 218, 218);
+}
+
+.formulario-contacto-1 input:focus,.formulario-contacto-1 textarea:focus{
+    border-color:#075C6F;
+    outline: none;
+}
 textarea {
     resize: vertical;
     min-height: 140px;
