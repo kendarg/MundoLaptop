@@ -152,7 +152,7 @@
 .linea{
     display:flex;
     align-items:center;
-    margin:30px 0;
+    margin:10px 0;
 }
 
 .linea::before,
@@ -314,4 +314,10 @@
 .grupo-input input[type="password"],
 .grupo-input input[type="text"] {
     padding-right: 40px;
+}
+
+#toggleModeBtn{
+    background-color: #075c6f;
+    padding: 15px 15px;
+    bo
 }
