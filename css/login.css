@@ -321,3 +321,7 @@
     padding: 15px 15px;
     bo
 }
+
+#toggleModeBtn:hover{
+    background-color: #17233a;
+}
