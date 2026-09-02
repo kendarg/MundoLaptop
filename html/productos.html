@@ -26,10 +26,10 @@
 
 
     <!-- Navbar -->
-   <!-- Navbar -->
+    <!-- Navbar -->
 
-   <!-- Navbar -->
-       <nav class="navbar navbar-expand-lg sticky-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid">
             <a href="../index.html">
                 <img src="../img/LOGOPNG 2.png" alt="logo" class="logoimg" id="logo">
@@ -56,9 +56,11 @@
                 <div class="iconos-navbar">
                     <!-- <a href="#" class="iconos"><i class="bi bi-search iconos"></i></a> -->
                     <a href="#" id="buttonuser" class="iconos"><i class="bi bi-person iconos"></i></a>
-                    <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                    <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
                         <i class="bi bi-cart3 iconos"></i>
-                        <span id="cart-count" class="position-absolute top-0 start-100 translate-middle cart-badge-blue">0</span>
+                        <span id="cart-count"
+                            class="position-absolute top-0 start-100 translate-middle cart-badge-blue">0</span>
                     </a>
                     <div class="btn iconos" id="modo">
                         <i class="bi bi-moon iconos" id="icono"></i>
@@ -145,7 +147,8 @@
                         <div class="alert alert-light">
                             Total a pagar: <strong id="checkout-total-price">$ 0</strong>
                         </div>
-                        <button type="submit" class="btn-confirmar-compra w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                        <button type="submit"
+                            class="btn-confirmar-compra w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
                             <i class="bi bi-lock-fill"></i> Confirmar compra
                         </button>
                     </form>
@@ -181,22 +184,23 @@
                     <i class="bi bi-envelope"></i>
                     <input type="email" id="emailInput" placeholder="Correo electrónico" autocomplete="email">
                 </div>
-                
-            <div class="grupo-input position-relative">
-                    <i class="bi bi-lock"></i>
-                <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
-                <button type="button" class="btn-toggle-password" id="togglePasswordBtn" tabindex="-1">
-                <i class="bi bi-eye" id="togglePasswordIcon"></i>
-                </button>
-            </div>
 
-            <div class="grupo-input campo-registro position-relative" style="display: none;">
-                <i class="bi bi-lock"></i>
-                <input type="password" id="confirmPasswordInput" placeholder="Confirmar Contraseña" autocomplete="new-password">
-                <button type="button" class="btn-toggle-password" id="toggleConfirmPasswordBtn" tabindex="-1">
-                    <i class="bi bi-eye" id="toggleConfirmPasswordIcon"></i>
-                </button>
-            </div>
+                <div class="grupo-input position-relative">
+                    <i class="bi bi-lock"></i>
+                    <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
+                    <button type="button" class="btn-toggle-password" id="togglePasswordBtn" tabindex="-1">
+                        <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                    </button>
+                </div>
+
+                <div class="grupo-input campo-registro position-relative" style="display: none;">
+                    <i class="bi bi-lock"></i>
+                    <input type="password" id="confirmPasswordInput" placeholder="Confirmar Contraseña"
+                        autocomplete="new-password">
+                    <button type="button" class="btn-toggle-password" id="toggleConfirmPasswordBtn" tabindex="-1">
+                        <i class="bi bi-eye" id="toggleConfirmPasswordIcon"></i>
+                    </button>
+                </div>
 
                 <p id="statusMsg" style="font-size: 14px; display: none; margin-top: 8px; font-weight: 500;"></p>
 
@@ -300,10 +304,10 @@
 
 
                 <ul class="opciones-ordenar">
-                    <li class="activa"><a href="#" class="cateogriasinfo">Más populares</a></li>
-                    <li><a href="#" class="cateogriasinfo">Menor precio</a></li>
-                    <li><a href="#" class="cateogriasinfo">Mayor precio</a></li>
-                    <li><a href="#" class="cateogriasinfo">Más recientes</a></li>
+                    <li class="activa"><a href="#" class="cateogriasinfo" data-orden="popular">Más populares</a></li>
+                    <li><a href="#" class="cateogriasinfo" data-orden="menor-precio">Menor precio</a></li>
+                    <li><a href="#" class="cateogriasinfo" data-orden="mayor-precio">Mayor precio</a></li>
+                    <li><a href="#" class="cateogriasinfo" data-orden="recientes">Más recientes</a></li>
                 </ul>
             </div>
 
@@ -316,14 +320,15 @@
                     <strong>
                         <h5>CATEGORÍAS</h5>
                     </strong>
-                    <div class="cateogrias"><a href="" class="cateogriasinfo"><img src="/img/productos/icon-news.png"
+                    <div class="cateogrias">
+                        <a href="" class="cateogriasinfo filtro-categoria" data-categoria="nuevo"><img src="/img/productos/icon-news.png"
                                 alt=""> Nuevos</a></div>
                     <div class="cateogrias">
-                        <a href="" class="cateogriasinfo"> <img src="/img/productos/icon-openbox.png" alt=""> Open
+                        <a href="" class="cateogriasinfo filtro-categoria" data-categoria="open box"> <img src="/img/productos/icon-openbox.png" alt=""> Open
                             Box</a>
                     </div>
                     <div class="cateogrias">
-                        <a href="" class="cateogriasinfo"> <img src="/img/productos/procesador-icon.png" alt="">
+                        <a href="" class="cateogriasinfo filtro-categoria" data-categoria="reacondicionado"> <img src="/img/productos/procesador-icon.png" alt="">
                             Reacondicionados</a>
                     </div>
 
@@ -359,22 +364,19 @@
                             <span>Acer</span>
                         </label>
                     </div>
-
                 </div>
-
-
-
-
             </div>
+
             <div class="section-productos-render">
                 <!-- La idea es poner aca en grid para que queden alineadas, 3 columnas-->
 
                 <!--productos hardcoreados 1-->
-                <div class="col">
+                <div class="col" data-precio="5999000" data-categoria="nuevo" data-popularidad="95" data-fecha="2025-08-20">
 
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1659135890084-930731031f40?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                            <img src="https://images.unsplash.com/photo-1659135890084-930731031f40?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="">
                         </div>
 
                         <div class="informacion-card">
@@ -391,16 +393,17 @@
 
 
 
-                <div class="col">
+                <div class="col" data-precio="4999000"  data-categoria="nuevo" data-popularidad="65" data-fecha="2025-08-23">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1555117391-6c0795768da8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                            <img src="https://images.unsplash.com/photo-1555117391-6c0795768da8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="">
 
                         </div>
                         <div class="informacion-card">
                             <span> <strong class="Marcas" id="Marcas">LENOVO</strong></span>
                             <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong class="Valor">4.999.000 COP</strong></span>
                             <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
                     </div>
@@ -408,47 +411,50 @@
 
 
 
-                <div class="col">
+                <div class="col" data-precio="6700000"  data-categoria="nuevo" data-popularidad="70" data-fecha="2025-08-27">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                            <img src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="">
 
                         </div>
                         <div class="informacion-card">
                             <span> <strong class="Marcas" id="Marcas">HP</strong></span>
                             <span class="nombreProducto">Spectre x360 Convertible</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong class="Valor">6.700.000 COP</strong></span>
                             <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
                     </div>
                 </div>
 
 
-                <div class="col">
+                <div class="col" data-precio="3890000"  data-categoria="reacondicionado" data-popularidad="50" data-fecha="2025-08-20">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1509701852059-c221a6f1e878?q=80&w=1091&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                            <img src="https://images.unsplash.com/photo-1509701852059-c221a6f1e878?q=80&w=1091&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="">
 
                         </div>
                         <div class="informacion-card"><span> <strong class="Marcas" id="Marcas">DELL</strong></span>
                             <span class="nombreProducto">XPS 14 Ultrabook</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong class="Valor">3.890.000 COP</strong></span>
                             <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col" data-precio="5350000" data-categoria="Open Box" data-popularidad="65" data-fecha="2025-08-21">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1595234336271-178875797b4d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU5fHx8ZW58MHx8fHx8" alt="">
+                            <img src="https://images.unsplash.com/photo-1595234336271-178875797b4d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU5fHx8ZW58MHx8fHx8"
+                                alt="">
 
                         </div>
                         <div class="informacion-card">
-                            <span> <strong class="Marcas" id="Marcas">DELL</strong></span>
+                            <span> <strong class="Marcas" id="Marcas">Dell</strong></span>
                             <span class="nombreProducto">XPS 15 Ultrabook</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong class="Valor">5.350.000 COP</strong></span>
                             <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
@@ -457,16 +463,17 @@
 
 
 
-                <div class="col">
+                <div class="col" data-precio="7599000" data-categoria="Open Box" data-popularidad="95" data-fecha="2025-08-18">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1581225218177-9a18341ec628?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHx8" alt="">
+                            <img src="https://images.unsplash.com/photo-1581225218177-9a18341ec628?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHx8"
+                                alt="">
 
                         </div>
                         <div class="informacion-card">
                             <span> <strong class="Marcas" id="Marcas">LENOVO</strong></span>
                             <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong class="Valor">7.599.000 COP</strong></span>
                             <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
@@ -475,15 +482,16 @@
 
 
 
-                <div class="col">
+                <div class="col" data-precio="6200000" data-categoria="nuevo" data-popularidad="50" data-fecha="2025-08-20">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1644659306528-259903deccde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHx8" alt="">
+                            <img src="https://images.unsplash.com/photo-1644659306528-259903deccde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHx8"
+                                alt="">
 
                         </div>
-                        <div class="informacion-card"><span> <strong class="Marcas" id="Marcas">HP</strong></span>
+                        <div class="informacion-card"><span> <strong class="Marcas" id="Marcas">ACER</strong></span>
                             <span class="nombreProducto">Spectre x360 Convertible</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong class="Valor">6.200.000 COP</strong></span>
                             <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
@@ -491,31 +499,33 @@
                 </div>
 
 
-                <div class="col">
+                <div class="col" data-precio="5190000" data-categoria="nuevo"data-popularidad="95" data-fecha="2025-08-20">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://plus.unsplash.com/premium_photo-1723741245145-4a8cb264760d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI4fHx8ZW58MHx8fHx8" alt="">
+                            <img src="https://plus.unsplash.com/premium_photo-1723741245145-4a8cb264760d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI4fHx8ZW58MHx8fHx8"
+                                alt="">
 
                         </div>
                         <div class="informacion-card"><span> <strong class="Marcas" id="Marcas">DELL</strong></span>
                             <span class="nombreProducto">XPS 13 Ultrabook</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong class="Valor">5.190.000 COP</strong></span>
                             <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col" data-precio="7000000" data-categoria="nuevo"data-popularidad="80" data-fecha="2025-08-20">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1629491697442-7d67fc25d897?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU3fHx8ZW58MHx8fHx8" alt="">
+                            <img src="https://images.unsplash.com/photo-1629491697442-7d67fc25d897?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU3fHx8ZW58MHx8fHx8"
+                                alt="">
 
                         </div>
                         <div class="informacion-card">
                             <span> <strong class="Marcas" id="Marcas">LENOVO</strong></span>
                             <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong class="Valor">7.000.000 COP</strong></span>
                             <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
@@ -524,40 +534,28 @@
 
 
 
-                <div class="col">
+                <div class="col" data-precio="8500000" data-categoria="nuevo"data-popularidad="45" data-fecha="2025-08-20">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1734605279008-efae97765402?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU5fHx8ZW58MHx8fHx8" alt="">
+                            <img src="https://images.unsplash.com/photo-1734605279008-efae97765402?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU5fHx8ZW58MHx8fHx8"
+                                alt="">
 
                         </div>
                         <div class="informacion-card">
-                            <span> <strong class="Marcas" id="Marcas">HP</strong></span>
+                            <span> <strong class="Marcas" id="Marcas">ASUS</strong></span>
                             <span class="nombreProducto">Spectre x360 Convertible</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong class="Valor">8.500.000 COP</strong></span>
                             <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
                     </div>
                 </div>
-
-
-
+ 
             </div>
-
-
-
 
         </section>
 
-
-
-
     </main>
-
-
-
-
-
 
     <div data-include="components/../footer.html"></div>
 

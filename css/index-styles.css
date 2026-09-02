@@ -299,7 +299,6 @@ body {
 
 .section-mas-informacion {
     display: flex;
-    margin: 100px 0px;
     flex-direction: column;
 }
 
@@ -335,7 +334,7 @@ body {
     align-items: center;
     gap: 20px;
     border-radius: 12px;
-    margin: 30px 0px;
+    margin-bottom: 30px;
     padding: 20px 0px;
 
 }
