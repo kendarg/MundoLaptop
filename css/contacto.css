@@ -28,7 +28,7 @@ body {
 .main-contacto {
     width: 70%;
     padding: 0px;
-    margin: 100px auto;
+    margin: 10px auto;
     display: flex;
     flex-direction: column;
 }
@@ -259,7 +259,7 @@ body {
 input,
 textarea {
     padding: 10px;
-    border: 1px solid var(--var-font-color-1);
+    border: 1px solid rgba(0, 0, 0, 0.199);
     border-radius: 5px;
     font-size: 0.5rem;
     width: 100%;
@@ -281,7 +281,7 @@ textarea::placeholder {
 
 input:focus,
 textarea:focus {
-    border-color: var(--var-font-color-1);
+    border-color: rgba(0, 0, 0, 0.288);
 
 }
 

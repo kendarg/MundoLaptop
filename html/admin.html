@@ -23,7 +23,7 @@
         <div class="container-fluid ">
             <a href="../inicio.html">
             </a>
-            <a href="#" id="togglePanel" class=" iconosad"><i class="bi bi-person-fill-gear"></i> Modo administrador</a>
+            <a href="#" id="togglePanel" class="iconosad"><i class="bi bi-person-fill-gear"></i><h1 class="Modoad">Modo administrador</h1> </a>
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown " aria-expanded="false" aria-label="Toggle navigation ">
                 <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,6 @@
                  
                 </ul>
                 <div class="iconos-navbar ">
-                    <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
                     </a>
                     <!-- Boton vision -->
                     <i class="bi bi-moon iconos" id="icono"></i>
@@ -61,10 +60,10 @@
                 <i class="bi bi-plus-lg"></i>
                 Agregar Producto
             </button>
-            <button id="abrircategoria" class="btnCategoria">
+            <!-- <button id="abrircategoria" class="btnCategoria">
                 <i class="bi bi-plus-lg"></i>
                 Agregar Categoria
-            </button>
+            </button> -->
             <button id="abrirtienda" class="btnTienda">
                 <i class="bi bi-plus-lg"></i><a href="../html/productos.html" class="aDecorativa"> Ver tienda</a>
 
@@ -73,13 +72,13 @@
             <hr>
             <p class="subtitulopanel">GESTIÓN DE TIENDA</p>
             <ul class="gestionTienda nav nav-pills flex-column mb-auto">
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-columns-gap"></i>
+                <!-- <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-columns-gap"></i>
                         Dashboard
-                    </a> </li>
+                    </a> </li> -->
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-bag-fill"></i>
                         Productos
                     </a> </li>
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
+                <!-- <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
                             class="bi bi-grid-3x3-gap-fill"></i>
                         Categoria
                     </a> </li>
@@ -98,11 +97,11 @@
                     </a> </li>
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-star-fill"></i>
                         Reseña
-                    </a> </li>
+                    </a> </li> -->
             </ul>
             <hr>
             <!-- Contenido -->
-            <p class="subtitulopanel">CONTENIDO</p>
+            <!-- <p class="subtitulopanel">CONTENIDO</p>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i class="bi bi-collection-fill"></i>
                         Banner
@@ -115,12 +114,12 @@
                             class="bi bi-clipboard-data-fill"></i>
                         Noticias
                     </a> </li>
-            </ul>
+            </ul> -->
             <!-- Configuracion -->
-            <hr>
-            <p class="subtitulopanel">CONFIGURACIÓN</p>
+            <!-- <hr> -->
+            <!-- <p class="subtitulopanel">CONFIGURACIÓN</p> -->
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i class="bi bi-gear-fill"></i>
+                <!-- <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i class="bi bi-gear-fill"></i>
                         Ajustes de la tienda
                     </a> </li>
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i
@@ -130,7 +129,7 @@
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i
                             class="bi bi-person-fill-gear"></i>
                         Usuarios y permisos
-                    </a> </li>
+                    </a> </li> -->
                 <li class=""> <a href="../index.html" class="linkPanelIzq" aria-current="page"><i
                             class="bi bi-power"></i></i>
                         Salir
@@ -158,7 +157,7 @@
                                 <th>Marca</th>
                                 <th>Precio</th>
                                 <th>Stock</th>
-                                <th>Referencia</th>
+                                <th>Repotenciado</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
@@ -209,15 +208,15 @@
                     </label>
                     <select class="form-select" id="marca">
                         <option selected>Seleccionar...</option>
-                        <option value="Lenovo">Acer</option>
-                        <option value="HP">Apple</option>
-                        <option value="Lenovo">Asus</option>
-                        <option value="HP">Dell</option>
-                        <option value="Lenovo">Hp</option>
-                        <option value="HP">Huawei</option>
+                        <option value="Acer">Acer</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Asus">Asus</option>
+                        <option value="Dell">Dell</option>
+                        <option value="Hp">Hp</option>
+                        <option value="Huawei">Huawei</option>
                         <option value="Lenovo">Lenovo</option>
-                        <option value="HP">Msi </option>
-                        <option value="Lenovo">Razer</option>
+                        <option value="Msi">Msi </option>
+                        <option value="Razer">Razer</option>
                         <option value="Otras">Otras</option>
                     </select>
                 </div>
@@ -234,13 +233,13 @@
                     <input type="number" class="form-control" id="Stock" placeholder="Ingrese la cantidad">
                 </div>
                 <div class="mb-3">
-                    <label for="referencia" class="form-label" id="importanciatxt">
+                    <label for="repotenciado" class="form-label" id="importanciatxt">
                         Repotenciado
                     </label>
-                    <select class="form-select" id="referencia">
+                    <select class="form-select" id="repotenciado">
                         <option selected>Seleccionar...</option>
-                        <option value="Lenovo">Si</option>
-                        <option value="HP">No</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
                     </select>
                 </div>
                 <hr>

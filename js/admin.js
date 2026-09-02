@@ -15,12 +15,12 @@ function AgregarProducto(e){
     const marca = document.querySelector("#marca").value;
     const precio = document.querySelector("#Precio").value;
     const stock = document.querySelector("#Stock").value;
-    const referencia = document.querySelector("#referencia").value;
+    const repotenciado = document.querySelector("#repotenciado").value;
 
     //      se envia alert para no dejar input sin llenar en form
     if(
         nombre === "" || serie === "" || precio === "" || stock === "" ||
-        categoria === "Seleccionar..." || marca === "Seleccionar..." || referencia === "Seleccionar..."
+        categoria === "Seleccionar..." || marca === "Seleccionar..." || repotenciado === "Seleccionar..."
     ){
         alert("Complete todos los campos");
         return;
@@ -38,7 +38,7 @@ function AgregarProducto(e){
         productoEditando.marca = marca;
         productoEditando.precio = Number(precio);
         productoEditando.stock = Number(stock);
-        productoEditando.referencia = referencia;
+        productoEditando.repotenciado = repotenciado;
         
         //      dejamos el formulario con los botones de agregar nuevamente , ya que al editar aparecen como modificar cambios
         document.querySelector(".cabeceraFormulario h3").textContent = "Agregar producto";
@@ -56,7 +56,7 @@ function AgregarProducto(e){
             marca,
             precio: Number(precio),
             stock: Number(stock),
-            referencia
+            repotenciado
         };
         inventario.push(producto);
     }
@@ -110,14 +110,14 @@ function renderizarInventario(){
                 <td>${producto.marca}</td>
                 <td>$ ${producto.precio}</td>
                 <td>${producto.stock}</td>
-                <td>${producto.referencia}</td>
+                <td>${producto.repotenciado}</td>
                 <td>
                     <span class=" badge ${clase}">
                         ${estado}
                     </span>
                 </td>
                 <td>
-                    <i class="bi bi-pencil-square text-primary me-3 iconoeditar" 
+                    <i class="bi bi-pencil-square me-3 iconoeditar" 
                     data-id="${producto.id}"
                     style="cursor:pointer;"></i>
                     <i class="bi bi-trash text-danger iconobotar"
@@ -175,7 +175,7 @@ function editarProducto(id) {
     document.querySelector("#marca").value = producto.marca;
     document.querySelector("#Precio").value = producto.precio;
     document.querySelector("#Stock").value = producto.stock;
-    document.querySelector("#referencia").value = producto.referencia;
+    document.querySelector("#repotenciado").value = producto.repotenciado;
     modalProducto.classList.add("activo");
 }
 

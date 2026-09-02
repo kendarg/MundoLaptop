@@ -1,35 +1,30 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/dark.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/login.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/contacto.css">
-    <link rel="stylesheet" href="../css/carrito.css">
+    <title>Usados</title>
 
 
-
-    <link rel="stylesheet" href="./css/index-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Contacto</title>
+
+
+    <link rel="stylesheet" href="../css/dark.css">
+    <link rel="stylesheet" href="../css/carrito.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/productos.css">
+    <link rel="stylesheet" href="../css/index-styles.css">
 </head>
 
 <body>
 
-
-       <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid">
             <a href="../index.html">
@@ -280,230 +275,307 @@
     </section>
 
 
-    <!--Contactos-->
-    <main class="main-contacto">
 
-        <section class="banner-contacto">
-            <div class="banner-text">
-                <span class="highlight-1">CONTÁCTANOS</span>
-                <h1>Estamos aquí para <span class="highlight-2">ayudarte</span></h1>
-                <p class="nombreProducto">¿Tienes dudas, sugerencias o necesitas ayuda con tu pedido? Nuestro equipo
-                    estará encantado de atenderte.</p>
-            </div>
-            <div class="banner-imagen">
-                <img src="../assets/inicio/pagina-contacto/banner-contacto.png" alt="Banner Contacto">
-            </div>
-        </section>
+    <!-- Walter -->
+    <main class="main-section">
 
-        <section class="informacion">
-            <!-- Card 1 -->
-            <div class="informacion-llamanos">
-                <div class="logo">
-                    <img src="../assets/inicio/pagina-contacto/tel.svg" alt="Teléfono" />
+
+        <div class="productos-info">
+            <div>
+                <h2>Productos - Usados</h2>
+                <p class="cateogriasinfo"> Explora nuestra selección de laptops y accesorios de las mejores marcas,
+                    optimizados para tu
+                    rendimiento.</p>
+            </div>
+            <div class="select-ordenar" tabindex="0">
+
+                <button class="btn-ordenar" type="button">
+                    <span class="label">Ordenar por:</span>
+                    <span class="valor-seleccionado">Más populares</span>
+                    <svg class="flecha" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+
+
+                <ul class="opciones-ordenar">
+                    <li class="activa"><a href="#" class="cateogriasinfo" data-orden="popular">Más populares</a></li>
+                    <li><a href="#" class="cateogriasinfo" data-orden="menor-precio">Menor precio</a></li>
+                    <li><a href="#" class="cateogriasinfo" data-orden="mayor-precio">Mayor precio</a></li>
+                    <li><a href="#" class="cateogriasinfo" data-orden="recientes">Más recientes</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <section class="section-productos">
+
+            <div class="section-filter">
+
+                <div class="section-filter-1">
+                    <strong>
+                        <h5>CATEGORÍAS</h5>
+                    </strong>
+                    <div class="cateogrias">
+                        <a href="" class="cateogriasinfo filtro-categoria" data-categoria="nuevo"><img src="/img/productos/icon-news.png"
+                                alt=""> Nuevos</a></div>
+                    <div class="cateogrias">
+                        <a href="" class="cateogriasinfo filtro-categoria" data-categoria="open box"> <img src="/img/productos/icon-openbox.png" alt=""> Open
+                            Box</a>
+                    </div>
+                    <div class="cateogrias">
+                        <a href="" class="cateogriasinfo filtro-categoria" data-categoria="reacondicionado"> <img src="/img/productos/procesador-icon.png" alt="">
+                            Reacondicionados</a>
+                    </div>
+
+
                 </div>
-                <h3>Llámanos</h3>
-                <p class="nombreProducto">Habla con nuestro chatbot vía WhatsApp</p>
-            </div>
+                <div class="section-filter-2">
+                    <strong>
+                        <h5>MARCAS</h5>
+                    </strong>
+                    <div class="lista-marcas">
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="dell">
+                            <span>Dell</span>
+                        </label>
 
-            <!-- Card 2 -->
-            <div class="informacion-llamanos">
-                <div class="logo">
-                    <img src="../assets/inicio/pagina-contacto/at.svg" alt="Correo" />
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="hp">
+                            <span>Hp</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="lenovo">
+                            <span>Lenovo</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="asus">
+                            <span>Asus</span>
+                        </label>
+
+                        <label class="item-marca">
+                            <input type="checkbox" name="marca" value="acer">
+                            <span>Acer</span>
+                        </label>
+                    </div>
                 </div>
-                <h3>Correo electrónico</h3>
-                <p class="nombreProducto">Envíanos un correo</p>
             </div>
 
-            <!-- Card 3 -->
-            <div class="informacion-llamanos">
-                <div class="logo">
-                    <img src="../assets/inicio/pagina-contacto/location.svg" alt="Ubicación" />
+            <div class="section-productos-render">
+                <!-- La idea es poner aca en grid para que queden alineadas, 3 columnas-->
+
+                <!--productos hardcoreados 1-->
+                <div class="col" data-precio="5999000" data-categoria="nuevo" data-popularidad="95" data-fecha="2025-08-20">
+
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="https://images.unsplash.com/photo-1659135890084-930731031f40?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="">
+                        </div>
+
+                        <div class="informacion-card">
+                            <span> <strong class="Marcas" id="Marcas">DELL</strong></span>
+                            <span> <strong class="Marcas" id="Marcas">Usado</strong></span>
+                            <span class="nombreProducto">XPS 13 Ultrabook</span>
+                            <span> <strong class="Valor"> 5.999.000 COP</strong></span>
+                            <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+
+
+                        </div>
+
+                    </div>
                 </div>
-                <h3>Visítanos</h3>
-                <p class="nombreProducto">Ven y búscanos de forma presencial</p>
-            </div>
-        </section>
 
-        <!--Preguntas frecuentes-->
-        <section class="preguntas-frecuentes">
-            <h3>Preguntas Frecuentes</h3>
-            <div class="accordion" id="accordionFAQ">
 
-                <!-- Pregunta 1 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            ¿Cuáles son los tiempos de entrega?
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            <strong>Pedidos de 1 a 3 días hábiles.</strong> Realizamos envíos asegurados a todo el país
-                            para que recibas tu equipo a tiempo y en óptimas condiciones.
+
+                <div class="col" data-precio="4999000"  data-categoria="nuevo" data-popularidad="65" data-fecha="2025-08-23">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="https://images.unsplash.com/photo-1555117391-6c0795768da8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="">
+
+                        </div>
+                        <div class="informacion-card">
+                            <span> <strong class="Marcas" id="Marcas">LENOVO</strong></span>
+                            <span> <strong class="Marcas" id="Marcas">Usado</strong></span>
+                            <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
+                            <span> <strong class="Valor">4.999.000 COP</strong></span>
+                            <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Pregunta 2 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            ¿Qué significa que un portátil sea "repotenciado" o reacondicionado?
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            <strong>Es un equipo (generalmente de línea corporativa)</strong> que ha sido inspeccionado,
-                            limpiado y optimizado técnicamente. Se le realizan mejoras en componentes clave —como la
-                            instalación de discos SSD más rápidos o el aumento de memoria RAM— para garantizar un
-                            rendimiento óptimo.
+
+
+                <div class="col" data-precio="6700000"  data-categoria="nuevo" data-popularidad="70" data-fecha="2025-08-27">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="">
+
+                        </div>
+                        <div class="informacion-card">
+                            <span> <strong class="Marcas" id="Marcas">HP</strong></span>
+                            <span> <strong class="Marcas" id="Marcas">Usado</strong></span>
+                            <span class="nombreProducto">Spectre x360 Convertible</span>
+                            <span> <strong class="Valor">6.700.000 COP</strong></span>
+                            <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Pregunta 3 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            ¿Cuál es la diferencia entre un equipo corporativo y uno de consumo convencional?
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            <strong>Los portátiles corporativos</strong> están diseñados para uso intensivo y
-                            prolongado. Cuentan con chasis reforzados (aluminio o fibra de carbono), sistemas de
-                            refrigeración eficientes y componentes de mayor durabilidad que superan a los modelos
-                            convencionales.
+
+                <div class="col" data-precio="3890000"  data-categoria="reacondicionado" data-popularidad="50" data-fecha="2025-08-20">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="https://images.unsplash.com/photo-1509701852059-c221a6f1e878?q=80&w=1091&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="">
+
                         </div>
+                        <div class="informacion-card"><span> <strong class="Marcas" id="Marcas">DELL</strong></span>
+                            <span class="nombreProducto">XPS 14 Ultrabook</span>
+                            <span> <strong class="Valor">3.890.000 COP</strong></span>
+                            <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- Pregunta 4 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFour">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            ¿Qué garantía ofrecen los portátiles usados y repotenciados?
-                        </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            <strong>Todos nuestros equipos cuentan con garantía directa.</strong> Pasan por un riguroso
-                            control de calidad donde probamos pantalla, batería, teclado, puertos y rendimiento bajo
-                            carga antes de ser entregados.
+                <div class="col" data-precio="5350000" data-categoria="Open Box" data-popularidad="65" data-fecha="2025-08-21">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="https://images.unsplash.com/photo-1595234336271-178875797b4d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU5fHx8ZW58MHx8fHx8"
+                                alt="">
+
                         </div>
+                        <div class="informacion-card">
+                            <span> <strong class="Marcas" id="Marcas">Dell</strong></span>
+                            <span class="nombreProducto">XPS 15 Ultrabook</span>
+                            <span> <strong class="Valor">5.350.000 COP</strong></span>
+                            <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- Pregunta 5 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingFive">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            ¿Los portátiles gamer usados mantienen su rendimiento en juegos exigentes?
-                        </button>
-                    </h2>
-                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            <strong>Sí, garantizamos su rendimiento.</strong> Probamos la tarjeta gráfica y el
-                            procesador con pruebas de estrés para asegurar que las temperaturas sean estables. Además,
-                            realizamos mantenimiento preventivo con cambio de pasta térmica de alta calidad.
+
+
+                <div class="col" data-precio="7599000" data-categoria="Open Box" data-popularidad="95" data-fecha="2025-08-18">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="https://images.unsplash.com/photo-1581225218177-9a18341ec628?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE5fHx8ZW58MHx8fHx8"
+                                alt="">
+
                         </div>
+                        <div class="informacion-card">
+                            <span> <strong class="Marcas" id="Marcas">LENOVO</strong></span>
+                            <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
+                            <span> <strong class="Valor">7.599.000 COP</strong></span>
+                            <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- Pregunta 6 -->
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingSix">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            ¿Puedo solicitar modificaciones (más RAM o SSD) antes de comprar?
-                        </button>
-                    </h2>
-                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-                        data-bs-parent="#accordionFAQ">
-                        <div class="accordion-body">
-                            <strong>Ofrecemos personalización completa.</strong> Puedes solicitar la ampliación de
-                            memoria RAM o de almacenamiento SSD al momento de realizar la compra para ajustar el
-                            portátil a tus necesidades exactas.
+
+
+                <div class="col" data-precio="6200000" data-categoria="nuevo" data-popularidad="50" data-fecha="2025-08-20">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="https://images.unsplash.com/photo-1644659306528-259903deccde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE3fHx8ZW58MHx8fHx8"
+                                alt="">
+
                         </div>
+                        <div class="informacion-card"><span> <strong class="Marcas" id="Marcas">ACER</strong></span>
+                            <span class="nombreProducto">Spectre x360 Convertible</span>
+                            <span> <strong class="Valor">6.200.000 COP</strong></span>
+                            <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                        </div>
+
                     </div>
                 </div>
 
+
+                <div class="col" data-precio="5190000" data-categoria="nuevo"data-popularidad="95" data-fecha="2025-08-20">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="https://plus.unsplash.com/premium_photo-1723741245145-4a8cb264760d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI4fHx8ZW58MHx8fHx8"
+                                alt="">
+
+                        </div>
+                        <div class="informacion-card"><span> <strong class="Marcas" id="Marcas">DELL</strong></span>
+                            <span class="nombreProducto">XPS 13 Ultrabook</span>
+                            <span> <strong class="Valor">5.190.000 COP</strong></span>
+                            <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col" data-precio="7000000" data-categoria="nuevo"data-popularidad="80" data-fecha="2025-08-20">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="https://images.unsplash.com/photo-1629491697442-7d67fc25d897?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU3fHx8ZW58MHx8fHx8"
+                                alt="">
+
+                        </div>
+                        <div class="informacion-card">
+                            <span> <strong class="Marcas" id="Marcas">LENOVO</strong></span>
+                            <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
+                            <span> <strong class="Valor">7.000.000 COP</strong></span>
+                            <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col" data-precio="8500000" data-categoria="nuevo"data-popularidad="45" data-fecha="2025-08-20">
+                    <div class="productos-destacados-card">
+                        <div class="img-card">
+                            <img src="https://images.unsplash.com/photo-1734605279008-efae97765402?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU5fHx8ZW58MHx8fHx8"
+                                alt="">
+
+                        </div>
+                        <div class="informacion-card">
+                            <span> <strong class="Marcas" id="Marcas">ASUS</strong></span>
+                            <span class="nombreProducto">Spectre x360 Convertible</span>
+                            <span> <strong class="Valor">8.500.000 COP</strong></span>
+                            <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
+                        </div>
+
+                    </div>
+                </div>
+ 
             </div>
-        </section>
 
-        <!--Formulario + Map-->
-        <section class="formulario-contacto">
-            <div class="formulario">
-                <h3>Envíanos un mensaje</h3>
-
-
-                <form id="contact-form" class="formulario-contacto-1">
-                    <div class="input-group-1">
-                        <input type="text" id="nombre" name="nombre" required placeholder="Nombre">
-                        <input type="email" id="correo" name="correo" required placeholder="Correo electrónico">
-                    </div>
-
-                    <input type="text" id="asunto" name="asunto" required placeholder="Asunto">
-                    <label for="mensaje" class="lead">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" rows="4" required
-                        placeholder="Escribe tu mensaje aquí..."></textarea>
-
-                    <button type="submit" id="submit-btn" class="submit-btn">
-                        <img src="../assets/inicio/pagina-contacto/forward.svg" alt="Enviar"> Enviar mensaje
-                    </button>
-                </form>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="map-col">
-                <h3>Nuestra Ubicación</h3>
-                <div class="map-frame">
-                    <iframe
-                        src="https://maps.google.com/maps?q=Bogot%C3%A1%2C%20Colombia&t=&z=12&ie=UTF8&iwloc=&output=embed"
-                        loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
         </section>
 
     </main>
 
-
-
-    <!-- Footer Sergio -->
     <div data-include="components/../footer.html"></div>
 
-
-
-
-    <!-- Script oficial de Bootstrap 5.3 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
+
+    <script src="../js/cambiDeVsion.js"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/cambiDeVsion.js"></script>
     <script src="../js/navbar.js"></script>
     <script src="../js/carrito.js"></script>
-    <script src="../js/contacto.js"></script>
     <script src="../js/reutilizacion.js"></script>
     <script src="../js/logininterfaz.js"></script>
     <script src="../js/login.js"></script>
+    <script src="../js/productos.js"></script>
+
     <!-- Cargar la librería de EmailJS (Tiene que ir en Head)-->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -511,6 +583,7 @@
             emailjs.init("PpUL-jF6ku8RzCjsL");
         })();
     </script>
+
 </body>
 
 </html>
