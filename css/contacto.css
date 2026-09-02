@@ -259,7 +259,7 @@ body {
 input,
 textarea {
     padding: 10px;
-    border: 1px solid var(--var-font-color-1);
+    border-style: solid;
     border-radius: 5px;
     font-size: 0.5rem;
     width: 100%;
@@ -275,13 +275,14 @@ textarea::placeholder {
     color: var(--teal-500);
     opacity: .85;
     font-size: 1rem;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 
 }
 
-input:focus,
-textarea:focus {
-    border-color: var(--var-font-color-1);
+input:active,
+textarea:active,
+input:focus {
+    border-color: var(--var-font-color-2);
 
 }
 
