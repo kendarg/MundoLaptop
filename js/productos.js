@@ -42,7 +42,8 @@ function agregarProductosAdmin() {
         const imagenProducto = producto.imagen || urlAleatoria || "/img/pc2.png";
 
         const cardHTML = `
-            <div class="col">
+            <div class="col" data-precio="${producto.precio}"
+                        data-marca="${producto.marca?.toUpperCase() || 'GENERAL'}" data-categoria="${producto.categoria?.toLowerCase() || 'nuevo'}">
                 <div class="productos-destacados-card">
                     <div class="img-card">
                         <img src="${imagenProducto}" alt="${producto.nombre}">
@@ -133,6 +134,23 @@ function filtrarMarcas() {
     // Todas las tarjetas
     const productos = document.querySelectorAll(".col");
 
+
+    // funcion para filtrar por checkbox
+    productos.forEach(producto => {
+
+        const marcaProducto =
+            producto.dataset.marca;
+
+        producto.style.display =
+            marcasSeleccionadas.length === 0 ||
+            marcasSeleccionadas.includes(marcaProducto)
+                ? ""
+                : "none";
+    });
+
+    //   ↓↓↓  ESTA FUNCION DEBERIA SER ELIMINADA SI EL INVENTARIO SOLO TIENE
+    // PRODUCTOS LLAMADOS DESDE LA TABLA EN ADMIN, YA QUE ESTA FUNCION ES  PARA FILTRAR
+    // LOS PRODUCTOS QUE FUERON HARCODEADOS POR WALTER 
     productos.forEach(producto => {
 
         const marcaProducto = producto
@@ -155,3 +173,26 @@ function filtrarMarcas() {
         }
     });
 }
+
+// funcion para filtrar por categorias , pasar a checkbox
+const filtrosCategoria = document.querySelectorAll(".filtro-categoria");
+
+filtrosCategoria.forEach(filtro => {
+
+    filtro.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const categoriaSeleccionada = filtro.dataset.categoria;
+        const productos = document.querySelectorAll(".col");
+
+        productos.forEach(producto => {
+            const categoriaProducto =
+                producto.dataset.categoria;
+            if (categoriaProducto === categoriaSeleccionada) {
+                producto.style.display = "";
+            } else {
+                producto.style.display = "none";
+            }
+        });
+    });
+});
