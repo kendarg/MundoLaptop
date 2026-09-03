@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="flex-grow-1">
           <h6 class="cart-product-title mb-1 fw-semibold">${producto.nombre}</h6>
-          <div class="cart-product-price text-primary fw-bold">
+          <div class="cart-product-price  fw-bold">
             ${
               usuarioLogueado
                 ? `<span class="text-decoration-line-through text-muted me-1 small">${formatearPrecio(producto.precio)}</span>

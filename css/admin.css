@@ -29,16 +29,6 @@
     color: black;
 }
 
-/* Fondo oscuro */
-/* .modal-producto{
-    position: fixed;
-    inset: 0;
-    background: #11212d9d;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-} */
 
 .modal-producto {
     position: fixed !important;
@@ -100,8 +90,8 @@ padding: 1rem 10px ;
 }
 
 .panelAdmon{
- background-color: #f0f8ff;
- color: #025656;
+    background-color: #f0f8ff;
+    color: #025656;
 }
 /* panel de administrador */
 .panelAdmonIzq{
@@ -110,7 +100,7 @@ padding: 1rem 10px ;
     box-shadow:1px 0px 7px #075c6f;
 }
 
-.linkPanelIzq{
+.linkPanelIzq, .iconosad{
     display: block;
     padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
     font-size: var(--bs-nav-link-font-size);
@@ -141,10 +131,15 @@ padding: 1rem 10px ;
 }
 
 .btnAbrirformulario:hover, .btnCategoria:hover, .btnTienda:hover{
-    background-color: #033946;
+    background-color: #033946 ;
     transform: scale(1.03);
 }
-
+.bi-pencil-square:hover{
+    color: rgb(0, 192, 0);
+}
+.bi-trash:hover{
+    color: red;
+}
 /* tabla de productos sobreescribe-bootstrap */
 .table.tablaInventario > :not(caption) > * > * {
     background-color: #fefefe;

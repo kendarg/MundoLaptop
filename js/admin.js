@@ -117,10 +117,10 @@ function renderizarInventario(){
                     </span>
                 </td>
                 <td>
-                    <i class="bi bi-pencil-square me-3 iconoeditar" 
+                    <i class="bi bi-pencil-square me-3 iconoeditar" id="PencilLook" 
                     data-id="${producto.id}"
                     style="cursor:pointer;"></i>
-                    <i class="bi bi-trash text-danger iconobotar"
+                    <i class="bi bi-trash iconobotar"
                     data-id="${producto.id}"
                     style="cursor:pointer;"></i>
                 </td>
