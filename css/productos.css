@@ -159,6 +159,8 @@ body {
     border-radius: 10px;
     height: fit-content;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    position:sticky;
+    top: 115px;
 }
 
 .section-filter-1 {
@@ -324,4 +326,10 @@ body {
     .productos-info {
         padding: 20px;
     }
+}
+
+.QR_ML{
+    margin-left: 30PX;
+    width: 150PX;
+    height: 150PX;
 }
