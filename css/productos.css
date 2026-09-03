@@ -327,3 +327,9 @@ body {
         padding: 20px;
     }
 }
+
+.QR_ML{
+    margin-left: 30PX;
+    width: 150PX;
+    height: 150PX;
+}
