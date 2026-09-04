@@ -49,8 +49,8 @@ function agregarProductosAdmin() {
                         <img src="${imagenProducto}" alt="${producto.nombre}">
                     </div>
                     <div class="informacion-card">
-                        <span><strong>${producto.marca ? producto.marca.toUpperCase() : "GENERAL"}</strong></span>
-                        <span class="nombreProducto">${producto.nombre}</span>
+                        <span><strong>${producto.marca ? producto.marca.toUpperCase() : "GENERAL"}<p class="nombreProducto">${producto.nombre}</p></strong></span>
+                        
                         <span><strong class="Valor">$ ${precioFormateado} COP</strong></span>
                         <button data-id="${producto.id}">
                             <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito
