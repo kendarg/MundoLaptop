@@ -258,3 +258,12 @@
     padding: 1rem;
   }
 }
+
+
+
+/* aqui cambiamos el color sombreado al desplegarsepara loguear*/
+.offcanvas-backdrop {
+    background-color: rgba(23, 35, 58, 0.60) !important;
+    opacity: 0.8 !important;
+}
+
