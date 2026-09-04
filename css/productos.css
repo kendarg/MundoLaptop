@@ -159,8 +159,6 @@ body {
     border-radius: 10px;
     height: fit-content;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-    position:sticky;
-    top: 115px;
 }
 
 .section-filter-1 {
