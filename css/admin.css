@@ -129,6 +129,9 @@ padding: 1rem 10px ;
     cursor: pointer;
     transition: transform 0.3s ease, color 0.3s ease;
 }
+#abrirFormulario{
+    width: 100%;
+}
 
 .btnAbrirformulario:hover, .btnCategoria:hover, .btnTienda:hover{
     background-color: #033946 ;
