@@ -50,11 +50,8 @@ body {
 .banner {
 
     border-radius: 15px;
-
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-
     border: 1px solid rgba(0, 0, 0, 0.05);
-
     background-color: var(--var-background-banner);
 
 
@@ -246,6 +243,7 @@ body {
     padding: 0px 30px;
     justify-content: center;
     gap: 10px;
+    height: 200px;
 }
 
 
