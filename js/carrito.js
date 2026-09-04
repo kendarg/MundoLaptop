@@ -202,11 +202,18 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Botón "Proceder al pago"
+   // Botón "Proceder al pago"
     const btnPago = e.target.closest("#btn-proceder-pago-offcanvas, #btn-proceder-pago");
     if (btnPago) {
       if (carrito.length === 0) {
-        alert("Tu carrito está vacío. Agrega productos para proceder al pago.");
+        Swal.fire({
+          position: "top",
+          icon: "warning",
+          title: "Tu carrito está vacío",
+          text: "Agrega productos para proceder al pago.",
+          showConfirmButton: false,
+          timer: 2000
+        });
         return;
       }
 
@@ -214,11 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const modalCheckoutElement = document.getElementById("modalCheckout");
       const checkoutTotalPrice = document.getElementById("checkout-total-price");
       const cartTotals = document.querySelectorAll(".cart-total");
-
-      if (offcanvasCarritoElement) {
-        const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasCarritoElement);
-        bsOffcanvas.hide();
-      }
 
       if (checkoutTotalPrice && cartTotals.length > 0) {
         checkoutTotalPrice.innerText = cartTotals[0].innerText;
@@ -232,8 +234,10 @@ document.addEventListener("DOMContentLoaded", () => {
         offcanvasCarritoElement?.removeEventListener("hidden.bs.offcanvas", abrirModalCheckout);
       };
 
-      if (offcanvasCarritoElement) {
+      if (offcanvasCarritoElement && offcanvasCarritoElement.classList.contains("show")) {
         offcanvasCarritoElement.addEventListener("hidden.bs.offcanvas", abrirModalCheckout);
+        const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasCarritoElement);
+        bsOffcanvas.hide();
       } else if (modalCheckoutElement) {
         bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).show();
       }
@@ -247,16 +251,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const nombreInput = document.getElementById("nombreCliente");
     const nombre = nombreInput ? nombreInput.value : "Cliente";
-    alert(`¡Gracias por tu compra, ${nombre}! En breve nos pondremos en contacto para gestionar el envío.`);
-
-    carrito = [];
-    actualizarCarrito();
-    e.target.reset();
 
     const modalCheckoutElement = document.getElementById("modalCheckout");
     if (modalCheckoutElement) {
       bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).hide();
     }
+
+    Swal.fire({
+     iconHtml: '<i class="bi bi-truck text-success display-4"></i>', // Icono de furgón/camión
+      customClass: {
+        icon: 'border-0' // Quita el borde circular predeterminado
+      },
+      title: `Gracias por tu compra ${nombre}`,
+      html: `
+        <p class="mb-1">En breve nos pondremos en contacto para gestionar el envio</p>
+        <div class="mt-3 p-2 bg-light rounded text-muted small">
+          <i class="bi bi-box-seam me-1"></i> Tu pedido ya esta listo para ser procesado
+        </div>
+      `,
+      confirmButtonText: 'Excelente',
+      confirmButtonColor: "#198754"
+    });
+
+    carrito = [];
+    actualizarCarrito();
+    e.target.reset();
   });
 
   // 8. Carga inicial

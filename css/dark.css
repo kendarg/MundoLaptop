@@ -109,7 +109,8 @@ body.dark .navbar {
     background-color: white;
     box-shadow: 0 4px 2px #23b6b667;
 }
-body.dark #icono, body.dark .iconos, .body.dark .fondoNavbar{
+body.dark #icono, body.dark .iconos, .body.dark .fondoNavbar, body.dark .cart-product-price span:not(.text-decoration-line-through):not(.badge),
+body.dark .cart-total {
 color: white !important;
 }
 body.dark .mundo-laptop-footer{
@@ -145,4 +146,7 @@ body.dark .linkPanelIzq:hover{
 body.dark .bi-pencil-square{
     transform: scale(1.03);
 
+}
+body.dark #statusMsg{
+    color: red !important;
 }
