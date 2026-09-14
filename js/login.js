@@ -1,18 +1,7 @@
-const ADMIN_EMAIL = "admin@mundolaptop.com";
-const ADMIN_PASS = "admin123";
+const API_AUTH = "http://localhost:8080/api/auth";
+const API_USUARIOS = "http://localhost:8080/api/usuarios";
 
 let isLoginMode = true;
-
-function getUsers() {
-    return JSON.parse(localStorage.getItem("users") || "[]");
-}
-
-// Guarda también el nombre del usuario
-function saveUser(email, password, nombre) {
-    const users = getUsers();
-    users.push({ email, password, nombre });
-    localStorage.setItem("users", JSON.stringify(users));
-}
 
 function validarFormatoCorreo(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -62,18 +51,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if (statusMsg) statusMsg.style.display = "none";
 
             if (!isLoginMode) {
-                panelTitle.textContent = "Crear cuenta";
-                panelSub.textContent = "Regístrate para comenzar a comprar.";
-                loginBtn.textContent = "Registrarse";
-                toggleModeBtn.textContent = "¿Ya tienes cuenta? Iniciar sesión";
-
+                if (panelTitle) panelTitle.textContent = "Crear cuenta";
+                if (panelSub) panelSub.textContent = "Regístrate para comenzar a comprar.";
+                if (loginBtn) loginBtn.textContent = "Registrarse";
+                if (toggleModeBtn) toggleModeBtn.textContent = "¿Ya tienes cuenta? Iniciar sesión";
                 camposRegistro.forEach(campo => campo.style.display = "flex");
             } else {
-                panelTitle.textContent = "Iniciar sesión";
-                panelSub.textContent = "Bienvenido nuevamente.";
-                loginBtn.textContent = "Iniciar sesión";
-                toggleModeBtn.textContent = "¿No tienes cuenta? Crear cuenta";
-
+                if (panelTitle) panelTitle.textContent = "Iniciar sesión";
+                if (panelSub) panelSub.textContent = "Bienvenido nuevamente.";
+                if (loginBtn) loginBtn.textContent = "Iniciar sesión";
+                if (toggleModeBtn) toggleModeBtn.textContent = "¿No tienes cuenta? Crear cuenta";
                 camposRegistro.forEach(campo => campo.style.display = "none");
             }
         });
@@ -84,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-function handleSubmit(e) {
+async function handleSubmit(e) {
     if (e) e.preventDefault();
 
     const nombreInput = document.getElementById("nombreInput");
@@ -110,85 +97,99 @@ function handleSubmit(e) {
         return;
     }
 
-    if (isLoginMode) {
-        if (email === ADMIN_EMAIL && password === ADMIN_PASS) {
-            localStorage.setItem("userRole", "admin");
-            localStorage.setItem("isAuthenticated", "true");
-            localStorage.setItem("userName", "Admin");
-            window.location.href = "../html/admin.html";
-            return;
-        }
+    if (loginBtn) loginBtn.disabled = true;
 
-        const users = getUsers();
-        const userExists = users.find(u => u.email === email && u.password === password);
+    try {
+        if (isLoginMode) {
+            // === LOGIN: Petición a AuthController (/api/auth/login) ===
+            const response = await fetch(`${API_AUTH}/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
 
-        if (userExists) {
-            localStorage.setItem("userRole", "client");
-            localStorage.setItem("isAuthenticated", "true");
-            localStorage.setItem("currentUser", email);
-            localStorage.setItem("userName", userExists.nombre || email.split("@")[0]);
-            window.location.href = "../html/productos.html";
+            if (response.ok) {
+                const loginResponse = await response.json();
+                
+                const userRole = (loginResponse.rol || loginResponse.role || "NORMAL").toUpperCase();
+                const token = loginResponse.token || loginResponse.jwt || "";
+                const userName = loginResponse.nombre || loginResponse.name || email.split("@")[0];
+
+                localStorage.setItem("userRole", userRole);
+                localStorage.setItem("isAuthenticated", "true");
+                localStorage.setItem("userName", userName);
+                localStorage.setItem("currentUser", email);
+                
+                if (token) {
+                    localStorage.setItem("token", token);
+                }
+
+                // Evaluación del rol devuelto por el Backend
+                if (userRole === "ADMINISTRADOR" || userRole === "ROLE_ADMINISTRADOR") {
+                    window.location.href = "../html/admin.html";
+                } else {
+                    window.location.href = "../html/productos.html";
+                }
+            } else {
+                showStatus("Correo o contraseña incorrectos.");
+            }
+
         } else {
-            showStatus("Correo o contraseña incorrectos.");
-        }
+            // === REGISTRO: Petición a UsuarioController (/api/usuarios) ===
+            if (password !== confirmPassword) {
+                showStatus("Las contraseñas no coinciden.");
+                if (loginBtn) loginBtn.disabled = false;
+                return;
+            }
 
-    } else {
-        if (password !== confirmPassword) {
-            showStatus("Las contraseñas no coinciden.");
-            return;
-        }
+            if (password.length < 6) {
+                showStatus("La contraseña debe tener al menos 6 caracteres.");
+                if (loginBtn) loginBtn.disabled = false;
+                return;
+            }
 
-        if (password.length < 6) {
-            showStatus("La contraseña debe tener al menos 6 caracteres.");
-            return;
-        }
+            showStatus("Creando cuenta...", false);
 
-        const users = getUsers();
-
-        if (email === ADMIN_EMAIL || users.some(u => u.email === email)) {
-            showStatus("Este correo ya está registrado.");
-            return;
-        }
-
-        loginBtn.disabled = true;
-        showStatus("Creando cuenta y enviando correo...", false);
-
-        // Guardar usuario en localStorage incluyendo su nombre
-        saveUser(email, password, nombre);
-
-        const templateParams = {
-            user_name: nombre,
-            user_phone: numero,
-            user_email: email,
-            user_password: password,
-            date: new Date().toLocaleString()
-        };
-
-        const redirigirConSesion = () => {
-            localStorage.setItem("userRole", "client");
-            localStorage.setItem("isAuthenticated", "true");
-            localStorage.setItem("currentUser", email);
-            localStorage.setItem("userName", nombre);
-            window.location.href = "../html/productos.html";
-        };
-
-        if (typeof emailjs !== "undefined") {
-            emailjs.send('service_mundolaptop', 'template_qucojzk', templateParams)
-                .then(function (response) {
-                    console.log('Correo enviado:', response.status);
-                    redirigirConSesion();
+            const response = await fetch(API_USUARIOS, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    nombre,
+                    telefono: numero,
+                    email,
+                    password
                 })
-                .catch(function (error) {
-                    console.error('Error EmailJS:', error);
-                    showStatus("Cuenta creada, pero hubo un error al enviar el correo.");
-                    setTimeout(redirigirConSesion, 2000);
-                })
-                .finally(() => {
-                    loginBtn.disabled = false;
-                });
-        } else {
-            showStatus("Error al cargar el servicio de correos.");
-            loginBtn.disabled = false;
+            });
+
+            if (response.ok) {
+                const nuevoUsuario = await response.json();
+
+                localStorage.setItem("userRole", "NORMAL");
+                localStorage.setItem("isAuthenticated", "true");
+                localStorage.setItem("currentUser", email);
+                localStorage.setItem("userName", nombre);
+
+                // Integración de EmailJS
+                if (typeof emailjs !== "undefined") {
+                    const templateParams = {
+                        user_name: nombre,
+                        user_phone: numero,
+                        user_email: email,
+                        user_password: password,
+                        date: new Date().toLocaleString()
+                    };
+                    emailjs.send('service_mundolaptop', 'template_qucojzk', templateParams).catch(console.error);
+                }
+
+                window.location.href = "../html/productos.html";
+            } else {
+                showStatus("Error al registrar el usuario. Es posible que el correo ya esté en uso.");
+            }
         }
+    } catch (error) {
+        console.error("Error en la petición:", error);
+        showStatus("No se pudo conectar con el servidor.");
+    } finally {
+        if (loginBtn) loginBtn.disabled = false;
     }
 }

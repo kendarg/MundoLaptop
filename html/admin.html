@@ -24,7 +24,9 @@
         <div class="container-fluid ">
             <a href="../inicio.html">
             </a>
-            <a href="./admin.html" id="togglePanel" class="iconosad"><i class="bi bi-person-fill-gear"></i><h4 class="Modoad">Modo administrador</h4> </a>
+            <a href="./admin.html" id="togglePanel" class="iconosad"><i class="bi bi-person-fill-gear"></i>
+                <h4 class="Modoad">Modo administrador</h4>
+            </a>
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown " aria-expanded="false" aria-label="Toggle navigation ">
                 <span class="navbar-toggler-icon"></span>
@@ -75,7 +77,8 @@
                 <!-- <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-columns-gap"></i>
                         Dashboard
                     </a> </li> -->
-                <li class=""> <a href="../html/admin.html" class="linkPanelIzq" aria-current="page"> <i class="bi bi-bag-fill"></i>
+                <li class=""> <a href="../html/admin.html" class="linkPanelIzq" aria-current="page"> <i
+                            class="bi bi-bag-fill"></i>
                         Productos
                     </a> </li>
                 <!-- <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
@@ -131,7 +134,7 @@
                         Usuarios y permisos
                     </a> </li> -->
                 <li class=""> <a href="../index.html" class="linkPanelIzq" aria-current="page">
-                    <i class="bi bi-power"></i></i> Salir</a> </li>
+                        <i class="bi bi-power"></i></i> Salir</a> </li>
             </ul>
         </div>
 
@@ -191,31 +194,18 @@
                 </div>
                 <div class="mb-3">
                     <label for="Categoria" class="form-label" id="importanciatxt">
-                        Categoria
+                        Categoría
                     </label>
-                    <select class="form-select" id="Categoria">
-                        <option selected>Seleccionar...</option>
-                        <option value="Nuevos">Nuevos</option>
-                        <option value="Open Box">Open Box</option>
-                        <option value="Usados">Usados</option>
+                    <select class="form-select" id="Categoria" required>
+                        <option value="" selected disabled>Seleccionar...</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="marca" class="form-label" id="importanciatxt">
                         Marca
                     </label>
-                    <select class="form-select" id="marca">
-                        <option selected>Seleccionar...</option>
-                        <option value="Acer">Acer</option>
-                        <option value="Apple">Apple</option>
-                        <option value="Asus">Asus</option>
-                        <option value="Dell">Dell</option>
-                        <option value="Hp">Hp</option>
-                        <option value="Huawei">Huawei</option>
-                        <option value="Lenovo">Lenovo</option>
-                        <option value="Msi">Msi </option>
-                        <option value="Razer">Razer</option>
-                        <option value="Otras">Otras</option>
+                    <select class="form-select" id="marca" required>
+                        <option value="" selected disabled>Seleccionar...</option>
                     </select>
                 </div>
                 <div class="mb-3">
@@ -236,9 +226,21 @@
                     </label>
                     <select class="form-select" id="repotenciado">
                         <option selected>Seleccionar...</option>
-                        <option value="Si">Si</option>
-                        <option value="No">No</option>
+                        <option value="NUEVO">Nuevo</option>
+                        <option value="OPEN_BOX">Open Box</option>
+                        <option value="REPOTENCIADO">Repotenciado</option>
                     </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label font-weight-bold">Especificaciones del producto</label>
+
+                    <!-- Contenedor donde se insertarán dinámicamente las filas -->
+                    <div id="contenedorEspecificaciones"></div>
+
+                    <button type="button" id="btnAgregarEspec" class="btn btn-sm btn-outline-primary mt-2">
+                        + Agregar especificación
+                    </button>
                 </div>
                 <hr>
                 <button type="submit" class="btn btn-primary w-100 botonAgregar">
