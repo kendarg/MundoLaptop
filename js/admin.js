@@ -12,11 +12,11 @@ const btnCerrarModal = document.getElementById("cerrarFormulario");
 const contenedorEspecificaciones = document.getElementById("contenedorEspecificaciones");
 const btnAgregarEspec = document.getElementById("btnAgregarEspec");
 
-// Cargar productos y catálogos al cargar el documento
-document.addEventListener("DOMContentLoaded", () => {
-    cargarProductos();
-    cargarCategorias();
-    cargarMarcas();
+
+document.addEventListener("DOMContentLoaded", async () => {
+    await cargarCategorias();
+    await cargarMarcas();
+    await cargarProductos();
     configurarEventosModal();
     configurarEspecificacionesDinamicas();
 });
@@ -47,7 +47,7 @@ async function cargarCategorias() {
 
         categorias.forEach(cat => {
             const option = document.createElement("option");
-            option.value = cat.id; 
+            option.value = cat.id;
             option.textContent = cat.nombre || cat.nombreCategoria;
             selectCategoria.appendChild(option);
         });
@@ -84,11 +84,16 @@ async function cargarMarcas() {
 // ==========================================
 async function cargarProductos() {
     try {
-        const respuesta = await fetch(API_URL);
-        if (!respuesta.ok) throw new Error("Error al consultar productos");
-        
-        const productos = await respuesta.json();
-        renderizarTabla(productos);
+        const response = await fetch("http://localhost:8080/api/productos"); // Reemplaza con tu URL
+        const data = await response.json();
+
+        // 🔍 IMPRIMIR EN CONSOLA
+        console.log("Estructura completa de la respuesta JSON:", data);
+        if (data.length > 0) {
+            console.log("Primer producto obtenido:", data[0]);
+        }
+
+        renderizarTabla(data);
     } catch (error) {
         console.error("Error al cargar productos:", error);
     }
@@ -98,14 +103,49 @@ function renderizarTabla(productos) {
     if (!tablaProductosBody) return;
     tablaProductosBody.innerHTML = ""; // Limpiar tabla
 
+    // Mapeos de ID -> Nombre tomando las opciones cargadas en los <select> del formulario
+    const selectCategoria = document.getElementById("Categoria");
+    const selectMarca = document.getElementById("marca");
+
+    const mapaCategorias = {};
+    if (selectCategoria) {
+        Array.from(selectCategoria.options).forEach(opt => {
+            if (opt.value) mapaCategorias[opt.value] = opt.textContent;
+        });
+    }
+
+    const mapaMarcas = {};
+    if (selectMarca) {
+        Array.from(selectMarca.options).forEach(opt => {
+            if (opt.value) mapaMarcas[opt.value] = opt.textContent;
+        });
+    }
+
     productos.forEach(prod => {
+        // 1. Obtener número de serie exacto según el JSON (numeroserie en minúscula)
+        const serie = prod.numeroserie || prod.numeroSerie || 'N/A';
+
+        // 2. Obtener Nombre de Categoría buscando el ID o la propiedad
+        const catId = prod.categoriaId || prod.categoria?.id || prod.categoria;
+        const nombreCategoria = mapaCategorias[catId]
+            || prod.categoriaNombre
+            || prod.categoria?.nombre
+            || `Categoría #${catId}`;
+
+        // 3. Obtener Nombre de Marca buscando el ID o la propiedad
+        const marcaId = prod.marcaId || prod.marca?.id || prod.marca;
+        const nombreMarca = mapaMarcas[marcaId]
+            || prod.marcaNombre
+            || prod.marca?.nombre
+            || `Marca #${marcaId}`;
+
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td>${prod.id}</td>
             <td>${prod.nombre}</td>
-            <td>${prod.numeroSerie || 'N/A'}</td>
-            <td>${prod.categoria?.nombre || prod.categoria || ''}</td>
-            <td>${prod.marca?.nombre || prod.marca || ''}</td>
+            <td>${serie}</td>
+            <td>${nombreCategoria}</td>
+            <td>${nombreMarca}</td>
             <td>$${prod.precio}</td>
             <td>${prod.stock}</td>
             <td>${prod.condicion || prod.repotenciado || 'NUEVO'}</td>
@@ -187,7 +227,7 @@ if (formProducto) {
             } else {
                 const errorData = await respuesta.json().catch(() => ({}));
                 console.error("Error en la solicitud:", respuesta.status, errorData);
-                
+
                 if (respuesta.status === 401 || respuesta.status === 403) {
                     alert(errorData.error || "Sesión expirada o no tienes permisos de administrador.");
                 } else {
@@ -244,10 +284,10 @@ async function prepararEdicion(id) {
 
         if (document.getElementById("nombreProducto")) document.getElementById("nombreProducto").value = producto.nombre || "";
         if (document.getElementById("numeroSerie")) document.getElementById("numeroSerie").value = producto.numeroSerie || "";
-        
+
         if (document.getElementById("Categoria")) document.getElementById("Categoria").value = producto.categoria?.id || producto.categoriaId || producto.categoria || "";
         if (document.getElementById("marca")) document.getElementById("marca").value = producto.marca?.id || producto.marcaId || producto.marca || "";
-        
+
         if (document.getElementById("Precio")) document.getElementById("Precio").value = producto.precio || 0;
         if (document.getElementById("Stock")) document.getElementById("Stock").value = producto.stock || 0;
         if (document.getElementById("repotenciado")) document.getElementById("repotenciado").value = producto.condicion || producto.repotenciado || "NUEVO";
