@@ -253,14 +253,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 7. Confirmar compra
 
-  document.addEventListener("submit", async (e) => {
+document.addEventListener("submit", async (e) => {
     if (e.target.id !== "form-checkout") return;
     e.preventDefault();
 
     const nombreInput = document.getElementById("nombreCliente");
     const nombre = nombreInput ? nombreInput.value : "Cliente";
 
-    // Preparamos el payload exactamente como lo espera el DTO de Spring Boot
     const payloadCompra = {
       cliente: nombre,
       items: carrito.map(item => ({
@@ -268,27 +267,51 @@ document.addEventListener("DOMContentLoaded", () => {
         cantidad: item.cantidad
       }))
     };
-    try {
 
-      // 1. Obtenemos el token guardado en el localStorage
+    try {
       const token = localStorage.getItem("token");
-      
-      // Petición POST a tu Backend de Spring Boot con las cabeceras de autorización
+
       const response = await fetch('http://localhost:8080/api/productos/comprar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` // 👈 AQUÍ ENVIAMOS EL TOKEN
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(payloadCompra)
       });
-      
+
       if (!response.ok) {
-        const errorData = await response.json(); // Intentamos leer el JSON de error del backend
-        throw new Error(errorData.error || errorData.message || "Error al procesar la compra.");
-        
+        const mensajeError = await response.text();
+        throw new Error(mensajeError || "Error al procesar la compra.");
       }
-      } catch (error) {
+
+      const modalCheckoutElement = document.getElementById("modalCheckout");
+      if (modalCheckoutElement) {
+        bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).hide();
+      }
+
+      // 🚚 Aquí está tu SweetAlert con el icono del camión
+      Swal.fire({
+        iconHtml: '<i class="bi bi-truck text-success display-4"></i>',
+        customClass: {
+          icon: 'border-0'
+        },
+        title: `Gracias por tu compra ${nombre}`,
+        html: `
+          <p class="mb-1">En breve nos pondremos en contacto para gestionar el envio</p>
+          <div class="mt-3 p-2 bg-light rounded text-muted small">
+            <i class="bi bi-box-seam me-1"></i> Tu pedido ya esta listo para ser procesado
+          </div>
+        `,
+        confirmButtonText: 'Excelente',
+        confirmButtonColor: "#198754"
+      });
+
+      carrito = [];
+      actualizarCarrito();
+      e.target.reset();
+
+    } catch (error) {
       console.error(error);
       Swal.fire({
         icon: "error",
@@ -296,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
         text: error.message || "Hubo un error al actualizar el stock en la base de datos."
       });
     }
-});
+  });
 
   // 8. Carga inicial
   renderizarCarrito();
