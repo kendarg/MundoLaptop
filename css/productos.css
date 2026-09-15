@@ -222,6 +222,23 @@ body {
     justify-content: flex-start !important;
 }
 
+.productos-destacados-card.sin-stock {
+    background-color: #e2e2e2;
+    color: #666;
+}
+
+.productos-destacados-card.sin-stock .img-card img {
+    filter: grayscale(1);
+}
+
+.productos-destacados-card .boton-no-disponible {
+    background-color: var(--var-button-color-1);
+    color: #ffffff;
+    cursor: not-allowed !important;
+    opacity: 0.6;
+    filter: brightness(0.75);
+}
+
 /* 2. Contenedor de la imagen */
 .img-card {
     width: 290px !important;
@@ -250,8 +267,27 @@ body {
     display: flex;
     flex-direction: column;
     padding: 0px 30px;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10px;
+    min-height: 190px;
+}
+
+.nombreProducto {
+    display: block;
+}
+
+.especificaciones-card {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 0.85rem;
+}
+
+.producto-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
 }
 
 
