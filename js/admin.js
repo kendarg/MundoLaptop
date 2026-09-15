@@ -960,7 +960,7 @@ function configurarNavegacionAdmin() {
             modalInstance.show();
         }
 
-        const btnEliminar = e.target.closest(".btn-eliminar-categoria");
+        const btnEliminar = e.target.closest(".btn-eliminar-marca");
         if (btnEliminar) {
             const id = btnEliminar.dataset.id;
             await eliminarMarca(id);
