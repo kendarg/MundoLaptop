@@ -1,5 +1,5 @@
 const contenedorProductos = document.querySelector(".section-productos-render");
-const API_PRODUCTOS_URL = "http://localhost:8080/api/productos";
+const API_PRODUCTOS_URL = "https://mundolaptopbackend.onrender.com/api/productos";
 
 // Array con tus URLs de imágenes
 const imagenesAleatorias = [

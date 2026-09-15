@@ -1,7 +1,7 @@
 // Configuración de la URL base del Backend API
-const API_URL = "http://localhost:8080/api/productos";
-const API_CATEGORIAS_URL = "http://localhost:8080/api/categorias";
-const API_MARCAS_URL = "http://localhost:8080/api/marcas";
+const API_URL = "https://mundolaptopbackend.onrender.com/api/productos";
+const API_CATEGORIAS_URL = "https://mundolaptopbackend.onrender.com/api/categorias";
+const API_MARCAS_URL = "https://mundolaptopbackend.onrender.com/api/marcas";
 
 // Referencias a elementos del DOM
 const tablaProductosBody = document.querySelector(".tareas");
@@ -84,7 +84,7 @@ async function cargarMarcas() {
 // ==========================================
 async function cargarProductos() {
     try {
-        const response = await fetch("http://localhost:8080/api/productos"); // Reemplaza con tu URL
+        const response = await fetch("https://mundolaptopbackend.onrender.com/api/productos"); // Reemplaza con tu URL
         const data = await response.json();
 
         // 🔍 IMPRIMIR EN CONSOLA

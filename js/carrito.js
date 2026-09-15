@@ -252,7 +252,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // 7. Confirmar compra
-
 document.addEventListener("submit", async (e) => {
     if (e.target.id !== "form-checkout") return;
     e.preventDefault();
@@ -271,7 +270,7 @@ document.addEventListener("submit", async (e) => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch('http://localhost:8080/api/productos/comprar', {
+      const response = await fetch('https://mundolaptopbackend.onrender.com/api/productos/comprar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -290,7 +289,6 @@ document.addEventListener("submit", async (e) => {
         bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).hide();
       }
 
-      // 🚚 Aquí está tu SweetAlert con el icono del camión
       Swal.fire({
         iconHtml: '<i class="bi bi-truck text-success display-4"></i>',
         customClass: {
