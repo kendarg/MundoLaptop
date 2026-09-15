@@ -16,6 +16,17 @@ function showStatus(msg, isError = true) {
     statusMsg.textContent = msg;
 }
 
+// Cierra la sesión activa y limpia localStorage
+function cerrarSesion() {
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("token");
+
+    window.location.reload();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const authForm = document.getElementById("authForm");
     const toggleModeBtn = document.getElementById("toggleModeBtn");
@@ -25,6 +36,80 @@ document.addEventListener("DOMContentLoaded", () => {
     const camposRegistro = document.querySelectorAll(".campo-registro");
     const statusMsg = document.getElementById("statusMsg");
 
+    const buttonUser = document.getElementById("buttonuser");
+    const loginPanel = document.getElementById("loginPanel");
+    const overlay = document.getElementById("overlay");
+    const closeLogin = document.getElementById("closeLogin");
+
+    // Elementos alternativos para cambio de vista (si existen en el HTML)
+    const btnCrearUsuario = document.getElementById("btnCrearUsuario");
+    const bntLogin = document.getElementById("bntLogin");
+    const vistaLogin = document.getElementById("vistaLogin");
+    const vistaRegistro = document.getElementById("vistaRegistro");
+
+    // Instancia del modal de Bootstrap para Logout
+    const modalLogoutElem = document.getElementById("modalLogout");
+    const modalLogout = modalLogoutElem && typeof bootstrap !== "undefined"
+        ? new bootstrap.Modal(modalLogoutElem)
+        : null;
+    const btnConfirmLogout = document.getElementById("btnConfirmLogout");
+
+    // Funciones para abrir y cerrar el panel lateral
+    function abrirLogin() {
+        if (loginPanel) loginPanel.classList.add("active");
+        if (overlay) overlay.classList.add("active");
+    }
+
+    function cerrarLogin() {
+        if (loginPanel) loginPanel.classList.remove("active");
+        if (overlay) overlay.classList.remove("active");
+    }
+
+    // Intercepta el clic en el botón de usuario (usa capture 'true' para frenar otros scripts)
+    if (buttonUser) {
+        buttonUser.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+            const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
+            if (isAuthenticated) {
+                cerrarLogin(); // Asegura que el panel no se despliegue
+                const userName = localStorage.getItem("userName") || "Usuario";
+                const modalLogoutText = document.getElementById("modalLogoutText");
+
+                if (modalLogoutText) {
+                    modalLogoutText.textContent = `Hola ${userName}, actualmente tienes una sesión activa. ¿Deseas salir?`;
+                }
+
+                if (modalLogout) {
+                    modalLogout.show();
+                }
+            } else {
+                abrirLogin();
+            }
+        }, true);
+    }
+
+    // Confirmación de cierre de sesión en el modal
+    if (btnConfirmLogout) {
+        btnConfirmLogout.addEventListener("click", () => {
+            cerrarSesion();
+        });
+    }
+
+    // Eventos para cerrar el panel
+    if (closeLogin) closeLogin.addEventListener("click", cerrarLogin);
+    if (overlay) overlay.addEventListener("click", cerrarLogin);
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            cerrarLogin();
+        }
+    });
+
+    // Visibilidad de contraseñas
     function setupPasswordToggle(inputId, buttonId, iconId) {
         const passwordInput = document.getElementById(inputId);
         const toggleBtn = document.getElementById(buttonId);
@@ -43,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupPasswordToggle("passwordInput", "togglePasswordBtn", "togglePasswordIcon");
     setupPasswordToggle("confirmPasswordInput", "toggleConfirmPasswordBtn", "toggleConfirmPasswordIcon");
 
+    // Conmutación entre modo Login y Registro (Vía toggleModeBtn)
     if (toggleModeBtn) {
         toggleModeBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -66,6 +152,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Conmutación de vistas por IDs específicos (btnCrearUsuario / bntLogin)
+    if (btnCrearUsuario && vistaLogin && vistaRegistro) {
+        btnCrearUsuario.addEventListener("click", () => {
+            vistaLogin.style.display = "none";
+            vistaRegistro.style.display = "block";
+        });
+    }
+
+    if (bntLogin && vistaLogin && vistaRegistro) {
+        bntLogin.addEventListener("click", () => {
+            vistaRegistro.style.display = "none";
+            vistaLogin.style.display = "block";
+        });
+    }
+
+    // Envío del formulario
     if (authForm) {
         authForm.addEventListener("submit", handleSubmit);
     }
@@ -101,7 +203,7 @@ async function handleSubmit(e) {
 
     try {
         if (isLoginMode) {
-            // === LOGIN: Petición a AuthController (/api/auth/login) ===
+            // LOGIN
             const response = await fetch(`${API_AUTH}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -110,7 +212,7 @@ async function handleSubmit(e) {
 
             if (response.ok) {
                 const loginResponse = await response.json();
-                
+
                 const userRole = (loginResponse.rol || loginResponse.role || "NORMAL").toUpperCase();
                 const token = loginResponse.token || loginResponse.jwt || "";
                 const userName = loginResponse.nombre || loginResponse.name || email.split("@")[0];
@@ -119,12 +221,11 @@ async function handleSubmit(e) {
                 localStorage.setItem("isAuthenticated", "true");
                 localStorage.setItem("userName", userName);
                 localStorage.setItem("currentUser", email);
-                
+
                 if (token) {
                     localStorage.setItem("token", token);
                 }
 
-                // Evaluación del rol devuelto por el Backend
                 if (userRole === "ADMINISTRADOR" || userRole === "ROLE_ADMINISTRADOR") {
                     window.location.href = "../html/admin.html";
                 } else {
@@ -135,7 +236,7 @@ async function handleSubmit(e) {
             }
 
         } else {
-            // === REGISTRO: Petición a UsuarioController (/api/usuarios) ===
+            // REGISTRO
             if (password !== confirmPassword) {
                 showStatus("Las contraseñas no coinciden.");
                 if (loginBtn) loginBtn.disabled = false;
@@ -162,14 +263,11 @@ async function handleSubmit(e) {
             });
 
             if (response.ok) {
-                const nuevoUsuario = await response.json();
-
                 localStorage.setItem("userRole", "NORMAL");
                 localStorage.setItem("isAuthenticated", "true");
                 localStorage.setItem("currentUser", email);
                 localStorage.setItem("userName", nombre);
 
-                // Integración de EmailJS
                 if (typeof emailjs !== "undefined") {
                     const templateParams = {
                         user_name: nombre,
