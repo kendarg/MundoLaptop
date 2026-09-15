@@ -1,5 +1,5 @@
-const inventario = JSON.parse(localStorage.getItem("inventario")) || [];
 const contenedorProductos = document.querySelector(".section-productos-render");
+const API_PRODUCTOS_URL = "http://localhost:8080/api/productos";
 
 // Array con tus URLs de imágenes
 const imagenesAleatorias = [
@@ -30,37 +30,57 @@ const imagenesAleatorias = [
     "https://images.unsplash.com/photo-1595234336271-178875797b4d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU5fHx8ZW58MHx8fHx8"
 ];
 
-function agregarProductosAdmin() {
-    if (inventario.length === 0) return;
+async function agregarProductosAdmin() {
+    if (!contenedorProductos) return;
 
-    inventario.forEach(producto => {
+    try {
+        const respuesta = await fetch(API_PRODUCTOS_URL);
+        if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+
+        const productos = await respuesta.json();
+        productos.forEach((producto, indice) => {
         const precioFormateado = Number(producto.precio).toLocaleString("es-CO");
 
-        // Selecciona una URL al azar del array
-        const urlAleatoria = imagenesAleatorias[Math.floor(Math.random() * imagenesAleatorias.length)];
+        const urlAleatoria = imagenesAleatorias[indice % imagenesAleatorias.length];
+        const marca = producto.marca?.nombre || producto.marcaNombre || producto.marca;
+        const condicion = (producto.condicion || producto.repotenciado || "nuevo")
+            .toLowerCase()
+            .replace("_", " ");
+        const especificaciones = typeof producto.especificaciones === "string"
+            ? JSON.parse(producto.especificaciones || "{}")
+            : producto.especificaciones || {};
+        const especificacionesHTML = Object.entries(especificaciones)
+            .map(([clave, valor]) => `<span>${clave} - ${valor}</span>`)
+            .join(" - ");
 
-        const imagenProducto = producto.imagen || urlAleatoria || "/img/pc2.png";
+        const imagenProducto = producto.imagen || urlAleatoria;
 
         const cardHTML = `
             <div class="col" data-precio="${producto.precio}"
-                        data-marca="${producto.marca?.toUpperCase() || 'GENERAL'}" data-categoria="${producto.categoria?.toLowerCase() || 'nuevo'}">
+                        data-marca="${marca ? marca.toUpperCase() : ""}" data-categoria="${condicion}">
                 <div class="productos-destacados-card">
                     <div class="img-card">
                         <img src="${imagenProducto}" alt="${producto.nombre}">
                     </div>
                     <div class="informacion-card">
-                        <span><strong>${producto.marca ? producto.marca.toUpperCase() : "GENERAL"}</strong></span>
-                        <spam class="nombreProducto">${producto.nombre}</spam>
-                        <span><strong class="Valor">$ ${precioFormateado} COP</strong></span>
-                        <button data-id="${producto.id}">
-                            <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito
-                        </button>
+                        ${marca ? `<span><strong class="Marcas">${marca.toUpperCase()}</strong></span>` : ""}
+                        <span class="nombreProducto"><strong>${producto.nombre}</strong></span>
+                        ${especificacionesHTML ? `<div class="especificaciones-card">${especificacionesHTML}</div>` : ""}
+                        <div class="producto-footer">
+                            <span><strong class="Valor">$ ${precioFormateado} COP</strong></span>
+                            <button data-id="${producto.id}">
+                                <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         `;
         contenedorProductos.insertAdjacentHTML("beforeend", cardHTML);
-    });
+        });
+    } catch (error) {
+        console.error("Error al cargar productos del inventario:", error);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", agregarProductosAdmin);
@@ -148,30 +168,6 @@ function filtrarMarcas() {
                 : "none";
     });
 
-    //   ↓↓↓  ESTA FUNCION DEBERIA SER ELIMINADA SI EL INVENTARIO SOLO TIENE
-    // PRODUCTOS LLAMADOS DESDE LA TABLA EN ADMIN, YA QUE ESTA FUNCION ES  PARA FILTRAR
-    // LOS PRODUCTOS QUE FUERON HARCODEADOS POR WALTER 
-    productos.forEach(producto => {
-
-        const marcaProducto = producto
-            .querySelector(".Marcas")
-            .textContent
-            .trim()
-            .toUpperCase();
-
-        // Si no hay filtros seleccionados, mostrar todo en pg productos
-        if (marcasSeleccionadas.length === 0) {
-            producto.style.display = "";
-            return;
-        }
-
-        // Mostrar solo las marcas seleccionadas con checkbox
-        if (marcasSeleccionadas.includes(marcaProducto)) {
-            producto.style.display = "";
-        } else {
-            producto.style.display = "none";
-        }
-    });
 }
 
 // funcion para filtrar por categorias , pasar a checkbox
