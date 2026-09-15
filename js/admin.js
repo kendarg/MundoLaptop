@@ -1,8 +1,8 @@
 // Configuración de la URL base del Backend API
-const API_URL = "http://localhost:8080/api/productos";
-const API_CATEGORIAS_URL = "http://localhost:8080/api/categorias";
-const API_MARCAS_URL = "http://localhost:8080/api/marcas";
-const API_USUARIOS_URL = "http://localhost:8080/api/usuarios"; // Endpoint para usuarios
+const API_URL = "https://mundolaptopbackend.onrender.com/api/productos";
+const API_CATEGORIAS_URL = "https://mundolaptopbackend.onrender.com/api/categorias";
+const API_MARCAS_URL = "https://mundolaptopbackend.onrender.com/api/marcas";
+const API_USUARIOS_URL = "https://mundolaptopbackend.onrender.com/api/usuarios";
 
 // Referencias a elementos del DOM
 const tablaProductosBody = document.querySelector(".tareas");
@@ -90,7 +90,7 @@ async function cargarMarcas() {
 // ==========================================
 async function cargarProductos() {
     try {
-        const response = await fetch("http://localhost:8080/api/productos");
+        const response = await fetch("https://mundolaptopbackend.onrender.com/api/productos"); // Reemplaza con tu URL
         const data = await response.json();
 
         console.log("Estructura completa de la respuesta JSON:", data);
@@ -284,7 +284,9 @@ async function prepararEdicion(id) {
         const producto = await respuesta.json();
 
         if (document.getElementById("nombreProducto")) document.getElementById("nombreProducto").value = producto.nombre || "";
-        if (document.getElementById("numeroSerie")) document.getElementById("numeroSerie").value = producto.numeroSerie || "";
+        if (document.getElementById("numeroSerie")) {
+            document.getElementById("numeroSerie").value = producto.numeroSerie || producto.numeroserie || "";
+        }
 
         if (document.getElementById("Categoria")) document.getElementById("Categoria").value = producto.categoria?.id || producto.categoriaId || producto.categoria || "";
         if (document.getElementById("marca")) document.getElementById("marca").value = producto.marca?.id || producto.marcaId || producto.marca || "";
@@ -293,12 +295,39 @@ async function prepararEdicion(id) {
         if (document.getElementById("Stock")) document.getElementById("Stock").value = producto.stock || 0;
         if (document.getElementById("repotenciado")) document.getElementById("repotenciado").value = producto.condicion || producto.repotenciado || "NUEVO";
 
+        const especificaciones = typeof producto.especificaciones === "string"
+            ? JSON.parse(producto.especificaciones || "{}")
+            : producto.especificaciones || {};
+        renderizarEspecificaciones(especificaciones);
+
         formProducto.dataset.id = producto.id;
 
         if (modalProducto) modalProducto.style.display = "block";
     } catch (error) {
         console.error("Error al obtener producto para edición:", error);
     }
+}
+
+function crearFilaEspecificacion(clave = "", valor = "") {
+    const div = document.createElement("div");
+    div.className = "d-flex gap-2 mb-2 fila-especificacion";
+    div.innerHTML = `
+        <input type="text" class="form-control espec-clave" placeholder="Propiedad (ej: RAM)" value="${clave}">
+        <input type="text" class="form-control espec-valor" placeholder="Valor (ej: 16GB)" value="${valor}">
+        <button type="button" class="btn btn-outline-danger btn-sm" onclick="this.parentElement.remove()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    `;
+    return div;
+}
+
+function renderizarEspecificaciones(especificaciones) {
+    if (!contenedorEspecificaciones) return;
+
+    contenedorEspecificaciones.innerHTML = "";
+    Object.entries(especificaciones).forEach(([clave, valor]) => {
+        contenedorEspecificaciones.appendChild(crearFilaEspecificacion(clave, valor));
+    });
 }
 
 // ==========================================
@@ -326,16 +355,9 @@ function configurarEventosModal() {
 function configurarEspecificacionesDinamicas() {
     if (btnAgregarEspec) {
         btnAgregarEspec.addEventListener("click", () => {
-            const div = document.createElement("div");
-            div.className = "d-flex gap-2 mb-2 fila-especificacion";
-            div.innerHTML = `
-                <input type="text" class="form-control espec-clave" placeholder="Propiedad (ej: RAM)">
-                <input type="text" class="form-control espec-valor" placeholder="Valor (ej: 16GB)">
-                <button type="button" class="btn btn-outline-danger btn-sm" onclick="this.parentElement.remove()">
-                    <i class="bi bi-x-lg"></i>
-                </button>
-            `;
-            if (contenedorEspecificaciones) contenedorEspecificaciones.appendChild(div);
+            if (contenedorEspecificaciones) {
+                contenedorEspecificaciones.appendChild(crearFilaEspecificacion());
+            }
         });
     }
 }

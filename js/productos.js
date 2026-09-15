@@ -1,5 +1,5 @@
 const contenedorProductos = document.querySelector(".section-productos-render");
-const API_PRODUCTOS_URL = "http://localhost:8080/api/productos";
+const API_PRODUCTOS_URL = "https://mundolaptopbackend.onrender.com/api/productos";
 
 // Array con tus URLs de imágenes
 const imagenesAleatorias = [
@@ -54,11 +54,12 @@ async function agregarProductosAdmin() {
             .join(" - ");
 
         const imagenProducto = producto.imagen || urlAleatoria;
+        const sinStock = Number(producto.stock) === 0;
 
         const cardHTML = `
             <div class="col" data-precio="${producto.precio}"
                         data-marca="${marca ? marca.toUpperCase() : ""}" data-categoria="${condicion}">
-                <div class="productos-destacados-card">
+                <div class="productos-destacados-card${sinStock ? " sin-stock" : ""}">
                     <div class="img-card">
                         <img src="${imagenProducto}" alt="${producto.nombre}">
                     </div>
@@ -68,8 +69,8 @@ async function agregarProductosAdmin() {
                         ${especificacionesHTML ? `<div class="especificaciones-card">${especificacionesHTML}</div>` : ""}
                         <div class="producto-footer">
                             <span><strong class="Valor">$ ${precioFormateado} COP</strong></span>
-                            <button data-id="${producto.id}">
-                                <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito
+                            <button class="${sinStock ? "boton-no-disponible" : ""}" data-id="${producto.id}"${sinStock ? " disabled" : ""}>
+                                ${sinStock ? "No disponible" : '<img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito'}
                             </button>
                         </div>
                     </div>
