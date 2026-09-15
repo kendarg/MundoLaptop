@@ -283,7 +283,9 @@ async function prepararEdicion(id) {
         const producto = await respuesta.json();
 
         if (document.getElementById("nombreProducto")) document.getElementById("nombreProducto").value = producto.nombre || "";
-        if (document.getElementById("numeroSerie")) document.getElementById("numeroSerie").value = producto.numeroSerie || "";
+        if (document.getElementById("numeroSerie")) {
+            document.getElementById("numeroSerie").value = producto.numeroSerie || producto.numeroserie || "";
+        }
 
         if (document.getElementById("Categoria")) document.getElementById("Categoria").value = producto.categoria?.id || producto.categoriaId || producto.categoria || "";
         if (document.getElementById("marca")) document.getElementById("marca").value = producto.marca?.id || producto.marcaId || producto.marca || "";
@@ -292,12 +294,39 @@ async function prepararEdicion(id) {
         if (document.getElementById("Stock")) document.getElementById("Stock").value = producto.stock || 0;
         if (document.getElementById("repotenciado")) document.getElementById("repotenciado").value = producto.condicion || producto.repotenciado || "NUEVO";
 
+        const especificaciones = typeof producto.especificaciones === "string"
+            ? JSON.parse(producto.especificaciones || "{}")
+            : producto.especificaciones || {};
+        renderizarEspecificaciones(especificaciones);
+
         formProducto.dataset.id = producto.id;
 
         if (modalProducto) modalProducto.style.display = "block";
     } catch (error) {
         console.error("Error al obtener producto para edición:", error);
     }
+}
+
+function crearFilaEspecificacion(clave = "", valor = "") {
+    const div = document.createElement("div");
+    div.className = "d-flex gap-2 mb-2 fila-especificacion";
+    div.innerHTML = `
+        <input type="text" class="form-control espec-clave" placeholder="Propiedad (ej: RAM)" value="${clave}">
+        <input type="text" class="form-control espec-valor" placeholder="Valor (ej: 16GB)" value="${valor}">
+        <button type="button" class="btn btn-outline-danger btn-sm" onclick="this.parentElement.remove()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    `;
+    return div;
+}
+
+function renderizarEspecificaciones(especificaciones) {
+    if (!contenedorEspecificaciones) return;
+
+    contenedorEspecificaciones.innerHTML = "";
+    Object.entries(especificaciones).forEach(([clave, valor]) => {
+        contenedorEspecificaciones.appendChild(crearFilaEspecificacion(clave, valor));
+    });
 }
 
 // ==========================================
@@ -325,16 +354,9 @@ function configurarEventosModal() {
 function configurarEspecificacionesDinamicas() {
     if (btnAgregarEspec) {
         btnAgregarEspec.addEventListener("click", () => {
-            const div = document.createElement("div");
-            div.className = "d-flex gap-2 mb-2 fila-especificacion";
-            div.innerHTML = `
-                <input type="text" class="form-control espec-clave" placeholder="Propiedad (ej: RAM)">
-                <input type="text" class="form-control espec-valor" placeholder="Valor (ej: 16GB)">
-                <button type="button" class="btn btn-outline-danger btn-sm" onclick="this.parentElement.remove()">
-                    <i class="bi bi-x-lg"></i>
-                </button>
-            `;
-            if (contenedorEspecificaciones) contenedorEspecificaciones.appendChild(div);
+            if (contenedorEspecificaciones) {
+                contenedorEspecificaciones.appendChild(crearFilaEspecificacion());
+            }
         });
     }
 }
