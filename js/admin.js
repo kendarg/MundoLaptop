@@ -511,26 +511,95 @@ async function actualizarCategoria(id, nuevoNombre) {
     }
 }
 
-async function actualizarMarca(id, nuevoNombre) {
+async function actualizarUsuario(id, nuevoNombre) {
     if (!nuevoNombre || nuevoNombre.trim() === "") return;
 
     try {
-        const respuesta = await fetch(`${API_MARCAS_URL}/${id}`, {
+        const respuesta = await fetch(`${API_USUARIOS_URL}/${id}`, {
             method: "PUT",
             headers: getAuthHeaders(), // Incluye Content-Type y Token JWT si aplica
             body: JSON.stringify({ nombre: nuevoNombre.trim() })
         });
 
         if (respuesta.ok) {
-            await cargarMarcasTabla();
-            if (typeof cargarMarcas === "function") await cargarMarcas(); // Refrescar selects
-            alert("Marca actualizada correctamente 🎉");
+            await cargarUsuariosTabla();
+            if (typeof cargarUsuarios === "function") await cargarUsuarios(); // Refrescar selects
+            alert("Usuario actualizado correctamente 🎉");
         } else {
             const errorData = await respuesta.json().catch(() => ({}));
-            alert(errorData.message || "Error al actualizar la marca.");
+            alert(errorData.message || "Error al actualizar el usuario.");
         }
     } catch (error) {
-        console.error("Error al actualizar marca:", error);
+        console.error("Error al actualizar usuario:", error);
+    }
+}
+
+async function actualizarCategoria(id, nuevoNombre) {
+    if (!nuevoNombre || nuevoNombre.trim() === "") return;
+
+    try {
+        const respuesta = await fetch(`${API_CATEGORIAS_URL}/${id}`, {
+            method: "PUT",
+            headers: getAuthHeaders(), // Incluye Content-Type y Token JWT si aplica
+            body: JSON.stringify({ nombre: nuevoNombre.trim() })
+        });
+
+        if (respuesta.ok) {
+            await cargarCategoriasTabla();
+            if (typeof cargarCategorias === "function") await cargarCategorias(); // Refrescar selects
+            alert("Categoría actualizada correctamente 🎉");
+        } else {
+            const errorData = await respuesta.json().catch(() => ({}));
+            alert(errorData.message || "Error al actualizar la categoría.");
+        }
+    } catch (error) {
+        console.error("Error al actualizar categoría:", error);
+    }
+}
+
+
+async function cambiarRolUsuario(id, nuevoRol) {
+    if (!nuevoRol) return;
+
+    try {
+        const respuesta = await fetch(`${API_USUARIOS_URL}/${id}/rol`, {
+            method: "PATCH",
+            headers: getAuthHeaders(),
+            body: JSON.stringify({ rol: nuevoRol })
+        });
+
+        if (respuesta.ok) {
+            await cargarUsuariosTabla();
+            alert("Rol de usuario actualizado correctamente 🎉");
+        } else {
+            const errorData = await respuesta.json().catch(() => ({}));
+            alert(errorData.message || "Error al actualizar el rol del usuario.");
+        }
+    } catch (error) {
+        console.error("Error al actualizar rol de usuario:", error);
+    }
+}
+
+// ==========================================
+// ELIMINAR USUARIO (DELETE /api/usuarios/{id})
+// ==========================================
+async function eliminarUsuario(id) {
+    if (!confirm("¿Deseas eliminar este usuario?")) return;
+
+    try {
+        const respuesta = await fetch(`${API_USUARIOS_URL}/${id}`, {
+            method: "DELETE",
+            headers: getAuthHeaders()
+        });
+
+        if (respuesta.status === 204 || respuesta.ok) {
+            await cargarUsuariosTabla();
+            alert("Usuario eliminado con éxito 🗑️");
+        } else {
+            alert("No se pudo eliminar el usuario.");
+        }
+    } catch (error) {
+        console.error("Error al eliminar usuario:", error);
     }
 }
 
@@ -555,6 +624,8 @@ async function eliminarCategoria(id) {
         console.error("Error al eliminar categoría:", error);
     }
 }
+
+
 
 
 async function eliminarMarca(id) {
@@ -595,12 +666,21 @@ async function cargarUsuariosTabla() {
             const tr = document.createElement("tr");
             tr.innerHTML = `
                 <td>${u.id}</td>
-                <td>${u.email || u.username}</td>
-                <td>${u.rol || 'ROLE_USER'}</td>
+                <td>${u.email || u.nombre || 'Sin email'}</td>
+                <td><span class="badge bg-secondary">${u.rol}</span></td>
                 <td><span class="badge bg-success">Activo</span></td>
                 <td>
-                    <button class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-square"></i></button>
-                    <button class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></button>
+                    <!-- Agregadas la clase btn-editar-usuario y los data attributes -->
+                    <button class="btn btn-sm btn-warning me-1 btn-editar-usuario" 
+                            data-id="${u.id}" 
+                            data-rol="${u.rol}">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <!-- Agregadas la clase btn-eliminar-usuario y el data-id -->
+                    <button class="btn btn-sm btn-danger btn-eliminar-usuario" 
+                            data-id="${u.id}">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
                 </td>
             `;
             tbody.appendChild(tr);
@@ -609,7 +689,6 @@ async function cargarUsuariosTabla() {
         console.error("Error al cargar la tabla de usuarios:", error);
     }
 }
-
 // ==========================================
 // 8. ENRUTADOR DINÁMICO SPA (Manejo de Vista central)
 // ==========================================
@@ -916,4 +995,69 @@ function configurarNavegacionAdmin() {
             }
         });
     }
+
+    // Instancia del modal de Bootstrap para Usuario
+    const modalEditarRolElement = document.getElementById('modalEditarRolUsuario');
+    const modalEditarRol = new bootstrap.Modal(modalEditarRolElement);
+
+    // Escuchar clics en los botones de Editar y Eliminar de la Tabla de Usuarios
+    document.addEventListener("click", async (e) => {
+
+        // BOTÓN EDITAR ROL (Amarillo)
+        const btnEditar = e.target.closest(".btn-editar-usuario");
+        if (btnEditar) {
+            const id = btnEditar.dataset.id;
+            const rolActual = btnEditar.dataset.rol || "NORMAL";
+
+            // Asignar los valores al modal
+            document.getElementById("editUsuarioId").value = id;
+            document.getElementById("editUsuarioRolSelect").value = rolActual;
+
+            // Abrir modal
+            modalEditarRol.show();
+            return;
+        }
+
+        // BOTÓN ELIMINAR (Rojo)
+        const btnEliminar = e.target.closest(".btn-eliminar-usuario");
+        if (btnEliminar) {
+            const id = btnEliminar.dataset.id;
+            await eliminarUsuario(id);
+        }
+    });
+
+    // Listener para el botón "Guardar Cambios" dentro del Modal
+    document.getElementById("btnGuardarRolUsuario").addEventListener("click", async () => {
+        const id = document.getElementById("editUsuarioId").value;
+        const nuevoRol = document.getElementById("editUsuarioRolSelect").value;
+
+        await cambiarRolUsuario(id, nuevoRol);
+
+        // Ocultar modal tras guardar
+        modalEditarRol.hide();
+    });
+
+    // Delegación de eventos directamente en la tabla de usuarios
+document.getElementById("tablaUsuarios")?.addEventListener("click", async (e) => {
+
+    // BOTÓN EDITAR ROL
+    const btnEditar = e.target.closest(".btn-editar-usuario");
+    if (btnEditar) {
+        const id = btnEditar.dataset.id;
+        const rolActual = btnEditar.dataset.rol;
+
+        document.getElementById("editUsuarioId").value = id;
+        document.getElementById("editUsuarioRolSelect").value = rolActual;
+
+        modalEditarRol.show();
+        return;
+    }
+
+    // BOTÓN ELIMINAR
+    const btnEliminar = e.target.closest(".btn-eliminar-usuario");
+    if (btnEliminar) {
+        const id = btnEliminar.dataset.id;
+        await eliminarUsuario(id);
+    }
+});
 }
