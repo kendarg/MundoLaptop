@@ -250,8 +250,27 @@ body {
     display: flex;
     flex-direction: column;
     padding: 0px 30px;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10px;
+    min-height: 190px;
+}
+
+.nombreProducto {
+    display: block;
+}
+
+.especificaciones-card {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 0.85rem;
+}
+
+.producto-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
 }
 
 
@@ -324,4 +343,10 @@ body {
     .productos-info {
         padding: 20px;
     }
+}
+
+.QR_ML{
+    margin-left: 30PX;
+    width: 150PX;
+    height: 150PX;
 }

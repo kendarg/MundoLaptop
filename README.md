@@ -13,7 +13,8 @@ El proyecto también incluye una **vista administrativa** para gestionar el inve
 ## 🌐 Links
 * Figma: https://www.figma.com/design/9UQ5eKr07aOSYVTVl3Wl9n/Proyecto-integrador?node-id=405-788&t=qXGdXBHURDHmMCYT-1
 * Trelo: https://trello.com/invite/b/6a60fc6f01dc7d7a67f2a0be/ATTIdee270f3dd1a1093dbb5e7c3ec82697cF6991244/mundolaptop
-* Admin: https://kendarg.github.io/MundoLaptop/
+* Despliege: https://kendarg.github.io/MundoLaptop/
+* Backend: https://github.com/kendarg/MundoLaptopBackend.git
 
 ## 🎯 Objetivo del proyecto
 

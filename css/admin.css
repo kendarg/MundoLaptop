@@ -29,28 +29,17 @@
     color: black;
 }
 
-/* Fondo oscuro */
-/* .modal-producto{
-    position: fixed;
-    inset: 0;
-    background: #11212d9d;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-} */
- 
 
 .modal-producto {
     position: fixed !important;
     top: 0 !important;
-    left: 0 !important;    
+    left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
     margin: 0 !important;
     padding: 20px !important;
-    max-width: 100% !important; 
-    background: #11212d9d; 
+    max-width: 100% !important;
+    background: #11212d9d;
     display: none;
     justify-content: center;
     align-items: center;
@@ -65,20 +54,6 @@
     display: flex !important;
 }
 
-/* Caja */
-/* 
-.modal-contenido{
-    width:700px;
-    max-width:95%;
-    background:#ec1616;
-    border-radius:15px;
-    padding:25px;
-    box-shadow:0 20px 60px rgba(243, 6, 6, 0.4);
-}  */ 
-  /* Esto no esta haciendo nada  */
-
-
-/* Cabecera */
 
 .cabeceraFormulario{
     display:flex;
@@ -87,16 +62,16 @@
     margin-bottom:25px;
     color: #025656;
 }
+.Modoad{
+    display: contents;
+    font-size: 1rem;
 
-/* Botón X */
+}
 
-/* .btn-cerrar{
-    border:none;
-    background:none;
-    color:rgb(214, 194, 194);
-    font-size:22px;
-} */
-
+.bi-person-fill-gear{
+font-size: 1.5rem;
+padding: 1rem 10px ;
+}
 #cerrarFormulario {
     font-size: 0.8rem; /* Controla el tamaño de la X (más chico = más elegante) */
     transition: transform 0.2s ease;
@@ -115,8 +90,8 @@
 }
 
 .panelAdmon{
- background-color: #f0f8ff;
- color: #025656;
+    background-color: #f0f8ff;
+    color: #025656;
 }
 /* panel de administrador */
 .panelAdmonIzq{
@@ -125,7 +100,7 @@
     box-shadow:1px 0px 7px #075c6f;
 }
 
-.linkPanelIzq{
+.linkPanelIzq, .iconosad{
     display: block;
     padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
     font-size: var(--bs-nav-link-font-size);
@@ -154,12 +129,20 @@
     cursor: pointer;
     transition: transform 0.3s ease, color 0.3s ease;
 }
-
-.btnAbrirformulario:hover, .btnCategoria:hover, .btnTienda:hover{
-    background-color: #033946;
-      transform: scale(1.03);
+#abrirFormulario{
+    width: 100%;
 }
 
+.btnAbrirformulario:hover, .btnCategoria:hover, .btnTienda:hover{
+    background-color: #033946 ;
+    transform: scale(1.03);
+}
+.bi-pencil-square:hover{
+    color: rgb(0, 192, 0);
+}
+.bi-trash:hover{
+    color: red;
+}
 /* tabla de productos sobreescribe-bootstrap */
 .table.tablaInventario > :not(caption) > * > * {
     background-color: #fefefe;

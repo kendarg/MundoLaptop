@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/carrito.css">
+    <link rel="icon" href="../img/icono-mundo2.jpeg">
 
     <link rel="stylesheet" href="./css/index-styles.css">
 
@@ -23,12 +24,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="tu-logo.png" type="./img/adad.png">
+
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Inicio</title>
 </head>
 
@@ -98,8 +99,8 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mb-2 text-muted">
-                    <span>Costo de envío</span>
-                    <span class="cart-shipping-cost fw-semibold text-success">Gratis</span>
+                    <span class="costosEnvio">Costo de envío</span>
+                    <span class="cart-shipping-cost fw-semibold text-succes" id="costosResultado">Gratis</span>
                 </div>
                 <hr class="my-2">
                 <div class="d-flex justify-content-between align-items-center fs-2 fw-bold mb-4">
@@ -409,7 +410,7 @@
                         </p>
                         <div>
                             <div class="section-2-subscripcion-button-regisrate">
-                                <a href="" class="comprarUsados"><button> Comprar Ahora</button></a>
+                                <a href="./html/productos.html" class="comprarUsados"><button> Comprar Ahora</button></a>
                             </div>
                         </div>
                     </div>
@@ -451,13 +452,13 @@
                 <div class="col">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1580522154071-c6ca47a859ad?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                            <img src="https://laptopmedia.com/wp-content/uploads/2024/03/5-8.jpg" alt="">
 
                         </div>
                         <div class="informacion-card">
-                            <span> <strong>LENOVO</strong></span>
-                            <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong>HP</strong></span>
+                            <span class="nombreProducto">HP EliteBook 840 G10 (Core i7 13th - 32GB RAM - 1TB SSD - 14 inches)</span>
+                            <span> <strong class="Valor">$ 1.800.000 COP</strong></span>
                             <button> <img src="./assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
@@ -468,13 +469,13 @@
                 <div class="col">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1509701852059-c221a6f1e878?q=80&w=1091&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                            <img src="https://p1-ofp.static.pub//fes/cms/2025/04/04/ymnzpm3cgfq889rfbsxjrmli0udz6v903034.jpg" alt="">
 
                         </div>
                         <div class="informacion-card">
-                            <span> <strong>LENOVO</strong></span>
-                            <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong>Lenovo </strong> </span>
+                            <p class="nombreProducto"> Lenovo Legion Pro 5 (Ryzen 7 8745HX - RTX 4080 - 32GB RAM - 1TB SSD - 16 inches 240Hz)</p>
+                            <span> <strong class="Valor">$ 6.300.000 COP</strong></span>
                             <button> <img src="./assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
@@ -484,13 +485,14 @@
                 <div class="col">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1555117391-6c0795768da8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuyTYHDHO20wK0Nz-vb2O4yfrWQq-WVDtLpkrMWFposGzQHhF1EbJs9Vty&s=10" alt="">
 
                         </div>
                         <div class="informacion-card">
-                            <span> <strong>LENOVO</strong></span>
-                            <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong>Dell</strong></span>
+                            <span class="nombreProducto"> Dell Latitude 5440 (Core i5 13th - 16GB RAM - 512GB SSD - 14 inches)</span>
+                            
+                            <span> <strong class="Valor">$ 1.450.000 COP</strong></span>
                             <button> <img src="./assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
@@ -500,13 +502,13 @@
                 <div class="col">
                     <div class="productos-destacados-card">
                         <div class="img-card">
-                            <img src="https://images.unsplash.com/photo-1659135890084-930731031f40?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                            <img src="https://laptopmedia.com/wp-content/uploads/2023/10/6-2.jpg" alt="">
 
                         </div>
                         <div class="informacion-card">
-                            <span> <strong>LENOVO</strong></span>
-                            <span class="nombreProducto">ThinkPad X1 Carbon Gen 11</span>
-                            <span> <strong class="Valor">5.999.000 COP</strong></span>
+                            <span> <strong>ASUS</strong></span>
+                            <span class="nombreProducto">Asus TUF Gaming A15 Ryzen 7 7445HS - RTX 3050 - 16GB RAM - 512GB</span>
+                            <span> <strong class="Valor">$ 2.000.000 COP</strong></span>
                             <button> <img src="./assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
                         </div>
 
@@ -532,7 +534,7 @@
                                         uses su gran potencial!.</p>
                                     <div>
                                         <div class="section-2-subscripcion-button-regisrate">
-                                            <a href=""><button> Ver usados</button></a>
+                                            <a href="./html/usados.html"><button> Ver usados</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -575,7 +577,7 @@
                                     </div>
                                 </div>
                                 <div class="section-2-subscripcion-button-regisrate p-3">
-                                    <button> Registrate</button>
+                                    <a href="./html/contacto.html" class="contacA"> <button > Contactenos </button></a>
                                 </div>
                             </div>
                         </div>
@@ -675,11 +677,6 @@
 
 
     <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/cambiDeVsion.js"></script>
     <script src="./js/navbar.js"></script>

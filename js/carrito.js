@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="flex-grow-1">
           <h6 class="cart-product-title mb-1 fw-semibold">${producto.nombre}</h6>
-          <div class="cart-product-price text-primary fw-bold">
+          <div class="cart-product-price  fw-bold">
             ${
               usuarioLogueado
                 ? `<span class="text-decoration-line-through text-muted me-1 small">${formatearPrecio(producto.precio)}</span>
@@ -179,34 +179,47 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Añadir producto desde las tarjetas
-    const card = e.target.closest(".productos-destacados-card");
-    if (card) {
+   // Añadir producto desde las tarjetas
+    const btnAgregar = e.target.closest("button[data-id]"); // 👈 Buscamos el botón que tiene el data-id
+    if (btnAgregar) {
+      const card = btnAgregar.closest(".productos-destacados-card");
+      
+      // Capturamos el ID directamente del botón
+      const productoId = Number(btnAgregar.dataset.id) || 1; 
+      
       const nombreEl = card.querySelector(".nombreProducto") || card.querySelector("span");
       const nombre = nombreEl ? nombreEl.innerText.trim() : "Producto";
 
       const precioEl = card.querySelector(".Valor") || card.querySelector("strong");
       const precio = precioEl ? Number(precioEl.innerText.replace(/\D/g, "")) || 0 : 0;
 
-      const imgEl = card.querySelector(".img-card img");
+      const imgEl = card.querySelector(".img-card img") || card.querySelector("img");
       const imagen = imgEl ? imgEl.src : "";
 
-      const existente = carrito.find((item) => item.nombre === nombre);
+      // Buscamos por ID en el carrito
+      const existente = carrito.find((item) => item.id === productoId);
       if (existente) {
         existente.cantidad++;
       } else {
-        carrito.push({ nombre, precio, imagen, cantidad: 1 });
+        carrito.push({ id: productoId, nombre, precio, imagen, cantidad: 1 });
       }
 
       actualizarCarrito();
       return;
     }
 
-    // Botón "Proceder al pago"
+   // Botón "Proceder al pago"
     const btnPago = e.target.closest("#btn-proceder-pago-offcanvas, #btn-proceder-pago");
     if (btnPago) {
       if (carrito.length === 0) {
-        alert("Tu carrito está vacío. Agrega productos para proceder al pago.");
+        Swal.fire({
+          position: "top",
+          icon: "warning",
+          title: "Tu carrito está vacío",
+          text: "Agrega productos para proceder al pago.",
+          showConfirmButton: false,
+          timer: 2000
+        });
         return;
       }
 
@@ -214,11 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const modalCheckoutElement = document.getElementById("modalCheckout");
       const checkoutTotalPrice = document.getElementById("checkout-total-price");
       const cartTotals = document.querySelectorAll(".cart-total");
-
-      if (offcanvasCarritoElement) {
-        const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasCarritoElement);
-        bsOffcanvas.hide();
-      }
 
       if (checkoutTotalPrice && cartTotals.length > 0) {
         checkoutTotalPrice.innerText = cartTotals[0].innerText;
@@ -232,30 +240,84 @@ document.addEventListener("DOMContentLoaded", () => {
         offcanvasCarritoElement?.removeEventListener("hidden.bs.offcanvas", abrirModalCheckout);
       };
 
-      if (offcanvasCarritoElement) {
+      if (offcanvasCarritoElement && offcanvasCarritoElement.classList.contains("show")) {
         offcanvasCarritoElement.addEventListener("hidden.bs.offcanvas", abrirModalCheckout);
+        const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasCarritoElement);
+        bsOffcanvas.hide();
       } else if (modalCheckoutElement) {
         bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).show();
       }
     }
   });
 
+
   // 7. Confirmar compra
-  document.addEventListener("submit", (e) => {
+
+document.addEventListener("submit", async (e) => {
     if (e.target.id !== "form-checkout") return;
     e.preventDefault();
 
     const nombreInput = document.getElementById("nombreCliente");
     const nombre = nombreInput ? nombreInput.value : "Cliente";
-    alert(`¡Gracias por tu compra, ${nombre}! En breve nos pondremos en contacto para gestionar el envío.`);
 
-    carrito = [];
-    actualizarCarrito();
-    e.target.reset();
+    const payloadCompra = {
+      cliente: nombre,
+      items: carrito.map(item => ({
+        id: item.id,
+        cantidad: item.cantidad
+      }))
+    };
 
-    const modalCheckoutElement = document.getElementById("modalCheckout");
-    if (modalCheckoutElement) {
-      bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).hide();
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await fetch('http://localhost:8080/api/productos/comprar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(payloadCompra)
+      });
+
+      if (!response.ok) {
+        const mensajeError = await response.text();
+        throw new Error(mensajeError || "Error al procesar la compra.");
+      }
+
+      const modalCheckoutElement = document.getElementById("modalCheckout");
+      if (modalCheckoutElement) {
+        bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).hide();
+      }
+
+      // 🚚 Aquí está tu SweetAlert con el icono del camión
+      Swal.fire({
+        iconHtml: '<i class="bi bi-truck text-success display-4"></i>',
+        customClass: {
+          icon: 'border-0'
+        },
+        title: `Gracias por tu compra ${nombre}`,
+        html: `
+          <p class="mb-1">En breve nos pondremos en contacto para gestionar el envio</p>
+          <div class="mt-3 p-2 bg-light rounded text-muted small">
+            <i class="bi bi-box-seam me-1"></i> Tu pedido ya esta listo para ser procesado
+          </div>
+        `,
+        confirmButtonText: 'Excelente',
+        confirmButtonColor: "#198754"
+      });
+
+      carrito = [];
+      actualizarCarrito();
+      e.target.reset();
+
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "No se pudo completar",
+        text: error.message || "Hubo un error al actualizar el stock en la base de datos."
+      });
     }
   });
 

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/dark.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/index-styles.css">
     <link rel="stylesheet" href="../css/carrito.css">
@@ -17,26 +18,28 @@
     <title>Admin</title>
 </head>
 
-<body>
+<body class="">
     <!--navbar Ronal-->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid ">
             <a href="../inicio.html">
             </a>
-            <a href="#" id="togglePanel" class=" iconosad"><i class="bi bi-person-fill-gear"></i> Modo administrador</a>
+            <a href="./admin.html" id="togglePanel" class="iconosad"><i class="bi bi-person-fill-gear"></i>
+                <h4 class="Modoad">Modo administrador</h4>
+            </a>
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown " aria-expanded="false" aria-label="Toggle navigation ">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto">
-                 
                 </ul>
                 <div class="iconos-navbar ">
-                    <a href="#" class="iconos"> <i class="bi bi-search iconos"></i> </a>
                     </a>
                     <!-- Boton vision -->
-                    <i class="bi bi-moon iconos" id="icono"></i>
+                    <div class="btn iconos" id="modo">
+                        <i class="bi bi-moon iconos" id="icono"></i>
+                    </div>
                     <!-- Boton salir  -->
                     <a href="../index.html" class="iconos"> <i class="bi bi-power iconos"></i> Salir</a>
 
@@ -61,25 +64,24 @@
                 <i class="bi bi-plus-lg"></i>
                 Agregar Producto
             </button>
-            <button id="abrircategoria" class="btnCategoria">
+            <!-- <button id="abrircategoria" class="btnCategoria">
                 <i class="bi bi-plus-lg"></i>
                 Agregar Categoria
-            </button>
-            <button id="abrirtienda" class="btnTienda">
-                <i class="bi bi-plus-lg"></i><a href="../html/productos.html" class="aDecorativa"> Ver tienda</a>
-
-            </button>
+            </button> -->
+            <a href="../html/productos.html" class="aDecorativa">
+            <button id="abrirFormulario" class="btnTienda"><i class="bi bi-plus-lg"></i> Ver tienda </button></a>
             <!-- Gestion DE Tienda -->
             <hr>
             <p class="subtitulopanel">GESTIÓN DE TIENDA</p>
             <ul class="gestionTienda nav nav-pills flex-column mb-auto">
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-columns-gap"></i>
+                <!-- <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-columns-gap"></i>
                         Dashboard
-                    </a> </li>
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-bag-fill"></i>
+                    </a> </li> -->
+                <li class=""> <a href="../html/admin.html" class="linkPanelIzq" aria-current="page"> <i
+                            class="bi bi-bag-fill"></i>
                         Productos
                     </a> </li>
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
+                <!-- <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i
                             class="bi bi-grid-3x3-gap-fill"></i>
                         Categoria
                     </a> </li>
@@ -98,11 +100,11 @@
                     </a> </li>
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"> <i class="bi bi-star-fill"></i>
                         Reseña
-                    </a> </li>
+                    </a> </li> -->
             </ul>
             <hr>
             <!-- Contenido -->
-            <p class="subtitulopanel">CONTENIDO</p>
+            <!-- <p class="subtitulopanel">CONTENIDO</p>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i class="bi bi-collection-fill"></i>
                         Banner
@@ -115,12 +117,12 @@
                             class="bi bi-clipboard-data-fill"></i>
                         Noticias
                     </a> </li>
-            </ul>
+            </ul> -->
             <!-- Configuracion -->
-            <hr>
-            <p class="subtitulopanel">CONFIGURACIÓN</p>
+            <!-- <hr> -->
+            <!-- <p class="subtitulopanel">CONFIGURACIÓN</p> -->
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i class="bi bi-gear-fill"></i>
+                <!-- <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i class="bi bi-gear-fill"></i>
                         Ajustes de la tienda
                     </a> </li>
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i
@@ -130,11 +132,9 @@
                 <li class=""> <a href="#" class="linkPanelIzq" aria-current="page"><i
                             class="bi bi-person-fill-gear"></i>
                         Usuarios y permisos
-                    </a> </li>
-                <li class=""> <a href="../index.html" class="linkPanelIzq" aria-current="page"><i
-                            class="bi bi-power"></i></i>
-                        Salir
-                    </a> </li>
+                    </a> </li> -->
+                <li class=""> <a href="../index.html" class="linkPanelIzq" aria-current="page">
+                        <i class="bi bi-power"></i></i> Salir</a> </li>
             </ul>
         </div>
 
@@ -142,10 +142,10 @@
         <div class="col">
             <div class="p-4">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2 class="fw-bold tituloProductos">Productos</h2>
+                    <h4 class="fw-bold tituloProductos">Productos</h4>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
-                    <p class="subtitulopanel">Administra, agrega, edita o elimina productos.</p>
+                    <p class="subtitulopanel" id="infoUso">Administra, agrega, edita o elimina productos.</p>
                 </div>
                 <div class="table-responsive">
                     <table class="tablaInventario table table-hover ">
@@ -158,7 +158,7 @@
                                 <th>Marca</th>
                                 <th>Precio</th>
                                 <th>Stock</th>
-                                <th>Referencia</th>
+                                <th>Repotenciado</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
@@ -194,31 +194,18 @@
                 </div>
                 <div class="mb-3">
                     <label for="Categoria" class="form-label" id="importanciatxt">
-                        Categoria
+                        Categoría
                     </label>
-                    <select class="form-select" id="Categoria">
-                        <option selected>Seleccionar...</option>
-                        <option value="Nuevos">Nuevos</option>
-                        <option value="Open Box">Open Box</option>
-                        <option value="Usados">Usados</option>
+                    <select class="form-select" id="Categoria" required>
+                        <option value="" selected disabled>Seleccionar...</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="marca" class="form-label" id="importanciatxt">
                         Marca
                     </label>
-                    <select class="form-select" id="marca">
-                        <option selected>Seleccionar...</option>
-                        <option value="Lenovo">Acer</option>
-                        <option value="HP">Apple</option>
-                        <option value="Lenovo">Asus</option>
-                        <option value="HP">Dell</option>
-                        <option value="Lenovo">Hp</option>
-                        <option value="HP">Huawei</option>
-                        <option value="Lenovo">Lenovo</option>
-                        <option value="HP">Msi </option>
-                        <option value="Lenovo">Razer</option>
-                        <option value="Otras">Otras</option>
+                    <select class="form-select" id="marca" required>
+                        <option value="" selected disabled>Seleccionar...</option>
                     </select>
                 </div>
                 <div class="mb-3">
@@ -234,14 +221,26 @@
                     <input type="number" class="form-control" id="Stock" placeholder="Ingrese la cantidad">
                 </div>
                 <div class="mb-3">
-                    <label for="referencia" class="form-label" id="importanciatxt">
+                    <label for="repotenciado" class="form-label" id="importanciatxt">
                         Repotenciado
                     </label>
-                    <select class="form-select" id="referencia">
+                    <select class="form-select" id="repotenciado">
                         <option selected>Seleccionar...</option>
-                        <option value="Lenovo">Si</option>
-                        <option value="HP">No</option>
+                        <option value="NUEVO">Nuevo</option>
+                        <option value="OPEN_BOX">Open Box</option>
+                        <option value="REPOTENCIADO">Repotenciado</option>
                     </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label font-weight-bold">Especificaciones del producto</label>
+
+                    <!-- Contenedor donde se insertarán dinámicamente las filas -->
+                    <div id="contenedorEspecificaciones"></div>
+
+                    <button type="button" id="btnAgregarEspec" class="btn btn-sm btn-outline-primary mt-2">
+                        + Agregar especificación
+                    </button>
                 </div>
                 <hr>
                 <button type="submit" class="btn btn-primary w-100 botonAgregar">
@@ -255,6 +254,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- <<script src="/Js/cambiDeVsion.js"></script> -->
     <script src="../js/admin.js"></script>
+    <script src="../js/cambiDeVsion.js"></script>
+
 </body>
 
 </html>

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/contacto.css">
     <link rel="stylesheet" href="../css/carrito.css">
+    <link rel="icon" href="../img/icono-mundo2.jpeg">
+
 
 
 
@@ -21,22 +23,17 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Contacto</title>
 </head>
 
 <body>
 
 
-     <!-- Navbar -->
-   <!-- Navbar -->
-
-   <!-- Navbar -->
+       <!-- Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid">
             <a href="../index.html">
-                <img src="../img/LOGOPNG.png" alt="logo" class="logoimg" id="logo">
+                <img src="../img/LOGOPNG 2.png" alt="logo" class="logoimg" id="logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,9 +57,11 @@
                 <div class="iconos-navbar">
                     <!-- <a href="#" class="iconos"><i class="bi bi-search iconos"></i></a> -->
                     <a href="#" id="buttonuser" class="iconos"><i class="bi bi-person iconos"></i></a>
-                    <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
+                    <a href="#" class="iconos position-relative" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasCarrito" aria-controls="offcanvasCarrito">
                         <i class="bi bi-cart3 iconos"></i>
-                        <span id="cart-count" class="position-absolute top-0 start-100 translate-middle cart-badge-blue">0</span>
+                        <span id="cart-count"
+                            class="position-absolute top-0 start-100 translate-middle cart-badge-blue">0</span>
                     </a>
                     <div class="btn iconos" id="modo">
                         <i class="bi bi-moon iconos" id="icono"></i>
@@ -97,11 +96,11 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mb-2 text-muted">
-                    <span>Costo de envío</span>
-                    <span class="cart-shipping-cost fw-semibold text-success">Gratis</span>
+                    <span class="costosEnvio">Costo de envío</span>
+                    <span class="cart-shipping-cost fw-semibold text-succes" id="costosResultado">Gratis</span>
                 </div>
                 <hr class="my-2">
-                <div class="d-flex justify-content-between align-items-center fs-5 fw-bold mb-4">
+                <div class="d-flex justify-content-between align-items-center fs-2 fw-bold mb-4">
                     <span>Total</span>
                     <span class="cart-total cart-accent-text">$0</span>
                 </div>
@@ -149,7 +148,8 @@
                         <div class="alert alert-light">
                             Total a pagar: <strong id="checkout-total-price">$ 0</strong>
                         </div>
-                        <button type="submit" class="btn-confirmar-compra w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                        <button type="submit"
+                            class="btn-confirmar-compra w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
                             <i class="bi bi-lock-fill"></i> Confirmar compra
                         </button>
                     </form>
@@ -161,7 +161,7 @@
     <!-- Panel de Login / Registro -->
     <section class="loginpg">
         <div id="overlay" class="overlay"></div>
-        <aside id="logisectil" class="login-panel">
+        <aside id="loginPanel" class="login-panel">
             <button id="closeLogin" class="cerrar" type="button">
                 <i class="bi bi-x-lg"></i>
             </button>
@@ -185,22 +185,23 @@
                     <i class="bi bi-envelope"></i>
                     <input type="email" id="emailInput" placeholder="Correo electrónico" autocomplete="email">
                 </div>
-                
-            <div class="grupo-input position-relative">
-                    <i class="bi bi-lock"></i>
-                <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
-                <button type="button" class="btn-toggle-password" id="togglePasswordBtn" tabindex="-1">
-                <i class="bi bi-eye" id="togglePasswordIcon"></i>
-                </button>
-            </div>
 
-            <div class="grupo-input campo-registro position-relative" style="display: none;">
-                <i class="bi bi-lock"></i>
-                <input type="password" id="confirmPasswordInput" placeholder="Confirmar Contraseña" autocomplete="new-password">
-                <button type="button" class="btn-toggle-password" id="toggleConfirmPasswordBtn" tabindex="-1">
-                    <i class="bi bi-eye" id="toggleConfirmPasswordIcon"></i>
-                </button>
-            </div>
+                <div class="grupo-input position-relative">
+                    <i class="bi bi-lock"></i>
+                    <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
+                    <button type="button" class="btn-toggle-password" id="togglePasswordBtn" tabindex="-1">
+                        <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                    </button>
+                </div>
+
+                <div class="grupo-input campo-registro position-relative" style="display: none;">
+                    <i class="bi bi-lock"></i>
+                    <input type="password" id="confirmPasswordInput" placeholder="Confirmar Contraseña"
+                        autocomplete="new-password">
+                    <button type="button" class="btn-toggle-password" id="toggleConfirmPasswordBtn" tabindex="-1">
+                        <i class="bi bi-eye" id="toggleConfirmPasswordIcon"></i>
+                    </button>
+                </div>
 
                 <p id="statusMsg" style="font-size: 14px; display: none; margin-top: 8px; font-weight: 500;"></p>
 
@@ -213,6 +214,69 @@
                 ¿No tienes cuenta? Crear cuenta
             </button>
         </aside>
+    </section>
+
+
+    <!-- Login Sergio -->
+    <section class="loginpg">
+        <div id="overlay" class="overlay"></div>
+        <aside id="loginPanel" class="login-panel">
+            <button id="closeLogin" class="cerrar" type="button">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div class="login-logo">
+                <img src="/img/adad.png" alt="Mundo Laptop">
+            </div>
+
+            <h2 id="panelTitle">Iniciar sesión</h2>
+            <p id="panelSub" class="subtitulo">Bienvenido nuevamente.</p>
+
+            <form id="authForm" onsubmit="return false;">
+                <div class="grupo-input">
+                    <i class="bi bi-envelope"></i>
+                    <input type="email" id="emailInput" placeholder="Correo electrónico" autocomplete="email">
+                </div>
+                <div class="grupo-input">
+                    <i class="bi bi-lock"></i>
+                    <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">
+                </div>
+
+                <p id="statusMsg" style="font-size: 14px; display: none; margin-top: 5px;"></p>
+
+                <button type="submit" id="loginBtn" class="buttonlogin">Iniciar sesión</button>
+            </form>
+
+            <div class="linea"><span>o</span></div>
+
+            <button type="button" id="toggleModeBtn" class="google">
+                ¿No tienes cuenta? Crear cuenta
+            </button>
+        </aside>
+
+        <div id="registroModal" class="registro-overlay">
+            <div class="registro grupo-input">
+                <button id="cerrarRegistro" class="cerrar-registro">
+                    <i class="bi bi-x-circle-fill"></i>
+                </button>
+                <h2 class="tituloformulario">Crear cuenta</h2>
+                <h3 class="subtituloformulario">hola! ingresa tus datos.</h3>
+                <div class="grupo-input">
+                    <i class="bi bi-person"></i>
+                    <input type="email" placeholder="Nombre de usuario">
+                </div>
+                <div class="grupo-input">
+                    <i class="bi bi-envelope"></i>
+                    <input type="email" placeholder="Correo electrónico">
+                </div>
+                <div class="grupo-input">
+                    <i class="bi bi-lock"></i>
+                    <input type="password" placeholder="Contraseña">
+                </div>
+                <button class="buttonlogin">
+                    Registrarse
+                </button>
+            </div>
+        </div>
     </section>
 
 
@@ -234,10 +298,12 @@
         <section class="informacion">
             <!-- Card 1 -->
             <div class="informacion-llamanos">
+                <a href="https://wa.me/qr/6PHCCJF6KLD4H1">
                 <div class="logo">
                     <img src="../assets/inicio/pagina-contacto/tel.svg" alt="Teléfono" />
-                </div>
-                <h3>Llámanos</h3>
+                </div></a>
+                <a href="https://wa.me/qr/6PHCCJF6KLD4H1">
+                <h3>Llámanos</h3></a>
                 <p class="nombreProducto">Habla con nuestro chatbot vía WhatsApp</p>
             </div>
 
@@ -251,11 +317,14 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="informacion-llamanos">
+            <div class="informacion-llamanos" >
+                <a href="https://www.google.com/maps/place/Centro+de+Alta+Tecnolog%C3%ADa/@4.6642765,-74.0587321,19z/data=!4m6!3m5!1s0x8e3f9a5f2fb8bacb:0x9430fdba06d6e63b!8m2!3d4.664187!4d-74.058856!16s%2Fg%2F1tfjgl6x?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D">
                 <div class="logo">
                     <img src="../assets/inicio/pagina-contacto/location.svg" alt="Ubicación" />
-                </div>
-                <h3>Visítanos</h3>
+                </div></a>
+                <a href="https://www.google.com/maps/place/Centro+de+Alta+Tecnolog%C3%ADa/@4.6642765,-74.0587321,19z/data=!4m6!3m5!1s0x8e3f9a5f2fb8bacb:0x9430fdba06d6e63b!8m2!3d4.664187!4d-74.058856!16s%2Fg%2F1tfjgl6x?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D"> 
+                <h3>Visítanos</h3></a>
+
                 <p class="nombreProducto">Ven y búscanos de forma presencial</p>
             </div>
         </section>
@@ -423,15 +492,8 @@
 
 
 
-    <!-- Script oficial de Bootstrap 5.3 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
 
+    <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/cambiDeVsion.js"></script>
     <script src="../js/navbar.js"></script>

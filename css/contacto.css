@@ -28,7 +28,7 @@ body {
 .main-contacto {
     width: 70%;
     padding: 0px;
-    margin: 100px auto;
+    margin: 10px auto;
     display: flex;
     flex-direction: column;
 }
@@ -259,7 +259,7 @@ body {
 input,
 textarea {
     padding: 10px;
-    border-style: solid;
+    border: 1px solid rgba(0, 0, 0, 0.199);
     border-radius: 5px;
     font-size: 0.5rem;
     width: 100%;
@@ -279,13 +279,27 @@ textarea::placeholder {
 
 }
 
-input:active,
-textarea:active,
-input:focus {
-    border-color: var(--var-font-color-2);
+input:focus,
+textarea:focus {
+    border-color: rgba(0, 0, 0, 0.288);
 
 }
+.formulario-contacto-1 input:hover,
+.formulario-contacto-1 textarea:hover {
+    border-color:#075C6F;
+    outline: none;
+}
 
+
+.formulario-contacto-1 input,
+.formulario-contacto-1 textarea {
+    border: 2px solid rgb(221, 218, 218);
+}
+
+.formulario-contacto-1 input:focus,.formulario-contacto-1 textarea:focus{
+    border-color:#075C6F;
+    outline: none;
+}
 textarea {
     resize: vertical;
     min-height: 140px;

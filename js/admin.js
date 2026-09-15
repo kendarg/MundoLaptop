@@ -1,234 +1,340 @@
-const inventario = JSON.parse(localStorage.getItem("inventario")) || []; // recupera productos guardados o inicia con []
-const formulario = document.querySelector(".formulario");
+// Configuración de la URL base del Backend API
+const API_URL = "http://localhost:8080/api/productos";
+const API_CATEGORIAS_URL = "http://localhost:8080/api/categorias";
+const API_MARCAS_URL = "http://localhost:8080/api/marcas";
 
-let productoEditando = null; // variable para aguegar el producto que se va editar y mostar en formulario
+// Referencias a elementos del DOM
+const tablaProductosBody = document.querySelector(".tareas");
+const formProducto = document.querySelector(".formulario");
+const modalProducto = document.getElementById("modalProducto");
+const btnAbrirModal = document.getElementById("abrirFormulario");
+const btnCerrarModal = document.getElementById("cerrarFormulario");
+const contenedorEspecificaciones = document.getElementById("contenedorEspecificaciones");
+const btnAgregarEspec = document.getElementById("btnAgregarEspec");
 
-formulario.addEventListener("submit",AgregarProducto);
 
-function AgregarProducto(e){
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", async () => {
+    await cargarCategorias();
+    await cargarMarcas();
+    await cargarProductos();
+    configurarEventosModal();
+    configurarEspecificacionesDinamicas();
+});
 
-    //      seleccionamos input con ID#
-    const nombre = document.querySelector("#nombreProducto").value.trim();
-    const serie = document.querySelector("#numeroSerie").value.trim();
-    const categoria = document.querySelector("#Categoria").value;
-    const marca = document.querySelector("#marca").value;
-    const precio = document.querySelector("#Precio").value;
-    const stock = document.querySelector("#Stock").value;
-    const referencia = document.querySelector("#referencia").value;
+// Función auxiliar para obtener las cabeceras con el JWT
+function getAuthHeaders() {
+    const token = localStorage.getItem("token");
+    return {
+        "Content-Type": "application/json",
+        "Authorization": token ? `Bearer ${token}` : ""
+    };
+}
 
-    //      se envia alert para no dejar input sin llenar en form
-    if(
-        nombre === "" || serie === "" || precio === "" || stock === "" ||
-        categoria === "Seleccionar..." || marca === "Seleccionar..." || referencia === "Seleccionar..."
-    ){
-        alert("Complete todos los campos");
+// ==========================================
+// 1. OBTENER Y MOSTRAR CATÁLOGOS (GET Categorías y Marcas)
+// ==========================================
+async function cargarCategorias() {
+    const selectCategoria = document.getElementById("Categoria");
+    if (!selectCategoria) return;
+
+    try {
+        const respuesta = await fetch(API_CATEGORIAS_URL);
+        if (!respuesta.ok) throw new Error("Error al obtener categorías");
+
+        const categorias = await respuesta.json();
+
+        selectCategoria.innerHTML = '<option value="" disabled selected>Seleccionar...</option>';
+
+        categorias.forEach(cat => {
+            const option = document.createElement("option");
+            option.value = cat.id;
+            option.textContent = cat.nombre || cat.nombreCategoria;
+            selectCategoria.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error al cargar categorías:", error);
+    }
+}
+
+async function cargarMarcas() {
+    const selectMarca = document.getElementById("marca");
+    if (!selectMarca) return;
+
+    try {
+        const respuesta = await fetch(API_MARCAS_URL);
+        if (!respuesta.ok) throw new Error("Error al obtener marcas");
+
+        const marcas = await respuesta.json();
+
+        selectMarca.innerHTML = '<option value="" disabled selected>Seleccionar...</option>';
+
+        marcas.forEach(m => {
+            const option = document.createElement("option");
+            option.value = m.id;
+            option.textContent = m.nombre || m.nombreMarca;
+            selectMarca.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error al cargar marcas:", error);
+    }
+}
+
+// ==========================================
+// 2. OBTENER Y MOSTRAR PRODUCTOS (GET)
+// ==========================================
+async function cargarProductos() {
+    try {
+        const response = await fetch("http://localhost:8080/api/productos"); // Reemplaza con tu URL
+        const data = await response.json();
+
+        // 🔍 IMPRIMIR EN CONSOLA
+        console.log("Estructura completa de la respuesta JSON:", data);
+        if (data.length > 0) {
+            console.log("Primer producto obtenido:", data[0]);
+        }
+
+        renderizarTabla(data);
+    } catch (error) {
+        console.error("Error al cargar productos:", error);
+    }
+}
+
+function renderizarTabla(productos) {
+    if (!tablaProductosBody) return;
+    tablaProductosBody.innerHTML = ""; // Limpiar tabla
+
+    // Mapeos de ID -> Nombre tomando las opciones cargadas en los <select> del formulario
+    const selectCategoria = document.getElementById("Categoria");
+    const selectMarca = document.getElementById("marca");
+
+    const mapaCategorias = {};
+    if (selectCategoria) {
+        Array.from(selectCategoria.options).forEach(opt => {
+            if (opt.value) mapaCategorias[opt.value] = opt.textContent;
+        });
+    }
+
+    const mapaMarcas = {};
+    if (selectMarca) {
+        Array.from(selectMarca.options).forEach(opt => {
+            if (opt.value) mapaMarcas[opt.value] = opt.textContent;
+        });
+    }
+
+    productos.forEach(prod => {
+        // 1. Obtener número de serie exacto según el JSON (numeroserie en minúscula)
+        const serie = prod.numeroserie || prod.numeroSerie || 'N/A';
+
+        // 2. Obtener Nombre de Categoría buscando el ID o la propiedad
+        const catId = prod.categoriaId || prod.categoria?.id || prod.categoria;
+        const nombreCategoria = mapaCategorias[catId]
+            || prod.categoriaNombre
+            || prod.categoria?.nombre
+            || `Categoría #${catId}`;
+
+        // 3. Obtener Nombre de Marca buscando el ID o la propiedad
+        const marcaId = prod.marcaId || prod.marca?.id || prod.marca;
+        const nombreMarca = mapaMarcas[marcaId]
+            || prod.marcaNombre
+            || prod.marca?.nombre
+            || `Marca #${marcaId}`;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${prod.id}</td>
+            <td>${prod.nombre}</td>
+            <td>${serie}</td>
+            <td>${nombreCategoria}</td>
+            <td>${nombreMarca}</td>
+            <td>$${prod.precio}</td>
+            <td>${prod.stock}</td>
+            <td>${prod.condicion || prod.repotenciado || 'NUEVO'}</td>
+            <td>
+                <span class="badge ${prod.stock > 0 ? 'bg-success' : 'bg-danger'}">
+                    ${prod.stock > 0 ? 'Disponible' : 'Agotado'}
+                </span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-warning me-1" onclick="prepararEdicion(${prod.id})">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" onclick="eliminarProducto(${prod.id})">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </td>
+        `;
+        tablaProductosBody.appendChild(tr);
+    });
+}
+
+// ==========================================
+// 3. CREAR O ACTUALIZAR PRODUCTO (POST / PUT)
+// ==========================================
+if (formProducto) {
+    formProducto.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("No tienes una sesión activa. Por favor inicia sesión como administrador.");
+            return;
+        }
+
+        const catValue = document.getElementById("Categoria")?.value;
+        const marcaValue = document.getElementById("marca")?.value;
+
+        if (!catValue || !marcaValue) {
+            alert("Por favor selecciona una categoría y una marca válidas.");
+            return;
+        }
+
+        const especificaciones = {};
+        document.querySelectorAll(".fila-especificacion").forEach(row => {
+            const clave = row.querySelector(".espec-clave")?.value.trim();
+            const valor = row.querySelector(".espec-valor")?.value.trim();
+            if (clave && valor) especificaciones[clave] = valor;
+        });
+
+        // Objeto construido tal como lo espera el controlador de Java
+        const productoData = {
+            nombre: document.getElementById("nombreProducto")?.value.trim(),
+            numeroSerie: document.getElementById("numeroSerie")?.value.trim(),
+            precio: parseFloat(document.getElementById("Precio")?.value || 0),
+            stock: parseInt(document.getElementById("Stock")?.value || 0),
+            condicion: document.getElementById("repotenciado")?.value || "NUEVO",
+            especificaciones: especificaciones,
+            categoriaId: parseInt(catValue),
+            marcaId: parseInt(marcaValue)
+        };
+
+        const idProducto = formProducto.dataset.id;
+        const metodo = idProducto ? "PUT" : "POST";
+        const url = idProducto ? `${API_URL}/${idProducto}` : API_URL;
+
+        try {
+            const respuesta = await fetch(url, {
+                method: metodo,
+                headers: getAuthHeaders(),
+                body: JSON.stringify(productoData)
+            });
+
+            if (respuesta.ok) {
+                formProducto.reset();
+                delete formProducto.dataset.id;
+                if (modalProducto) modalProducto.style.display = "none";
+                if (contenedorEspecificaciones) contenedorEspecificaciones.innerHTML = "";
+                cargarProductos();
+            } else {
+                const errorData = await respuesta.json().catch(() => ({}));
+                console.error("Error en la solicitud:", respuesta.status, errorData);
+
+                if (respuesta.status === 401 || respuesta.status === 403) {
+                    alert(errorData.error || "Sesión expirada o no tienes permisos de administrador.");
+                } else {
+                    alert("Ocurrió un error al procesar el producto (HTTP " + respuesta.status + "). Revisa los datos ingresados.");
+                }
+            }
+        } catch (error) {
+            console.error("Error al guardar el producto:", error);
+        }
+    });
+}
+
+// ==========================================
+// 4. ELIMINAR PRODUCTO (DELETE)
+// ==========================================
+async function eliminarProducto(id) {
+    if (!confirm("¿Estás seguro de eliminar este producto?")) return;
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert("Debes estar autenticado para realizar esta acción.");
         return;
     }
 
-    //      visual del objeto
+    try {
+        const respuesta = await fetch(`${API_URL}/${id}`, {
+            method: "DELETE",
+            headers: getAuthHeaders()
+        });
 
-    if (productoEditando) { // verifica si la variable editarproducto es dieferete de  null
-
-        console.log("productoEditando:", productoEditando);
-
-        productoEditando.nombre = nombre;
-        productoEditando.serie = serie;
-        productoEditando.categoria = categoria;
-        productoEditando.marca = marca;
-        productoEditando.precio = Number(precio);
-        productoEditando.stock = Number(stock);
-        productoEditando.referencia = referencia;
-        
-        //      dejamos el formulario con los botones de agregar nuevamente , ya que al editar aparecen como modificar cambios
-        document.querySelector(".cabeceraFormulario h3").textContent = "Agregar producto";
-        document.querySelector('button[type="submit"]').textContent = "Agregar";
-
-        productoEditando = null;
-
-    } else { //     de lo contrario creara el producto nuevo al ver que no se esta editandoproducto
-
-        const producto = {
-            id: Date.now(),
-            nombre,
-            serie,
-            categoria,
-            marca,
-            precio: Number(precio),
-            stock: Number(stock),
-            referencia
-        };
-        inventario.push(producto);
-    }
-
-    //      se actualiza localstorage
-    localStorage.setItem(
-    "inventario",
-    JSON.stringify(inventario)
-    );
-
-    //      se agrega producto al array - json en console
-    renderizarInventario();
-    console.clear();
-    console.log(inventario);
-    console.log(JSON.stringify(inventario,null,2));
-    cerrarModalProducto();
-}
-
-//      renderizamos productos en html
-
-const lista = document.querySelector(".tareas");
-
-function renderizarInventario(){
-    lista.innerHTML="";
-
-    inventario.forEach(producto=>{
-        //      estado del stock
-        let estado="";
-        let clase="";
-
-        if(producto.stock==0){
-            estado="Sin Stock";
-            clase="bg-danger";
-
-        }else if(producto.stock<=5){
-            estado="Poco Stock";
-            clase="bg-warning";
-
-        }else{
-            estado="Buen Stock";
-            clase="bg-success";
+        if (respuesta.ok) {
+            cargarProductos();
+        } else {
+            const errorData = await respuesta.json().catch(() => ({}));
+            alert(errorData.error || "No fue posible eliminar el producto.");
         }
-        //      renderizamos cada producto en la lista de tareas -html
-        //      icono editar y borrar llama producto pot id
-        lista.innerHTML +=`
-            <tr>
-                <td>${producto.id}</td>
-                <td>${producto.nombre}</td>
-                <td>${producto.serie}</td>
-                <td>${producto.categoria}</td>
-                <td>${producto.marca}</td>
-                <td>$ ${producto.precio}</td>
-                <td>${producto.stock}</td>
-                <td>${producto.referencia}</td>
-                <td>
-                    <span class=" badge ${clase}">
-                        ${estado}
-                    </span>
-                </td>
-                <td>
-                    <i class="bi bi-pencil-square text-primary me-3 iconoeditar" 
-                    data-id="${producto.id}"
-                    style="cursor:pointer;"></i>
-                    <i class="bi bi-trash text-danger iconobotar"
-                    data-id="${producto.id}"
-                    style="cursor:pointer;"></i>
-                </td>
-            </tr>
-        `;
-    });
-}renderizarInventario(); // llamado a renderizar nuevamente para mostrar lo que enceuntre en localstorage
+    } catch (error) {
+        console.error("Error en servidor al eliminar:", error);
+    }
+}
 
+// ==========================================
+// 5. EDICIÓN DE PRODUCTO
+// ==========================================
+async function prepararEdicion(id) {
+    try {
+        await cargarCategorias();
+        await cargarMarcas();
 
-//      evento busca producto por funcion-id al seleccionar icono
+        const respuesta = await fetch(`${API_URL}/${id}`);
+        if (!respuesta.ok) throw new Error("No se pudo obtener la información del producto");
 
-lista.addEventListener("click", (e) => {
-    if (e.target.classList.contains("bi-trash")) {
-        const id = Number(e.target.dataset.id);
-        eliminarProducto(id);
+        const producto = await respuesta.json();
+
+        if (document.getElementById("nombreProducto")) document.getElementById("nombreProducto").value = producto.nombre || "";
+        if (document.getElementById("numeroSerie")) document.getElementById("numeroSerie").value = producto.numeroSerie || "";
+
+        if (document.getElementById("Categoria")) document.getElementById("Categoria").value = producto.categoria?.id || producto.categoriaId || producto.categoria || "";
+        if (document.getElementById("marca")) document.getElementById("marca").value = producto.marca?.id || producto.marcaId || producto.marca || "";
+
+        if (document.getElementById("Precio")) document.getElementById("Precio").value = producto.precio || 0;
+        if (document.getElementById("Stock")) document.getElementById("Stock").value = producto.stock || 0;
+        if (document.getElementById("repotenciado")) document.getElementById("repotenciado").value = producto.condicion || producto.repotenciado || "NUEVO";
+
+        formProducto.dataset.id = producto.id;
+
+        if (modalProducto) modalProducto.style.display = "block";
+    } catch (error) {
+        console.error("Error al obtener producto para edición:", error);
+    }
+}
+
+// ==========================================
+// 6. MANEJO DE COMPONENTES DE LA INTERFAZ
+// ==========================================
+function configurarEventosModal() {
+    if (btnAbrirModal) {
+        btnAbrirModal.addEventListener("click", () => {
+            if (formProducto) formProducto.reset();
+            if (formProducto) delete formProducto.dataset.id;
+            if (contenedorEspecificaciones) contenedorEspecificaciones.innerHTML = "";
+            cargarCategorias();
+            cargarMarcas();
+            if (modalProducto) modalProducto.style.display = "block";
+        });
     }
 
-    if (e.target.classList.contains("bi-pencil-square")){
-        const id = Number (e.target.dataset.id);
-        editarProducto(id);
+    if (btnCerrarModal) {
+        btnCerrarModal.addEventListener("click", () => {
+            if (modalProducto) modalProducto.style.display = "none";
+        });
     }
-});
-
-//      funcion eliminar producto por id
-
-function eliminarProducto(id){
-    const indice = inventario.findIndex(
-        producto => producto.id === id
-    );
-    inventario.splice(indice,1);
-    localStorage.setItem("inventario", JSON.stringify(inventario)); // se actualiza inventario al eliminar
-    renderizarInventario();
-    console.clear();
-    console.log(inventario);
 }
 
-// buscamos el producto dentro de la lista y trae valores al form
-
-function editarProducto(id) {
-
-    //      seleccion de botones en formulario , para cambiarlos al estar editando por  "guardar cambios"
-    document.querySelector(".cabeceraFormulario h3").textContent = "Editar producto";
-    document.querySelector('button[type="submit"]').textContent = "Guardar cambios";
-
-    const producto = inventario.find(producto => producto.id === id);
-    if (!producto) return;
-
-    productoEditando = producto; // variable deja de estar null y pasa a el producto seleccionado por ID
-    document.querySelector("#nombreProducto").value = producto.nombre;
-    document.querySelector("#numeroSerie").value = producto.serie;
-    document.querySelector("#Categoria").value = producto.categoria;
-    document.querySelector("#marca").value = producto.marca;
-    document.querySelector("#Precio").value = producto.precio;
-    document.querySelector("#Stock").value = producto.stock;
-    document.querySelector("#referencia").value = producto.referencia;
-    modalProducto.classList.add("activo");
-}
-
-// modal para visualizar agregar producto en ventana suspendida
-
-const modalProducto = document.querySelector("#modalProducto");
-const abrirFormulario = document.querySelector("#abrirFormulario");
-const cerrarFormulario = document.querySelector("#cerrarFormulario");
-
-
-function cerrarModalProducto() {
-
-    productoEditando = null;
-    formulario.reset();
-    document.querySelector(".cabeceraFormulario h3").textContent = "Agregar Producto";
-    document.querySelector('button[type="submit"]').textContent = "Agregar";
-    modalProducto.classList.remove("activo");
-}
-
-// habre el modal para llenar formulario
-abrirFormulario.addEventListener("click", () => {
-    modalProducto.classList.add("activo");
-});
-
-//  cerrar modal con X
-cerrarFormulario.addEventListener("click", () => {
-    cerrarModalProducto();
-});
-
-//  el modal se cierra al darle click fuera del formulario
-modalProducto.addEventListener("click", (e) => {
-    if(e.target === modalProducto){
-        cerrarModalProducto();
+function configurarEspecificacionesDinamicas() {
+    if (btnAgregarEspec) {
+        btnAgregarEspec.addEventListener("click", () => {
+            const div = document.createElement("div");
+            div.className = "d-flex gap-2 mb-2 fila-especificacion";
+            div.innerHTML = `
+                <input type="text" class="form-control espec-clave" placeholder="Propiedad (ej: RAM)">
+                <input type="text" class="form-control espec-valor" placeholder="Valor (ej: 16GB)">
+                <button type="button" class="btn btn-outline-danger btn-sm" onclick="this.parentElement.remove()">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            `;
+            if (contenedorEspecificaciones) contenedorEspecificaciones.appendChild(div);
+        });
     }
-});
-
-
-// aqui traigo del localstore el nombre del administrador
-const nombreUsuario = localStorage.getItem("currentUserName");
-
-if (nombreUsuario) {
-    document.getElementById("admon").textContent =
-        `Hola, ${nombreUsuario}`;
 }
-
-const botonPanel = document.getElementById("togglePanel");
-const panel = document.querySelector(".panelAdmonIzq");
-
-// mostrar y esconder  panelizqueirdo en responsive
-botonPanel.addEventListener("click", (e) => {
-    e.preventDefault();
-    panel.classList.toggle("activo");
-});
-
-
-
