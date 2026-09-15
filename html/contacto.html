@@ -71,6 +71,33 @@
         </div>
     </nav>
 
+       <!-- Modal Estilizado para Cerrar Sesión -->
+<div class="modal fade" id="modalLogout" tabindex="-1" aria-labelledby="modalLogoutLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-logout-custom">
+
+      <button type="button" class="cerrar-modal-custom" data-bs-dismiss="modal" aria-label="Cerrar">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div class="modal-body text-center pt-4 pb-2 px-4">
+        <div class="icon-box-logout mb-3">
+          <i class="bi bi-person-x-fill"></i>
+        </div>
+        <h3 class="fw-bold mb-2" id="modalLogoutLabel" style="color: #17233a;">¿Cerrar sesión?</h3>
+        <p class="subtitulo mb-4" id="modalLogoutText">¿Estás seguro de que deseas salir de tu cuenta?</p>
+      </div>
+
+      <div class="modal-footer border-0 d-flex justify-content-center gap-3 pb-4">
+        <button type="button" class="btn-modal-cancelar" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn-modal-confirmar" id="btnConfirmLogout">Sí, cerrar sesión</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
     <!-- Offcanvas Carrito -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
         <div class="offcanvas-header border-bottom">
@@ -322,7 +349,7 @@
                 <div class="logo">
                     <img src="../assets/inicio/pagina-contacto/location.svg" alt="Ubicación" />
                 </div></a>
-                <a href="https://www.google.com/maps/place/Centro+de+Alta+Tecnolog%C3%ADa/@4.6642765,-74.0587321,19z/data=!4m6!3m5!1s0x8e3f9a5f2fb8bacb:0x9430fdba06d6e63b!8m2!3d4.664187!4d-74.058856!16s%2Fg%2F1tfjgl6x?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D"> 
+                <a href="https://www.google.com/maps/place/Centro+de+Alta+Tecnolog%C3%ADa/@4.6642765,-74.0587321,19z/data=!4m6!3m5!1s0x8e3f9a5f2fb8bacb:0x9430fdba06d6e63b!8m2!3d4.664187!4d-74.058856!16s%2Fg%2F1tfjgl6x?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D">
                 <h3>Visítanos</h3></a>
 
                 <p class="nombreProducto">Ven y búscanos de forma presencial</p>

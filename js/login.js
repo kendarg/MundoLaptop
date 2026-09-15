@@ -1,7 +1,19 @@
-const API_AUTH = "http://localhost:8080/api/auth";
-const API_USUARIOS = "http://localhost:8080/api/usuarios";
+const API_AUTH = "https://mundolaptopbackend.onrender.com/api/auth";
+const API_USUARIOS = "https://mundolaptopbackend.onrender.com/api/usuarios";
 
 let isLoginMode = true;
+
+// Función para resolver rutas relativas según la ubicación actual
+function obtenerRuta(destino) {
+    const enSubcarpeta = window.location.pathname.includes("/html/");
+    if (destino === "admin") {
+        return enSubcarpeta ? "admin.html" : "html/admin.html";
+    }
+    if (destino === "productos") {
+        return enSubcarpeta ? "productos.html" : "html/productos.html";
+    }
+    return enSubcarpeta ? "../index.html" : "index.html";
+}
 
 function validarFormatoCorreo(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -16,7 +28,6 @@ function showStatus(msg, isError = true) {
     statusMsg.textContent = msg;
 }
 
-// Cierra la sesión activa y limpia localStorage
 function cerrarSesion() {
     localStorage.removeItem("userRole");
     localStorage.removeItem("isAuthenticated");
@@ -41,20 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const overlay = document.getElementById("overlay");
     const closeLogin = document.getElementById("closeLogin");
 
-    // Elementos alternativos para cambio de vista (si existen en el HTML)
     const btnCrearUsuario = document.getElementById("btnCrearUsuario");
     const bntLogin = document.getElementById("bntLogin");
     const vistaLogin = document.getElementById("vistaLogin");
     const vistaRegistro = document.getElementById("vistaRegistro");
 
-    // Instancia del modal de Bootstrap para Logout
     const modalLogoutElem = document.getElementById("modalLogout");
     const modalLogout = modalLogoutElem && typeof bootstrap !== "undefined"
         ? new bootstrap.Modal(modalLogoutElem)
         : null;
     const btnConfirmLogout = document.getElementById("btnConfirmLogout");
 
-    // Funciones para abrir y cerrar el panel lateral
     function abrirLogin() {
         if (loginPanel) loginPanel.classList.add("active");
         if (overlay) overlay.classList.add("active");
@@ -65,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (overlay) overlay.classList.remove("active");
     }
 
-    // Intercepta el clic en el botón de usuario (usa capture 'true' para frenar otros scripts)
     if (buttonUser) {
         buttonUser.addEventListener("click", (e) => {
             e.preventDefault();
@@ -75,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
 
             if (isAuthenticated) {
-                cerrarLogin(); // Asegura que el panel no se despliegue
+                cerrarLogin();
                 const userName = localStorage.getItem("userName") || "Usuario";
                 const modalLogoutText = document.getElementById("modalLogoutText");
 
@@ -92,14 +99,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }, true);
     }
 
-    // Confirmación de cierre de sesión en el modal
     if (btnConfirmLogout) {
         btnConfirmLogout.addEventListener("click", () => {
             cerrarSesion();
         });
     }
 
-    // Eventos para cerrar el panel
     if (closeLogin) closeLogin.addEventListener("click", cerrarLogin);
     if (overlay) overlay.addEventListener("click", cerrarLogin);
 
@@ -109,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Visibilidad de contraseñas
     function setupPasswordToggle(inputId, buttonId, iconId) {
         const passwordInput = document.getElementById(inputId);
         const toggleBtn = document.getElementById(buttonId);
@@ -128,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setupPasswordToggle("passwordInput", "togglePasswordBtn", "togglePasswordIcon");
     setupPasswordToggle("confirmPasswordInput", "toggleConfirmPasswordBtn", "toggleConfirmPasswordIcon");
 
-    // Conmutación entre modo Login y Registro (Vía toggleModeBtn)
     if (toggleModeBtn) {
         toggleModeBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -152,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Conmutación de vistas por IDs específicos (btnCrearUsuario / bntLogin)
     if (btnCrearUsuario && vistaLogin && vistaRegistro) {
         btnCrearUsuario.addEventListener("click", () => {
             vistaLogin.style.display = "none";
@@ -167,7 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Envío del formulario
     if (authForm) {
         authForm.addEventListener("submit", handleSubmit);
     }
@@ -203,7 +204,6 @@ async function handleSubmit(e) {
 
     try {
         if (isLoginMode) {
-            // LOGIN
             const response = await fetch(`${API_AUTH}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -227,16 +227,15 @@ async function handleSubmit(e) {
                 }
 
                 if (userRole === "ADMINISTRADOR" || userRole === "ROLE_ADMINISTRADOR") {
-                    window.location.href = "../html/admin.html";
+                    window.location.href = obtenerRuta("admin");
                 } else {
-                    window.location.href = "../html/productos.html";
+                    window.location.href = obtenerRuta("productos");
                 }
             } else {
                 showStatus("Correo o contraseña incorrectos.");
             }
 
         } else {
-            // REGISTRO
             if (password !== confirmPassword) {
                 showStatus("Las contraseñas no coinciden.");
                 if (loginBtn) loginBtn.disabled = false;
@@ -279,7 +278,7 @@ async function handleSubmit(e) {
                     emailjs.send('service_mundolaptop', 'template_qucojzk', templateParams).catch(console.error);
                 }
 
-                window.location.href = "../html/productos.html";
+                window.location.href = obtenerRuta("productos");
             } else {
                 showStatus("Error al registrar el usuario. Es posible que el correo ya esté en uso.");
             }
