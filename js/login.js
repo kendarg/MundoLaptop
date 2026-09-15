@@ -1,4 +1,4 @@
-const API_AUTH = "https://mundolaptopbackend.onrender.com/api/auth/login";
+const API_AUTH = "https://mundolaptopbackend.onrender.com/api/auth";
 const API_USUARIOS = "https://mundolaptopbackend.onrender.com/api/usuarios";
 
 let isLoginMode = true;
