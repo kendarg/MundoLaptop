@@ -510,26 +510,26 @@ async function cargarMarcasTabla() {
     }
 }
 
-async function actualizarCategoria(id, nuevoNombre) {
+async function actualizarMarca(id, nuevoNombre) {
     if (!nuevoNombre || nuevoNombre.trim() === "") return;
 
     try {
-        const respuesta = await fetch(`${API_CATEGORIAS_URL}/${id}`, {
+        const respuesta = await fetch(`${API_MARCAS_URL}/${id}`, {
             method: "PUT",
             headers: getAuthHeaders(), // Incluye Content-Type y Token JWT si aplica
             body: JSON.stringify({ nombre: nuevoNombre.trim() })
         });
 
         if (respuesta.ok) {
-            await cargarCategoriasTabla();
-            if (typeof cargarCategorias === "function") await cargarCategorias(); // Refrescar selects
-            alert("Categoría actualizada correctamente 🎉");
+            await cargarMarcasTabla();
+            if (typeof cargarMarcas === "function") await cargarMarcas(); // Refrescar selects
+            alert("Marca actualizada correctamente 🎉");
         } else {
             const errorData = await respuesta.json().catch(() => ({}));
-            alert(errorData.message || "Error al actualizar la categoría.");
+            alert(errorData.message || "Error al actualizar la marca.");
         }
     } catch (error) {
-        console.error("Error al actualizar categoría:", error);
+        console.error("Error al actualizar marca:", error);
     }
 }
 
@@ -877,41 +877,55 @@ function configurarNavegacionAdmin() {
         }
     });
 
-    const modalEditarElement2 = document.getElementById('modalEditarMarca');
-    const modalEditar2 = new bootstrap.Modal(modalEditarElement2);
-
-    // Event Listener para abrir el Modal y cargar los datos
+    // Listener para abrir el Modal y cargar los datos de la Marca
     document.addEventListener("click", (e) => {
         const btnEditar = e.target.closest(".btn-editar-marca");
         if (btnEditar) {
             const id = btnEditar.dataset.id;
             const nombreActual = btnEditar.dataset.nombre;
 
-            // Asignar los valores a los inputs del modal
-            document.getElementById("editMarcaId").value = id;
-            document.getElementById("editMarcaNombre").value = nombreActual;
+            // Obtener elementos del DOM
+            const inputId = document.getElementById("editMarcaId");
+            const inputNombre = document.getElementById("editMarcaNombre");
+            const modalElement = document.getElementById("modalEditarMarca");
 
-            // Abrir el modal
-            modalEditar2.show();
+            if (inputId && inputNombre && modalElement) {
+                inputId.value = id;
+                inputNombre.value = nombreActual || "";
+
+                // Obtener o crear la instancia de Bootstrap sin romper si es dinámico
+                const modalEditar = bootstrap.Modal.getOrCreateInstance(modalElement);
+                modalEditar.show();
+            } else {
+                console.error("No se encontraron los elementos del modal de editar marca en el DOM.");
+            }
         }
     });
 
+    // Listener para el botón "Guardar Cambios"
+    document.getElementById("btnGuardarMarca")?.addEventListener("click", async () => {
+        const inputId = document.getElementById("editMarcaId");
+        const inputNombre = document.getElementById("editMarcaNombre");
 
-    // Event Listener para el botón "Guardar Cambios" dentro del Modal
-    document.getElementById("btnGuardarMarca").addEventListener("click", async () => {
-        const id = document.getElementById("editMarcaId").value;
-        const nuevoNombre = document.getElementById("editMarcaNombre").value;
+        if (!inputId || !inputNombre) return;
+
+        const id = inputId.value;
+        const nuevoNombre = inputNombre.value;
 
         if (!nuevoNombre || !nuevoNombre.trim()) {
             alert("El nombre de la marca no puede estar vacío.");
             return;
         }
 
-        // Ejecutar la petición al backend
+        // Petición al backend
         await actualizarMarca(id, nuevoNombre.trim());
 
-        // Cerrar el modal
-        modalEditar2.hide();
+        // Cerrar modal
+        const modalElement = document.getElementById("modalEditarMarca");
+        if (modalElement) {
+            const modalEditar = bootstrap.Modal.getInstance(modalElement);
+            modalEditar?.hide();
+        }
     });
 
 
@@ -1059,27 +1073,4 @@ function configurarNavegacionAdmin() {
         modalEditarRol.hide();
     });
 
-    // Delegación de eventos directamente en la tabla de usuarios
-document.getElementById("tablaUsuarios")?.addEventListener("click", async (e) => {
-
-    // BOTÓN EDITAR ROL
-    const btnEditar = e.target.closest(".btn-editar-usuario");
-    if (btnEditar) {
-        const id = btnEditar.dataset.id;
-        const rolActual = btnEditar.dataset.rol;
-
-        document.getElementById("editUsuarioId").value = id;
-        document.getElementById("editUsuarioRolSelect").value = rolActual;
-
-        modalEditarRol.show();
-        return;
-    }
-
-    // BOTÓN ELIMINAR
-    const btnEliminar = e.target.closest(".btn-eliminar-usuario");
-    if (btnEliminar) {
-        const id = btnEliminar.dataset.id;
-        await eliminarUsuario(id);
-    }
-});
 }
