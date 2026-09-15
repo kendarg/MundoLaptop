@@ -179,23 +179,29 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Añadir producto desde las tarjetas
-    const card = e.target.closest(".productos-destacados-card");
-    if (card) {
+   // Añadir producto desde las tarjetas
+    const btnAgregar = e.target.closest("button[data-id]"); // 👈 Buscamos el botón que tiene el data-id
+    if (btnAgregar) {
+      const card = btnAgregar.closest(".productos-destacados-card");
+      
+      // Capturamos el ID directamente del botón
+      const productoId = Number(btnAgregar.dataset.id) || 1; 
+      
       const nombreEl = card.querySelector(".nombreProducto") || card.querySelector("span");
       const nombre = nombreEl ? nombreEl.innerText.trim() : "Producto";
 
       const precioEl = card.querySelector(".Valor") || card.querySelector("strong");
       const precio = precioEl ? Number(precioEl.innerText.replace(/\D/g, "")) || 0 : 0;
 
-      const imgEl = card.querySelector(".img-card img");
+      const imgEl = card.querySelector(".img-card img") || card.querySelector("img");
       const imagen = imgEl ? imgEl.src : "";
 
-      const existente = carrito.find((item) => item.nombre === nombre);
+      // Buscamos por ID en el carrito
+      const existente = carrito.find((item) => item.id === productoId);
       if (existente) {
         existente.cantidad++;
       } else {
-        carrito.push({ nombre, precio, imagen, cantidad: 1 });
+        carrito.push({ id: productoId, nombre, precio, imagen, cantidad: 1 });
       }
 
       actualizarCarrito();
@@ -244,39 +250,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+
   // 7. Confirmar compra
-  document.addEventListener("submit", (e) => {
+
+  document.addEventListener("submit", async (e) => {
     if (e.target.id !== "form-checkout") return;
     e.preventDefault();
 
     const nombreInput = document.getElementById("nombreCliente");
     const nombre = nombreInput ? nombreInput.value : "Cliente";
 
-    const modalCheckoutElement = document.getElementById("modalCheckout");
-    if (modalCheckoutElement) {
-      bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).hide();
+    // Preparamos el payload exactamente como lo espera el DTO de Spring Boot
+    const payloadCompra = {
+      cliente: nombre,
+      items: carrito.map(item => ({
+        id: item.id,
+        cantidad: item.cantidad
+      }))
+    };
+    try {
+
+      // 1. Obtenemos el token guardado en el localStorage
+      const token = localStorage.getItem("token");
+      
+      // Petición POST a tu Backend de Spring Boot con las cabeceras de autorización
+      const response = await fetch('http://localhost:8080/api/productos/comprar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // 👈 AQUÍ ENVIAMOS EL TOKEN
+        },
+        body: JSON.stringify(payloadCompra)
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json(); // Intentamos leer el JSON de error del backend
+        throw new Error(errorData.error || errorData.message || "Error al procesar la compra.");
+        
+      }
+      } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "No se pudo completar",
+        text: error.message || "Hubo un error al actualizar el stock en la base de datos."
+      });
     }
-
-    Swal.fire({
-     iconHtml: '<i class="bi bi-truck text-success display-4"></i>', // Icono de furgón/camión
-      customClass: {
-        icon: 'border-0' // Quita el borde circular predeterminado
-      },
-      title: `Gracias por tu compra ${nombre}`,
-      html: `
-        <p class="mb-1">En breve nos pondremos en contacto para gestionar el envio</p>
-        <div class="mt-3 p-2 bg-light rounded text-muted small">
-          <i class="bi bi-box-seam me-1"></i> Tu pedido ya esta listo para ser procesado
-        </div>
-      `,
-      confirmButtonText: 'Excelente',
-      confirmButtonColor: "#198754"
-    });
-
-    carrito = [];
-    actualizarCarrito();
-    e.target.reset();
-  });
+});
 
   // 8. Carga inicial
   renderizarCarrito();
