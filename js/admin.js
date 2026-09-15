@@ -2,6 +2,7 @@
 const API_URL = "http://localhost:8080/api/productos";
 const API_CATEGORIAS_URL = "http://localhost:8080/api/categorias";
 const API_MARCAS_URL = "http://localhost:8080/api/marcas";
+const API_USUARIOS_URL = "http://localhost:8080/api/usuarios"; // Endpoint para usuarios
 
 // Referencias a elementos del DOM
 const tablaProductosBody = document.querySelector(".tareas");
@@ -19,6 +20,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     await cargarProductos();
     configurarEventosModal();
     configurarEspecificacionesDinamicas();
+
+    // ==========================================
+    // INICIALIZACIÓN DE LA NAVEGACIÓN DINÁMICA (SPA)
+    // ==========================================
+    configurarNavegacionAdmin();
 });
 
 // Función auxiliar para obtener las cabeceras con el JWT
@@ -31,7 +37,7 @@ function getAuthHeaders() {
 }
 
 // ==========================================
-// 1. OBTENER Y MOSTRAR CATÁLOGOS (GET Categorías y Marcas)
+// 1. OBTENER Y MOSTRAR CATÁLOGOS (GET Categorías y Marcas para selects)
 // ==========================================
 async function cargarCategorias() {
     const selectCategoria = document.getElementById("Categoria");
@@ -84,10 +90,9 @@ async function cargarMarcas() {
 // ==========================================
 async function cargarProductos() {
     try {
-        const response = await fetch("http://localhost:8080/api/productos"); // Reemplaza con tu URL
+        const response = await fetch("http://localhost:8080/api/productos");
         const data = await response.json();
 
-        // 🔍 IMPRIMIR EN CONSOLA
         console.log("Estructura completa de la respuesta JSON:", data);
         if (data.length > 0) {
             console.log("Primer producto obtenido:", data[0]);
@@ -100,10 +105,10 @@ async function cargarProductos() {
 }
 
 function renderizarTabla(productos) {
-    if (!tablaProductosBody) return;
-    tablaProductosBody.innerHTML = ""; // Limpiar tabla
+    const tablaBody = document.querySelector(".tareas");
+    if (!tablaBody) return;
+    tablaBody.innerHTML = ""; // Limpiar tabla
 
-    // Mapeos de ID -> Nombre tomando las opciones cargadas en los <select> del formulario
     const selectCategoria = document.getElementById("Categoria");
     const selectMarca = document.getElementById("marca");
 
@@ -122,17 +127,14 @@ function renderizarTabla(productos) {
     }
 
     productos.forEach(prod => {
-        // 1. Obtener número de serie exacto según el JSON (numeroserie en minúscula)
         const serie = prod.numeroserie || prod.numeroSerie || 'N/A';
 
-        // 2. Obtener Nombre de Categoría buscando el ID o la propiedad
         const catId = prod.categoriaId || prod.categoria?.id || prod.categoria;
         const nombreCategoria = mapaCategorias[catId]
             || prod.categoriaNombre
             || prod.categoria?.nombre
             || `Categoría #${catId}`;
 
-        // 3. Obtener Nombre de Marca buscando el ID o la propiedad
         const marcaId = prod.marcaId || prod.marca?.id || prod.marca;
         const nombreMarca = mapaMarcas[marcaId]
             || prod.marcaNombre
@@ -163,7 +165,7 @@ function renderizarTabla(productos) {
                 </button>
             </td>
         `;
-        tablaProductosBody.appendChild(tr);
+        tablaBody.appendChild(tr);
     });
 }
 
@@ -195,7 +197,6 @@ if (formProducto) {
             if (clave && valor) especificaciones[clave] = valor;
         });
 
-        // Objeto construido tal como lo espera el controlador de Java
         const productoData = {
             nombre: document.getElementById("nombreProducto")?.value.trim(),
             numeroSerie: document.getElementById("numeroSerie")?.value.trim(),
@@ -335,6 +336,584 @@ function configurarEspecificacionesDinamicas() {
                 </button>
             `;
             if (contenedorEspecificaciones) contenedorEspecificaciones.appendChild(div);
+        });
+    }
+}
+
+
+
+async function crearNuevaMarca(nombreMarca) {
+    if (!nombreMarca || nombreMarca.trim() === "") {
+        alert("El nombre de la marca no puede estar vacío.");
+        return;
+    }
+
+    // Estructura que espera MarcaRequestDTO en el Backend
+    const marcaData = {
+        nombre: nombreMarca.trim()
+    };
+
+    try {
+        const respuesta = await fetch(API_MARCAS_URL, {
+            method: "POST",
+            headers: getAuthHeaders(),
+            body: JSON.stringify(marcaData)
+        });
+
+        if (respuesta.ok) {
+            // Actualizar tabla de marcas y los selectores del formulario de productos
+            await cargarMarcasTabla();
+            await cargarMarcas();
+            alert("Marca creada con éxito 🎉");
+        } else {
+            const errorData = await respuesta.json().catch(() => ({}));
+            console.error("Error al crear marca:", respuesta.status, errorData);
+            alert(errorData.message || errorData.error || "No se pudo crear la marca. Verifica que no esté duplicada.");
+        }
+    } catch (error) {
+        console.error("Error de red al crear la marca:", error);
+        alert("Ocurrió un error al conectar con el servidor.");
+    }
+}
+async function crearNuevaCategoria(nombreCategoria) {
+    if (!nombreCategoria || nombreCategoria.trim() === "") {
+        alert("El nombre de la categoría no puede estar vacío.");
+        return;
+    }
+
+    // Estructura que espera CategoriaRequestDTO en el Backend
+    const categoriaData = {
+        nombre: nombreCategoria.trim()
+    };
+
+    try {
+        const respuesta = await fetch(API_CATEGORIAS_URL, {
+            method: "POST",
+            headers: getAuthHeaders(),
+            body: JSON.stringify(categoriaData)
+        });
+
+        if (respuesta.ok) {
+            // Actualizar tabla de categorías y los selectores del formulario de productos
+            await cargarCategoriasTabla();
+            await cargarCategorias();
+            alert("Categoría creada con éxito 🎉");
+        } else {
+            const errorData = await respuesta.json().catch(() => ({}));
+            console.error("Error al crear categoría:", respuesta.status, errorData);
+            alert(errorData.message || errorData.error || "No se pudo crear la categoría. Verifica que no esté duplicada.");
+        }
+    } catch (error) {
+        console.error("Error de red al crear la categoría:", error);
+        alert("Ocurrió un error al conectar con el servidor.");
+    }
+}
+
+
+
+
+async function cargarCategoriasTabla() {
+    try {
+        const respuesta = await fetch(API_CATEGORIAS_URL);
+        if (!respuesta.ok) throw new Error("Error al obtener categorías");
+        const categorias = await respuesta.json();
+
+        const tbody = document.getElementById("tablaCategorias");
+        if (!tbody) return;
+        tbody.innerHTML = "";
+
+        categorias.forEach(cat => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${cat.id}</td>
+                <td>${cat.nombre || cat.nombreCategoria}</td>
+                <td>${cat.descripcion || 'General'}</td>
+                <td><span class="badge bg-success">Activo</span></td>
+                <td>
+                    <!-- Botón Editar con atributos de datos -->
+                    <button class="btn btn-sm btn-warning me-1 btn-editar-categoria" 
+                            data-id="${cat.id}" 
+                            data-nombre="${cat.nombre || cat.nombreCategoria}">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <!-- Botón Eliminar con data-id -->
+                    <button class="btn btn-sm btn-danger btn-eliminar-categoria" 
+                            data-id="${cat.id}">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    } catch (error) {
+        console.error("Error al cargar la tabla de categorías:", error);
+    }
+}
+
+async function cargarMarcasTabla() {
+    try {
+        const respuesta = await fetch(API_MARCAS_URL);
+        if (!respuesta.ok) throw new Error("Error al obtener marcas");
+        const marcas = await respuesta.json();
+
+        const tbody = document.getElementById("tablaMarcas");
+        if (!tbody) return;
+        tbody.innerHTML = "";
+
+        marcas.forEach(marca => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${marca.id}</td>
+                <td>${marca.nombre || marca.nombreMarca}</td>
+                <td>${marca.descripcion || 'General'}</td>
+                <td><span class="badge bg-success">Activo</span></td>
+                <td>
+                    <!-- Botón Editar con datos de marca -->
+                    <button class="btn btn-sm btn-warning me-1 btn-editar-marca" 
+                            data-id="${marca.id}" 
+                            data-nombre="${marca.nombre || marca.nombreMarca}">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                    <!-- Botón Eliminar corregido con marca.id -->
+                    <button class="btn btn-sm btn-danger btn-eliminar-marca" 
+                            data-id="${marca.id}">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    } catch (error) {
+        console.error("Error al cargar la tabla de marcas:", error);
+    }
+}
+
+async function actualizarCategoria(id, nuevoNombre) {
+    if (!nuevoNombre || nuevoNombre.trim() === "") return;
+
+    try {
+        const respuesta = await fetch(`${API_CATEGORIAS_URL}/${id}`, {
+            method: "PUT",
+            headers: getAuthHeaders(), // Incluye Content-Type y Token JWT si aplica
+            body: JSON.stringify({ nombre: nuevoNombre.trim() })
+        });
+
+        if (respuesta.ok) {
+            await cargarCategoriasTabla();
+            if (typeof cargarCategorias === "function") await cargarCategorias(); // Refrescar selects
+            alert("Categoría actualizada correctamente 🎉");
+        } else {
+            const errorData = await respuesta.json().catch(() => ({}));
+            alert(errorData.message || "Error al actualizar la categoría.");
+        }
+    } catch (error) {
+        console.error("Error al actualizar categoría:", error);
+    }
+}
+
+async function actualizarMarca(id, nuevoNombre) {
+    if (!nuevoNombre || nuevoNombre.trim() === "") return;
+
+    try {
+        const respuesta = await fetch(`${API_MARCAS_URL}/${id}`, {
+            method: "PUT",
+            headers: getAuthHeaders(), // Incluye Content-Type y Token JWT si aplica
+            body: JSON.stringify({ nombre: nuevoNombre.trim() })
+        });
+
+        if (respuesta.ok) {
+            await cargarMarcasTabla();
+            if (typeof cargarMarcas === "function") await cargarMarcas(); // Refrescar selects
+            alert("Marca actualizada correctamente 🎉");
+        } else {
+            const errorData = await respuesta.json().catch(() => ({}));
+            alert(errorData.message || "Error al actualizar la marca.");
+        }
+    } catch (error) {
+        console.error("Error al actualizar marca:", error);
+    }
+}
+
+
+async function eliminarCategoria(id) {
+    if (!confirm("¿Deseas eliminar esta categoría?")) return;
+
+    try {
+        const respuesta = await fetch(`${API_CATEGORIAS_URL}/${id}`, {
+            method: "DELETE",
+            headers: getAuthHeaders()
+        });
+
+        if (respuesta.status === 204 || respuesta.ok) {
+            await cargarCategoriasTabla();
+            if (typeof cargarCategorias === "function") await cargarCategorias();
+            alert("Categoría eliminada con éxito 🗑️");
+        } else {
+            alert("No se pudo eliminar la categoría (puede que tenga productos asociados).");
+        }
+    } catch (error) {
+        console.error("Error al eliminar categoría:", error);
+    }
+}
+
+
+async function eliminarMarca(id) {
+    if (!confirm("¿Deseas eliminar esta marca?")) return;
+
+    try {
+        const respuesta = await fetch(`${API_MARCAS_URL}/${id}`, {
+            method: "DELETE",
+            headers: getAuthHeaders()
+        });
+
+        if (respuesta.status === 204 || respuesta.ok) {
+            await cargarMarcasTabla();
+            if (typeof cargarMarcas === "function") await cargarMarcas();
+            alert("Marca eliminada con éxito 🗑️");
+        } else {
+            alert("No se pudo eliminar la marca (puede que tenga productos asociados).");
+        }
+    } catch (error) {
+        console.error("Error al eliminar marca:", error);
+    }
+}
+
+
+async function cargarUsuariosTabla() {
+    try {
+        const respuesta = await fetch(API_USUARIOS_URL, {
+            headers: getAuthHeaders()
+        });
+        if (!respuesta.ok) throw new Error("Error al obtener usuarios");
+        const usuarios = await respuesta.json();
+
+        const tbody = document.getElementById("tablaUsuarios");
+        if (!tbody) return;
+        tbody.innerHTML = "";
+
+        usuarios.forEach(u => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${u.id}</td>
+                <td>${u.email || u.username}</td>
+                <td>${u.rol || 'ROLE_USER'}</td>
+                <td><span class="badge bg-success">Activo</span></td>
+                <td>
+                    <button class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil-square"></i></button>
+                    <button class="btn btn-sm btn-danger"><i class="bi bi-trash-fill"></i></button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    } catch (error) {
+        console.error("Error al cargar la tabla de usuarios:", error);
+    }
+}
+
+// ==========================================
+// 8. ENRUTADOR DINÁMICO SPA (Manejo de Vista central)
+// ==========================================
+function configurarNavegacionAdmin() {
+    const contenedorCentral = document.getElementById("contenidoDinamico");
+    const linksNavegacion = document.querySelectorAll(".nav-link-admin");
+
+    if (!contenedorCentral || linksNavegacion.length === 0) return;
+
+    const vistas = {
+        productos: `
+            <div class="p-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="fw-bold tituloProductos">Productos</h4>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <p class="subtitulopanel">Administra, agrega, edita o elimina productos.</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="tablaInventario table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Serie</th>
+                                <th>Categoría</th>
+                                <th>Marca</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Repotenciado</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tareas"></tbody>
+                    </table>
+                </div>
+            </div>
+        `,
+        marcas: `
+    <div class="p-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="fw-bold tituloProductos">Marcas</h4>
+            <button id="btnNuevaMarca" class="btn btn-primary btn-sm">
+                <i class="bi bi-plus-lg"></i> Nueva Marca
+            </button>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <p class="subtitulopanel">Clasificación de productos disponibles.</p>
+        </div>
+        <div class="table-responsive">
+            <table class="tablaInventario table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Marca</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaMarcas"></tbody>
+            </table>
+        </div>
+    </div>
+`,
+        categorias: `
+    <div class="p-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="fw-bold tituloProductos">Categorías</h4>
+            <button id="btnNuevaCategoria" class="btn btn-primary btn-sm">
+                <i class="bi bi-plus-lg"></i> Nueva Categoría
+            </button>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <p class="subtitulopanel">Clasificación de productos disponibles.</p>
+        </div>
+        <div class="table-responsive">
+            <table class="tablaInventario table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Categoría</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaCategorias"></tbody>
+            </table>
+        </div>
+    </div>
+`,
+        usuarios: `
+            <div class="p-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="fw-bold tituloProductos">Usuarios</h4>
+                    <button class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> Crear Usuario</button>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <p class="subtitulopanel">Administración de accesos y permisos.</p>
+                </div>
+                <div class="table-responsive">
+                    <table class="tablaInventario table table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email / Usuario</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaUsuarios"></tbody>
+                    </table>
+                </div>
+            </div>
+        `
+    };
+
+    linksNavegacion.forEach(link => {
+        link.addEventListener("click", async (e) => {
+            e.preventDefault();
+
+            linksNavegacion.forEach(l => l.classList.remove("active"));
+            link.classList.add("active");
+
+            const nombreVista = link.getAttribute("data-vista");
+
+            if (vistas[nombreVista]) {
+                contenedorCentral.innerHTML = vistas[nombreVista];
+
+                // Consumir el endpoint adecuado al cambiar de vista
+                if (nombreVista === "productos") {
+                    await cargarProductos();
+                } else if (nombreVista === "marcas") {
+                    await cargarMarcasTabla();
+                } else if (nombreVista === "categorias") {
+                    await cargarCategoriasTabla();
+                } else if (nombreVista === "usuarios") {
+                    await cargarUsuariosTabla();
+                }
+            }
+        });
+    });
+
+    // Instancia del modal de Bootstrap
+    const modalEditarElement = document.getElementById('modalEditarCategoria');
+    const modalEditar = new bootstrap.Modal(modalEditarElement);
+
+    // Event Listener para abrir el Modal y cargar los datos
+    document.addEventListener("click", (e) => {
+        const btnEditar = e.target.closest(".btn-editar-categoria");
+        if (btnEditar) {
+            const id = btnEditar.dataset.id;
+            const nombreActual = btnEditar.dataset.nombre;
+
+            // Asignar los valores a los inputs del modal
+            document.getElementById("editCategoriaId").value = id;
+            document.getElementById("editCategoriaNombre").value = nombreActual;
+
+            // Abrir el modal
+            modalEditar.show();
+        }
+    });
+
+    const modalEditarElement2 = document.getElementById('modalEditarMarca');
+    const modalEditar2 = new bootstrap.Modal(modalEditarElement2);
+
+    // Event Listener para abrir el Modal y cargar los datos
+    document.addEventListener("click", (e) => {
+        const btnEditar = e.target.closest(".btn-editar-marca");
+        if (btnEditar) {
+            const id = btnEditar.dataset.id;
+            const nombreActual = btnEditar.dataset.nombre;
+
+            // Asignar los valores a los inputs del modal
+            document.getElementById("editMarcaId").value = id;
+            document.getElementById("editMarcaNombre").value = nombreActual;
+
+            // Abrir el modal
+            modalEditar2.show();
+        }
+    });
+
+
+    // Event Listener para el botón "Guardar Cambios" dentro del Modal
+    document.getElementById("btnGuardarMarca").addEventListener("click", async () => {
+        const id = document.getElementById("editMarcaId").value;
+        const nuevoNombre = document.getElementById("editMarcaNombre").value;
+
+        if (!nuevoNombre || !nuevoNombre.trim()) {
+            alert("El nombre de la marca no puede estar vacío.");
+            return;
+        }
+
+        // Ejecutar la petición al backend
+        await actualizarMarca(id, nuevoNombre.trim());
+
+        // Cerrar el modal
+        modalEditar2.hide();
+    });
+
+
+    // Event Listener para el botón "Guardar Cambios" dentro del Modal
+    document.getElementById("btnGuardarCategoria").addEventListener("click", async () => {
+        const id = document.getElementById("editCategoriaId").value;
+        const nuevoNombre = document.getElementById("editCategoriaNombre").value;
+
+        if (!nuevoNombre || !nuevoNombre.trim()) {
+            alert("El nombre de la categoría no puede estar vacío.");
+            return;
+        }
+
+        // Ejecutar la petición al backend
+        await actualizarCategoria(id, nuevoNombre.trim());
+
+        // Cerrar el modal
+        modalEditar.hide();
+    });
+
+
+    document.addEventListener("click", async (e) => {
+        const btn = e.target.closest("#btnNuevaMarca");
+        if (btn) {
+
+            const inputNombre = document.getElementById("nombreMarcaInput");
+            if (inputNombre) inputNombre.value = "";
+
+            // Abrir el modal de Bootstrap
+            const modalElemento = document.getElementById("modalNuevaMarca");
+            const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElemento);
+            modalInstance.show();
+        }
+
+        const btnEliminar = e.target.closest(".btn-eliminar-categoria");
+        if (btnEliminar) {
+            const id = btnEliminar.dataset.id;
+            await eliminarMarca(id);
+        }
+    });
+
+    document.addEventListener("click", async (e) => {
+        const btn = e.target.closest("#btnNuevaCategoria");
+        if (btn) {
+
+            const inputNombre = document.getElementById("nombreCategoriaInput");
+            if (inputNombre) inputNombre.value = "";
+
+            // Abrir el modal de Bootstrap
+            const modalElemento = document.getElementById("modalNuevaCategoria");
+            const modalInstance = bootstrap.Modal.getOrCreateInstance(modalElemento);
+            modalInstance.show();
+        }
+
+        const btnEliminar = e.target.closest(".btn-eliminar-categoria");
+        if (btnEliminar) {
+            const id = btnEliminar.dataset.id;
+            await eliminarCategoria(id);
+        }
+    });
+
+
+    const formNuevaMarca = document.getElementById("formNuevaMarca");
+    if (formNuevaMarca) {
+        formNuevaMarca.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const inputNombre = document.getElementById("nombreMarcaInput");
+            const nombreMarca = inputNombre.value.trim();
+
+            if (nombreMarca !== "") {
+
+                await crearNuevaMarca(nombreMarca);
+
+
+                const modalElemento = document.getElementById("modalNuevaMarca");
+                const modalInstance = bootstrap.Modal.getInstance(modalElemento);
+                if (modalInstance) {
+                    modalInstance.hide();
+                }
+            }
+        });
+    }
+
+    const formNuevaCategoria = document.getElementById("formNuevaCategoria");
+    if (formNuevaCategoria) {
+        formNuevaCategoria.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const inputNombre = document.getElementById("nombreCategoriaInput");
+            const nombreCategoria = inputNombre.value.trim();
+
+            if (nombreCategoria !== "") {
+
+                await crearNuevaCategoria(nombreCategoria);
+
+
+                const modalElemento = document.getElementById("modalNuevaCategoria");
+                const modalInstance = bootstrap.Modal.getInstance(modalElemento);
+                if (modalInstance) {
+                    modalInstance.hide();
+                }
+            }
         });
     }
 }
