@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    
+
      <!-- Navbar -->
 
     <nav class="navbar navbar-expand-lg sticky-top">
@@ -68,6 +68,33 @@
             </div>
         </div>
     </nav>
+
+       <!-- Modal Estilizado para Cerrar Sesión -->
+<div class="modal fade" id="modalLogout" tabindex="-1" aria-labelledby="modalLogoutLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-logout-custom">
+
+      <button type="button" class="cerrar-modal-custom" data-bs-dismiss="modal" aria-label="Cerrar">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div class="modal-body text-center pt-4 pb-2 px-4">
+        <div class="icon-box-logout mb-3">
+          <i class="bi bi-person-x-fill"></i>
+        </div>
+        <h3 class="fw-bold mb-2" id="modalLogoutLabel" style="color: #17233a;">¿Cerrar sesión?</h3>
+        <p class="subtitulo mb-4" id="modalLogoutText">¿Estás seguro de que deseas salir de tu cuenta?</p>
+      </div>
+
+      <div class="modal-footer border-0 d-flex justify-content-center gap-3 pb-4">
+        <button type="button" class="btn-modal-cancelar" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn-modal-confirmar" id="btnConfirmLogout">Sí, cerrar sesión</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
      <!-- Offcanvas Carrito -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
@@ -182,7 +209,7 @@
                     <i class="bi bi-envelope"></i>
                     <input type="email" id="emailInput" placeholder="Correo electrónico" autocomplete="email">
                 </div>
-                
+
             <div class="grupo-input position-relative">
                     <i class="bi bi-lock"></i>
                 <input type="password" id="passwordInput" placeholder="Contraseña" autocomplete="current-password">

@@ -65,6 +65,33 @@
         </div>
     </nav>
 
+       <!-- Modal Estilizado para Cerrar Sesión -->
+<div class="modal fade" id="modalLogout" tabindex="-1" aria-labelledby="modalLogoutLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-logout-custom">
+
+      <button type="button" class="cerrar-modal-custom" data-bs-dismiss="modal" aria-label="Cerrar">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div class="modal-body text-center pt-4 pb-2 px-4">
+        <div class="icon-box-logout mb-3">
+          <i class="bi bi-person-x-fill"></i>
+        </div>
+        <h3 class="fw-bold mb-2" id="modalLogoutLabel" style="color: #17233a;">¿Cerrar sesión?</h3>
+        <p class="subtitulo mb-4" id="modalLogoutText">¿Estás seguro de que deseas salir de tu cuenta?</p>
+      </div>
+
+      <div class="modal-footer border-0 d-flex justify-content-center gap-3 pb-4">
+        <button type="button" class="btn-modal-cancelar" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn-modal-confirmar" id="btnConfirmLogout">Sí, cerrar sesión</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
     <!-- Offcanvas Carrito -->
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCarrito" aria-labelledby="offcanvasCarritoLabel">
         <div class="offcanvas-header border-bottom">
@@ -373,7 +400,7 @@
                     <h5 class="QrH">Chatea Con Nosotros</h5>
                     <span class="QrP">Para una asesoria y una mejor experiencia</span>
                 </strong>
-                <a href="https://wa.me/qr/6PHCCJF6KLD4H1">  
+                <a href="https://wa.me/qr/6PHCCJF6KLD4H1">
                     <div>
                         <img class="QR_ML" src="../img/QR_ML.png" alt="Teléfono" />
                     </div>
@@ -392,7 +419,7 @@
                         <div class="img-card">
                             <img src="https://tv-it.com/storage/shada/msi-laptop/msi-thin-15-b13uc-p3.webp"
                                 alt="">
-                        </div> 
+                        </div>
 
                         <div class="informacion-card">
                             <span> <strong class="Marcas" id="Marcas">MSI</strong></span>
@@ -400,7 +427,7 @@
                             <span> <strong class="Valor">$ 2.150.000 COP</strong></span>
                             <button> <img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
 
-                        </div> 
+                        </div>
                     </div>
                 </div>
 
@@ -749,7 +776,7 @@
 
                     </div>
                 </div>
-                
+
                 <div class="col" data-precio="6500000" data-categoria="reacondicionado" data-popularidad="70"
                     data-fecha="2025-08-27">
                     <div class="productos-destacados-card">

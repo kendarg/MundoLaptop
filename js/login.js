@@ -3,6 +3,18 @@ const API_USUARIOS = "https://mundolaptopbackend.onrender.com/api/usuarios";
 
 let isLoginMode = true;
 
+// Función para resolver rutas relativas según la ubicación actual
+function obtenerRuta(destino) {
+    const enSubcarpeta = window.location.pathname.includes("/html/");
+    if (destino === "admin") {
+        return enSubcarpeta ? "admin.html" : "html/admin.html";
+    }
+    if (destino === "productos") {
+        return enSubcarpeta ? "productos.html" : "html/productos.html";
+    }
+    return enSubcarpeta ? "../index.html" : "index.html";
+}
+
 function validarFormatoCorreo(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -16,6 +28,16 @@ function showStatus(msg, isError = true) {
     statusMsg.textContent = msg;
 }
 
+function cerrarSesion() {
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("userName");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("token");
+
+    window.location.reload();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const authForm = document.getElementById("authForm");
     const toggleModeBtn = document.getElementById("toggleModeBtn");
@@ -24,6 +46,73 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginBtn = document.getElementById("loginBtn");
     const camposRegistro = document.querySelectorAll(".campo-registro");
     const statusMsg = document.getElementById("statusMsg");
+
+    const buttonUser = document.getElementById("buttonuser");
+    const loginPanel = document.getElementById("loginPanel");
+    const overlay = document.getElementById("overlay");
+    const closeLogin = document.getElementById("closeLogin");
+
+    const btnCrearUsuario = document.getElementById("btnCrearUsuario");
+    const bntLogin = document.getElementById("bntLogin");
+    const vistaLogin = document.getElementById("vistaLogin");
+    const vistaRegistro = document.getElementById("vistaRegistro");
+
+    const modalLogoutElem = document.getElementById("modalLogout");
+    const modalLogout = modalLogoutElem && typeof bootstrap !== "undefined"
+        ? new bootstrap.Modal(modalLogoutElem)
+        : null;
+    const btnConfirmLogout = document.getElementById("btnConfirmLogout");
+
+    function abrirLogin() {
+        if (loginPanel) loginPanel.classList.add("active");
+        if (overlay) overlay.classList.add("active");
+    }
+
+    function cerrarLogin() {
+        if (loginPanel) loginPanel.classList.remove("active");
+        if (overlay) overlay.classList.remove("active");
+    }
+
+    if (buttonUser) {
+        buttonUser.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+            const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+
+            if (isAuthenticated) {
+                cerrarLogin();
+                const userName = localStorage.getItem("userName") || "Usuario";
+                const modalLogoutText = document.getElementById("modalLogoutText");
+
+                if (modalLogoutText) {
+                    modalLogoutText.textContent = `Hola ${userName}, actualmente tienes una sesión activa. ¿Deseas salir?`;
+                }
+
+                if (modalLogout) {
+                    modalLogout.show();
+                }
+            } else {
+                abrirLogin();
+            }
+        }, true);
+    }
+
+    if (btnConfirmLogout) {
+        btnConfirmLogout.addEventListener("click", () => {
+            cerrarSesion();
+        });
+    }
+
+    if (closeLogin) closeLogin.addEventListener("click", cerrarLogin);
+    if (overlay) overlay.addEventListener("click", cerrarLogin);
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            cerrarLogin();
+        }
+    });
 
     function setupPasswordToggle(inputId, buttonId, iconId) {
         const passwordInput = document.getElementById(inputId);
@@ -66,6 +155,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    if (btnCrearUsuario && vistaLogin && vistaRegistro) {
+        btnCrearUsuario.addEventListener("click", () => {
+            vistaLogin.style.display = "none";
+            vistaRegistro.style.display = "block";
+        });
+    }
+
+    if (bntLogin && vistaLogin && vistaRegistro) {
+        bntLogin.addEventListener("click", () => {
+            vistaRegistro.style.display = "none";
+            vistaLogin.style.display = "block";
+        });
+    }
+
     if (authForm) {
         authForm.addEventListener("submit", handleSubmit);
     }
@@ -101,8 +204,6 @@ async function handleSubmit(e) {
 
     try {
         if (isLoginMode) {
-
-            // === LOGIN: Petición a AuthController (/api/auth/login) ===
             const response = await fetch(`${API_AUTH}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -111,7 +212,7 @@ async function handleSubmit(e) {
 
             if (response.ok) {
                 const loginResponse = await response.json();
-                
+
                 const userRole = (loginResponse.rol || loginResponse.role || "NORMAL").toUpperCase();
                 const token = loginResponse.token || loginResponse.jwt || "";
                 const userName = loginResponse.nombre || loginResponse.name || email.split("@")[0];
@@ -120,23 +221,21 @@ async function handleSubmit(e) {
                 localStorage.setItem("isAuthenticated", "true");
                 localStorage.setItem("userName", userName);
                 localStorage.setItem("currentUser", email);
-                
+
                 if (token) {
                     localStorage.setItem("token", token);
                 }
 
-                // Evaluación del rol devuelto por el Backend
                 if (userRole === "ADMINISTRADOR" || userRole === "ROLE_ADMINISTRADOR") {
-                    window.location.href = "../html/admin.html";
+                    window.location.href = obtenerRuta("admin");
                 } else {
-                    window.location.href = "../html/productos.html";
+                    window.location.href = obtenerRuta("productos");
                 }
             } else {
                 showStatus("Correo o contraseña incorrectos.");
             }
 
         } else {
-            // === REGISTRO: Petición a UsuarioController (/api/usuarios) ===
             if (password !== confirmPassword) {
                 showStatus("Las contraseñas no coinciden.");
                 if (loginBtn) loginBtn.disabled = false;
@@ -163,14 +262,11 @@ async function handleSubmit(e) {
             });
 
             if (response.ok) {
-                const nuevoUsuario = await response.json();
-
                 localStorage.setItem("userRole", "NORMAL");
                 localStorage.setItem("isAuthenticated", "true");
                 localStorage.setItem("currentUser", email);
                 localStorage.setItem("userName", nombre);
 
-                // Integración de EmailJS
                 if (typeof emailjs !== "undefined") {
                     const templateParams = {
                         user_name: nombre,
@@ -182,7 +278,7 @@ async function handleSubmit(e) {
                     emailjs.send('service_mundolaptop', 'template_qucojzk', templateParams).catch(console.error);
                 }
 
-                window.location.href = "../html/productos.html";
+                window.location.href = obtenerRuta("productos");
             } else {
                 showStatus("Error al registrar el usuario. Es posible que el correo ya esté en uso.");
             }
