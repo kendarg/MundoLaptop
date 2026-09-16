@@ -233,6 +233,22 @@ body {
     justify-content: flex-start !important;
     background-color: var(--var-background-banner);
     border-radius: 10px;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.productos-destacados-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(255, 255, 255, 0.72);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .productos-destacados-card {
+        transition: none;
+    }
+
+    .productos-destacados-card:hover {
+        transform: none;
+    }
 }
 
 /* 2. Contenedor de la imagen */
@@ -307,8 +323,31 @@ body {
 
 .productos-destacados-card button:hover {
 
-    filter: brightness(0.75);
+    background-color: #1BB7D6;
+    color: #054553;
 
+}
+
+.productos-destacados-card button:hover img {
+    filter: brightness(0) saturate(100%) invert(20%) sepia(10%) saturate(1895%) hue-rotate(143deg) brightness(93%) contrast(97%);
+}
+
+.productos-destacados-card button.cart-button-shake {
+    animation: cart-button-shake 420ms ease-in-out;
+}
+
+@keyframes cart-button-shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .productos-destacados-card button.cart-button-shake {
+        animation: none;
+    }
 }
 
 

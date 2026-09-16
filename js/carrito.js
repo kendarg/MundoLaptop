@@ -18,6 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarCarrito();
   }
 
+  function animarContadorCarrito() {
+    const cartCount = document.getElementById("cart-count");
+    if (!cartCount) return;
+
+    cartCount.classList.remove("cart-count-pop");
+    void cartCount.offsetWidth;
+    cartCount.classList.add("cart-count-pop");
+  }
+
   // 4. Función principal de renderizado
   function renderizarCarrito() {
     const cartContainer = document.getElementById("cart-items");
@@ -205,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       actualizarCarrito();
+      animarContadorCarrito();
       return;
     }
 

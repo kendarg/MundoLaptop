@@ -1,5 +1,6 @@
 const contenedorProductos = document.querySelector(".section-productos-render");
 const API_PRODUCTOS_URL = "https://mundolaptopbackend.onrender.com/api/productos";
+const API_MARCAS_URL = "https://mundolaptopbackend.onrender.com/api/marcas";
 
 // Array con tus URLs de imágenes
 const imagenesAleatorias = [
@@ -34,15 +35,28 @@ async function agregarProductosAdmin() {
     if (!contenedorProductos) return;
 
     try {
-        const respuesta = await fetch(API_PRODUCTOS_URL);
-        if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+        const [respuestaProductos, respuestaMarcas] = await Promise.all([
+            fetch(API_PRODUCTOS_URL),
+            fetch(API_MARCAS_URL)
+        ]);
+        if (!respuestaProductos.ok || !respuestaMarcas.ok) {
+            throw new Error("No se pudieron cargar los productos y las marcas");
+        }
 
-        const productos = await respuesta.json();
+        const productos = await respuestaProductos.json();
+        const marcas = await respuestaMarcas.json();
+        const marcasPorId = new Map(
+            marcas.map((marca) => [String(marca.id), marca.nombre || marca.nombreMarca])
+        );
+
         productos.forEach((producto, indice) => {
         const precioFormateado = Number(producto.precio).toLocaleString("es-CO");
 
         const urlAleatoria = imagenesAleatorias[indice % imagenesAleatorias.length];
-        const marca = producto.marca?.nombre || producto.marcaNombre || producto.marca;
+        const marca = producto.marca?.nombre
+            || producto.marcaNombre
+            || marcasPorId.get(String(producto.marcaId))
+            || (typeof producto.marca === "string" ? producto.marca : "");
         const condicion = (producto.condicion || producto.repotenciado || "nuevo")
             .toLowerCase()
             .replace("_", " ");
@@ -57,7 +71,7 @@ async function agregarProductosAdmin() {
         const sinStock = Number(producto.stock) === 0;
 
         const cardHTML = `
-            <div class="col" data-precio="${producto.precio}"
+            <div class="col" data-source="admin" data-precio="${producto.precio}"
                         data-marca="${marca ? marca.toUpperCase() : ""}" data-categoria="${condicion}">
                 <div class="productos-destacados-card${sinStock ? " sin-stock" : ""}">
                     <div class="img-card">
@@ -85,6 +99,15 @@ async function agregarProductosAdmin() {
 }
 
 document.addEventListener("DOMContentLoaded", agregarProductosAdmin);
+
+document.addEventListener("click", (event) => {
+    const cartButton = event.target.closest(".productos-destacados-card button:not(.boton-no-disponible)");
+    if (!cartButton) return;
+
+    cartButton.classList.remove("cart-button-shake");
+    void cartButton.offsetWidth;
+    cartButton.classList.add("cart-button-shake");
+});
 
 // funcion enlace para ordenar productos segun opcion ordenar pg productos
 // se agrego datos en la tarjeta para ordenar
@@ -139,36 +162,53 @@ const checkboxesMarca = document.querySelectorAll(
     'input[name="marca"]'
 );
 
+let categoriaSeleccionada = "";
+
+function normalizarMarca(valor) {
+    const marca = String(valor || "")
+        .trim()
+        .replace(/\s+/g, " ")
+        .toLocaleUpperCase("es-CO");
+
+    return marca === "ACCER" ? "ACER" : marca;
+}
+
+function normalizarCategoria(valor) {
+    const categoria = String(valor || "")
+        .trim()
+        .toUpperCase()
+        .replace(/[-\s]+/g, "_");
+
+    return categoria === "REACONDICIONADO" ? "REPOTENCIADO" : categoria;
+}
+
+function aplicarFiltros() {
+    const marcasSeleccionadas = Array.from(
+        document.querySelectorAll('input[name="marca"]:checked')
+    ).map((check) => normalizarMarca(check.value));
+    const hayFiltrosActivos = marcasSeleccionadas.length > 0 || categoriaSeleccionada;
+
+    document.querySelectorAll(".section-productos-render .col").forEach((producto) => {
+        if (producto.dataset.source !== "admin") {
+            producto.style.display = hayFiltrosActivos ? "none" : "";
+            return;
+        }
+
+        const marcaProducto = normalizarMarca(producto.dataset.marca);
+        const categoriaProducto = normalizarCategoria(producto.dataset.categoria);
+        const coincideMarca = marcasSeleccionadas.length === 0 || marcasSeleccionadas.includes(marcaProducto);
+        const coincideCategoria = !categoriaSeleccionada || categoriaProducto === categoriaSeleccionada;
+
+        producto.style.display = coincideMarca && coincideCategoria ? "" : "none";
+    });
+}
+
 checkboxesMarca.forEach(checkbox => {
     checkbox.addEventListener("change", filtrarMarcas);
 });
 
 function filtrarMarcas() {
-
-    // Marcas seleccionadas con checkbox
-    const marcasSeleccionadas = Array.from(
-        document.querySelectorAll(
-            'input[name="marca"]:checked'
-        )
-    ).map(check => check.value.toUpperCase());
-
-    // Todas las tarjetas
-    const productos = document.querySelectorAll(".col");
-
-
-    // funcion para filtrar por checkbox
-    productos.forEach(producto => {
-
-        const marcaProducto =
-            producto.dataset.marca;
-
-        producto.style.display =
-            marcasSeleccionadas.length === 0 ||
-            marcasSeleccionadas.includes(marcaProducto)
-                ? ""
-                : "none";
-    });
-
+    aplicarFiltros();
 }
 
 // funcion para filtrar por categorias , pasar a checkbox
@@ -179,17 +219,7 @@ filtrosCategoria.forEach(filtro => {
     filtro.addEventListener("click", (e) => {
         e.preventDefault();
 
-        const categoriaSeleccionada = filtro.dataset.categoria;
-        const productos = document.querySelectorAll(".col");
-
-        productos.forEach(producto => {
-            const categoriaProducto =
-                producto.dataset.categoria;
-            if (categoriaProducto === categoriaSeleccionada) {
-                producto.style.display = "";
-            } else {
-                producto.style.display = "none";
-            }
-        });
+        categoriaSeleccionada = normalizarCategoria(filtro.dataset.categoria);
+        aplicarFiltros();
     });
 });

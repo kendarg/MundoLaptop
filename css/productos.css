@@ -222,6 +222,10 @@ body {
     justify-content: flex-start !important;
 }
 
+.productos-destacados-card .Marcas {
+    display: none;
+}
+
 .productos-destacados-card.sin-stock {
     background-color: #e2e2e2;
     color: #666;
