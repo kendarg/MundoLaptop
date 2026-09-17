@@ -1310,5 +1310,17 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "/404.html";
     }
 });
-console.log("Token:", localStorage.getItem("token"));
-console.log("Rol:", localStorage.getItem("rol"));
+
+
+// Detecta dinámicamente si estás en desarrollo local o en producción en GitHub Pages
+const API_BASE_URL = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+    ? "http://localhost:8080/api"
+    : "https://mundolaptopbackend.onrender.com/api";
+
+// Ejemplo de consumo desde el Frontend:
+fetch(`${API_BASE_URL}/productos`)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Productos obtenidos:", data);
+    })
+    .catch(error => console.error("Error conectando con la API:", error));
