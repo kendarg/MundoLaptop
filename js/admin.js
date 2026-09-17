@@ -1278,3 +1278,37 @@ function configurarNavegacionAdmin() {
     });
 
 }
+
+// Función para decodificar la parte Payload del JWT sin librerías externas
+function obtenerRolDesdeJWT(token) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(c => {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        const payload = JSON.parse(jsonPayload);
+        // Ajusta 'role' o 'authorities' según la clave de tu JWT
+        return payload.role || payload.authorities || payload.rol;
+    } catch (e) {
+        return null;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+    const roleFromToken = token ? obtenerRolDesdeJWT(token) : null;
+
+    const userRole = Array.isArray(roleFromToken) 
+        ? roleFromToken.map(r => r.toUpperCase()) 
+        : [String(roleFromToken).trim().toUpperCase()];
+
+    const esAdmin = userRole.some(r => r === "ADMINISTRADOR" || r === "ROLE_ADMINISTRADOR");
+
+    if (!token || !esAdmin) {
+        window.location.href = "/404.html";
+    }
+});
+console.log("Token:", localStorage.getItem("token"));
+console.log("Rol:", localStorage.getItem("rol"));
