@@ -13,6 +13,10 @@
     display:flex;
 }
 
+/* .formulario1{
+    display: flex !important;
+} */
+
 .formulario{
     width:100%;
     max-width:600px;

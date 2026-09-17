@@ -67,7 +67,7 @@ a{
 body.dark h3,
 body.dark p,body.dark .nav-link,
 body.dark .card-text, body.dark #navoscuro,body.dark h4,body.dark .cateogriasinfo,
-body.dark .QrH, body.dark .costosEnvio, body.dark .bi-person-fill-gear, body.dark #infoUso{
+body.dark .QrH, body.dark .costosEnvio, body.dark .bi-person-fill-gear, body.dark #infoUso, body.dark #subtituloP{
 color: #FFFFFF !important;
 }
 
@@ -96,7 +96,7 @@ body.dark .githubF, body.dark .text-secondary,
 body.dark #icono,
 body.dark .nombreProducto,body.dark .Valor,body.dark #panelSub,
 body.dark .github-link, body.dark .footerT, body.darck #Marca, body.dark .statusMsg,
-body.dark .subtitulopanel
+body.dark .subtitulopanel, body.dark #modalLogoutText
 {
     color: black !important;
 }
@@ -149,4 +149,10 @@ body.dark .bi-pencil-square{
 }
 body.dark #statusMsg{
     color: red !important;
+}
+.swal2-container {
+    z-index: 99999 !important;
+}
+.bi-pencil-square:hover{
+    color: #c20000 !important ;
 }

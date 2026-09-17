@@ -77,7 +77,7 @@ Swal.fire({
             }else{
                 campo.classList.remove('is-invalid');
                 campo.classList.add('is-valid');
-            }   
+            }
         });
         if(!formularioValido){
             Swal.showValidationMessage('Porfavor diligenciar Todos los campos obligatorios');

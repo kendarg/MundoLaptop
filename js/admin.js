@@ -230,9 +230,26 @@ if (formProducto) {
                 console.error("Error en la solicitud:", respuesta.status, errorData);
 
                 if (respuesta.status === 401 || respuesta.status === 403) {
-                    alert(errorData.error || "Sesión expirada o no tienes permisos de administrador.");
+                Swal.fire({
+                iconHtml: '<i class="bi bi-slash-circle text-warning     display-4"></i>',
+                customClass: {
+                icon: 'border-0'
+                },
+                title: 'Acceso Denegado',
+                text: errorData.error || "Sesión expirada o no tienes permisos de administrador.",
+                target: document.getElementById('modalProducto')
+                });
+                    // alert(errorData.error || "Sesión expirada o no tienes permisos de administrador.");
                 } else {
-                    alert("Ocurrió un error al procesar el producto (HTTP " + respuesta.status + "). Revisa los datos ingresados.");
+                    Swal.fire({
+                iconHtml: '<i class="bi bi-exclamation-octagon text-danger display-1"></i>',
+                customClass: {
+                icon: 'border-0'
+                },
+                title: 'Error',
+                text: "Ocurrió un error al procesar el producto (HTTP " + respuesta.status + "). Revisa los datos ingresados.",
+                target: document.getElementById('modalProducto')
+            });
                 }
             }
         } catch (error) {
@@ -245,12 +262,35 @@ if (formProducto) {
 // 4. ELIMINAR PRODUCTO (DELETE)
 // ==========================================
 async function eliminarProducto(id) {
-    if (!confirm("¿Estás seguro de eliminar este producto?")) return;
 
     const token = localStorage.getItem("token");
     if (!token) {
-        alert("Debes estar autenticado para realizar esta acción.");
+        Swal.fire({
+            iconHtml: '<i class="bi bi-exclamation-octagon text-danger display-1"></i>',
+            customClass: {
+                icon: 'border-0'
+            },
+            text: "Debes estar autenticado para realizar esta acción.",
+        });
         return;
+    }
+
+    const resultado = await Swal.fire({
+        iconHtml: '<i class="bi bi-exclamation-triangle text-warning display-4"></i>',
+        customClass: {
+            icon: 'border-0'
+        },
+        title: '¿Estas seguro?',
+        text: "¿Estás seguro de eliminar este producto?",
+        showCancelButton: true,
+        confirmButtonText: 'Si eliminar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d',
+    });
+
+    if (!resultado.isConfirmed) {
+        return; 
     }
 
     try {
@@ -260,16 +300,26 @@ async function eliminarProducto(id) {
         });
 
         if (respuesta.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: '¡Eliminado!',
+                text: 'El producto ha sido borrado con exito 🗑️.',
+                timer: 2000,
+                showConfirmButton: false,
+            });
             cargarProductos();
         } else {
             const errorData = await respuesta.json().catch(() => ({}));
-            alert(errorData.error || "No fue posible eliminar el producto.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: errorData.error || "No fue posible eliminar el producto.",
+            });
         }
     } catch (error) {
         console.error("Error en servidor al eliminar:", error);
     }
 }
-
 // ==========================================
 // 5. EDICIÓN DE PRODUCTO
 // ==========================================
@@ -341,7 +391,7 @@ function configurarEventosModal() {
             if (contenedorEspecificaciones) contenedorEspecificaciones.innerHTML = "";
             cargarCategorias();
             cargarMarcas();
-            if (modalProducto) modalProducto.style.display = "block";
+            if (modalProducto) modalProducto.style.display = "flex";
         });
     }
 
@@ -366,7 +416,16 @@ function configurarEspecificacionesDinamicas() {
 
 async function crearNuevaMarca(nombreMarca) {
     if (!nombreMarca || nombreMarca.trim() === "") {
-        alert("El nombre de la marca no puede estar vacío.");
+        Swal.fire({
+                iconHtml: '<i class="bi bi-exclamation-octagon text-danger display-1"></i>',
+                customClass: {
+                icon: 'border-0'
+                },
+                title: 'Error',
+                text: "El nombre de la marca no puede estar vacío.",
+                target: document.getElementById('modalProducto')
+                });
+        // alert("El nombre de la marca no puede estar vacío.");
         return;
     }
 
@@ -386,11 +445,24 @@ async function crearNuevaMarca(nombreMarca) {
             // Actualizar tabla de marcas y los selectores del formulario de productos
             await cargarMarcasTabla();
             await cargarMarcas();
-            alert("Marca creada con éxito 🎉");
+            Swal.fire({
+                icon: 'success',
+                title: 'Creacion',
+                text: 'Marca creada con éxito 🎉',
+                timer: 1500,
+                // target: document.getElementById('modalProducto')
+            });
+            // alert("Marca creada con éxito 🎉");
         } else {
             const errorData = await respuesta.json().catch(() => ({}));
             console.error("Error al crear marca:", respuesta.status, errorData);
-            alert(errorData.message || errorData.error || "No se pudo crear la marca. Verifica que no esté duplicada.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Creacion',
+                text: errorData.message || errorData.error || "No se pudo crear la marca. Verifica que no esté duplicada.",
+                target: document.getElementById('modalProducto')
+            });
+            // alert(errorData.message || errorData.error || "No se pudo crear la marca. Verifica que no esté duplicada.");
         }
     } catch (error) {
         console.error("Error de red al crear la marca:", error);
@@ -419,11 +491,24 @@ async function crearNuevaCategoria(nombreCategoria) {
             // Actualizar tabla de categorías y los selectores del formulario de productos
             await cargarCategoriasTabla();
             await cargarCategorias();
-            alert("Categoría creada con éxito 🎉");
+            Swal.fire({
+                icon: "success",
+                title: 'Creacion',
+                text: "Categoría creada con éxito 🎉",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            // alert("Categoría creada con éxito 🎉");
         } else {
             const errorData = await respuesta.json().catch(() => ({}));
             console.error("Error al crear categoría:", respuesta.status, errorData);
-            alert(errorData.message || errorData.error || "No se pudo crear la categoría. Verifica que no esté duplicada.");
+            Swal.fire({
+                icon: "error",
+                title: 'Error',
+                text: errorData.message || errorData.error || "No se pudo crear la categoría. Verifica que no esté duplicada.",
+                target: document.getElementById('modalProducto')
+            });
+            // alert(errorData.message || errorData.error || "No se pudo crear la categoría. Verifica que no esté duplicada.");
         }
     } catch (error) {
         console.error("Error de red al crear la categoría:", error);
@@ -523,10 +608,22 @@ async function actualizarMarca(id, nuevoNombre) {
         if (respuesta.ok) {
             await cargarMarcasTabla();
             if (typeof cargarMarcas === "function") await cargarMarcas(); // Refrescar selects
-            alert("Marca actualizada correctamente 🎉");
+            Swal.fire({
+                icon: "success",
+                title: 'Actualizacion',
+                text: "Marca actualizada correctamente 🎉",
+                timer: 1500
+            });
+            // alert("Marca actualizada correctamente 🎉");
         } else {
             const errorData = await respuesta.json().catch(() => ({}));
-            alert(errorData.message || "Error al actualizar la marca.");
+            Swal.fire({
+                icon: "error",
+                title: 'Actualizacion',
+                text: errorData.message || "Error al actualizar la marca.",
+                timer: 1500
+            });
+            // alert(errorData.message || "Error al actualizar la marca.");
         }
     } catch (error) {
         console.error("Error al actualizar marca:", error);
@@ -546,10 +643,23 @@ async function actualizarUsuario(id, nuevoNombre) {
         if (respuesta.ok) {
             await cargarUsuariosTabla();
             if (typeof cargarUsuarios === "function") await cargarUsuarios(); // Refrescar selects
-            alert("Usuario actualizado correctamente 🎉");
+                Swal.fire({
+                icon: "success",
+                title: 'Actualizacion',
+                text: "Usuario actualizado correctamente 🎉",
+                timer: 1500
+            });
+            
+            // alert("Usuario actualizado correctamente 🎉");
         } else {
             const errorData = await respuesta.json().catch(() => ({}));
-            alert(errorData.message || "Error al actualizar el usuario.");
+            Swal.fire({
+                icon: "error",
+                title: 'Actualizacion',
+                text: errorData.message || "Error al actualizar el usuario.",
+                timer: 1500
+            });
+            // alert(errorData.message || "Error al actualizar el usuario.");
         }
     } catch (error) {
         console.error("Error al actualizar usuario:", error);
@@ -569,7 +679,13 @@ async function actualizarCategoria(id, nuevoNombre) {
         if (respuesta.ok) {
             await cargarCategoriasTabla();
             if (typeof cargarCategorias === "function") await cargarCategorias(); // Refrescar selects
-            alert("Categoría actualizada correctamente 🎉");
+            Swal.fire({
+                icon: "success",
+                title: 'Cambio de Rol',
+                text: "Categoría actualizada correctamente 🎉",
+                timer: 1500
+            });
+            // alert("Categoría actualizada correctamente 🎉");
         } else {
             const errorData = await respuesta.json().catch(() => ({}));
             alert(errorData.message || "Error al actualizar la categoría.");
@@ -592,10 +708,21 @@ async function cambiarRolUsuario(id, nuevoRol) {
 
         if (respuesta.ok) {
             await cargarUsuariosTabla();
-            alert("Rol de usuario actualizado correctamente 🎉");
+            Swal.fire({
+                icon: "success",
+                title: 'Cambio de Rol',
+                text: "Rol de usuario actualizado correctamente 🎉",
+            });
+            // alert("Rol de usuario actualizado correctamente 🎉");
         } else {
             const errorData = await respuesta.json().catch(() => ({}));
-            alert(errorData.message || "Error al actualizar el rol del usuario.");
+             Swal.fire({
+                icon: "error",
+                title: 'Cambio de Rol',
+                text: errorData.message || "Error al actualizar el rol del usuario.",
+                timer: 1500
+            });
+            // alert(errorData.message || "Error al actualizar el rol del usuario.");
         }
     } catch (error) {
         console.error("Error al actualizar rol de usuario:", error);
@@ -606,7 +733,22 @@ async function cambiarRolUsuario(id, nuevoRol) {
 // ELIMINAR USUARIO (DELETE /api/usuarios/{id})
 // ==========================================
 async function eliminarUsuario(id) {
-    if (!confirm("¿Deseas eliminar este usuario?")) return;
+    const resultado = await Swal.fire({
+    iconHtml: '<i class="bi bi-exclamation-triangle text-warning display-4"></i>',
+    customClass: {
+        icon: 'border-0'
+    },
+    title: '¿Estás seguro?',
+    text: "¿Deseas eliminar este usuario?",
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar',
+    confirmButtonColor: '#dc3545',
+    cancelButtonColor: '#6c757d'
+});
+
+if (!resultado.isConfirmed) return;
+    // if (!confirm("¿Deseas eliminar este usuario?")) return;
 
     try {
         const respuesta = await fetch(`${API_USUARIOS_URL}/${id}`, {
@@ -616,9 +758,21 @@ async function eliminarUsuario(id) {
 
         if (respuesta.status === 204 || respuesta.ok) {
             await cargarUsuariosTabla();
-            alert("Usuario eliminado con éxito 🗑️");
+             Swal.fire({
+                icon: "success",
+                title: 'Eliminacion',
+                text: "Usuario eliminado con éxito 🗑️",
+                timer: 1500
+            });
+            // alert("Usuario eliminado con éxito 🗑️");
         } else {
-            alert("No se pudo eliminar el usuario.");
+             Swal.fire({
+                icon: "error",
+                title: 'Cambio de Rol',
+                text: "No se pudo eliminar el usuario.",
+                timer: 1500
+            });
+            // alert("No se pudo eliminar el usuario.");
         }
     } catch (error) {
         console.error("Error al eliminar usuario:", error);
@@ -626,8 +780,26 @@ async function eliminarUsuario(id) {
 }
 
 
+// ==========================================
+// Categoria
+// ==========================================
+
 async function eliminarCategoria(id) {
-    if (!confirm("¿Deseas eliminar esta categoría?")) return;
+        const resultado = await Swal.fire({
+        iconHtml: '<i class="bi bi-exclamation-triangle text-warning display-4"></i>',
+        customClass: {
+            icon: 'border-0'
+        },
+        title: '¿Estás seguro?',
+        text: "¿Deseas eliminar este producto?",
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d'
+    });
+    if (!resultado.isConfirmed) return;
+    // if (!confirm("¿Deseas eliminar esta categoría?")) return;
 
     try {
         const respuesta = await fetch(`${API_CATEGORIAS_URL}/${id}`, {
@@ -638,9 +810,21 @@ async function eliminarCategoria(id) {
         if (respuesta.status === 204 || respuesta.ok) {
             await cargarCategoriasTabla();
             if (typeof cargarCategorias === "function") await cargarCategorias();
-            alert("Categoría eliminada con éxito 🗑️");
+                Swal.fire({
+                    icon: "success",
+                    title: 'Eliminacion',
+                    text: "Categoría eliminada con éxito 🗑️",
+                    timer: 1500
+                });
+            // alert("Categoría eliminada con éxito 🗑️");
         } else {
-            alert("No se pudo eliminar la categoría (puede que tenga productos asociados).");
+            Swal.fire({
+                    icon: "error",
+                    title: 'Eliminacion',
+                    text: "No se pudo eliminar la categoría (puede que tenga productos asociados).",
+                    timer: 1500
+                });
+            // alert("No se pudo eliminar la categoría (puede que tenga productos asociados).");
         }
     } catch (error) {
         console.error("Error al eliminar categoría:", error);
@@ -651,7 +835,21 @@ async function eliminarCategoria(id) {
 
 
 async function eliminarMarca(id) {
-    if (!confirm("¿Deseas eliminar esta marca?")) return;
+     const resultado = await Swal.fire({
+        iconHtml: '<i class="bi bi-exclamation-triangle text-warning display-4"></i>',
+        customClass: {
+            icon: 'border-0'
+        },
+        title: '¿Estás seguro?',
+        text: "¿Deseas eliminar esta marca?",
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#6c757d'
+    });
+    if (!resultado.isConfirmed) return;
+    // if (!confirm("¿Deseas eliminar esta marca?")) return;
 
     try {
         const respuesta = await fetch(`${API_MARCAS_URL}/${id}`, {
@@ -662,7 +860,14 @@ async function eliminarMarca(id) {
         if (respuesta.status === 204 || respuesta.ok) {
             await cargarMarcasTabla();
             if (typeof cargarMarcas === "function") await cargarMarcas();
-            alert("Marca eliminada con éxito 🗑️");
+            Swal.fire({
+                icon: 'success',
+                title: '¡Eliminado!',
+                text: 'Marca eliminada con éxito 🗑️',
+                timer: 1500,
+                showConfirmButton: false,
+            });
+            // alert("Marca eliminada con éxito 🗑️");
         } else {
             alert("No se pudo eliminar la marca (puede que tenga productos asociados).");
         }
@@ -727,7 +932,7 @@ function configurarNavegacionAdmin() {
                     <h4 class="fw-bold tituloProductos">Productos</h4>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
-                    <p class="subtitulopanel">Administra, agrega, edita o elimina productos.</p>
+                    <p class="subtitulopanel" id="subtituloP" >Administra, agrega, edita o elimina productos.</p>
                 </div>
                 <div class="table-responsive">
                     <table class="tablaInventario table table-hover">
@@ -759,7 +964,7 @@ function configurarNavegacionAdmin() {
             </button>
         </div>
         <div class="d-flex justify-content-between align-items-center">
-            <p class="subtitulopanel">Clasificación de productos disponibles.</p>
+            <p class="subtitulopanel" id="subtituloP">Clasificación de productos disponibles.</p>
         </div>
         <div class="table-responsive">
             <table class="tablaInventario table table-hover">
@@ -786,7 +991,7 @@ function configurarNavegacionAdmin() {
             </button>
         </div>
         <div class="d-flex justify-content-between align-items-center">
-            <p class="subtitulopanel">Clasificación de productos disponibles.</p>
+            <p class="subtitulopanel" id="subtituloP">Clasificación de productos disponibles.</p>
         </div>
         <div class="table-responsive">
             <table class="tablaInventario table table-hover">
@@ -808,10 +1013,9 @@ function configurarNavegacionAdmin() {
             <div class="p-4">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4 class="fw-bold tituloProductos">Usuarios</h4>
-                    <button class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> Crear Usuario</button>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
-                    <p class="subtitulopanel">Administración de accesos y permisos.</p>
+                    <p class="subtitulopanel" id="subtituloP">Administración de accesos y permisos.</p>
                 </div>
                 <div class="table-responsive">
                     <table class="tablaInventario table table-hover">
