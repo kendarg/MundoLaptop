@@ -48,8 +48,12 @@ async function agregarProductosAdmin() {
         const marcasPorId = new Map(
             marcas.map((marca) => [String(marca.id), marca.nombre || marca.nombreMarca])
         );
+        const rutaIconoCarrito = window.location.pathname.includes("/html/")
+            ? "../assets/inicio/carrito.svg"
+            : "./assets/inicio/carrito.svg";
+        const limite = Number(contenedorProductos.dataset.limit) || productos.length;
 
-        productos.forEach((producto, indice) => {
+        productos.slice(0, limite).forEach((producto, indice) => {
         const precioFormateado = Number(producto.precio).toLocaleString("es-CO");
 
         const urlAleatoria = imagenesAleatorias[indice % imagenesAleatorias.length];
@@ -84,7 +88,7 @@ async function agregarProductosAdmin() {
                         <div class="producto-footer">
                             <span><strong class="Valor">$ ${precioFormateado} COP</strong></span>
                             <button class="${sinStock ? "boton-no-disponible" : ""}" data-id="${producto.id}"${sinStock ? " disabled" : ""}>
-                                ${sinStock ? "No disponible" : '<img src="../assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito'}
+                                ${sinStock ? "No disponible" : `<img src="${rutaIconoCarrito}" alt="carrito"> Agregar al carrito`}
                             </button>
                         </div>
                     </div>

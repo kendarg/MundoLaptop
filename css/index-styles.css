@@ -233,7 +233,12 @@ body {
     justify-content: flex-start !important;
     background-color: var(--var-background-banner);
     border-radius: 10px;
+    height: 100%;
     transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.section-productos-render > .col {
+    display: flex;
 }
 
 .productos-destacados-card:hover {
@@ -276,13 +281,22 @@ body {
 }
 
 .informacion-card {
-    margin-top:20px;
+    box-sizing: border-box;
+    flex: 1;
+    margin-top: 12px;
     display: flex;
     flex-direction: column;
     padding: 0px 30px;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 8px;
+    min-height: 190px;
+}
+
+.producto-footer {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    height: 200px;
+    margin-top: auto;
 }
 
 

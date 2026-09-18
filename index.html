@@ -464,84 +464,13 @@
             <!-- se da display fles se hace una ceparacion larga con betweend se centra con alait -->
             <div class="productos-destacados-1 d-flex justifi-between alait-items-center mb-4 ">
                 <h4 class="">Productos destacados</h4>
-
                 <a href="./html/productos.html  ">Ver mas -> </a>
-
             </div>
 
             <!-- Se modifica el div y se crea otro debajo para cada cart -->
             <!-- Se usa g-4 para la separacion interna -->
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 justify-content-center">
-                <!-- el todo el row le indindica que las columnas deben de ser responsivas -->
-
-                <div class="col">
-                    <div class="productos-destacados-card">
-                        <div class="img-card">
-                            <img src="https://laptopmedia.com/wp-content/uploads/2024/03/5-8.jpg" alt="">
-
-                        </div>
-                        <div class="informacion-card">
-                            <span> <strong>HP</strong></span>
-                            <span class="nombreProducto">HP EliteBook 840 G10 (Core i7 13th - 32GB RAM - 1TB SSD - 14 inches)</span>
-                            <span> <strong class="Valor">$ 1.800.000 COP</strong></span>
-                            <button> <img src="./assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col">
-                    <div class="productos-destacados-card">
-                        <div class="img-card">
-                            <img src="https://p1-ofp.static.pub//fes/cms/2025/04/04/ymnzpm3cgfq889rfbsxjrmli0udz6v903034.jpg" alt="">
-
-                        </div>
-                        <div class="informacion-card">
-                            <span> <strong>Lenovo </strong> </span>
-                            <p class="nombreProducto"> Lenovo Legion Pro 5 (Ryzen 7 8745HX - RTX 4080 - 32GB RAM - 1TB SSD - 16 inches 240Hz)</p>
-                            <span> <strong class="Valor">$ 6.300.000 COP</strong></span>
-                            <button> <img src="./assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="productos-destacados-card">
-                        <div class="img-card">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuyTYHDHO20wK0Nz-vb2O4yfrWQq-WVDtLpkrMWFposGzQHhF1EbJs9Vty&s=10" alt="">
-
-                        </div>
-                        <div class="informacion-card">
-                            <span> <strong>Dell</strong></span>
-                            <span class="nombreProducto"> Dell Latitude 5440 (Core i5 13th - 16GB RAM - 512GB SSD - 14 inches)</span>
-
-                            <span> <strong class="Valor">$ 1.450.000 COP</strong></span>
-                            <button> <img src="./assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="productos-destacados-card">
-                        <div class="img-card">
-                            <img src="https://laptopmedia.com/wp-content/uploads/2023/10/6-2.jpg" alt="">
-
-                        </div>
-                        <div class="informacion-card">
-                            <span> <strong>ASUS</strong></span>
-                            <span class="nombreProducto">Asus TUF Gaming A15 Ryzen 7 7445HS - RTX 3050 - 16GB RAM - 512GB</span>
-                            <span> <strong class="Valor">$ 2.000.000 COP</strong></span>
-                            <button> <img src="./assets/inicio/carrito.svg" alt="carrito"> Agregar al carrito</button>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
+            <div class="section-productos-render row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 justify-content-center" data-limit="4"></div>
 
 
 
@@ -711,6 +640,7 @@
     <script src="./js/banner.js"></script>
     <script src="./js/logininterfaz.js"></script>
     <script src="./js/login.js"></script>
+    <script src="./js/productos.js"></script>
 </body>
 
 </html>
