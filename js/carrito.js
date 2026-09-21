@@ -262,12 +262,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // 7. Confirmar compra
-document.addEventListener("submit", async (e) => {
+  document.addEventListener("submit", async (e) => {
     if (e.target.id !== "form-checkout") return;
     e.preventDefault();
 
     const nombreInput = document.getElementById("nombreCliente");
-    const nombre = nombreInput ? nombreInput.value : "Cliente";
+    const nombre = nombreInput ? nombreInput.value.trim() : "Cliente";
 
     const payloadCompra = {
       cliente: nombre,
@@ -298,26 +298,27 @@ document.addEventListener("submit", async (e) => {
       if (modalCheckoutElement) {
         bootstrap.Modal.getOrCreateInstance(modalCheckoutElement).hide();
       }
-
-      Swal.fire({
-        iconHtml: '<i class="bi bi-truck text-success display-4"></i>',
-        customClass: {
-          icon: 'border-0'
-        },
-        title: `Gracias por tu compra ${nombre}`,
-        html: `
-          <p class="mb-1">En breve nos pondremos en contacto para gestionar el envio</p>
-          <div class="mt-3 p-2 bg-light rounded text-muted small">
-            <i class="bi bi-box-seam me-1"></i> Tu pedido ya esta listo para ser procesado
-          </div>
-        `,
-        confirmButtonText: 'Excelente',
-        confirmButtonColor: "#198754"
-      });
-
       carrito = [];
       actualizarCarrito();
       e.target.reset();
+
+      setTimeout(() => {
+        Swal.fire({
+          iconHtml: '<i class="bi bi-truck text-success display-4"></i>',
+          customClass: {
+            icon: 'border-0'
+          },
+          title: `Gracias por tu compra ${nombre}`,
+          html: `
+            <p class="mb-1">En breve nos pondremos en contacto para gestionar el envio</p>
+            <div class="mt-3 p-2 bg-light rounded text-muted small">
+              <i class="bi bi-box-seam me-1"></i> Tu pedido ya esta listo para ser procesado
+            </div>
+          `,
+          confirmButtonText: 'Excelente',
+          confirmButtonColor: "#198754"
+        });
+      }, 300);
 
     } catch (error) {
       console.error(error);
