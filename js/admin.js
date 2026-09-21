@@ -224,6 +224,15 @@ if (formProducto) {
                 delete formProducto.dataset.id;
                 if (modalProducto) modalProducto.style.display = "none";
                 if (contenedorEspecificaciones) contenedorEspecificaciones.innerHTML = "";
+                Swal.fire({
+                    icon: 'success',
+                    title: idProducto ? '¡Producto actualizado!' : '¡Producto creado!',
+                    text: idProducto
+                    ? 'El producto se ha actualizado correctamente 🎉.'
+                    : 'El producto ha sido registrado con éxito 🎉.',
+                    timer: 2000,
+                    showConfirmButton: false
+                    });
                 cargarProductos();
             } else {
                 const errorData = await respuesta.json().catch(() => ({}));
@@ -681,7 +690,7 @@ async function actualizarCategoria(id, nuevoNombre) {
             if (typeof cargarCategorias === "function") await cargarCategorias(); // Refrescar selects
             Swal.fire({
                 icon: "success",
-                title: 'Cambio de Rol',
+                title: 'Cambio de Categoria',
                 text: "Categoría actualizada correctamente 🎉",
                 timer: 1500
             });
@@ -835,7 +844,7 @@ async function eliminarCategoria(id) {
 
 
 async function eliminarMarca(id) {
-     const resultado = await Swal.fire({
+    const resultado = await Swal.fire({
         iconHtml: '<i class="bi bi-exclamation-triangle text-warning display-4"></i>',
         customClass: {
             icon: 'border-0'
@@ -1312,12 +1321,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// Detecta dinámicamente si estás en desarrollo local o en producción en GitHub Pages
+
 const API_BASE_URL = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
     ? "http://localhost:8080/api"
     : "https://mundolaptopbackend.onrender.com/api";
 
-// Ejemplo de consumo desde el Frontend:
+
 fetch(`${API_BASE_URL}/productos`)
     .then(response => response.json())
     .then(data => {

@@ -22,12 +22,32 @@ document.addEventListener("DOMContentLoaded", function () {
             emailjs.send('service_mundolaptop', 'template_0m7bb7l', templateParams)
                 .then(function (response) {
                     console.log('Mensaje enviado:', response.status, response.text);
-                    alert("¡Mensaje enviado con éxito!");
+                    Swal.fire({
+                        position: "top",
+                        iconHtml: '<i class="bi bi-envelope-check-fill text-success    display-4"></i>',
+                            customClass: {
+                            icon: 'border-0',
+                        },
+                        icon: "success",
+                        title: "Success",
+                        text: "¡Mensaje enviado con éxito!.",
+                        showConfirmButton: false,
+                        timer: 2000
+                        });
+                    // alert("¡Mensaje enviado con éxito!");
                     contactForm.reset();
                 })
                 .catch(function (error) {
                     console.error("Error al enviar con EmailJS:", error);
-                    alert("Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.");
+                    Swal.fire({
+                        position: "top",
+                        icon: "warning",
+                        title: "ERROR",
+                        text: "Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.",
+                        showConfirmButton: false,
+                        timer: 2000
+                        });
+                    // alert("Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.");
                 })
                 .finally(function () {
                     submitBtn.disabled = false;
