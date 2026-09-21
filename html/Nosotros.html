@@ -140,47 +140,122 @@
         </div>
     </div>
 
-    <!-- Modal Checkout -->
-    <div class="modal fade" id="modalCheckout" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Finalizar compra</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="form-checkout">
-                        <div class="mb-3">
-                            <label class="form-label">Nombre</label>
-                            <input type="text" id="nombreCliente" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Correo electrónico</label>
-                            <input type="email" id="correoCliente" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Dirección</label>
-                            <input type="text" id="direccionCliente" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="metodoPago" class="form-label">Método de pago</label>
-                            <select id="metodoPago" class="form-select form-select-sm" required>
-                                <option value="" selected disabled>Selecciona un método</option>
-                                <option value="mastercard">Mastercard</option>
-                                <option value="amex">American Express</option>
-                            </select>
-                        </div>
-                        <div class="alert alert-light">
-                            Total a pagar: <strong id="checkout-total-price">$ 0</strong>
-                        </div>
-                        <button type="submit" class="btn-confirmar-compra w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
-                            <i class="bi bi-lock-fill"></i> Confirmar compra
-                        </button>
-                    </form>
+        <!-- Modal Checkout -->
+        <div class="modal fade" id="modalCheckout" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Finalizar compra</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-checkout">
+
+                            <div class="mb-3">
+                                <label class="form-label">Nombre del cliente</label>
+                                <input type="text" id="nombreCliente" class="form-control" placeholder="EJ. Walter Motoya" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Correo electrónico</label>
+                                <input type="email" id="correoCliente" class="form-control" placeholder="MundoLaptop@ejemplo.com" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Dirección de envío</label>
+                                <input type="text" id="direccionCliente" maxlength="16" class="form-control" placeholder="Calle 123 #45-67" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="paisCliente" class="form-label">País</label>
+                                <select id="paisCliente" class="form-select" required>
+                                    <option value="" selected disabled>Selecciona un país</option>
+                                    <option value="Alemania">Alemania</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Bolivia">Bolivia</option>
+                                    <option value="Brasil">Brasil</option>
+                                    <option value="Canadá">Canadá</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="China">China</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Ecuador">Ecuador</option>
+                                    <option value="España">España</option>
+                                    <option value="Estados Unidos">Estados Unidos</option>
+                                    <option value="Francia">Francia</option>
+                                    <option value="India">India</option>
+                                    <option value="Italia">Italia</option>
+                                    <option value="Japón">Japón</option>
+                                    <option value="México">México</option>
+                                    <option value="Perú">Perú</option>
+                                    <option value="Uruguay">Uruguay</option>
+                                    <option value="Venezuela">Venezuela</option>
+                                </select>
+                            </div>
+
+                            <hr class="my-3">
+
+                            <div class="mb-3">
+                                <label class="form-label">Número de tarjeta</label>
+                                <input type="text" id="numTarjeta" maxlength="19" class="form-control" placeholder="4532 0000 0000 0000" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Nombre del titular de la tarjeta</label>
+                                <input type="text" id="titularTarjeta" maxlength="16" class="form-control" placeholder="Como aparece en la tarjeta" required>
+                            </div>
+
+                            <div class="row g-2 mb-3">
+                                <div class="col-4">
+                                    <label class="form-label">Mes Exp.</label>
+                                    <select id="expMes" class="form-select" required>
+                                        <option value="" selected disabled>MM</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label class="form-label">Año Exp.</label>
+                                    <select id="expAnio" class="form-select" required>
+                                        <option value="" selected disabled>YY</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                        <option value="2029">2029</option>
+                                        <option value="2030">2030</option>
+                                        <option value="2031">2031</option>
+                                        <option value="2032">2032</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label class="form-label">CVV</label>
+                                    <input type="text" id="cvv" maxlength="4" class="form-control" placeholder="123" required>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-light">
+                                Total a pagar: <strong id="checkout-total-price">$ 0</strong>
+                            </div>
+
+                            <button type="submit" class="btn-confirmar-compra w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                <i class="bi bi-lock-fill"></i> Confirmar compra
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
 
     <!-- Panel de Login / Registro -->
     <section class="loginpg">
@@ -350,6 +425,7 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/cambiDeVsion.js"></script>
     <script src="../js/navbar.js"></script>
     <script src="../js/carrito.js"></script>

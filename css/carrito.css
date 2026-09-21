@@ -68,6 +68,10 @@
   opacity: 0.15;
 }
 
+.cardName{
+  
+}
+
 /* Tarjeta individual de producto */
 .cart-product-item {
   display: flex;
